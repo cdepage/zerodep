@@ -1,0 +1,59 @@
+{
+  "root": "packages/guards.number",
+  "sourceRoot": "packages/guards.number/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/guards.number/package.json",
+        "entryFile": "packages/guards.number/src/index.ts",
+        "outputPath": "dist/packages/guards.number",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/guards.number/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/guards.number",
+          "rollup -c packages/guards.number/rollup.config.ts",
+          "mv dist/packages/guards.number/index.esm.d.ts dist/packages/guards.number/index.d.ts",
+          "cp packages/guards.number/*.md dist/packages/guards.number",
+          "cp packages/guards.number/package.json dist/packages/guards.number/package.json",
+          "uglifyjs dist/packages/guards.number/index.esm.js -o dist/packages/guards.number/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guards.number/index.cjs.js -o dist/packages/guards.number/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/guards.number/index.esm.js",
+          "rm dist/packages/guards.number/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/guards.number/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/guards.number"],
+      "options": {
+        "jestConfig": "packages/guards.number/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/guards.number"
+      }
+    }
+  },
+  "tags": []
+}

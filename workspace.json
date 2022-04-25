@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "projects": {
+    "errors": "packages/errors",
+    "guards": "packages/guards",
+    "guards.errors": "packages/guards.errors",
+    "guards.float": "packages/guards.float",
+    "guards.integer": "packages/guards.integer",
+    "guards.number": "packages/guards.number",
+    "guards.string": "packages/guards.string",
+    "utils": "packages/utils"
+  }
+}

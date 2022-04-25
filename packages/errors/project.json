@@ -1,0 +1,56 @@
+{
+  "root": "packages/errors",
+  "sourceRoot": "packages/errors/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/errors",
+        "main": "packages/errors/src/index.ts",
+        "tsConfig": "packages/errors/tsconfig.lib.json",
+        "assets": ["packages/errors/*.md"]
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/errors",
+          "rollup -c packages/errors/rollup.config.ts",
+          "mv dist/packages/errors/index.esm.d.ts dist/packages/errors/index.d.ts",
+          "cp packages/errors/*.md dist/packages/errors",
+          "cp packages/errors/package.json dist/packages/errors/package.json",
+          "uglifyjs dist/packages/errors/index.esm.js -o dist/packages/errors/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/errors/index.cjs.js -o dist/packages/errors/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/errors/index.esm.js",
+          "rm dist/packages/errors/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/errors/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/errors"],
+      "options": {
+        "jestConfig": "packages/errors/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/errors"
+      }
+    }
+  },
+  "tags": []
+}

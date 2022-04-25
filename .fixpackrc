@@ -1,0 +1,41 @@
+{
+  "sortToTop": [
+    "name",
+    "description",
+    "version",
+    "license",
+    "private",
+    "repository",
+    "homepage",
+    "bugs",
+    "author",
+    "contributors",
+    "repository",
+    "sideEffects",
+    "type",
+    "engines",
+    "workspaces",
+    "main",
+    "module",
+    "types",
+    "files",
+    "bin",
+    "scripts",
+    "devDependencies",
+    "peerDependencies",
+    "dependencies",
+    "resolutions",
+    "browserslist"
+  ],
+  "required": ["name", "description", "version", "license", "homepage", "bugs", "author", "repository", "main", "module", "types"],
+  "warn": [],
+  "requiredOnPrivate": ["name", "version", "scripts"],
+  "warnOnPrivate": [],
+  "sortedSubItems": [
+    "devDependencies",
+    "dependencies",
+    "resolutions"
+  ],
+  "files": ["package.json"],
+  "dryRun": false
+}

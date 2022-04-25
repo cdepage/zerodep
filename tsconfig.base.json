@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2020",
+    "module": "ES2020",
+    "lib": ["ES2020", "DOM"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@zerodep/errors": ["packages/errors/src/index.ts"],
+      "@zerodep/guards": ["packages/guards/src/index.ts"],
+      "@zerodep/guards.errors": ["packages/guards.errors/src/index.ts"],
+      "@zerodep/guards.float": ["packages/guards.float/src/index.ts"],
+      "@zerodep/guards.integer": ["packages/guards.integer/src/index.ts"],
+      "@zerodep/guards.number": ["packages/guards.number/src/index.ts"],
+      "@zerodep/guards.string": ["packages/guards.string/src/index.ts"],
+      "@zerodep/utils": ["packages/utils/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
