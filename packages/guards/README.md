@@ -1,6 +1,8 @@
 # @zerodep/guards
 
-Guards are defensive programming utilities to protect a method/function against incorrect data. This package contains guards for a variety of data types.
+This is a barrel-package of all available guards for the different data types.
+
+Guards are defensive programming utilities to protect a method/function against incorrect data.
 
 ## Table of Contents
 
@@ -10,7 +12,7 @@ Guards are defensive programming utilities to protect a method/function against 
 - [How to Use](#how-to-use)
   - [Signature](#signature)
   - [Examples](#examples)
-- [ZeroDep Advantages](#zerodep-advantages)
+- [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
 - [Resources](#resources)
@@ -45,17 +47,17 @@ For completeness, links to the @zerodep repositories with this function:
 
 This package has the following guards available. Most guards have optional configurations to further narrow the scope of the guard.
 
-| Only Allows       | Method Name  | Optional Configuration                 |
-| ----------------- | ------------ | -------------------------------------- |
-| Strings           | guardString  | minLength, maxLength                   |
-| Integers + Floats | guardNumber  | min, max                               |
-| Integers          | guardInteger | min, max                               |
-| Floats            | guardFloat   | min, max                               |
-| BigInts           | guardBigInt  | min, max                               |
-| Booleans          | guardBoolean |                                        |
-| Dates             | guardDate    | earliest, latest                       |
-| Arrays            | guardArray   | minQuantity, maxQuantity, payloadGuard |
-| Objects           | guardObject  | minQuantity, maxQuantity, payloadGuard |
+| Only Allows | Method Name | Optional Configuration |
+| --- | --- | --- |
+| Strings | [guardString](https://github.com/cdepage/zerodep/tree/main/packages/guards.string) | minLength, maxLength |
+| Integers + Floats | [guardNumber](https://github.com/cdepage/zerodep/tree/main/packages/guards.number) | min, max |
+| Integers | [guardInteger](https://github.com/cdepage/zerodep/tree/main/packages/guards.integer) | min, max |
+| Floats | [guardFloat](https://github.com/cdepage/zerodep/tree/main/packages/guards.float) | min, max |
+| BigInts | [guardBigInt](https://github.com/cdepage/zerodep/tree/main/packages/guards.bigint) | min, max |
+| Booleans | [guardBoolean](https://github.com/cdepage/zerodep/tree/main/packages/guards.boolean) |  |
+| Dates | [guardDate](https://github.com/cdepage/zerodep/tree/main/packages/guards.date) | earliest, latest |
+| Arrays | [guardArray](https://github.com/cdepage/zerodep/tree/main/packages/guards.array) | minQuantity, maxQuantity, payloadGuard |
+| Objects | [guardObject](https://github.com/cdepage/zerodep/tree/main/packages/guards.object) | minQuantity, maxQuantity, payloadGuard |
 
 ## How to Use
 
@@ -126,14 +128,16 @@ try {
 }
 ```
 
-## @zerodep Advantages:
+## Advantages of @zerodep Packages
 
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
 - **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
 - **100% Tested** - all methods are fully unit tested
 - **Semver** - predictably versioned for peace-of-mind upgrading
+- **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 

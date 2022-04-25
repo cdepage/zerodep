@@ -12,7 +12,7 @@ A defensive programming utility to guard against the use of non-strings / allow 
 - [How to Use](#how-to-use)
   - [Signature](#signature)
   - [Examples](#examples)
-- [ZeroDep Advantages](#zerodep-advantages)
+- [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
 - [Resources](#resources)
@@ -129,14 +129,16 @@ try {
 }
 ```
 
-## @zerodep Advantages:
+## Advantages of @zerodep Packages
 
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
 - **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities 
 - **100% Tested** - all methods are fully unit tested
 - **Semver** - predictably versioned for peace-of-mind upgrading
+- **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 

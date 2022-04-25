@@ -1,90 +1,113 @@
-# Zerodev2
+# @zerodep
 
-This project was generated using [Nx](https://nx.dev).
+A monorepo of zero-dependency capabilities.
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## Table of Contents
 
-🔎 **Smart, Fast and Extensible Build System**
+- [Advantages of @zerodep Packages](#advantages-of-zerodep-packages)
+- [Available Packages](#available-packages)
+  - [Utilities Barrel Package](#utilities-package)
+  - [Guards Barrel Package](#guards-package)
+  - [Independent Packages](#independent-packages)
+- [Support](#support)
+- [Semver](#semver)
+- [Resources](#resources)
+- [License](#license)
 
-## Adding capabilities to your workspace
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+## Advantages of @zerodep Packages
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+- **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
+- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
+- **Fully typed** - typescript definitions are provided for every package for a better developer experience
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
+- **100% Tested** - all methods are fully unit tested
+- **Semver** - predictably versioned for peace-of-mind upgrading
+- **MIT Licensed** - permissively licensed for maximum usability
 
-Below are our core plugins:
+## Available Packages
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+The @zerodep ecosystem is made up of numerous independent packages and barrel-packages (packages that combine similar packages together).
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+### Utilities Package
 
-## Generate an application
+```
+npm install @zerodep/utils
+```
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
 
-> You can use any of the plugins above to generate applications as well.
+#### Includes
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+| Package Name | Purpose |
+| --- | --- |
+| [@zerodep/errors](https://github.com/cdepage/zerodep/tree/main/packages/errors) | The ZeroDepError upon which all other errors are subclassed |
+| [@zerodep/guards](https://github.com/cdepage/zerodep/tree/main/packages/guards) | A barrel-package of all guards (see below) |
 
-## Generate a library
+### Guards Package
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+```typescript
+npm install @zerodep/guards
+```
 
-> You can also use any of the plugins above to generate libraries as well.
+Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
 
-Libraries are shareable across libraries and applications. They can be imported from `@zerodev2/mylib`.
+#### Includes
 
-## Development server
+| Package Name | Purpose |
+| --- | --- |
+| [@zerodep/guards.errors](https://github.com/cdepage/zerodep/tree/main/packages/guards.errors) | The ZeroDepErrorGuard that all guard packages use |
+| [@zerodep/guards.float](https://github.com/cdepage/zerodep/tree/main/packages/guards.float) | Guards against the use of non-float values |
+| [@zerodep/guards.integer](https://github.com/cdepage/zerodep/tree/main/packages/guards.integer) | Guards against the use of non-integer values |
+| [@zerodep/guards.number](https://github.com/cdepage/zerodep/tree/main/packages/guards.number) | Guards against the use of non-numeric values |
+| [@zerodep/guards.string](https://github.com/cdepage/zerodep/tree/main/packages/guards.string) | Guards against the use of non-string values |
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+### Independent Packages
 
-## Code scaffolding
+Any of the packages included in the barrel-packages above may be installed in independently:
+```
+npm install @zerodep/[package-name]
+```
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+Documentation for each can be found in the appropriate [packages folder](https://github.com/cdepage/zerodep/tree/main/packages) on github.
 
-## Build
+## Support
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
 
-## Running unit tests
+**Browsers**
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+- Chrome - last 2 major versions
+- Firefox - last 2 major versions
+- Safari - last 2 major versions
+- Android - last 2 major versions
+- iOS - last 2 major versions
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+**Node**
 
-## Running end-to-end tests
+- v16.x - Gallium LTS
+- v14.x - Fermium LTS
 
-Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+It is likely the package will work on other technologies and version, however development and testing effort is only spent on the above.
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+## Semver
 
-## Understand your workspace
+All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one, adhere to Semantic Versioning practices:
 
-Run `nx graph` to see a diagram of the dependencies of your projects.
+- **major versions**: correlates with breaking changes to one or more method signatures
+- **minor versions**: includes addition of new functionality or backwards-compatible software improvements
+- **patch versions**: are reserved for copy changes and bug fixes
 
-## Further help
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/packages/guards.string/CHANGELOG.md) and any associated software changes.
 
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+## Resources
 
-## ☁ Nx Cloud
+- [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
+- [Changelog](https://github.com/cdepage/zerodep/packages/guards.string/CHANGELOG.md)
+- [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
+- [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 
-### Distributed Computation Caching & Distributed Task Execution
+## License
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+[MIT](https://github.com/cdepage/zerodep/blob/main/LICENSE)

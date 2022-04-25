@@ -29,7 +29,7 @@
   ],
   "required": ["name", "description", "version", "license", "homepage", "bugs", "author", "repository", "main", "module", "types"],
   "warn": [],
-  "requiredOnPrivate": ["name", "version", "scripts"],
+  "requiredOnPrivate": ["name", "version"],
   "warnOnPrivate": [],
   "sortedSubItems": [
     "devDependencies",

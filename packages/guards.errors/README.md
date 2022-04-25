@@ -12,7 +12,7 @@ The `ZeroDepErrorGuard` is further subclassed with:
 - [Guards & Errors](#guards--errors)
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
-- [ZeroDep Advantages](#zerodep-advantages)
+- [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
 - [Resources](#resources)
@@ -124,14 +124,16 @@ console.log(error.value); // { answer: 42 }
 
 More information about error configuration can be found in the [@zerodep/errors](https://github.com/cdepage/zerodep/blob/main/packages/errors/README.md) documentation.
 
-## @zerodep Advantages:
+## Advantages of @zerodep Packages
 
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
 - **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
 - **100% Tested** - all methods are fully unit tested
 - **Semver** - predictably versioned for peace-of-mind upgrading
+- **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
