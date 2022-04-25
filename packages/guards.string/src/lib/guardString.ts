@@ -1,7 +1,6 @@
-import { IZeroDepError } from '@zerodep/errors';
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guards.errors';
 
-export interface IGuardStringOptions extends IZeroDepError {
+export interface IGuardStringOptions {
   minLength?: number;
   maxLength?: number;
 }
@@ -18,23 +17,25 @@ export const guardString = (options: IGuardStringOptions = {}) => {
   return (value: any): string => {
     // we need to check for the typeof first as "undefined" will cause isInteger() to error
     if (typeof value !== 'string') {
-      throw new ZeroDepErrorGuardType('Value is not a string', undefined, value);
+      const error = new ZeroDepErrorGuardType('Value is not a string');
+      error.value = value;
+      throw error;
     }
 
     if (typeof config.minLength !== 'undefined' && value.length < config.minLength) {
-      throw new ZeroDepErrorGuardRange(
-        `String too short - was less than ${config.minLength} characters`,
-        400,
-        value
+      const error = new ZeroDepErrorGuardRange(
+        `String is shorter than ${config.minLength} character(s)`
       );
+      error.value = value;
+      throw error;
     }
 
     if (typeof config.maxLength !== 'undefined' && value.length > config.maxLength) {
-      throw new ZeroDepErrorGuardRange(
-        `String too long - was more than ${config.maxLength} characters`,
-        400,
-        value
+      const error = new ZeroDepErrorGuardRange(
+        `String is longer than ${config.maxLength} character(s)`
       );
+      error.value = value;
+      throw error;
     }
 
     return value;

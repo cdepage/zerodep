@@ -1,5 +1,5 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guards.errors';
-import { guardFloat, IGuardFloatOptions } from './guardFloat';
+import { guardFloat, GuardFloatOptions } from './guardFloat';
 
 const positiveCases = [
   // integers
@@ -147,13 +147,13 @@ describe('guardInteger', () => {
   });
 
   describe('with custom options', () => {
-    const options: IGuardFloatOptions = { min: 50, max: 100 };
+    const options: GuardFloatOptions = { min: 50, max: 100 };
     const guard = guardFloat(options);
 
     it('should throw a ZeroDepErrorGuardRange error when float too small', () => {
       const fn = () => guard(49.9);
       expect(fn).toThrow(ZeroDepErrorGuardRange);
-      expect(fn).toThrow('Float too small - was less than 50');
+      expect(fn).toThrow('Float is less than 50');
     });
 
     it('should allow an float at the lower limit', () => {
@@ -167,7 +167,7 @@ describe('guardInteger', () => {
     it('should throw a ZeroDepErrorGuardRange error when float too large', () => {
       const fn = () => guard(100.1);
       expect(fn).toThrow(ZeroDepErrorGuardRange);
-      expect(fn).toThrow('Float too large - was more than 100');
+      expect(fn).toThrow('Float is greater than 100');
     });
   });
 });

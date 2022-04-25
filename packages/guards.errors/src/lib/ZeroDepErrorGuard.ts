@@ -1,10 +1,13 @@
-import { ZeroDepError } from '@zerodep/errors';
+import { ZeroDepError, ZeroDepErrorSource, ZeroDepErrorTax } from '@zerodep/errors';
 
 export class ZeroDepErrorGuard extends ZeroDepError {
-  constructor(message = 'An invalid value has been provided', code = 400, source?: any) {
-    super(message);
-    this.code = code;
-    this.source = source;
+  constructor(
+    message = 'Value is invalid',
+    tax: ZeroDepErrorTax = 'unknown',
+    source: ZeroDepErrorSource = 'guard',
+    value: any = undefined
+  ) {
+    super(message, tax, source, value);
 
     // ensure the name matches the class
     this.name = this.constructor.name;

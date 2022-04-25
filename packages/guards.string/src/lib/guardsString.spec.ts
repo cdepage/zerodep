@@ -163,7 +163,7 @@ describe('guardString', () => {
     it('should throw a ZeroDepErrorGuardRange error when string too short', () => {
       const fn = () => guard('');
       expect(fn).toThrow(ZeroDepErrorGuardRange);
-      expect(fn).toThrow('String too short - was less than 1 characters');
+      expect(fn).toThrow('String is shorter than 1 character(s)');
     });
 
     it('should allow a string at the lower limit', () => {
@@ -177,7 +177,7 @@ describe('guardString', () => {
     it('should throw a ZeroDepErrorGuardRange error when integer too large', () => {
       const fn = () => guard('abcdefghijk');
       expect(fn).toThrow(ZeroDepErrorGuardRange);
-      expect(fn).toThrow('String too long - was more than 10 characters');
+      expect(fn).toThrow('String is longer than 10 character(s)');
     });
   });
 });

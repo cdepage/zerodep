@@ -1,11 +1,20 @@
-export class ZeroDepError extends Error {
-  public code: number;
-  public source: any;
+import { ZeroDepErrorSource, ZeroDepErrorTax } from './types';
 
-  constructor(message = 'An unexpected error has occurred', code = 500, source?: any) {
+export class ZeroDepError extends Error {
+  public tax: ZeroDepErrorTax;
+  public source: ZeroDepErrorSource;
+  public value: any;
+
+  constructor(
+    message = 'An unexpected error has occurred',
+    tax: ZeroDepErrorTax = 'unknown',
+    source: ZeroDepErrorSource = 'unknown',
+    value: any = undefined
+  ) {
     super(message);
-    this.code = code;
+    this.tax = tax;
     this.source = source;
+    this.value = value;
 
     // ensure the name matches the class
     this.name = this.constructor.name;

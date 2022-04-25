@@ -20,8 +20,9 @@ describe('ZeroDepErrorGuardType', () => {
   });
 
   it('should have default values', () => {
-    expect(err.message).toEqual('An invalid value has been provided');
-    expect(err.code).toEqual(400);
-    expect(err.source).toEqual(undefined);
+    expect(err.message).toEqual('Value is incorrect type');
+    expect(err.tax).toEqual('type');
+    expect(err.source).toEqual('guard');
+    expect(err.value).toEqual(undefined);
   });
 });

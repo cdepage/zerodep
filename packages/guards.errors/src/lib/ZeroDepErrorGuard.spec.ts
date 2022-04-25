@@ -18,8 +18,9 @@ describe('ZeroDepErrorGuard', () => {
   });
 
   it('should have default values', () => {
-    expect(err.message).toEqual('An invalid value has been provided');
-    expect(err.code).toEqual(400);
-    expect(err.source).toEqual(undefined);
+    expect(err.message).toEqual('Value is invalid');
+    expect(err.tax).toEqual('unknown');
+    expect(err.source).toEqual('guard');
+    expect(err.value).toEqual(undefined);
   });
 });

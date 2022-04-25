@@ -1,19 +1,18 @@
-import { IZeroDepError } from '@zerodep/errors';
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guards.errors';
 
-export interface IGuardFloatOptions extends IZeroDepError {
+export interface GuardFloatOptions {
   min?: number;
   max?: number;
 }
 
 // default options
-const defaultOptions: IGuardFloatOptions = {
+const defaultOptions: GuardFloatOptions = {
   min: undefined,
   max: undefined,
 };
 
-export const guardFloat = (options: IGuardFloatOptions = {}) => {
-  const config: IGuardFloatOptions = { ...defaultOptions, ...options };
+export const guardFloat = (options: GuardFloatOptions = {}) => {
+  const config: GuardFloatOptions = { ...defaultOptions, ...options };
 
   return (value: any): number => {
     // we need to check for the typeof first as "undefined" will cause isFloat() to error
@@ -23,15 +22,21 @@ export const guardFloat = (options: IGuardFloatOptions = {}) => {
       Number.isInteger(value) ||
       !Number.isFinite(value)
     ) {
-      throw new ZeroDepErrorGuardType('Value is not a float', undefined, value);
+      const error = new ZeroDepErrorGuardType('Value is not a float');
+      error.value = value;
+      throw error;
     }
 
     if (typeof config.min !== 'undefined' && value < config.min) {
-      throw new ZeroDepErrorGuardRange(`Float too small - was less than ${config.min}`, 400, value);
+      const error = new ZeroDepErrorGuardRange(`Float is less than ${config.min}`);
+      error.value = value;
+      throw error;
     }
 
     if (typeof config.max !== 'undefined' && value > config.max) {
-      throw new ZeroDepErrorGuardRange(`Float too large - was more than ${config.max}`, 400, value);
+      const error = new ZeroDepErrorGuardRange(`Float is greater than ${config.max}`);
+      error.value = value;
+      throw error;
     }
 
     return value;

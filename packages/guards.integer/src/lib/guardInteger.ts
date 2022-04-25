@@ -1,7 +1,6 @@
-import { IZeroDepError } from '@zerodep/errors';
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guards.errors';
 
-export interface IGuardIntegerOptions extends IZeroDepError {
+export interface IGuardIntegerOptions {
   min?: number;
   max?: number;
 }
@@ -18,23 +17,21 @@ export const guardInteger = (options: IGuardIntegerOptions = {}) => {
   return (value: any): number => {
     // we need to check for the typeof first as "undefined" will cause isInteger() to error
     if (typeof value !== 'number' || !Number.isInteger(value)) {
-      throw new ZeroDepErrorGuardType('Value is not an integer', undefined, value);
+      const error = new ZeroDepErrorGuardType('Value is not an integer');
+      error.value = value;
+      throw error;
     }
 
     if (typeof config.min !== 'undefined' && value < config.min) {
-      throw new ZeroDepErrorGuardRange(
-        `Integer too small - was less than ${config.min}`,
-        400,
-        value
-      );
+      const error = new ZeroDepErrorGuardRange(`Integer is less than ${config.min}`);
+      error.value = value;
+      throw error;
     }
 
     if (typeof config.max !== 'undefined' && value > config.max) {
-      throw new ZeroDepErrorGuardRange(
-        `Integer too large - was more than ${config.max}`,
-        400,
-        value
-      );
+      const error = new ZeroDepErrorGuardRange(`Integer is greater than ${config.max}`);
+      error.value = value;
+      throw error;
     }
 
     return value;

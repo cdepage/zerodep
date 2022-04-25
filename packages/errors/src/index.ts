@@ -1,3 +1,2 @@
-export type { IZeroDepError } from './lib/types';
-
 export * from './lib/ZeroDepError';
+export * from './lib/types';

@@ -1,12 +1,11 @@
 # @zerodep/errors
 
-errors are defensive programming utilities to protect a method/function against incorrect data. This package contains errors for a variety of data types.
+All @zerodep packages that throw errors will throw a `ZeroDepError`. This error extends the base `Error`.
 
 ## Table of Contents
 
-- [errors & Defensive Programming](#errors--defensive-programming)
+- [Errors & Extending Errors](#errors--extending-errors)
 - [Installation Instructions](#install)
-- [Types of errors](#types-of-errors)
 - [How to Use](#how-to-use)
   - [Signature](#signature)
   - [Examples](#examples)
@@ -16,11 +15,44 @@ errors are defensive programming utilities to protect a method/function against 
 - [Resources](#resources)
 - [License](#license)
 
-## errors & Defensive Programming
+## Errors & Extending Errors
 
-Defensive programming promotes the practice of never trusting input to your function/method by placing "errors at the gate" of your code. These errors serve as pre-conditions that must be validated for your code to execute thereby reducing code defects.
+### To Throw or Not to Throw
 
-A guard stops code execution by throwing an error when invalid data is provided. The spirit/intention of errors is to protect at the smaller function-level, not at the macro gateway level checking user input. Be conscientious of where and why you are using errors in your code.
+In software design there are many opinions about when to throw what type of errors. We subscribe to the school of thought that says errors should be thrown when something unexpected happens at runtime, not as a mechanism to handle negative business logic.
+
+> Try to keep business logic completely separate from the mechanism that handles out-of-memory, network, filesystem and other unexpected runtime issues.
+
+Examples of business logic that should **NOT** be handled by throwing errors:
+
+- a user not providing a valid data
+- database/storage system returning an empty result
+- cache misses
+- requesting data from an API with a missing or expired JWT or session cookie
+
+Examples of conditions that **SHOULD** throw an error:
+
+- unable to connect to the database / storage system / cache / microservice
+- network requests timing-out
+- invalid arguments passed to functions
+
+**Disclaimer:** As always, there are exceptions to every rule. Situational context, logic and common sense should be appropriately utilized. The above is intended as a guideline, not doctrine.
+
+### Extending Errors
+
+We subclass the root `Error` object to make it easier for developers to elegantly identify the :
+
+- **tax** (short for taxonomy) of the error (`type`, `range`, `reference`, `syntax`, `uri`, or `general`)
+- **source** of the error within the @zerodep ecosystem (a guard, network, storage, etc)
+- **value** of the problem (the string|number|array|object that caused the issue, if there is one. We have found this incredibly useful in Promise.all() and similar situations)
+
+Why `tax` (short for taxonomy), you ask? The word `type` would be semantically most appropriate, followed closely by `class`. Typescript already has a `type` property on its errors. `class` is a reserved word. Some editors treat `type` in a special manner. We want to avoid collisions with other libraries.
+
+We add the above fields to each of our errors, while ensuring the `message`, `stack` and `name` values of the `Error` work as expected to ensure any existing code works as expected. We also ALWAYS add a `message`, which should simplify error logging.
+
+Most @zerodep packages will further subclass the `ZeroDepError` to provide even more granularity and specificity to thrown errors while ensuring the `tax` and `source` fields are appropriately populated. Some even add additional properties.
+
+**Limitation** JavaScript only supports single-inheritance. This means that all subclasses of our `ZeroDepError` will be instances of the root `Error` and never of a `TypeError`, `RangeError` or other native error type. It is due to this limitation that the `tax` property was added.
 
 ## Install
 
@@ -41,88 +73,100 @@ For completeness, links to the @zerodep repositories with this function:
 - [@zerodep/utils](https://github.com/cdepage/zerodep/packages/utils)
 - [@zerodep/errors](https://github.com/cdepage/zerodep/packages/errors)
 
-## Types of errors
-
-This package has the following errors available. Most errors have optional configurations to further narrow the scope of the guard.
-
-| Only Allows       | Method Name  | Optional Configuration                 |
-| ----------------- | ------------ | -------------------------------------- |
-| Strings           | errorstring  | minLength, maxLength                   |
-| Integers + Floats | guardNumber  | min, max                               |
-| Integers          | guardInteger | min, max                               |
-| Floats            | guardFloat   | min, max                               |
-| BigInts           | guardBigInt  | min, max                               |
-| Booleans          | guardBoolean |                                        |
-| Dates             | guardDate    | earliest, latest                       |
-| Arrays            | guardArray   | minQuantity, maxQuantity, payloadGuard |
-| Objects           | guardObject  | minQuantity, maxQuantity, payloadGuard |
-
 ## How to Use
 
 ### Signature
 
-Each guard is a higher-order function that returns the guarding function. In the example below the `IGuardNumberOptions` represents the optional configurations from the table above.
-
 ```typescript
-const intGuard = (options?: IGuardNumberOptions) => (value: any) => number;
+// default values are shown, if they exist
+new ZeroDepError(
+  message: string = 'An unknown error has occurred',
+  tax: ZeroDepErrorType = 'unknown',
+  source: ZeroDepErrorSource = 'unknown',
+  value?: any
+);
+
+// types, maps to native Error types
+type ZeroDepErrorTax = 'type' | 'range' | 'reference' | 'syntax' | 'uri' | 'unknown';
+
+// sources (new values will be added as capabilities are added)
+type ZeroDepErrorSource = 'guard' | 'unknown';
 ```
 
 ### Examples
 
-**Simple Example**
+**Throwing**
 
 ```typescript
-import { errorstring } from '@zerodep/utils';
+import { ZeroDepError } from '@zerodep/utils';
 // or
-import { errorstring } from '@zerodep/errors';
+import { ZeroDepError } from '@zerodep/errors';
 
-// configure, returns a function
-const stringGuard = errorstring();
+// all arguments are optional
+const error1 = new ZeroDepError('Integer expected', 'range', 'guard', 42);
+const error2 = new ZeroDepError('Integer expected', 'type', 'guard');
+const error3 = new ZeroDepError('Integer expected', 'syntax');
+const error4 = new ZeroDepError('Integer expected');
+const error5 = new ZeroDepError();
 
-// use, returns a string or throws
-stringGuard('some string'); // "some string"
-stringGuard(100); // throws a ZeroDepErrorGuardType
+// error.message
+console.log(error1.message); // "Integer expected"
+console.log(error5.message); // "An unknown error has occurred"
+
+// error.tax
+console.log(error1.tax); // "range"
+console.log(error5.tax); // "unknown"
+
+// error.source
+console.log(error1.source); // "guard"
+console.log(error5.source); // "unknown"
+
+// error.value
+console.log(error1.value); // 42
+console.log(error5.value); // undefined
 ```
 
-**Custom Example**
+**Handling By Type**
 
 ```typescript
-import { IGuardFloatOptions, guardFloat } from '@zerodep/utils';
+import { ZeroDepError } from '@zerodep/utils';
 // or
-import { IGuardFloatOptions, guardFloat } from '@zerodep/errors';
-
-// configure, returns a function
-const options: IGuardFloatOptions = {
-  min: 0,
-  max: 4.5,
-};
-const customGuard = guardFloat(options);
-
-// use, returns a number or throws
-customGuard(3.14); // 3.14
-customGuard('3.14'); // throws a ZeroDepErrorGuardType
-customGuard(6); // throws a ZeroDepErrorGuardRange
-```
-
-**Error Example**
-
-```typescript
-import { IGuardBigIntOptions, guardBigInt } from '@zerodep/utils';
-// or
-import { IGuardBigIntOptions, guardBigInt } from '@zerodep/errors';
+import { ZeroDepError } from '@zerodep/errors';
 
 try {
-  configureGuard()(42);
-} catch (error) {
-  console.log(error.message); // "Value is not a bigint"
-  console.log(error.code); // 400
-  console.log(error.source); // 42 <-- value that caused the error
+  throw new ZeroDepError('Integer expected', 'range', 'guard');
+} catch (error: any) {
+  if (error instanceof ZeroDepError) {
+    // custom code
+  } else {
+    // fallback code
+  }
+}
+```
 
-  // inheritance chain
-  error instanceof ZeroDepErrorGuardType; // true
-  error instanceof ZeroDepErrorGuard; // true
-  error instanceof ZeroDepError; // true
-  error instanceof Error; // true
+**Handling By Error Property**
+
+```typescript
+import { ZeroDepError } from '@zerodep/utils';
+// or
+import { ZeroDepError } from '@zerodep/errors';
+
+try {
+  throw new ZeroDepError('Integer expected', 'range', 'guard');
+} catch (error: any) {
+  switch (error.tax) {
+    case 'type':
+      // custom code
+      break;
+
+    case 'range':
+      // custom code
+      break;
+
+    default:
+      // fallback code
+      break;
+  }
 }
 ```
 

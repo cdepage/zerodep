@@ -1,136 +1,137 @@
-# @zerodep/guards.errors
+# @zerodep/errors
 
-A defensive programming utility to guard against the use of non-integers / allow only integers.
+All @zerodep/guard packages throw `ZeroDepErrorGuard` errors. This error extends the [ZeroDepError](https://github.com/cdepage/zerodep/blob/main/packages/errors/README.md).
 
-- on success it returns the integer
-- on fail it throws a `ZeroDepErrorGuard` error
+The `ZeroDepErrorGuard` is further subclassed with:
+
+- `ZeroDepErrorGuardType` - for invalid types
+- `ZeroDepErrorGuardRange` - for values that are outside of specific ranges
 
 ## Table of Contents
 
-- [Guards & Defensive Programming](#guards--defensive-programming)
+- [Guards & Errors](#guards--errors)
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
-  - [Signature](#signature)
-  - [Examples](#examples)
 - [ZeroDep Advantages](#zerodep-advantages)
 - [Support](#support)
 - [Semver](#semver)
 - [Resources](#resources)
 - [License](#license)
 
-## Guards & Defensive Programming
+## Guards & Errors
 
-Defensive programming promotes the practice of never trusting input to your function/method by placing "guards at the gate" of your code. These guards serve as pre-conditions that must be validated for your code to execute thereby reducing code defects.
+We [have an opinion](https://github.com/cdepage/zerodep/blob/main/packages/errors/README.md) about when appropriately throwing errors.
 
-A guard stops code execution by throwing an error when invalid data is provided. The spirit/intention of guards is to protect at the smaller function-level, not at the macro gateway level checking user input. Be conscientious of where and why you are using guards in your code.
+The spirit/intention of guards is to protect functions from incorrect runtime values that would otherwise cause defects in the software.
 
-TODO: something about the neverthrow concept, once that exists in this monorepo // see https://github.com/supermacro/neverthrow
+All guards will throw a `ZeroDepErrorGuard` (or instance thereof) error when they encounter an invalid value.
+
+### Extending Errors
+
+The `ZeroDepErrorGuard` object includes the standard `Error` fields (message, stack and name) as wel as:
+
+- **tax** (short for taxonomy) of the error (`type`, `range`, `reference`, `syntax`, `uri`, or `general`)
+- **source** of the error within the @zerodep ecosystem (a guard, network, storage, etc)
+- **value** of the problem (the string|number|array|object that caused the issue, if there is one. We have found this incredibly useful in Promise.all() and similar situations)
+
+Why `tax` (short for taxonomy), you ask? The word `type` would be semantically most appropriate, followed closely by `class`. Typescript already has a `type` property on its errors. `class` is a reserved word. Some editors treat `type` in a special manner. We want to avoid collisions with other libraries.
+
+We add the above fields to each of our errors, while ensuring the `message`, `stack` and `name` values of the `Error` work as expected to ensure any existing code works as expected. We also ALWAYS add a `message`, which should simplify error logging.
 
 ## Install
 
 This package is available from three differently sized and tree shakeable, npm packages:
 
 ```
-// entire zerodep suite
-npm install @zerodep/utility
+// entire zerodep utils suite
+npm install @zerodep/utils
 
-// all @zerodep guards
+// all @zerodep/guard utilities
 npm install @zerodep/guards
 
-// only the integer guard
+// all @zerodep/guard errors
 npm install @zerodep/guards.errors
 ```
 
 Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
 
+For completeness, links to the @zerodep repositories with this function:
+
+- [@zerodep/utils](https://github.com/cdepage/zerodep/packages/utils)
+- [@zerodep/errors](https://github.com/cdepage/zerodep/packages/errors)
+
 ## How to Use
 
-### Signature
+**Guard Error**
 
 ```typescript
-// configure function => use function => number
-const configureGuard = (options?: IOptionsGuardInteger) => (value: any) => number;
+import { ZeroDepErrorGuard } from '@@zerodep/utils';
+// or
+import { ZeroDepErrorGuard } from '@@zerodep/guards';
+// or
+import { ZeroDepErrorGuard } from '@@zerodep/guards.errors';
 
-// configuration options
-interface IOptionsGuardInteger {
-  min?: number; // the minimum value to accept
-  max?: number; // the maximum value to accept
-}
+// all arguments are optional
+const error = new ZeroDepErrorGuardType();
+error.value = 42;
+
+// properties may be set after instantiation
+console.log(error.message); // "Value is invalid"
+console.log(error.tax); // "unknown"
+console.log(error.source); // "guard"
+console.log(error.value); // 42
 ```
 
-### Examples
-
-**Simple Example**
+**Guard Type Error**
 
 ```typescript
-import { IOptionsGuardInteger, guardInteger } from '@zerodep/utils';
+import { ZeroDepErrorGuardType } from '@@zerodep/utils';
 // or
-import { IOptionsGuardInteger, guardInteger } from '@zerodep/guards';
+import { ZeroDepErrorGuardType } from '@@zerodep/guards';
 // or
-import { IOptionsGuardInteger, guardInteger } from '@zerodep/guards.errors';
+import { ZeroDepErrorGuardType } from '@@zerodep/guards.errors';
 
-// configure, returns a function
-const intGuard = guardInteger();
+// properties may be set after instantiation
+const error = new ZeroDepErrorGuardType();
+error.value = '42';
 
-// use, returns a number or throws
-intGuard(2022); // 2022
-intGuard(3.14); // throws a ZeroDepError
-intGuard('not an integer'); // throws a ZeroDepError
+// error properties
+console.log(error.message); // "Value is incorrect type"
+console.log(error.tax); // "type"
+console.log(error.source); // "guard"
+console.log(error.value); // "42"
 ```
 
-**Custom Example**
+**Guard Range Error**
 
 ```typescript
-import { IOptionsGuardInteger, guardInteger } from '@zerodep/utils';
+import { ZeroDepErrorGuardRange } from '@@zerodep/utils';
 // or
-import { IOptionsGuardInteger, guardInteger } from '@zerodep/guards';
+import { ZeroDepErrorGuardRange } from '@@zerodep/guard';
 // or
-import { IOptionsGuardInteger, guardInteger } from '@zerodep/guards.errors';
+import { ZeroDepErrorGuardRange } from '@@zerodep/guard.errors';
 
-// configure, returns a function
-const options: IOptionsGuardInteger = {
-  message: 'Value of error message, if thrown',
-  code: 400,
-};
-const customGuard = guardInteger(options);
+// properties may be set after instantiation
+const error = new ZeroDepErrorGuardType();
+error.value = { answer: 42 };
 
-// use, returns a number or throws
-customGuard(options)(2022); // 2022
-customGuard(options)(3.14); // throws a ZeroDepError
-customGuard(options)('not an integer'); // throws a ZeroDepErrorGuard
+// error properties
+console.log(error.message); // "Value is out-of-range"
+console.log(error.tax); // "range"
+console.log(error.source); // "guard"
+console.log(error.value); // { answer: 42 }
 ```
 
-**Error Example**
-
-```typescript
-import { IOptionsGuardInteger, guardInteger } from '@zerodep/utils';
-// or
-import { IOptionsGuardInteger, guardInteger } from '@zerodep/guards';
-// or
-import { IOptionsGuardInteger, guardInteger } from '@zerodep/guards.errors';
-
-try {
-  configureGuard()(3.14);
-} catch (error) {
-  console.log(error.message); // "Provided value not a number"
-  console.log(error.code); // 400
-  console.log(error.source); // 3.14 <-- value that caused the error
-
-  // inheritance chain
-  error instanceof ZeroDepErrorGuard; // true
-  error instanceof ZeroDepError; // false <--- CAUTION
-  error instanceof TypeError; // true
-  error instanceof Error; // true
-}
-```
+More information about error configuration can be found in the [@zerodep/errors](https://github.com/cdepage/zerodep/blob/main/packages/errors/README.md) documentation.
 
 ## @zerodep Advantages:
 
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Style** - encourages the functional programming "configure & use" style for cleaner and more maintainable code
+- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
 - **100% Tested** - all methods are fully unit tested
+- **Semver** - predictably versioned for peace-of-mind upgrading
 
 ## Support
 
@@ -146,10 +147,10 @@ This package has been tested, and built for, the following platforms/browsers in
 
 **Node**
 
-- v14.8.x - Fermium LTS
 - v16.x - Gallium LTS
+- v14.x - Fermium LTS
 
-It is likely the package will work on other browsers and node versions, however development and testing effort is only spent on the above.
+It is likely the package will work on other technologies and version, however development and testing effort is only spent on the above.
 
 ## Semver
 
@@ -159,12 +160,12 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
 - **patch versions**: are reserved for copy changes and bug fixes
 
-The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/packages/guards.errors/CHANGELOG.md) and any associated software changes.
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/packages/errors/CHANGELOG.md) and any associated software changes.
 
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/packages/guards.errors/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/packages/errors/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

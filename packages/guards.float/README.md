@@ -51,10 +51,10 @@ For completeness, links to the @zerodep repositories with this function:
 
 ```typescript
 // configure function => use function => number
-const configureGuard = (options?: IOptionsGuardFloat) => (value: any) => number;
+const configureGuard = (options?: OptionsGuardFloat) => (value: any) => number;
 
 // configuration options
-interface IOptionsGuardFloat {
+interface OptionsGuardFloat {
   min?: number; // the minimum value to accept
   max?: number; // the maximum value to accept
 }
@@ -83,14 +83,14 @@ intGuard('not a float'); // throws a ZeroDepErrorGuardType
 **Custom Example**
 
 ```typescript
-import { IGuardFloatOptions, guardFloat } from '@zerodep/utils';
+import { OptionsGuardFloat, guardFloat } from '@zerodep/utils';
 // or
-import { IGuardFloatOptions, guardFloat } from '@zerodep/guards';
+import { OptionsGuardFloat, guardFloat } from '@zerodep/guards';
 // or
-import { IGuardFloatOptions, guardFloat } from '@zerodep/guards.float';
+import { OptionsGuardFloat, guardFloat } from '@zerodep/guards.float';
 
 // configure, returns a function
-const options: IGuardFloatOptions = { min: 0, max: 4.5 };
+const options: OptionsGuardFloat = { min: 0, max: 4.5 };
 const customGuard = guardFloat(options);
 
 // use, returns a number or throws

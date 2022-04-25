@@ -153,7 +153,7 @@ describe('guardNumber', () => {
     it('should throw a ZeroDepErrorGuardRange error when number too small', () => {
       const fn = () => guard(49.9);
       expect(fn).toThrow(ZeroDepErrorGuardRange);
-      expect(fn).toThrow('Number too small - was less than 50');
+      expect(fn).toThrow('Number is less than 50');
     });
 
     it('should allow an number at the lower limit', () => {
@@ -167,7 +167,7 @@ describe('guardNumber', () => {
     it('should throw a ZeroDepErrorGuardRange error when number too large', () => {
       const fn = () => guard(2022);
       expect(fn).toThrow(ZeroDepErrorGuardRange);
-      expect(fn).toThrow('Number too large - was more than 100');
+      expect(fn).toThrow('Number is greater than 100');
     });
   });
 });
