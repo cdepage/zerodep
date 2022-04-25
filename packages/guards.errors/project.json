@@ -22,6 +22,7 @@
           "rm -rf dist/packages/guards.errors",
           "rollup -c packages/guards.errors/rollup.config.ts",
           "mv dist/packages/guards.errors/index.esm.d.ts dist/packages/guards.errors/index.d.ts",
+          "rm dist/packages/guards.errors/index.cjs.d.ts",
           "cp packages/guards.errors/*.md dist/packages/guards.errors",
           "cp packages/guards.errors/package.json dist/packages/guards.errors/package.json",
           "uglifyjs dist/packages/guards.errors/index.esm.js -o dist/packages/guards.errors/index.esm.min.js -c --annotations --comments /@source/",

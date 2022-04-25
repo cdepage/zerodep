@@ -3,13 +3,16 @@
   "sourceRoot": "packages/utils/src",
   "targets": {
     "originalBuild": {
-      "executor": "@nrwl/js:swc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "compiler": "swc",
+        "project": "packages/utils/package.json",
+        "entryFile": "packages/utils/src/index.ts",
         "outputPath": "dist/packages/utils",
-        "main": "packages/utils/src/index.ts",
-        "tsConfig": "packages/utils/tsconfig.lib.json",
-        "assets": ["packages/utils/*.md"]
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/utils/tsconfig.lib.json"
       }
     },
     "build": {
@@ -19,6 +22,7 @@
           "rm -rf dist/packages/utils",
           "rollup -c packages/utils/rollup.config.ts",
           "mv dist/packages/utils/index.esm.d.ts dist/packages/utils/index.d.ts",
+          "rm dist/packages/utils/index.cjs.d.ts",
           "cp packages/utils/*.md dist/packages/utils",
           "cp packages/utils/package.json dist/packages/utils/package.json",
           "uglifyjs dist/packages/utils/index.esm.js -o dist/packages/utils/index.esm.min.js -c --annotations --comments /@source/",

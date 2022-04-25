@@ -9,12 +9,12 @@ export default [
       {
         file: `dist/packages/${dir}/index.esm.js`,
         format: 'esm',
-        banner: `/* @source the https://github.com/cdepage/zerodep/packages/${dir} */`,
+        banner: `/* @source the https://github.com/cdepage/zerodep/tree/main/packages/${dir} */`,
       },
       {
         file: `dist/packages/${dir}/index.cjs.js`,
         format: 'cjs',
-        banner: `/* @source the https://github.com/cdepage/zerodep/packages/${dir} */`,
+        banner: `/* @source the https://github.com/cdepage/zerodep/tree/main/packages/${dir} */`,
         interop: 'auto',
       },
     ],

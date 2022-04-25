@@ -135,7 +135,7 @@ try {
 - **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
-- **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities 
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
 - **100% Tested** - all methods are fully unit tested
 - **Semver** - predictably versioned for peace-of-mind upgrading
 - **MIT Licensed** - permissively licensed for maximum usability
@@ -167,12 +167,12 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
 - **patch versions**: are reserved for copy changes and bug fixes
 
-The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/packages/guards.string/CHANGELOG.md) and any associated software changes.
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guards.string/CHANGELOG.md) and any associated software changes.
 
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/packages/guards.string/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guards.string/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

@@ -22,6 +22,7 @@
           "rm -rf dist/packages/guards.integer",
           "rollup -c packages/guards.integer/rollup.config.ts",
           "mv dist/packages/guards.integer/index.esm.d.ts dist/packages/guards.integer/index.d.ts",
+          "rm dist/packages/guards.integer/index.cjs.d.ts",
           "cp packages/guards.integer/*.md dist/packages/guards.integer",
           "cp packages/guards.integer/package.json dist/packages/guards.integer/package.json",
           "uglifyjs dist/packages/guards.integer/index.esm.js -o dist/packages/guards.integer/index.esm.min.js -c --annotations --comments /@source/",

@@ -19,6 +19,7 @@
           "rm -rf dist/packages/errors",
           "rollup -c packages/errors/rollup.config.ts",
           "mv dist/packages/errors/index.esm.d.ts dist/packages/errors/index.d.ts",
+          "rm dist/packages/errors/index.cjs.d.ts",
           "cp packages/errors/*.md dist/packages/errors",
           "cp packages/errors/package.json dist/packages/errors/package.json",
           "uglifyjs dist/packages/errors/index.esm.js -o dist/packages/errors/index.esm.min.js -c --annotations --comments /@source/",

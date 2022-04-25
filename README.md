@@ -1,6 +1,6 @@
 # @zerodep
 
-A monorepo of zero-dependency capabilities.
+A monorepo of zero-dependency, utility-focused capabilities for both Node and browser environments.
 
 ## Table of Contents
 
@@ -13,7 +13,6 @@ A monorepo of zero-dependency capabilities.
 - [Semver](#semver)
 - [Resources](#resources)
 - [License](#license)
-
 
 ## Advantages of @zerodep Packages
 
@@ -28,7 +27,7 @@ A monorepo of zero-dependency capabilities.
 
 ## Available Packages
 
-The @zerodep ecosystem is made up of numerous independent packages and barrel-packages (packages that combine similar packages together).
+The @zerodep ecosystem is made up of numerous independent packages and barrel-packages (packages that logically or semantically group packages together).
 
 ### Utilities Package
 
@@ -66,6 +65,7 @@ Of course, you may use `yarn` or `pnpm` or the package manager of your choice. O
 ### Independent Packages
 
 Any of the packages included in the barrel-packages above may be installed in independently:
+
 ```
 npm install @zerodep/[package-name]
 ```
@@ -99,12 +99,12 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
 - **patch versions**: are reserved for copy changes and bug fixes
 
-The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/packages/guards.string/CHANGELOG.md) and any associated software changes.
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/CHANGELOG.md) and any associated software changes.
 
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/packages/guards.string/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 
