@@ -1,4 +1,4 @@
-# @zerodep/guards.date
+# @zerodep/guard.date
 
 A defensive programming utility to guard against the use of non-dates / allow only dates.
 
@@ -31,10 +31,10 @@ A guard stops code execution by throwing an error when invalid data is provided.
 npm install @zerodep/utils
 
 // all @zerodep guards
-npm install @zerodep/guards
+npm install @zerodep/guard
 
 // only the string guard
-npm install @zerodep/guards.string
+npm install @zerodep/guard.string
 ```
 
 Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
@@ -42,8 +42,8 @@ Of course, you may use `yarn` or `pnpm` or the package manager of your choice. O
 For completeness, links to the @zerodep repositories with this function:
 
 - [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/guards](https://github.com/cdepage/zerodep/tree/main/packages/guards)
-- [@zerodep/guards.string](https://github.com/cdepage/zerodep/tree/main/packages/guards.string)
+- [@zerodep/guard](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard)
+- [@zerodep/guard.string](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.string)
 
 ## How to Use
 
@@ -67,9 +67,9 @@ interface IOptionsGuardDate {
 ```typescript
 import { guardDate } from '@zerodep/utils';
 // or
-import { guardDate } from '@zerodep/guards';
+import { guardDate } from '@zerodep/guard';
 // or
-import { guardDate } from '@zerodep/guards.date';
+import { guardDate } from '@zerodep/guard.date';
 
 // configure, returns a function
 const intGuard = guardDate();
@@ -85,9 +85,9 @@ intGuard('not an date'); // throws a ZeroDepErrorGuardType
 ```typescript
 import { IGuardDateOptions, guardDate } from '@zerodep/utils';
 // or
-import { IGuardDateOptions, guardDate } from '@zerodep/guards';
+import { IGuardDateOptions, guardDate } from '@zerodep/guard';
 // or
-import { IGuardDateOptions, guardDate } from '@zerodep/guards.date';
+import { IGuardDateOptions, guardDate } from '@zerodep/guard.date';
 
 // configure, returns a function
 const options: IGuardDateOptions = { min: 2000, max: 2038 };
@@ -104,9 +104,9 @@ customGuard(1984); // throws a ZeroDepErrorGuardRange
 ```typescript
 import { guardDate } from '@zerodep/utils';
 // or
-import { guardDate } from '@zerodep/guards';
+import { guardDate } from '@zerodep/guard';
 // or
-import { guardDate } from '@zerodep/guards.date';
+import { guardDate } from '@zerodep/guard.date';
 
 try {
   configureGuard()(3.14);
@@ -144,6 +144,7 @@ This package has been tested, and built for, the following platforms/browsers in
 - Chrome - last 2 major versions
 - Firefox - last 2 major versions
 - Safari - last 2 major versions
+- Edge - last 2 major versions
 - Android - last 2 major versions
 - iOS - last 2 major versions
 
@@ -162,12 +163,12 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
 - **patch versions**: are reserved for copy changes and bug fixes
 
-The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guards.date/CHANGELOG.md) and any associated software changes.
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guard/guard.date/CHANGELOG.md) and any associated software changes.
 
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guards.date/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guard/guard.date/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

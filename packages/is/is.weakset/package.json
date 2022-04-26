@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is.weakset",
   "description": "A utility to determine if a value is an weakset",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   },
   "homepage": "https://github.com/cdepage/zerodep",
   "bugs": "https://github.com/cdepage/zerodep/issues",
-  "author": "Chris dePage <chris.depage@gmail.com>",
+  "author": "Chris dePage <chris.depage+zerodep@gmail.com>",
   "sideEffects": false,
   "main": "index.cjs.min.js",
   "module": "index.esm.min.js",

@@ -1,3 +1,3 @@
 export * from '@zerodep/errors';
-export * from '@zerodep/guards';
+export * from '@zerodep/guard';
 export * from '@zerodep/is';

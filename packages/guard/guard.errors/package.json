@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/guard.errors",
   "description": "A namespacing for errors thrown by @zerodep/guard.* packages",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   },
   "homepage": "https://github.com/cdepage/zerodep",
   "bugs": "https://github.com/cdepage/zerodep/issues",
-  "author": "Chris dePage <chris.depage@gmail.com>",
+  "author": "Chris dePage <chris.depage+zerodep@gmail.com>",
   "sideEffects": false,
   "main": "index.cjs.min.js",
   "module": "index.esm.min.js",

@@ -47,10 +47,10 @@ This package is available from three differently sized and tree shakeable, npm p
 npm install @zerodep/utils
 
 // all @zerodep/guard utilities
-npm install @zerodep/guards
+npm install @zerodep/guard
 
 // all @zerodep/guard errors
-npm install @zerodep/guards.errors
+npm install @zerodep/guard.errors
 ```
 
 Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
@@ -67,9 +67,9 @@ For completeness, links to the @zerodep repositories with this function:
 ```typescript
 import { ZeroDepErrorGuard } from '@@zerodep/utils';
 // or
-import { ZeroDepErrorGuard } from '@@zerodep/guards';
+import { ZeroDepErrorGuard } from '@@zerodep/guard';
 // or
-import { ZeroDepErrorGuard } from '@@zerodep/guards.errors';
+import { ZeroDepErrorGuard } from '@@zerodep/guard.errors';
 
 // all arguments are optional
 const error = new ZeroDepErrorGuardType();
@@ -87,9 +87,9 @@ console.log(error.value); // 42
 ```typescript
 import { ZeroDepErrorGuardType } from '@@zerodep/utils';
 // or
-import { ZeroDepErrorGuardType } from '@@zerodep/guards';
+import { ZeroDepErrorGuardType } from '@@zerodep/guard';
 // or
-import { ZeroDepErrorGuardType } from '@@zerodep/guards.errors';
+import { ZeroDepErrorGuardType } from '@@zerodep/guard.errors';
 
 // properties may be set after instantiation
 const error = new ZeroDepErrorGuardType();
@@ -144,6 +144,7 @@ This package has been tested, and built for, the following platforms/browsers in
 - Chrome - last 2 major versions
 - Firefox - last 2 major versions
 - Safari - last 2 major versions
+- Edge - last 2 major versions
 - Android - last 2 major versions
 - iOS - last 2 major versions
 
@@ -162,12 +163,12 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
 - **patch versions**: are reserved for copy changes and bug fixes
 
-The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guards.errors/CHANGELOG.md) and any associated software changes.
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guard.errors/CHANGELOG.md) and any associated software changes.
 
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guards.errors/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guard.errors/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

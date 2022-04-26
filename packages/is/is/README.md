@@ -148,6 +148,7 @@ This package has been tested, and built for, the following platforms/browsers in
 - Chrome - last 2 major versions
 - Firefox - last 2 major versions
 - Safari - last 2 major versions
+- Edge - last 2 major versions
 - Android - last 2 major versions
 - iOS - last 2 major versions
 

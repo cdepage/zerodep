@@ -1,4 +1,4 @@
-import { ZeroDepErrorGuardType } from '@zerodep/guards.errors';
+import { ZeroDepErrorGuardType } from '@zerodep/guard.errors';
 import { isBoolean } from '@zerodep/is.boolean';
 
 export const guardBoolean = () => {

@@ -10,7 +10,7 @@ const dir = 'guard.number';
 
 module.exports = {
   displayName: dir,
-  preset: '../../jest.preset.ts',
+  preset: '../../../jest.preset.ts',
   transform: {
     '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
   },

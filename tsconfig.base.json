@@ -16,8 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@zerodep/errors": ["packages/errors/src/index.ts"],
-
-      "@zerodep/guard":      ["packages/guard/guard/src/index.ts"],
+      "@zerodep/guard": ["packages/guard/guard/src/index.ts"],
       "@zerodep/guard.array": ["packages/guard/guard.array/src/index.ts"],
       "@zerodep/guard.bigint": ["packages/guard/guard.bigint/src/index.ts"],
       "@zerodep/guard.boolean": ["packages/guard/guard.boolean/src/index.ts"],
@@ -28,7 +27,6 @@
       "@zerodep/guard.number": ["packages/guard/guard.number/src/index.ts"],
       "@zerodep/guard.object": ["packages/guard/guard.object/src/index.ts"],
       "@zerodep/guard.string": ["packages/guard/guard.string/src/index.ts"],
-
       "@zerodep/guards": ["packages/guards/src/index.ts"],
       "@zerodep/guards.array": ["packages/guards.array/src/index.ts"],
       "@zerodep/guards.bigint": ["packages/guards.bigint/src/index.ts"],
@@ -40,7 +38,6 @@
       "@zerodep/guards.number": ["packages/guards.number/src/index.ts"],
       "@zerodep/guards.object": ["packages/guards.object/src/index.ts"],
       "@zerodep/guards.string": ["packages/guards.string/src/index.ts"],
-
       "@zerodep/is": ["packages/is/is/src/index.ts"],
       "@zerodep/is.array": ["packages/is/is.array/src/index.ts"],
       "@zerodep/is.bigint": ["packages/is/is.bigint/src/index.ts"],
@@ -61,9 +58,6 @@
       "@zerodep/is.undefined": ["packages/is/is.undefined/src/index.ts"],
       "@zerodep/is.weakmap": ["packages/is/is.weakmap/src/index.ts"],
       "@zerodep/is.weakset": ["packages/is/is.weakset/src/index.ts"],
-      "@zerodep/to": ["packages/to/to/src/index.ts"],
-      "@zerodep/to.array": ["packages/to/to.array/src/index.ts"],
-      "@zerodep/to.string": ["packages/to/to.string/src/index.ts"],
       "@zerodep/utils": ["packages/utils/src/index.ts"]
     }
   },
