@@ -14,5 +14,19 @@
         "cacheableOperations": ["build", "lint", "test", "packageFix"]
       }
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "publish": [
+      {
+        "target": "build",
+        "projects": "self"
+      }
+    ]
   }
 }

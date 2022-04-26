@@ -1,0 +1,67 @@
+{
+  "root": "packages/is/is.regex",
+  "sourceRoot": "packages/is/is.regex/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is/is.regex/package.json",
+        "entryFile": "packages/is/is.regex/src/index.ts",
+        "outputPath": "dist/packages/is/is.regex",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is/is.regex/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is/is.regex",
+          "rollup -c packages/is/is.regex/rollup.config.ts",
+          "mv dist/packages/is/is.regex/index.esm.d.ts dist/packages/is/is.regex/index.d.ts",
+          "rm dist/packages/is/is.regex/index.cjs.d.ts",
+          "cp packages/is/is.regex/*.md dist/packages/is/is.regex",
+          "cp packages/is/is.regex/package.json dist/packages/is/is.regex/package.json",
+          "uglifyjs dist/packages/is/is.regex/index.esm.js -o dist/packages/is/is.regex/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.regex/index.cjs.js -o dist/packages/is/is.regex/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is.regex/index.esm.js",
+          "rm dist/packages/is/is.regex/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is/is.regex/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is/is.regex"],
+      "options": {
+        "jestConfig": "packages/is/is.regex/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is/is.regex"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/is/is.regex"
+      }
+    }
+  },
+  "tags": []
+}

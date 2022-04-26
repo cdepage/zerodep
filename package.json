@@ -4,7 +4,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "graph": "nx graph",
+    "nxLint": "nx workspace-lint",
+    "graphAll": "nx graph",
+    "graphAffected": "nx affected-graph",
     "packageFix": "npm-sort && fixpack && nx run-many --target=packageFix --all",
     "format": "nx format:write",
     "------- AFFECTED -------": "",

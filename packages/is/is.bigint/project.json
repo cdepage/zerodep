@@ -1,0 +1,67 @@
+{
+  "root": "packages/is/is.bigint",
+  "sourceRoot": "packages/is/is.bigint/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is/is.bigint/package.json",
+        "entryFile": "packages/is/is.bigint/src/index.ts",
+        "outputPath": "dist/packages/is/is.bigint",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is/is.bigint/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is/is.bigint",
+          "rollup -c packages/is/is.bigint/rollup.config.ts",
+          "mv dist/packages/is/is.bigint/index.esm.d.ts dist/packages/is/is.bigint/index.d.ts",
+          "rm dist/packages/is/is.bigint/index.cjs.d.ts",
+          "cp packages/is/is.bigint/*.md dist/packages/is/is.bigint",
+          "cp packages/is/is.bigint/package.json dist/packages/is/is.bigint/package.json",
+          "uglifyjs dist/packages/is/is.bigint/index.esm.js -o dist/packages/is/is.bigint/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.bigint/index.cjs.js -o dist/packages/is/is.bigint/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is.bigint/index.esm.js",
+          "rm dist/packages/is/is.bigint/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is/is.bigint/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is/is.bigint"],
+      "options": {
+        "jestConfig": "packages/is/is.bigint/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is/is.bigint"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/is/is.bigint"
+      }
+    }
+  },
+  "tags": []
+}

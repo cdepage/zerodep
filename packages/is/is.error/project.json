@@ -1,0 +1,67 @@
+{
+  "root": "packages/is/is.error",
+  "sourceRoot": "packages/is/is.error/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is/is.error/package.json",
+        "entryFile": "packages/is/is.error/src/index.ts",
+        "outputPath": "dist/packages/is/is.error",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is/is.error/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is/is.error",
+          "rollup -c packages/is/is.error/rollup.config.ts",
+          "mv dist/packages/is/is.error/index.esm.d.ts dist/packages/is/is.error/index.d.ts",
+          "rm dist/packages/is/is.error/index.cjs.d.ts",
+          "cp packages/is/is.error/*.md dist/packages/is/is.error",
+          "cp packages/is/is.error/package.json dist/packages/is/is.error/package.json",
+          "uglifyjs dist/packages/is/is.error/index.esm.js -o dist/packages/is/is.error/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.error/index.cjs.js -o dist/packages/is/is.error/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is.error/index.esm.js",
+          "rm dist/packages/is/is.error/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is/is.error/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is/is.error"],
+      "options": {
+        "jestConfig": "packages/is/is.error/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is/is.error"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/is/is.error"
+      }
+    }
+  },
+  "tags": []
+}

@@ -8,7 +8,7 @@
     "url": "https://github.com/cdepage/zerodep.git",
     "directory": "packages/guards"
   },
-  "homepage": "https://github.com/cdepage/zerodep/tree/main/packages/guards",
+  "homepage": "https://github.com/cdepage/zerodep",
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris.depage@gmail.com>",
   "sideEffects": false,
