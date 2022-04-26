@@ -16,6 +16,19 @@
     "baseUrl": ".",
     "paths": {
       "@zerodep/errors": ["packages/errors/src/index.ts"],
+
+      "@zerodep/guard":      ["packages/guard/guard/src/index.ts"],
+      "@zerodep/guard.array": ["packages/guard/guard.array/src/index.ts"],
+      "@zerodep/guard.bigint": ["packages/guard/guard.bigint/src/index.ts"],
+      "@zerodep/guard.boolean": ["packages/guard/guard.boolean/src/index.ts"],
+      "@zerodep/guard.date": ["packages/guard/guard.date/src/index.ts"],
+      "@zerodep/guard.errors": ["packages/guard/guard.errors/src/index.ts"],
+      "@zerodep/guard.float": ["packages/guard/guard.float/src/index.ts"],
+      "@zerodep/guard.integer": ["packages/guard/guard.integer/src/index.ts"],
+      "@zerodep/guard.number": ["packages/guard/guard.number/src/index.ts"],
+      "@zerodep/guard.object": ["packages/guard/guard.object/src/index.ts"],
+      "@zerodep/guard.string": ["packages/guard/guard.string/src/index.ts"],
+
       "@zerodep/guards": ["packages/guards/src/index.ts"],
       "@zerodep/guards.array": ["packages/guards.array/src/index.ts"],
       "@zerodep/guards.bigint": ["packages/guards.bigint/src/index.ts"],
@@ -27,6 +40,7 @@
       "@zerodep/guards.number": ["packages/guards.number/src/index.ts"],
       "@zerodep/guards.object": ["packages/guards.object/src/index.ts"],
       "@zerodep/guards.string": ["packages/guards.string/src/index.ts"],
+
       "@zerodep/is": ["packages/is/is/src/index.ts"],
       "@zerodep/is.array": ["packages/is/is.array/src/index.ts"],
       "@zerodep/is.bigint": ["packages/is/is.bigint/src/index.ts"],

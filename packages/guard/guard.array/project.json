@@ -1,0 +1,67 @@
+{
+  "root": "packages/guard/guard.array",
+  "sourceRoot": "packages/guard/guard.array/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/guard/guard.array/package.json",
+        "entryFile": "packages/guard/guard.array/src/index.ts",
+        "outputPath": "dist/packages/guard/guard.array",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/guard/guard.array/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/guard/guard.array",
+          "rollup -c packages/guard/guard.array/rollup.config.ts",
+          "mv dist/packages/guard/guard.array/index.esm.d.ts dist/packages/guard/guard.array/index.d.ts",
+          "rm dist/packages/guard/guard.array/index.cjs.d.ts",
+          "cp packages/guard/guard.array/*.md dist/packages/guard/guard.array",
+          "cp packages/guard/guard.array/package.json dist/packages/guard/guard.array/package.json",
+          "uglifyjs dist/packages/guard/guard.array/index.esm.js -o dist/packages/guard/guard.array/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guard/guard.array/index.cjs.js -o dist/packages/guard/guard.array/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/guard/guard.array/index.esm.js",
+          "rm dist/packages/guard/guard.array/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/guard/guard.array/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/guard/guard.array"],
+      "options": {
+        "jestConfig": "packages/guard/guard.array/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/guard/guard.array"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/guard/guard.array"
+      }
+    }
+  },
+  "tags": []
+}

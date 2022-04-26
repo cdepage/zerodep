@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "errors": "packages/errors",
+
     "guards": "packages/guards",
     "guards.array": "packages/guards.array",
     "guards.bigint": "packages/guards.bigint",
@@ -13,6 +14,19 @@
     "guards.number": "packages/guards.number",
     "guards.object": "packages/guards.object",
     "guards.string": "packages/guards.string",
+
+    "guard":       "packages/guard/guard",
+    "guard.array": "packages/guard/guard.array",
+    "guard.bigint": "packages/guard/guard.bigint",
+    "guard.boolean": "packages/guard/guard.boolean",
+    "guard.date": "packages/guard/guard.date",
+    "guard.errors": "packages/guard/guard.errors",
+    "guard.float": "packages/guard/guard.float",
+    "guard.integer": "packages/guard/guard.integer",
+    "guard.number": "packages/guard/guard.number",
+    "guard.object": "packages/guard/guard.object",
+    "guard.string": "packages/guard/guard.string",
+
     "is": "packages/is/is",
     "is.array": "packages/is/is.array",
     "is.bigint": "packages/is/is.bigint",
