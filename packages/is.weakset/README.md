@@ -40,7 +40,7 @@ import { isWeakset } from '@zerodep/utils';
 // or
 import { isWeakset } from '@zerodep/is';
 // or
-import { isWeakset } from '@zerodep/weakset';
+import { isWeakset } from '@zerodep/is.weakset';
 
 isWeakset(new WeakSet()); // true
 

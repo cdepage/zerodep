@@ -40,7 +40,7 @@ import { isString } from '@zerodep/utils';
 // or
 import { isString } from '@zerodep/is';
 // or
-import { isString } from '@zerodep/string';
+import { isString } from '@zerodep/is.string';
 
 isString('some string'); // true
 

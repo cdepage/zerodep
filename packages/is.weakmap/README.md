@@ -40,7 +40,7 @@ import { isWeakmap } from '@zerodep/utils';
 // or
 import { isWeakmap } from '@zerodep/is';
 // or
-import { isWeakmap } from '@zerodep/weakmap';
+import { isWeakmap } from '@zerodep/is.weakmap';
 
 isWeakmap(new WeakMap()); // true
 

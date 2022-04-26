@@ -40,7 +40,7 @@ import { isSymbol } from '@zerodep/utils';
 // or
 import { isSymbol } from '@zerodep/is';
 // or
-import { isSymbol } from '@zerodep/symbol';
+import { isSymbol } from '@zerodep/is.symbol';
 
 isSymbol(new Symbol()); // true
 

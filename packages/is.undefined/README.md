@@ -40,7 +40,7 @@ import { isSymbol } from '@zerodep/utils';
 // or
 import { isUndefined } from '@zerodep/is';
 // or
-import { isUndefined } from '@zerodep/undefined';
+import { isUndefined } from '@zerodep/is.undefined';
 
 isUndefined(undefined); // true
 
