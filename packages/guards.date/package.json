@@ -1,0 +1,19 @@
+{
+  "name": "@zerodep/guards.date",
+  "description": "A utility to guard against non-float values / only allow dates and floats",
+  "version": "0.1.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/guards.date"
+  },
+  "homepage": "https://github.com/cdepage/zerodep/tree/main/packages/guards.date",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris.depage@gmail.com>",
+  "sideEffects": false,
+  "main": "index.cjs.min.js",
+  "module": "index.esm.min.js",
+  "types": "index.d.ts",
+  "keywords": []
+}

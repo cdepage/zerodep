@@ -1,0 +1,60 @@
+{
+  "root": "packages/is.object",
+  "sourceRoot": "packages/is.object/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is.object/package.json",
+        "entryFile": "packages/is.object/src/index.ts",
+        "outputPath": "dist/packages/is.object",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is.object/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is.object",
+          "rollup -c packages/is.object/rollup.config.ts",
+          "mv dist/packages/is.object/index.esm.d.ts dist/packages/is.object/index.d.ts",
+          "rm dist/packages/is.object/index.cjs.d.ts",
+          "cp packages/is.object/*.md dist/packages/is.object",
+          "cp packages/is.object/package.json dist/packages/is.object/package.json",
+          "uglifyjs dist/packages/is.object/index.esm.js -o dist/packages/is.object/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is.object/index.cjs.js -o dist/packages/is.object/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is.object/index.esm.js",
+          "rm dist/packages/is.object/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is.object/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is.object"],
+      "options": {
+        "jestConfig": "packages/is.object/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is.object"
+      }
+    }
+  },
+  "tags": []
+}

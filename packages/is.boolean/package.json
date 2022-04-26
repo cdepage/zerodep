@@ -1,0 +1,19 @@
+{
+  "name": "@zerodep/is.boolean",
+  "description": "A utility to determine if a value is an boolean",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/is.boolean"
+  },
+  "homepage": "https://github.com/cdepage/zerodep/tree/main/packages/is.boolean",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris.depage@gmail.com>",
+  "sideEffects": false,
+  "main": "index.cjs.min.js",
+  "module": "index.esm.min.js",
+  "types": "index.d.ts",
+  "keywords": []
+}

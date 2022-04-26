@@ -1,0 +1,60 @@
+{
+  "root": "packages/is.set",
+  "sourceRoot": "packages/is.set/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is.set/package.json",
+        "entryFile": "packages/is.set/src/index.ts",
+        "outputPath": "dist/packages/is.set",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is.set/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is.set",
+          "rollup -c packages/is.set/rollup.config.ts",
+          "mv dist/packages/is.set/index.esm.d.ts dist/packages/is.set/index.d.ts",
+          "rm dist/packages/is.set/index.cjs.d.ts",
+          "cp packages/is.set/*.md dist/packages/is.set",
+          "cp packages/is.set/package.json dist/packages/is.set/package.json",
+          "uglifyjs dist/packages/is.set/index.esm.js -o dist/packages/is.set/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is.set/index.cjs.js -o dist/packages/is.set/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is.set/index.esm.js",
+          "rm dist/packages/is.set/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is.set/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is.set"],
+      "options": {
+        "jestConfig": "packages/is.set/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is.set"
+      }
+    }
+  },
+  "tags": []
+}

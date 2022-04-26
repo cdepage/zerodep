@@ -1,14 +1,14 @@
 {
   "name": "@zerodep/guards.string",
   "description": "A utility to guard against non-string values / only allow strings",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdepage/zerodep.git",
     "directory": "packages/guards.string"
   },
-  "homepage": "https://github.com/cdepage/zerodep/packages/guards.string",
+  "homepage": "https://github.com/cdepage/zerodep/tree/main/packages/guards.string",
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris.depage@gmail.com>",
   "sideEffects": false,

@@ -1,4 +1,5 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guards.errors';
+import { isFloat } from '@zerodep/is.float';
 
 export interface GuardFloatOptions {
   min?: number;
@@ -16,12 +17,7 @@ export const guardFloat = (options: GuardFloatOptions = {}) => {
 
   return (value: any): number => {
     // we need to check for the typeof first as "undefined" will cause isFloat() to error
-    if (
-      typeof value !== 'number' ||
-      Number.isNaN(value) ||
-      Number.isInteger(value) ||
-      !Number.isFinite(value)
-    ) {
+    if (!isFloat(value)) {
       const error = new ZeroDepErrorGuardType('Value is not a float');
       error.value = value;
       throw error;

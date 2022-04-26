@@ -1,0 +1,60 @@
+{
+  "root": "packages/guards.date",
+  "sourceRoot": "packages/guards.date/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/guards.date/package.json",
+        "entryFile": "packages/guards.date/src/index.ts",
+        "outputPath": "dist/packages/guards.date",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/guards.date/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/guards.date",
+          "rollup -c packages/guards.date/rollup.config.ts",
+          "mv dist/packages/guards.date/index.esm.d.ts dist/packages/guards.date/index.d.ts",
+          "rm dist/packages/guards.date/index.cjs.d.ts",
+          "cp packages/guards.date/*.md dist/packages/guards.date",
+          "cp packages/guards.date/package.json dist/packages/guards.date/package.json",
+          "uglifyjs dist/packages/guards.date/index.esm.js -o dist/packages/guards.date/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guards.date/index.cjs.js -o dist/packages/guards.date/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/guards.date/index.esm.js",
+          "rm dist/packages/guards.date/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/guards.date/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/guards.date"],
+      "options": {
+        "jestConfig": "packages/guards.date/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/guards.date"
+      }
+    }
+  },
+  "tags": []
+}

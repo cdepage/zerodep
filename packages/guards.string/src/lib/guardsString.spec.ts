@@ -1,5 +1,5 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guards.errors';
-import { guardString, IGuardStringOptions } from './guardString';
+import { guardString, GuardStringOptions } from './guardString';
 
 const positiveCases = [
   // integers
@@ -130,6 +130,7 @@ const negativeCases = [
 
   // symbols
   ['symbol', Symbol()],
+  ['symbol iterator', Symbol.iterator],
 
   // empty
   ['null', null],
@@ -157,7 +158,7 @@ describe('guardString', () => {
   });
 
   describe('with custom options', () => {
-    const options: IGuardStringOptions = { minLength: 1, maxLength: 10 };
+    const options: GuardStringOptions = { minLength: 1, maxLength: 10 };
     const guard = guardString(options);
 
     it('should throw a ZeroDepErrorGuardRange error when string too short', () => {

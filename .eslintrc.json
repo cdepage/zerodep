@@ -25,10 +25,11 @@
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
       "rules": {
+        "@nrwl/nx/enforce-module-boundaries": "warn",
         "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/no-empty-interface": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-        "@nrwl/nx/enforce-module-boundaries": "warn"
+        "@typescript-eslint/no-explicit-any": "off"
       }
     },
     {

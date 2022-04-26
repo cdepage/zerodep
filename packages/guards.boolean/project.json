@@ -1,0 +1,60 @@
+{
+  "root": "packages/guards.boolean",
+  "sourceRoot": "packages/guards.boolean/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/guards.boolean/package.json",
+        "entryFile": "packages/guards.boolean/src/index.ts",
+        "outputPath": "dist/packages/guards.boolean",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/guards.boolean/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/guards.boolean",
+          "rollup -c packages/guards.boolean/rollup.config.ts",
+          "mv dist/packages/guards.boolean/index.esm.d.ts dist/packages/guards.boolean/index.d.ts",
+          "rm dist/packages/guards.boolean/index.cjs.d.ts",
+          "cp packages/guards.boolean/*.md dist/packages/guards.boolean",
+          "cp packages/guards.boolean/package.json dist/packages/guards.boolean/package.json",
+          "uglifyjs dist/packages/guards.boolean/index.esm.js -o dist/packages/guards.boolean/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guards.boolean/index.cjs.js -o dist/packages/guards.boolean/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/guards.boolean/index.esm.js",
+          "rm dist/packages/guards.boolean/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/guards.boolean/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/guards.boolean"],
+      "options": {
+        "jestConfig": "packages/guards.boolean/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/guards.boolean"
+      }
+    }
+  },
+  "tags": []
+}

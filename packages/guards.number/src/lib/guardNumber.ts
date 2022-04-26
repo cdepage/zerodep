@@ -1,22 +1,23 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guards.errors';
+import { isNumber } from '@zerodep/is.number';
 
-export interface IGuardNumberOptions {
+export interface GuardNumberOptions {
   min?: number;
   max?: number;
 }
 
 // default options
-const defaultOptions: IGuardNumberOptions = {
+const defaultOptions: GuardNumberOptions = {
   min: undefined,
   max: undefined,
 };
 
-export const guardNumber = (options: IGuardNumberOptions = {}) => {
-  const config: IGuardNumberOptions = { ...defaultOptions, ...options };
+export const guardNumber = (options: GuardNumberOptions = {}) => {
+  const config: GuardNumberOptions = { ...defaultOptions, ...options };
 
   return (value: any): number => {
     // we need to check for the typeof first as "undefined" will cause isNumber() to error
-    if (typeof value !== 'number' || Number.isNaN(value) || !Number.isFinite(value)) {
+    if (!isNumber(value)) {
       const error = new ZeroDepErrorGuardType('Value is not a number');
       error.value = value;
       throw error;

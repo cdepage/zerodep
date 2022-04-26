@@ -40,8 +40,8 @@ Of course, you may use `yarn` or `pnpm` or the package manager of your choice. O
 
 For completeness, links to the @zerodep repositories with this function:
 
-- [@zerodep/utils](https://github.com/cdepage/zerodep/packages/utils)
-- [@zerodep/guards](https://github.com/cdepage/zerodep/packages/guards)
+- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
+- [@zerodep/guards](https://github.com/cdepage/zerodep/tree/main/packages/guards)
 
 ## Types of Guards
 
@@ -56,8 +56,8 @@ This package has the following guards available. Most guards have optional confi
 | BigInts | [guardBigInt](https://github.com/cdepage/zerodep/tree/main/packages/guards.bigint) | min, max |
 | Booleans | [guardBoolean](https://github.com/cdepage/zerodep/tree/main/packages/guards.boolean) |  |
 | Dates | [guardDate](https://github.com/cdepage/zerodep/tree/main/packages/guards.date) | earliest, latest |
-| Arrays | [guardArray](https://github.com/cdepage/zerodep/tree/main/packages/guards.array) | minQuantity, maxQuantity, payloadGuard |
-| Objects | [guardObject](https://github.com/cdepage/zerodep/tree/main/packages/guards.object) | minQuantity, maxQuantity, payloadGuard |
+| Arrays | [guardArray](https://github.com/cdepage/zerodep/tree/main/packages/guards.array) | minQuantity, maxQuantity |
+| Objects | [guardObject](https://github.com/cdepage/zerodep/tree/main/packages/guards.object) | minQuantity, maxQuantity |
 
 ## How to Use
 

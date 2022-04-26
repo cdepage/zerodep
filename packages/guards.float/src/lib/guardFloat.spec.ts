@@ -120,6 +120,7 @@ const negativeCases = [
 
   // symbols
   ['symbol', Symbol()],
+  ['symbol iterator', Symbol.iterator],
 
   // empty
   ['null', null],

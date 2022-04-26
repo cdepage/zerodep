@@ -41,9 +41,9 @@ Of course, you may use `yarn` or `pnpm` or the package manager of your choice. O
 
 For completeness, links to the @zerodep repositories with this function:
 
-- [@zerodep/utils](https://github.com/cdepage/zerodep/packages/utils)
-- [@zerodep/guards](https://github.com/cdepage/zerodep/packages/guards)
-- [@zerodep/guards.string](https://github.com/cdepage/zerodep/packages/guards.string)
+- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
+- [@zerodep/guards](https://github.com/cdepage/zerodep/tree/main/packages/guards)
+- [@zerodep/guards.string](https://github.com/cdepage/zerodep/tree/main/packages/guards.string)
 
 ## How to Use
 

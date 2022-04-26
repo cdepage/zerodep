@@ -1,0 +1,60 @@
+{
+  "root": "packages/is.undefined",
+  "sourceRoot": "packages/is.undefined/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is.undefined/package.json",
+        "entryFile": "packages/is.undefined/src/index.ts",
+        "outputPath": "dist/packages/is.undefined",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is.undefined/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is.undefined",
+          "rollup -c packages/is.undefined/rollup.config.ts",
+          "mv dist/packages/is.undefined/index.esm.d.ts dist/packages/is.undefined/index.d.ts",
+          "rm dist/packages/is.undefined/index.cjs.d.ts",
+          "cp packages/is.undefined/*.md dist/packages/is.undefined",
+          "cp packages/is.undefined/package.json dist/packages/is.undefined/package.json",
+          "uglifyjs dist/packages/is.undefined/index.esm.js -o dist/packages/is.undefined/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is.undefined/index.cjs.js -o dist/packages/is.undefined/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is.undefined/index.esm.js",
+          "rm dist/packages/is.undefined/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is.undefined/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is.undefined"],
+      "options": {
+        "jestConfig": "packages/is.undefined/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is.undefined"
+      }
+    }
+  },
+  "tags": []
+}

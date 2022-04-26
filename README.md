@@ -57,6 +57,9 @@ Of course, you may use `yarn` or `pnpm` or the package manager of your choice. O
 | Package Name | Purpose |
 | --- | --- |
 | [@zerodep/guards.errors](https://github.com/cdepage/zerodep/tree/main/packages/guards.errors) | The ZeroDepErrorGuard that all guard packages use |
+| [@zerodep/guards.bigint](https://github.com/cdepage/zerodep/tree/main/packages/guards.bigint) | Guards against the use of non-bigint values |
+| [@zerodep/guards.boolean](https://github.com/cdepage/zerodep/tree/main/packages/guards.boolean) | Guards against the use of non-boolean values |
+| [@zerodep/guards.date](https://github.com/cdepage/zerodep/tree/main/packages/guards.date) | Guards against the use of non-date values |
 | [@zerodep/guards.float](https://github.com/cdepage/zerodep/tree/main/packages/guards.float) | Guards against the use of non-float values |
 | [@zerodep/guards.integer](https://github.com/cdepage/zerodep/tree/main/packages/guards.integer) | Guards against the use of non-integer values |
 | [@zerodep/guards.number](https://github.com/cdepage/zerodep/tree/main/packages/guards.number) | Guards against the use of non-numeric values |

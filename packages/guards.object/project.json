@@ -1,0 +1,60 @@
+{
+  "root": "packages/guards.object",
+  "sourceRoot": "packages/guards.object/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/guards.object/package.json",
+        "entryFile": "packages/guards.object/src/index.ts",
+        "outputPath": "dist/packages/guards.object",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/guards.object/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/guards.object",
+          "rollup -c packages/guards.object/rollup.config.ts",
+          "mv dist/packages/guards.object/index.esm.d.ts dist/packages/guards.object/index.d.ts",
+          "rm dist/packages/guards.object/index.cjs.d.ts",
+          "cp packages/guards.object/*.md dist/packages/guards.object",
+          "cp packages/guards.object/package.json dist/packages/guards.object/package.json",
+          "uglifyjs dist/packages/guards.object/index.esm.js -o dist/packages/guards.object/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guards.object/index.cjs.js -o dist/packages/guards.object/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/guards.object/index.esm.js",
+          "rm dist/packages/guards.object/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/guards.object/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/guards.object"],
+      "options": {
+        "jestConfig": "packages/guards.object/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/guards.object"
+      }
+    }
+  },
+  "tags": []
+}

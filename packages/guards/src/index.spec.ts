@@ -6,9 +6,14 @@ describe('Guards barrel package', () => {
       'ZeroDepErrorGuard',
       'ZeroDepErrorGuardType',
       'ZeroDepErrorGuardRange',
+      'guardArray',
+      'guardBigint',
+      'guardBoolean',
+      'guardDate',
       'guardFloat',
       'guardInteger',
       'guardNumber',
+      'guardObject',
       'guardString',
     ]);
   });

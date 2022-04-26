@@ -1,0 +1,60 @@
+{
+  "root": "packages/is.function",
+  "sourceRoot": "packages/is.function/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is.function/package.json",
+        "entryFile": "packages/is.function/src/index.ts",
+        "outputPath": "dist/packages/is.function",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is.function/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is.function",
+          "rollup -c packages/is.function/rollup.config.ts",
+          "mv dist/packages/is.function/index.esm.d.ts dist/packages/is.function/index.d.ts",
+          "rm dist/packages/is.function/index.cjs.d.ts",
+          "cp packages/is.function/*.md dist/packages/is.function",
+          "cp packages/is.function/package.json dist/packages/is.function/package.json",
+          "uglifyjs dist/packages/is.function/index.esm.js -o dist/packages/is.function/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is.function/index.cjs.js -o dist/packages/is.function/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is.function/index.esm.js",
+          "rm dist/packages/is.function/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is.function/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is.function"],
+      "options": {
+        "jestConfig": "packages/is.function/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is.function"
+      }
+    }
+  },
+  "tags": []
+}

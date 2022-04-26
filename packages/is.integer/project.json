@@ -1,0 +1,60 @@
+{
+  "root": "packages/is.integer",
+  "sourceRoot": "packages/is.integer/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is.integer/package.json",
+        "entryFile": "packages/is.integer/src/index.ts",
+        "outputPath": "dist/packages/is.integer",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is.integer/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is.integer",
+          "rollup -c packages/is.integer/rollup.config.ts",
+          "mv dist/packages/is.integer/index.esm.d.ts dist/packages/is.integer/index.d.ts",
+          "rm dist/packages/is.integer/index.cjs.d.ts",
+          "cp packages/is.integer/*.md dist/packages/is.integer",
+          "cp packages/is.integer/package.json dist/packages/is.integer/package.json",
+          "uglifyjs dist/packages/is.integer/index.esm.js -o dist/packages/is.integer/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is.integer/index.cjs.js -o dist/packages/is.integer/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is.integer/index.esm.js",
+          "rm dist/packages/is.integer/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is.integer/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is.integer"],
+      "options": {
+        "jestConfig": "packages/is.integer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is.integer"
+      }
+    }
+  },
+  "tags": []
+}

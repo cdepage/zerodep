@@ -1,5 +1,5 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guards.errors';
-import { guardInteger, IGuardIntegerOptions } from './guardInteger';
+import { guardInteger, GuardIntegerOptions } from './guardInteger';
 
 const positiveCases = [
   // integers
@@ -118,6 +118,7 @@ const negativeCases = [
 
   // symbols
   ['symbol', Symbol()],
+  ['symbol iterator', Symbol.iterator],
 
   // empty
   ['null', null],
@@ -145,7 +146,7 @@ describe('guardInteger', () => {
   });
 
   describe('with custom options', () => {
-    const options: IGuardIntegerOptions = { min: 50, max: 100 };
+    const options: GuardIntegerOptions = { min: 50, max: 100 };
     const guard = guardInteger(options);
 
     it('should throw a ZeroDepErrorGuardRange error when integer too small', () => {

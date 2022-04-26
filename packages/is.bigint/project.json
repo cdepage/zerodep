@@ -1,0 +1,60 @@
+{
+  "root": "packages/is.bigint",
+  "sourceRoot": "packages/is.bigint/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is.bigint/package.json",
+        "entryFile": "packages/is.bigint/src/index.ts",
+        "outputPath": "dist/packages/is.bigint",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is.bigint/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is.bigint",
+          "rollup -c packages/is.bigint/rollup.config.ts",
+          "mv dist/packages/is.bigint/index.esm.d.ts dist/packages/is.bigint/index.d.ts",
+          "rm dist/packages/is.bigint/index.cjs.d.ts",
+          "cp packages/is.bigint/*.md dist/packages/is.bigint",
+          "cp packages/is.bigint/package.json dist/packages/is.bigint/package.json",
+          "uglifyjs dist/packages/is.bigint/index.esm.js -o dist/packages/is.bigint/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is.bigint/index.cjs.js -o dist/packages/is.bigint/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is.bigint/index.esm.js",
+          "rm dist/packages/is.bigint/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is.bigint/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is.bigint"],
+      "options": {
+        "jestConfig": "packages/is.bigint/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is.bigint"
+      }
+    }
+  },
+  "tags": []
+}

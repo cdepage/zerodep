@@ -1,0 +1,60 @@
+{
+  "root": "packages/is.array",
+  "sourceRoot": "packages/is.array/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is.array/package.json",
+        "entryFile": "packages/is.array/src/index.ts",
+        "outputPath": "dist/packages/is.array",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is.array/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is.array",
+          "rollup -c packages/is.array/rollup.config.ts",
+          "mv dist/packages/is.array/index.esm.d.ts dist/packages/is.array/index.d.ts",
+          "rm dist/packages/is.array/index.cjs.d.ts",
+          "cp packages/is.array/*.md dist/packages/is.array",
+          "cp packages/is.array/package.json dist/packages/is.array/package.json",
+          "uglifyjs dist/packages/is.array/index.esm.js -o dist/packages/is.array/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is.array/index.cjs.js -o dist/packages/is.array/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is.array/index.esm.js",
+          "rm dist/packages/is.array/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is.array/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is.array"],
+      "options": {
+        "jestConfig": "packages/is.array/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is.array"
+      }
+    }
+  },
+  "tags": []
+}

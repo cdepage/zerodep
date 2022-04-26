@@ -1,0 +1,19 @@
+{
+  "name": "@zerodep/is.error",
+  "description": "A utility to determine if a value is an error",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/is.error"
+  },
+  "homepage": "https://github.com/cdepage/zerodep/tree/main/packages/is.error",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris.depage@gmail.com>",
+  "sideEffects": false,
+  "main": "index.cjs.min.js",
+  "module": "index.esm.min.js",
+  "types": "index.d.ts",
+  "keywords": []
+}

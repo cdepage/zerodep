@@ -1,22 +1,23 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guards.errors';
+import { isString } from '@zerodep/is.string';
 
-export interface IGuardStringOptions {
+export interface GuardStringOptions {
   minLength?: number;
   maxLength?: number;
 }
 
 // default options
-const defaultOptions: IGuardStringOptions = {
+const defaultOptions: GuardStringOptions = {
   minLength: undefined,
   maxLength: undefined,
 };
 
-export const guardString = (options: IGuardStringOptions = {}) => {
-  const config: IGuardStringOptions = { ...defaultOptions, ...options };
+export const guardString = (options: GuardStringOptions = {}) => {
+  const config: GuardStringOptions = { ...defaultOptions, ...options };
 
   return (value: any): string => {
     // we need to check for the typeof first as "undefined" will cause isInteger() to error
-    if (typeof value !== 'string') {
+    if (!isString(value)) {
       const error = new ZeroDepErrorGuardType('Value is not a string');
       error.value = value;
       throw error;

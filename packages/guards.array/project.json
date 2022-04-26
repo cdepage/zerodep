@@ -1,0 +1,60 @@
+{
+  "root": "packages/guards.array",
+  "sourceRoot": "packages/guards.array/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/guards.array/package.json",
+        "entryFile": "packages/guards.array/src/index.ts",
+        "outputPath": "dist/packages/guards.array",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/guards.array/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/guards.array",
+          "rollup -c packages/guards.array/rollup.config.ts",
+          "mv dist/packages/guards.array/index.esm.d.ts dist/packages/guards.array/index.d.ts",
+          "rm dist/packages/guards.array/index.cjs.d.ts",
+          "cp packages/guards.array/*.md dist/packages/guards.array",
+          "cp packages/guards.array/package.json dist/packages/guards.array/package.json",
+          "uglifyjs dist/packages/guards.array/index.esm.js -o dist/packages/guards.array/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guards.array/index.cjs.js -o dist/packages/guards.array/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/guards.array/index.esm.js",
+          "rm dist/packages/guards.array/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/guards.array/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/guards.array"],
+      "options": {
+        "jestConfig": "packages/guards.array/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/guards.array"
+      }
+    }
+  },
+  "tags": []
+}

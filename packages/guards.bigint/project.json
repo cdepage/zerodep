@@ -1,0 +1,60 @@
+{
+  "root": "packages/guards.bigint",
+  "sourceRoot": "packages/guards.bigint/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/guards.bigint/package.json",
+        "entryFile": "packages/guards.bigint/src/index.ts",
+        "outputPath": "dist/packages/guards.bigint",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/guards.bigint/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/guards.bigint",
+          "rollup -c packages/guards.bigint/rollup.config.ts",
+          "mv dist/packages/guards.bigint/index.esm.d.ts dist/packages/guards.bigint/index.d.ts",
+          "rm dist/packages/guards.bigint/index.cjs.d.ts",
+          "cp packages/guards.bigint/*.md dist/packages/guards.bigint",
+          "cp packages/guards.bigint/package.json dist/packages/guards.bigint/package.json",
+          "uglifyjs dist/packages/guards.bigint/index.esm.js -o dist/packages/guards.bigint/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guards.bigint/index.cjs.js -o dist/packages/guards.bigint/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/guards.bigint/index.esm.js",
+          "rm dist/packages/guards.bigint/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/guards.bigint/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/guards.bigint"],
+      "options": {
+        "jestConfig": "packages/guards.bigint/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/guards.bigint"
+      }
+    }
+  },
+  "tags": []
+}

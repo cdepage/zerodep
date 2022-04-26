@@ -1,6 +1,6 @@
 {
   "name": "zerodep",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -8,12 +8,12 @@
     "packageFix": "npm-sort && fixpack && nx run-many --target=packageFix --all",
     "format": "nx format:write",
     "------- AFFECTED -------": "",
-    "test": "nx affected --target=test --coverage",
     "lint": "nx affected --target=lint --fix",
+    "test": "nx affected --target=test --coverage",
     "build": "nx affected --target=build",
     "------- ALL ------------": "",
-    "testAll": "nx run-many --target=test --all --coverage",
     "lintAll": "nx run-many --target=lint --all --fix",
+    "testAll": "nx run-many --target=test --all --coverage",
     "buildAll": "nx run-many --target=build --all"
   },
   "devDependencies": {
@@ -45,5 +45,8 @@
     "tslib": "^2.3.0",
     "typescript": "4.6.3",
     "uglify-js": "3.15.4"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
   }
 }
