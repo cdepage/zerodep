@@ -14,7 +14,9 @@
     "------- ALL ------------": "",
     "lintAll": "nx run-many --target=lint --all --fix",
     "testAll": "nx run-many --target=test --all --coverage",
-    "buildAll": "nx run-many --target=build --all"
+    "buildAll": "nx run-many --target=build --all",
+    "------- CAUTION --------": "",
+    "publish": "nx affected --target=publish"
   },
   "devDependencies": {
     "@nrwl/cli": "14.0.2",

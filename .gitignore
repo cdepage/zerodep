@@ -37,3 +37,7 @@ yarn-error.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+# environment vars (and maybe secrets)
+.env

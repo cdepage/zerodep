@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is.string",
   "description": "A utility to determine if a value is an string",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "repository": {
     "type": "git",

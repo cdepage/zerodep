@@ -51,6 +51,13 @@
         "command": "npm-sort && fixpack",
         "cwd": "packages/is"
       }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/is"
+      }
     }
   },
   "tags": []

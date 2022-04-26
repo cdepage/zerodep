@@ -15,6 +15,7 @@ describe('Utils barrel package', () => {
       'guardFloat',
       'guardInteger',
       'guardNumber',
+      'guardObject',
       'guardString',
       'isArray',
       'isBigint',

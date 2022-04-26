@@ -1,6 +1,6 @@
 # @zerodep/is.undefined
 
-A utility that determines if a value is an undefined.
+A utility that determines if a value is undefined.
 
 ## Table of Contents
 
@@ -27,11 +27,11 @@ npm install @zerodep/is.undefined
 
 Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
 
-For completeness, links to the @zerodep repositories with this undefined:
+For completeness, links to the @zerodep repositories with this capability:
 
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/is](https://github.com/cdepage/zerodep/tree/main/packages/ss)
-- [@zerodep/is.string](https://github.com/cdepage/zerodep/tree/main/packages/is.string)
+- [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils)
+- [@zerodep/is](https://www.npmjs.com/package/@zerodep/is)
+- [@zerodep/is.undefined](https://www.npmjs.com/package/@zerodep/is.undefined)
 
 ## How to Use
 

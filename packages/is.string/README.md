@@ -30,7 +30,7 @@ Of course, you may use `yarn` or `pnpm` or the package manager of your choice. O
 For completeness, links to the @zerodep repositories with this string:
 
 - [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/is](https://github.com/cdepage/zerodep/tree/main/packages/ss)
+- [@zerodep/is](https://github.com/cdepage/zerodep/tree/main/packages/is)
 - [@zerodep/is.string](https://github.com/cdepage/zerodep/tree/main/packages/is.string)
 
 ## How to Use
