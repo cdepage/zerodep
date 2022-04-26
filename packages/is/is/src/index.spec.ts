@@ -12,6 +12,7 @@ describe('Guards barrel package', () => {
       'isFunction',
       'isInteger',
       'isMap',
+      'isNil',
       'isNull',
       'isNumber',
       'isObject',

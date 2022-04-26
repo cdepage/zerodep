@@ -1,6 +1,6 @@
 {
   "name": "zerodep",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -11,11 +11,13 @@
     "format": "nx format:write",
     "------- AFFECTED -------": "",
     "lint": "nx affected --target=lint --fix",
-    "test": "nx affected --target=test --coverage",
+    "test": "nx affected --target=test",
+    "coverage": "nx affected --target=test --coverage",
     "build": "nx affected --target=build",
     "------- ALL ------------": "",
     "lintAll": "nx run-many --target=lint --all --fix",
-    "testAll": "nx run-many --target=test --all --coverage",
+    "testAll": "nx run-many --target=test --all",
+    "coverageAll": "nx run-many --target=test --all --coverage",
     "buildAll": "nx run-many --target=build --all",
     "------- CAUTION --------": "",
     "publish": "nx affected --target=publish"

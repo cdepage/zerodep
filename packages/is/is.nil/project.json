@@ -1,0 +1,67 @@
+{
+  "root": "packages/is/is.nil",
+  "sourceRoot": "packages/is/is.nil/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/is/is.nil/package.json",
+        "entryFile": "packages/is/is.nil/src/index.ts",
+        "outputPath": "dist/packages/is/is.nil",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/is/is.nil/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is/is.nil",
+          "rollup -c packages/is/is.nil/rollup.config.ts",
+          "mv dist/packages/is/is.nil/index.esm.d.ts dist/packages/is/is.nil/index.d.ts",
+          "rm dist/packages/is/is.nil/index.cjs.d.ts",
+          "cp packages/is/is.nil/*.md dist/packages/is/is.nil",
+          "cp packages/is/is.nil/package.json dist/packages/is/is.nil/package.json",
+          "uglifyjs dist/packages/is/is.nil/index.esm.js -o dist/packages/is/is.nil/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.nil/index.cjs.js -o dist/packages/is/is.nil/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is.nil/index.esm.js",
+          "rm dist/packages/is/is.nil/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is/is.nil/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/is/is.nil"],
+      "options": {
+        "jestConfig": "packages/is/is.nil/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is/is.nil"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/is/is.nil"
+      }
+    }
+  },
+  "tags": []
+}

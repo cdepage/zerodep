@@ -7,6 +7,7 @@ export * from '@zerodep/is.float';
 export * from '@zerodep/is.function';
 export * from '@zerodep/is.integer';
 export * from '@zerodep/is.map';
+export * from '@zerodep/is.nil';
 export * from '@zerodep/is.null';
 export * from '@zerodep/is.number';
 export * from '@zerodep/is.object';

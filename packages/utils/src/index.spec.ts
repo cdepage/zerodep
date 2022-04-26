@@ -26,6 +26,7 @@ describe('Utils barrel package', () => {
       'isFunction',
       'isInteger',
       'isMap',
+      'isNil',
       'isNull',
       'isNumber',
       'isObject',

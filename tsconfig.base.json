@@ -37,6 +37,7 @@
       "@zerodep/is.function": ["packages/is/is.function/src/index.ts"],
       "@zerodep/is.integer": ["packages/is/is.integer/src/index.ts"],
       "@zerodep/is.map": ["packages/is/is.map/src/index.ts"],
+      "@zerodep/is.nil": ["packages/is/is.nil/src/index.ts"],
       "@zerodep/is.null": ["packages/is/is.null/src/index.ts"],
       "@zerodep/is.number": ["packages/is/is.number/src/index.ts"],
       "@zerodep/is.object": ["packages/is/is.object/src/index.ts"],

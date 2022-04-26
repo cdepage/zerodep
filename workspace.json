@@ -23,6 +23,7 @@
     "is.function": "packages/is/is.function",
     "is.integer": "packages/is/is.integer",
     "is.map": "packages/is/is.map",
+    "is.nil": "packages/is/is.nil",
     "is.null": "packages/is/is.null",
     "is.number": "packages/is/is.number",
     "is.object": "packages/is/is.object",

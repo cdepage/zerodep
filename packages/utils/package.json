@@ -1,15 +1,15 @@
 {
   "name": "@zerodep/utils.integer",
   "description": "A set of utilities to guard enforce variable types",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdepage/utils.git",
     "directory": "packages/utils"
   },
-  "homepage": "https://github.com/cdepage/utils/packages/utils",
-  "bugs": "https://github.com/cdepage/utils/issues",
+  "homepage": "https://github.com/cdepage/zerodep",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris.depage+zerodep@gmail.com>",
   "sideEffects": false,
   "main": "index.cjs.min.js",
