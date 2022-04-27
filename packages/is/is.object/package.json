@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/is.object",
-  "description": "A utility to determine if a value is an object",
+  "description": "A utility to determine if a value is an object literal",
   "version": "0.1.2",
   "license": "MIT",
   "repository": {

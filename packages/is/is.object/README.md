@@ -1,11 +1,23 @@
 # @zerodep/is.object
 
-A utility that determines if a value is an object.
+A utility to determine if a value is an object literal (AKA a JSON object).
+
+**tl;dr**
+
+```typescript
+import { isObject } from '@zerodep/is.object';
+
+isObject({ key: 'value' }); // true
+isObject('a string'); // false
+```
 
 ## Table of Contents
 
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
+  - [Signature](#signature)
+  - [Examples](#examples)
+- [Related Packages](#related-packages)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
@@ -14,58 +26,110 @@ A utility that determines if a value is an object.
 
 ## Install
 
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/is).
+
 ```
-// entire zerodep utils suite
+// entire set of @zerodep utilities
 npm install @zerodep/utils
 
-// all @zerodep is utilities
+// all @zerodep "is" utilities
 npm install @zerodep/is
 
-// only the is.string
+// only the is.object utility
 npm install @zerodep/is.object
 ```
 
-Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
-
-For completeness, links to the @zerodep repositories with this object:
-
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/is](https://github.com/cdepage/zerodep/tree/main/packages/is)
-- [@zerodep/is.string](https://github.com/cdepage/zerodep/tree/main/packages/is.string)
+Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
 ## How to Use
 
+### Signature
+
 ```typescript
-import { isObject } from '@zerodep/utils';
-// or
-import { isObject } from '@zerodep/is';
-// or
+// typescript declaration
+declare const isObject: (value: any) => boolean;
+```
+
+### Examples
+
+```typescript
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
 import { isObject } from '@zerodep/is.object';
 
-isObject({ an: 'object' }); // true
+isObject({}); // true
+isObject({ a: 'one', b: 'two' }); // true
 
+// strings
+isObject(''); // false
+isObject('a string'); // false
+
+// integers
 isObject(42); // false
-isObject(3.14); // false
-isObject(100n); // false
-isObject('2022-04-15'); // false
+isObject(3e8); // false
+
+// floats
+isObject(-273.15); // false
+isObject(Math.PI); // false
+
+// number-ish
+isObject(Number.POSITIVE_INFINITY); // false
+isObject(NaN); // false
+
+// bigints
+isObject(8675309n); // false
+
+// arrays
+isObject([]); // true
+isObject([1, 2, 3]); // true
+isObject(['a', 'b', 'c']); // true
+
+// booleans
 isObject(true); // false
-isObject(['a', 'b', 'c']); // false
+isObject(false); // false
+
+// other
+isObject(/^$\d{7}/g); // false
+isObject(new Date()); // false
+isObject(new Date('2022-02-24')); // false
+isObject(new Set()); // false
+isObject(new Set([1, 2, 3])); // false
+isObject(new Map()); // false
+isObject(new Map([['a', 1]])); // false
+isObject(new Symbol()); // false
+isObject(new Error()); // false
+isObject(() => {}); // false
+
+// nothing
+isObject(null); // false
+isObject(undefined); // false
 ```
+
+## Related Packages
+
+The following @zerodep packages may be helpful or more appropriate for your specific case:
+
+- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object literal
+- [@zerodep/is.weakmap](https://www.npmjs.com/package/@zerodep/is.weakset) - checks if a value is a WeakMap object
+- [@zerodep/guard.object](https://www.npmjs.com/package/@zerodep/guard.object) - only allows object literal values (throws an error for non-object literal values), reduces the need to write `if/else` code
 
 ## Advantages of @zerodep Packages
 
+We help make source code more readable, more secure, faster to craft, less likely to have hidden defects, and easier to maintain.
+
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
-- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples and helpful tips
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
-- **100% Tested** - all methods are fully unit tested
-- **Semver** - predictably versioned for peace-of-mind upgrading
+- **100% Tested** - all methods and packages are fully unit tested
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
-This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
+All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 
@@ -88,8 +152,8 @@ It is likely the package will work on other technologies and version, however de
 All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one, adhere to Semantic Versioning practices:
 
 - **major versions**: correlates with breaking changes to one or more method signatures
-- **minor versions**: includes addition of new objectality or backwards-compatible software improvements
-- **patch versions**: are reserved for copy changes and bug fixes
+- **minor versions**: includes addition of new functionality or backwards-compatible software improvements
+- **patch versions**: are reserved for copy changes, documentation enhancements and bug fixes
 
 The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is.object/CHANGELOG.md) and any associated software changes.
 

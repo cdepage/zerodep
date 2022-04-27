@@ -1,11 +1,23 @@
 # @zerodep/is.weakmap
 
-A utility that determines if a value is a weakmap.
+A utility to determine if a value is a WeakMap.
+
+**tl;dr**
+
+```typescript
+import { isWeakMap } from '@zerodep/is.weakmap';
+
+isWeakMap(new WeakMap()); // true
+isWeakMap('a string'); // false
+```
 
 ## Table of Contents
 
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
+  - [Signature](#signature)
+  - [Examples](#examples)
+- [Related Packages](#related-packages)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
@@ -14,59 +26,113 @@ A utility that determines if a value is a weakmap.
 
 ## Install
 
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/is).
+
 ```
-// entire zerodep utils suite
+// entire set of @zerodep utilities
 npm install @zerodep/utils
 
-// all @zerodep is utilities
+// all @zerodep "is" utilities
 npm install @zerodep/is
 
-// only the is.string
+// only the is.weakmap utility
 npm install @zerodep/is.weakmap
 ```
 
-Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
-
-For completeness, links to the @zerodep repositories with this weakmap:
-
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/is](https://github.com/cdepage/zerodep/tree/main/packages/is)
-- [@zerodep/is.string](https://github.com/cdepage/zerodep/tree/main/packages/is.string)
+Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
 ## How to Use
 
+### Signature
+
 ```typescript
-import { isWeakmap } from '@zerodep/utils';
-// or
-import { isWeakmap } from '@zerodep/is';
-// or
-import { isWeakmap } from '@zerodep/is.weakmap';
-
-isWeakmap(new WeakMap()); // true
-
-isWeakmap(new Map()); // false
-isWeakmap({ an: 'object' }); // false
-isWeakmap(['a', 'b', 'c']); // false
-isWeakmap(42); // false
-isWeakmap(3.14); // false
-isWeakmap(100n); // false
-isWeakmap(true); // false
+// typescript declaration
+declare const isWeakMap: (value: any) => boolean;
 ```
+
+### Examples
+
+```typescript
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
+import { isWeakMap } from '@zerodep/is.weakmap';
+
+isWeakMap(new WeakMap()); // true
+
+// strings
+isWeakMap(''); // false
+isWeakMap('a string'); // false
+
+// integers
+isWeakMap(42); // false
+isWeakMap(3e8); // false
+
+// floats
+isWeakMap(-273.15); // false
+isWeakMap(Math.PI); // false
+
+// number-ish
+isWeakMap(Number.POSITIVE_INFINITY); // false
+isWeakMap(NaN); // false
+
+// bigints
+isWeakMap(8675309n); // false
+
+// object literals
+isWeakMap({}); // false
+isWeakMap({ a: 'one', b: 'two' }); // false
+
+// arrays
+isWeakMap([]); // true
+isWeakMap([1, 2, 3]); // true
+isWeakMap(['a', 'b', 'c']); // true
+
+// booleans
+isWeakMap(true); // false
+isWeakMap(false); // false
+
+// other
+isWeakMap(/^$\d{7}/g); // false
+isWeakMap(new Date()); // false
+isWeakMap(new Date('2022-02-24')); // false
+isWeakMap(new Set()); // false
+isWeakMap(new Set([1, 2, 3])); // false
+isWeakMap(new Map()); // false
+isWeakMap(new Map([['a', 1]])); // false
+isWeakMap(new Symbol()); // false
+isWeakMap(new Error()); // false
+isWeakMap(() => {}); // false
+
+// nothing
+isWeakMap(null); // false
+isWeakMap(undefined); // false
+```
+
+## Related Packages
+
+The following @zerodep packages may be helpful or more appropriate for your specific case:
+
+- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object literal
+- [@zerodep/is.map](https://www.npmjs.com/package/@zerodep/is.set) - checks if a value is a Map object
+- [@zerodep/guard.weakmap](https://www.npmjs.com/package/@zerodep/guard.weakmap) - only allows WeakMap objects (throws an error for non-weakmap values), reduces the need to write `if/else` code
 
 ## Advantages of @zerodep Packages
 
+We help make source code more readable, more secure, faster to craft, less likely to have hidden defects, and easier to maintain.
+
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
-- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples and helpful tips
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
-- **100% Tested** - all methods are fully unit tested
-- **Semver** - predictably versioned for peace-of-mind upgrading
+- **100% Tested** - all methods and packages are fully unit tested
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
-This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
+All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 
@@ -89,8 +155,8 @@ It is likely the package will work on other technologies and version, however de
 All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one, adhere to Semantic Versioning practices:
 
 - **major versions**: correlates with breaking changes to one or more method signatures
-- **minor versions**: includes addition of new weakmapality or backwards-compatible software improvements
-- **patch versions**: are reserved for copy changes and bug fixes
+- **minor versions**: includes addition of new functionality or backwards-compatible software improvements
+- **patch versions**: are reserved for copy changes, documentation enhancements and bug fixes
 
 The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is.weakmap/CHANGELOG.md) and any associated software changes.
 

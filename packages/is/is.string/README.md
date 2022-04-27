@@ -1,11 +1,23 @@
 # @zerodep/is.string
 
-A utility that determines if a value is a string.
+A utility to determine if a value is a string.
+
+**tl;dr**
+
+```typescript
+import { isString } from '@zerodep/is.string';
+
+isString('some string'); // true
+isString(42); // false
+```
 
 ## Table of Contents
 
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
+  - [Signature](#signature)
+  - [Examples](#examples)
+- [Related Packages](#related-packages)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
@@ -14,58 +26,108 @@ A utility that determines if a value is a string.
 
 ## Install
 
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/is).
+
 ```
-// entire zerodep utils suite
+// entire set of @zerodep utilities
 npm install @zerodep/utils
 
-// all @zerodep is utilities
+// all @zerodep "is" utilities
 npm install @zerodep/is
 
-// only the is.string
+// only the is.string utility
 npm install @zerodep/is.string
 ```
 
-Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
-
-For completeness, links to the @zerodep repositories with this string:
-
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/is](https://github.com/cdepage/zerodep/tree/main/packages/is)
-- [@zerodep/is.string](https://github.com/cdepage/zerodep/tree/main/packages/is.string)
+Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
 ## How to Use
 
+### Signature
+
 ```typescript
-import { isString } from '@zerodep/utils';
-// or
-import { isString } from '@zerodep/is';
-// or
+// typescript declaration
+declare const isString: (value: any) => boolean;
+```
+
+### Examples
+
+```typescript
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
 import { isString } from '@zerodep/is.string';
 
-isString('some string'); // true
+isString(''); // true
+isString('a string'); // true
 
+// integers
 isString(42); // false
-isString(3.14); // false
-isString(100n); // false
+isString(3e8); // false
+
+// floats
+isString(-273.15); // false
+isString(Math.PI); // false
+
+// number-ish
+isString(Number.POSITIVE_INFINITY); // false
+isString(NaN); // false
+
+// bigints
+isString(8675309n); // false
+
+// object literals
+isString({}); // false
+isString({ a: 'one', b: 'two' }); // false
+
+// arrays
+isString([]); // true
+isString([1, 2, 3]); // true
+isString(['a', 'b', 'c']); // true
+
+// booleans
 isString(true); // false
-isString(['a', 'b', 'c']); // false
-isString({ an: 'object' }); // false
+isString(false); // false
+
+// other
+isString(/^$\d{7}/g); // false
+isString(new Date()); // false
+isString(new Date('2022-02-24')); // false
+isString(new Set()); // false
+isString(new Set([1, 2, 3])); // false
+isString(new Map()); // false
+isString(new Map([['a', 1]])); // false
+isString(new Symbol()); // false
+isString(new Error()); // false
+isString(() => {}); // false
+
+// nothing
+isString(null); // false
+isString(undefined); // false
 ```
+
+## Related Packages
+
+The following @zerodep packages may be helpful or more appropriate for your specific case:
+
+- [@zerodep/guard.string](https://www.npmjs.com/package/@zerodep/guard.string) - only allows string values (throws an error for non-string values), reduces the need to write `if/else` code, may be configured for minLength and maxLength properties
 
 ## Advantages of @zerodep Packages
 
+We help make source code more readable, more secure, faster to craft, less likely to have hidden defects, and easier to maintain.
+
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
-- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples and helpful tips
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
-- **100% Tested** - all methods are fully unit tested
-- **Semver** - predictably versioned for peace-of-mind upgrading
+- **100% Tested** - all methods and packages are fully unit tested
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
-This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
+All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 
@@ -88,8 +150,8 @@ It is likely the package will work on other technologies and version, however de
 All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one, adhere to Semantic Versioning practices:
 
 - **major versions**: correlates with breaking changes to one or more method signatures
-- **minor versions**: includes addition of new stringality or backwards-compatible software improvements
-- **patch versions**: are reserved for copy changes and bug fixes
+- **minor versions**: includes addition of new functionality or backwards-compatible software improvements
+- **patch versions**: are reserved for copy changes, documentation enhancements and bug fixes
 
 The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is.string/CHANGELOG.md) and any associated software changes.
 

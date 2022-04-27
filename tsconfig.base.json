@@ -36,6 +36,7 @@
       "@zerodep/is.float": ["packages/is/is.float/src/index.ts"],
       "@zerodep/is.function": ["packages/is/is.function/src/index.ts"],
       "@zerodep/is.integer": ["packages/is/is.integer/src/index.ts"],
+      "@zerodep/is.iterable": ["packages/is/is.iterable/src/index.ts"],
       "@zerodep/is.map": ["packages/is/is.map/src/index.ts"],
       "@zerodep/is.nil": ["packages/is/is.nil/src/index.ts"],
       "@zerodep/is.null": ["packages/is/is.null/src/index.ts"],
@@ -48,6 +49,8 @@
       "@zerodep/is.undefined": ["packages/is/is.undefined/src/index.ts"],
       "@zerodep/is.weakmap": ["packages/is/is.weakmap/src/index.ts"],
       "@zerodep/is.weakset": ["packages/is/is.weakset/src/index.ts"],
+      "@zerodep/to": ["packages/to/to/src/index.ts"],
+      "@zerodep/to.string": ["packages/to/to.string/src/index.ts"],
       "@zerodep/utils": ["packages/utils/src/index.ts"]
     }
   },

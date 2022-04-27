@@ -4,13 +4,14 @@ describe('Guards barrel package', () => {
   it('should export specific packages and interfaces', () => {
     expect(Object.keys(guards)).toEqual([
       'isArray',
-      'isBigint',
+      'isBigInt',
       'isBoolean',
       'isDate',
       'isError',
       'isFloat',
       'isFunction',
       'isInteger',
+      'isIterable',
       'isMap',
       'isNil',
       'isNull',

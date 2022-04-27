@@ -1,6 +1,7 @@
 {
   "printWidth": 100,
   "tabWidth": 2,
+  "embeddedLanguageFormatting": "auto",
   "useTabs": false,
   "semi": true,
   "singleQuote": true,

@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/is",
-  "description": "A set of utilities to guard enforce variable types",
+  "description": "A set of utility methods to determine if a given value is of a specific type of has a specific capability.",
   "version": "0.3.0",
   "license": "MIT",
   "repository": {

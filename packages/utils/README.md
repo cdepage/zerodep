@@ -66,7 +66,7 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 
 - **major versions**: correlates with breaking changes to one or more method signatures
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
-- **patch versions**: are reserved for copy changes and bug fixes
+- **patch versions**: are reserved for copy changes, documentation enhancements and bug fixes
 
 The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/utils/CHANGELOG.md) and any associated software changes.
 

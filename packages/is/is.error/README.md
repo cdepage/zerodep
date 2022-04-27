@@ -1,11 +1,22 @@
 # @zerodep/is.error
 
-A utility that determines if a value is an error.
+A utility to determine if a value is an Error (or instance of the Error class).
+
+**tl;dr**
+
+```typescript
+import { isError } from '@zerodep/is.error';
+
+isError(new Error()); // true
+isError('a string'); // false
+```
 
 ## Table of Contents
 
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
+  - [Signature](#signature)
+  - [Examples](#examples)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
@@ -14,60 +25,104 @@ A utility that determines if a value is an error.
 
 ## Install
 
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/is).
+
 ```
-// entire zerodep utils suite
+// entire set of @zerodep utilities
 npm install @zerodep/utils
 
-// all @zerodep is utilities
+// all @zerodep "is" utilities
 npm install @zerodep/is
 
-// only the is.string
+// only the is.error utility
 npm install @zerodep/is.error
 ```
 
-Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
-
-For completeness, links to the @zerodep repositories with this function:
-
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/is](https://github.com/cdepage/zerodep/tree/main/packages/is)
-- [@zerodep/is.string](https://github.com/cdepage/zerodep/tree/main/packages/is.string)
+Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
 ## How to Use
 
+### Signature
+
 ```typescript
-import { isError } from '@zerodep/utils';
-// or
-import { isError } from '@zerodep/is';
-// or
+// typescript declaration
+declare const isError: (value: any) => boolean;
+```
+
+### Examples
+
+```typescript
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
 import { isError } from '@zerodep/is.error';
 
-const value = new Error();
-isError(value); // true
+isError(new Error()); // true
 
+// strings
+isError(''); // false
+isError('a string'); // false
+
+// integers
 isError(42); // false
-isError(3.14); // false
-isError(100n); // false
-isError('2022-04-15'); // false
+isError(3e8); // false
+
+// floats
+isError(-273.15); // false
+isError(Math.PI); // false
+
+// number-ish
+isError(Number.POSITIVE_INFINITY); // false
+isError(NaN); // false
+
+// bigints
+isError(8675309n); // false
+
+// object literals
+isError({}); // false
+isError({ a: 'one', b: 'two' }); // false
+
+// arrays
+isError([]); // true
+isError([1, 2, 3]); // true
+isError(['a', 'b', 'c']); // true
+
+// booleans
 isError(true); // false
-isError(['a', 'b', 'c']); // false
-isError({ an: 'object' }); // false
+isError(false); // false
+
+// other
+isError(/^$\d{7}/g); // false
+isError(new Date()); // false
+isError(new Date('2022-02-24')); // false
+isError(new Set()); // false
+isError(new Set([1, 2, 3])); // false
+isError(new Map()); // false
+isError(new Map([['a', 1]])); // false
+isError(new Symbol()); // false
+isError(() => {}); // false
+
+// nothing
+isError(null); // false
+isError(undefined); // false
 ```
 
 ## Advantages of @zerodep Packages
 
+We help make source code more readable, more secure, faster to craft, less likely to have hidden defects, and easier to maintain.
+
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
-- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples and helpful tips
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
-- **100% Tested** - all methods are fully unit tested
-- **Semver** - predictably versioned for peace-of-mind upgrading
+- **100% Tested** - all methods and packages are fully unit tested
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
-This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
+All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 
@@ -91,7 +146,7 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 
 - **major versions**: correlates with breaking changes to one or more method signatures
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
-- **patch versions**: are reserved for copy changes and bug fixes
+- **patch versions**: are reserved for copy changes, documentation enhancements and bug fixes
 
 The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is.error/CHANGELOG.md) and any associated software changes.
 

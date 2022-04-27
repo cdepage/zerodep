@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/is.boolean",
-  "description": "A utility to determine if a value is an boolean",
+  "description": "A utility to determine if a value is a boolean",
   "version": "0.1.2",
   "license": "MIT",
   "repository": {

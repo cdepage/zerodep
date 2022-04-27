@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/is.function",
-  "description": "A utility to determine if a value is an function",
+  "description": "A utility to determine if a value is a function",
   "version": "0.1.2",
   "license": "MIT",
   "repository": {

@@ -4,9 +4,12 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "------- NX -------------": "",
+    "nxReset": "nx reset",
     "nxLint": "nx workspace-lint",
     "graphAll": "nx graph",
     "graphAffected": "nx affected-graph",
+    "------- FORMATTING -----": "",
     "packageFix": "npm-sort && fixpack && nx run-many --target=packageFix --all",
     "format": "nx format:write",
     "------- AFFECTED -------": "",

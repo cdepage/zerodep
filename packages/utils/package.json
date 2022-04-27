@@ -1,6 +1,6 @@
 {
-  "name": "@zerodep/utils.integer",
-  "description": "A set of utilities to guard enforce variable types",
+  "name": "@zerodep/utils",
+  "description": "A set of modular JavaScript utilities",
   "version": "0.3.0",
   "license": "MIT",
   "repository": {

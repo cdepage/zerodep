@@ -22,6 +22,7 @@
     "is.float": "packages/is/is.float",
     "is.function": "packages/is/is.function",
     "is.integer": "packages/is/is.integer",
+    "is.iterable": "packages/is/is.iterable",
     "is.map": "packages/is/is.map",
     "is.nil": "packages/is/is.nil",
     "is.null": "packages/is/is.null",
@@ -34,6 +35,8 @@
     "is.undefined": "packages/is/is.undefined",
     "is.weakmap": "packages/is/is.weakmap",
     "is.weakset": "packages/is/is.weakset",
+    "to": "packages/to/to",
+    "to.string": "packages/to/to.string",
     "utils": "packages/utils"
   }
 }

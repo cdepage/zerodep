@@ -1,147 +1,127 @@
 # @zerodep/is
 
-This is a barrel-package of all available is for the different data types.
+A set of utility methods to determine if a given value is of a specific type of has a specific capability.
 
-Is are defensive programming utilities to protect a method/function against incorrect data.
+This is a barrel package of all `@zerodep/is.*` utility packages within the @zerodep monorepo.
+
+**tl;dr**
+
+```typescript
+import { isArray, isFloat, isString, isInteger, isIterable, isNumber } from '@zerodep/is.array';
+
+isArray([1, 2, 3]); // true
+isArray('a string'); // false
+
+isString([1, 2, 3]); // false
+isString('a string'); // true
+
+isNumber(42); // true
+isNumber(3.14); // true
+
+isInteger(42); // true
+isInteger(3.14); // false
+
+isFloat(42); // false
+isFloat(3.14); // true
+
+isIterable(['an', 'array']); // true
+```
+
+In case you were wondering, a "barrel" is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.
+
+Barrel packages group semantically or logically similar functionally together resulting in package size savings and fewer imports for the development to manage compared to installing each package individually.
 
 ## Table of Contents
 
-- [Is & Defensive Programming](#is--defensive-programming)
 - [Installation Instructions](#install)
-- [Types of Is](#types-of-is)
-- [How to Use](#how-to-use)
+- [The `is` Family](#the-is-family)
   - [Signature](#signature)
-  - [Examples](#examples)
+  - [List of Packages](#list-of-packages)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
 - [Resources](#resources)
 - [License](#license)
 
-## Is & Defensive Programming
-
-Defensive programming promotes the practice of never trusting input to your function/method by placing "is at the gate" of your code. These is serve as pre-conditions that must be validated for your code to execute thereby reducing code defects.
-
-A guard stops code execution by throwing an error when invalid data is provided. The spirit/intention of is is to protect at the smaller function-level, not at the macro gateway level checking user input. Be conscientious of where and why you are using is in your code.
-
 ## Install
 
-This package is available from two differently sized and tree shakeable, npm packages:
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils).
 
 ```
-// entire zerodep utils suite
+// entire set of @zerodep utilities
 npm install @zerodep/utils
 
-// all @zerodep is
+// all @zerodep "is" utilities
 npm install @zerodep/is
 ```
 
-Of course, you may use `yarn` or `pnpm` or the package manager of your choice. Only `npm` examples are shown for clarity.
+Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
-For completeness, links to the @zerodep repositories with this function:
-
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/is](https://github.com/cdepage/zerodep/tree/main/packages/is)
-
-## Types of Is
-
-This package has the following is available. Most is have optional configurations to further narrow the scope of the guard.
-
-| Only Allows | Method Name | Optional Configuration |
-| --- | --- | --- |
-| Strings | [istring](https://github.com/cdepage/zerodep/tree/main/packages/is.string) | minLength, maxLength |
-| Integers + Floats | [guardNumber](https://github.com/cdepage/zerodep/tree/main/packages/is.number) | min, max |
-| Integers | [guardInteger](https://github.com/cdepage/zerodep/tree/main/packages/is.integer) | min, max |
-| Floats | [guardFloat](https://github.com/cdepage/zerodep/tree/main/packages/is.float) | min, max |
-| BigInts | [guardBigInt](https://github.com/cdepage/zerodep/tree/main/packages/is.bigint) | min, max |
-| Booleans | [guardBoolean](https://github.com/cdepage/zerodep/tree/main/packages/is.boolean) |  |
-| Dates | [guardDate](https://github.com/cdepage/zerodep/tree/main/packages/is.date) | earliest, latest |
-| Arrays | [guardArray](https://github.com/cdepage/zerodep/tree/main/packages/is.array) | minQuantity, maxQuantity |
-| Objects | [guardObject](https://github.com/cdepage/zerodep/tree/main/packages/is.object) | minQuantity, maxQuantity |
-
-## How to Use
+## The `is` Family
 
 ### Signature
 
-Each guard is a higher-order function that returns the guarding function. In the example below the `IGuardNumberOptions` represents the optional configurations from the table above.
+All `is` packages have the same signature, where "isXxxx" is the method name.
 
 ```typescript
-const intGuard = (options?: IGuardNumberOptions) => (value: any) => number;
+// typescript declaration
+declare const isXxxx: (value: any) => boolean;
 ```
 
-### Examples
+### List of Packages
 
-**Simple Example**
+The following methods/packages are included in this barrel package.
 
-```typescript
-import { istring } from '@zerodep/utils';
-// or
-import { istring } from '@zerodep/is';
+| Method Name | Brief Description | Approx Size <br /> CJS / ESM |
+| --- | --- | --- |
+| [isArray](https://www.npmjs.com/package/@zerodep/is.array) | Checks if a value is an array | 250b / 174b |
+| [isBigInt](https://www.npmjs.com/package/@zerodep/is.bigint) | Checks if a value is a BigInt | 256b / 179b |
+| [isBoolean](https://www.npmjs.com/package/@zerodep/is.boolean) | Checks if a value is a boolean | 260b / 182b |
+| [isDate](https://www.npmjs.com/package/@zerodep/is.date) | Checks if a value is a Date object | 271b / 196b |
+| [isError](https://www.npmjs.com/package/@zerodep/is.error) | Checks if a value is an Error object (or subclass thereof) | 252b / 176b |
+| [isFloat](https://www.npmjs.com/package/@zerodep/is.float) | Checks if a value is a float (excludes integers, NaN and infinite numbers) | 324b / 248b |
+| [isFunction](https://www.npmjs.com/package/@zerodep/is.function) | Checks if a value is a function | 266b / 187b |
+| [isInteger](https://www.npmjs.com/package/@zerodep/is.integer) | Checks if a value is an integer (excludes floats, NaN and infinite numbers) | 261b / 183b |
+| [isIterable](https://www.npmjs.com/package/@zerodep/is.iterable) | Checks if a value is iterable (can be used in a `for...of` loop, excludes strings) | 412b / 333b |
+| [isMap](https://www.npmjs.com/package/@zerodep/is.iterable) | Checks if a value is Map object | 242b / 168b |
+| [isNil](https://www.npmjs.com/package/@zerodep/is.nil) | Checks if a value is `null` or `undefined` | 233b / 159b |
+| [isNull](https://www.npmjs.com/package/@zerodep/is.null) | Checks if a value is `null` | 238b / 163b |
+| [isNumber](https://www.npmjs.com/package/@zerodep/is.number) | Checks if a value is a float or an integer (excludes NaN and infinite numbers) | 302b / 225b |
+| [isObject](https://www.npmjs.com/package/@zerodep/is.object) | Checks if a value is an object literal (not a JavaScript Object) | 342b / 265b |
+| [isRegex](https://www.npmjs.com/package/@zerodep/is.regex) | Checks if a value is a regular expression | 253b / 177b |
+| [isSet](https://www.npmjs.com/package/@zerodep/is.set) | Checks if a value is a Set object | 242b / 168b |
+| [isString](https://www.npmjs.com/package/@zerodep/is.string) | Checks if a value is a string | 256b / 179b |
+| [isSymbol](https://www.npmjs.com/package/@zerodep/is.symbol) | Checks if a value is a Symbol object | 256b / 179b |
+| [isUndefined](https://www.npmjs.com/package/@zerodep/is.undefined) | Checks if a value is `undefined` | 260b / 180b |
+| [isWeakMap](https://www.npmjs.com/package/@zerodep/is.weakmap) | Checks if a value is a WeakMap object | 262b / 184b |
+| [isWeakSet](https://www.npmjs.com/package/@zerodep/is.weakset) | Checks if a value is a WeakSet object | 262b / 184b |
+|  | Sum of all individual package sizes | **5.7kb** / **4.1kb** |
+|  |  |
+|  | **This barrel package** | **1.9kb** / **1.4kb** |
+|  | size difference | _3.8kb_ / _2.7kb_ |
 
-// configure, returns a function
-const stringGuard = istring();
+Above sizes are for the unpacked size of the minified javascript file (the part your build system will use and tree-shake). Of course given the included README and Typescript declarations the packages downloaded to the development machine or build server will be larger.
 
-// use, returns a string or throws
-stringGuard('some string'); // "some string"
-stringGuard(100); // throws a ZeroDepErrorGuardType
-```
-
-**Custom Example**
-
-```typescript
-import { IGuardFloatOptions, guardFloat } from '@zerodep/utils';
-// or
-import { IGuardFloatOptions, guardFloat } from '@zerodep/is';
-
-// configure, returns a function
-const options: IGuardFloatOptions = {
-  min: 0,
-  max: 4.5,
-};
-const customGuard = guardFloat(options);
-
-// use, returns a number or throws
-customGuard(3.14); // 3.14
-customGuard('3.14'); // throws a ZeroDepErrorGuardType
-customGuard(6); // throws a ZeroDepErrorGuardRange
-```
-
-**Error Example**
-
-```typescript
-import { IGuardBigIntOptions, guardBigInt } from '@zerodep/utils';
-// or
-import { IGuardBigIntOptions, guardBigInt } from '@zerodep/is';
-
-try {
-  configureGuard()(42);
-} catch (error) {
-  console.log(error.message); // "Value is not a bigint"
-  console.log(error.code); // 400
-  console.log(error.source); // 42 <-- value that caused the error
-
-  // inheritance chain
-  error instanceof ZeroDepErrorGuardType; // true
-  error instanceof ZeroDepErrorGuard; // true
-  error instanceof ZeroDepError; // true
-  error instanceof Error; // true
-}
-```
+Additional information for each method can be found on the respective package page.
 
 ## Advantages of @zerodep Packages
 
+We help make source code more readable, more secure, faster to craft, less likely to have hidden defects, and easier to maintain.
+
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
-- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples and helpful tips
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
-- **100% Tested** - all methods are fully unit tested
-- **Semver** - predictably versioned for peace-of-mind upgrading
+- **100% Tested** - all methods and packages are fully unit tested
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
-This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
+All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 
@@ -165,9 +145,9 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 
 - **major versions**: correlates with breaking changes to one or more method signatures
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
-- **patch versions**: are reserved for copy changes and bug fixes
+- **patch versions**: are reserved for copy changes, documentation enhancements and bug fixes
 
-The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is/CHANGELOG.md) and any associated software changes.
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is.array/CHANGELOG.md) and any associated software changes.
 
 ## Resources
 
