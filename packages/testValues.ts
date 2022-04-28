@@ -205,11 +205,12 @@ export const testData = {
         ['b', 2.2],
       ]),
     ],
-    // @ts-ignore
     [
       'map of bigints',
       new Map([
+        // @ts-ignore
         ['a', 1n],
+        // @ts-ignore
         ['b', 2n],
       ]),
     ],
