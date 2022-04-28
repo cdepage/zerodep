@@ -2,16 +2,6 @@
   "root": "packages/guard/guard",
   "sourceRoot": "packages/guard/guard/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/guard/guard",
-        "main": "packages/guard/guard/src/index.ts",
-        "tsConfig": "packages/guard/guard/tsconfig.lib.json",
-        "assets": ["packages/guard/guard/*.md"]
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
@@ -20,7 +10,7 @@
           "rollup -c packages/guard/guard/rollup.config.ts",
           "mv dist/packages/guard/guard/index.esm.d.ts dist/packages/guard/guard/index.d.ts",
           "rm dist/packages/guard/guard/index.cjs.d.ts",
-          "cp packages/guard/guard/*.md dist/packages/guard/guard",
+          "cp packages/guard/guard/README.md dist/packages/guard/guard/README.md",
           "cp packages/guard/guard/package.json dist/packages/guard/guard/package.json",
           "uglifyjs dist/packages/guard/guard/index.esm.js -o dist/packages/guard/guard/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/guard/guard/index.cjs.js -o dist/packages/guard/guard/index.cjs.min.js -c --annotations --comments /@source/",

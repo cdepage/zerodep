@@ -23,7 +23,7 @@
           "rollup -c packages/guard/guard.bigint/rollup.config.ts",
           "mv dist/packages/guard/guard.bigint/index.esm.d.ts dist/packages/guard/guard.bigint/index.d.ts",
           "rm dist/packages/guard/guard.bigint/index.cjs.d.ts",
-          "cp packages/guard/guard.bigint/*.md dist/packages/guard/guard.bigint",
+          "cp packages/guard/guard.bigint/README.md dist/packages/guard/guard.bigint/README.md",
           "cp packages/guard/guard.bigint/package.json dist/packages/guard/guard.bigint/package.json",
           "uglifyjs dist/packages/guard/guard.bigint/index.esm.js -o dist/packages/guard/guard.bigint/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/guard/guard.bigint/index.cjs.js -o dist/packages/guard/guard.bigint/index.cjs.min.js -c --annotations --comments /@source/",

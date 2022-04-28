@@ -23,7 +23,7 @@
           "rollup -c packages/guard/guard.integer/rollup.config.ts",
           "mv dist/packages/guard/guard.integer/index.esm.d.ts dist/packages/guard/guard.integer/index.d.ts",
           "rm dist/packages/guard/guard.integer/index.cjs.d.ts",
-          "cp packages/guard/guard.integer/*.md dist/packages/guard/guard.integer",
+          "cp packages/guard/guard.integer/README.md dist/packages/guard/guard.integer/README.md",
           "cp packages/guard/guard.integer/package.json dist/packages/guard/guard.integer/package.json",
           "uglifyjs dist/packages/guard/guard.integer/index.esm.js -o dist/packages/guard/guard.integer/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/guard/guard.integer/index.cjs.js -o dist/packages/guard/guard.integer/index.cjs.min.js -c --annotations --comments /@source/",

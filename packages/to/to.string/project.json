@@ -23,7 +23,7 @@
           "rollup -c packages/to/to.string/rollup.config.ts",
           "mv dist/packages/to/to.string/index.esm.d.ts dist/packages/to/to.string/index.d.ts",
           "rm dist/packages/to/to.string/index.cjs.d.ts",
-          "cp packages/to/to.string/*.md dist/packages/to/to.string",
+          "cp packages/to/to.string/README.md dist/packages/to/to.string/README.md",
           "cp packages/to/to.string/package.json dist/packages/to/to.string/package.json",
           "uglifyjs dist/packages/to/to.string/index.esm.js -o dist/packages/to/to.string/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/to/to.string/index.cjs.js -o dist/packages/to/to.string/index.cjs.min.js -c --annotations --comments /@source/",

@@ -23,7 +23,7 @@
           "rollup -c packages/is/is.weakset/rollup.config.ts",
           "mv dist/packages/is/is.weakset/index.esm.d.ts dist/packages/is/is.weakset/index.d.ts",
           "rm dist/packages/is/is.weakset/index.cjs.d.ts",
-          "cp packages/is/is.weakset/*.md dist/packages/is/is.weakset",
+          "cp packages/is/is.weakset/README.md dist/packages/is/is.weakset/README.md",
           "cp packages/is/is.weakset/package.json dist/packages/is/is.weakset/package.json",
           "uglifyjs dist/packages/is/is.weakset/index.esm.js -o dist/packages/is/is.weakset/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/is/is.weakset/index.cjs.js -o dist/packages/is/is.weakset/index.cjs.min.js -c --annotations --comments /@source/",

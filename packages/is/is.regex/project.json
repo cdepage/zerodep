@@ -23,7 +23,7 @@
           "rollup -c packages/is/is.regex/rollup.config.ts",
           "mv dist/packages/is/is.regex/index.esm.d.ts dist/packages/is/is.regex/index.d.ts",
           "rm dist/packages/is/is.regex/index.cjs.d.ts",
-          "cp packages/is/is.regex/*.md dist/packages/is/is.regex",
+          "cp packages/is/is.regex/README.md dist/packages/is/is.regex/README.md",
           "cp packages/is/is.regex/package.json dist/packages/is/is.regex/package.json",
           "uglifyjs dist/packages/is/is.regex/index.esm.js -o dist/packages/is/is.regex/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/is/is.regex/index.cjs.js -o dist/packages/is/is.regex/index.cjs.min.js -c --annotations --comments /@source/",

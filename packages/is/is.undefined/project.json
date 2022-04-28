@@ -23,7 +23,7 @@
           "rollup -c packages/is/is.undefined/rollup.config.ts",
           "mv dist/packages/is/is.undefined/index.esm.d.ts dist/packages/is/is.undefined/index.d.ts",
           "rm dist/packages/is/is.undefined/index.cjs.d.ts",
-          "cp packages/is/is.undefined/*.md dist/packages/is/is.undefined",
+          "cp packages/is/is.undefined/README.md dist/packages/is/is.undefined/README.md",
           "cp packages/is/is.undefined/package.json dist/packages/is/is.undefined/package.json",
           "uglifyjs dist/packages/is/is.undefined/index.esm.js -o dist/packages/is/is.undefined/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/is/is.undefined/index.cjs.js -o dist/packages/is/is.undefined/index.cjs.min.js -c --annotations --comments /@source/",

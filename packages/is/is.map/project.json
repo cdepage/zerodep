@@ -23,7 +23,7 @@
           "rollup -c packages/is/is.map/rollup.config.ts",
           "mv dist/packages/is/is.map/index.esm.d.ts dist/packages/is/is.map/index.d.ts",
           "rm dist/packages/is/is.map/index.cjs.d.ts",
-          "cp packages/is/is.map/*.md dist/packages/is/is.map",
+          "cp packages/is/is.map/README.md dist/packages/is/is.map/README.md",
           "cp packages/is/is.map/package.json dist/packages/is/is.map/package.json",
           "uglifyjs dist/packages/is/is.map/index.esm.js -o dist/packages/is/is.map/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/is/is.map/index.cjs.js -o dist/packages/is/is.map/index.cjs.min.js -c --annotations --comments /@source/",

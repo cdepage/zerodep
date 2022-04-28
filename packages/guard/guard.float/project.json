@@ -23,7 +23,7 @@
           "rollup -c packages/guard/guard.float/rollup.config.ts",
           "mv dist/packages/guard/guard.float/index.esm.d.ts dist/packages/guard/guard.float/index.d.ts",
           "rm dist/packages/guard/guard.float/index.cjs.d.ts",
-          "cp packages/guard/guard.float/*.md dist/packages/guard/guard.float",
+          "cp packages/guard/guard.float/README.md dist/packages/guard/guard.float/README.md",
           "cp packages/guard/guard.float/package.json dist/packages/guard/guard.float/package.json",
           "uglifyjs dist/packages/guard/guard.float/index.esm.js -o dist/packages/guard/guard.float/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/guard/guard.float/index.cjs.js -o dist/packages/guard/guard.float/index.cjs.min.js -c --annotations --comments /@source/",

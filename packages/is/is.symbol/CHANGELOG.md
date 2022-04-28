@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Improve README with better structure and examples
 - Add link to source code to the minified, distributed packages
+- Remove the CHANGELOG.md file from the distributed packages
 - Add more types and constructs to unit tests
 
 ## [0.1.x] - 2022-04-25

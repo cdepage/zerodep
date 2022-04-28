@@ -23,7 +23,7 @@
           "rollup -c packages/is/is.boolean/rollup.config.ts",
           "mv dist/packages/is/is.boolean/index.esm.d.ts dist/packages/is/is.boolean/index.d.ts",
           "rm dist/packages/is/is.boolean/index.cjs.d.ts",
-          "cp packages/is/is.boolean/*.md dist/packages/is/is.boolean",
+          "cp packages/is/is.boolean/README.md dist/packages/is/is.boolean/README.md",
           "cp packages/is/is.boolean/package.json dist/packages/is/is.boolean/package.json",
           "uglifyjs dist/packages/is/is.boolean/index.esm.js -o dist/packages/is/is.boolean/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/is/is.boolean/index.cjs.js -o dist/packages/is/is.boolean/index.cjs.min.js -c --annotations --comments /@source/",

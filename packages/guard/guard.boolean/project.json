@@ -23,7 +23,7 @@
           "rollup -c packages/guard/guard.boolean/rollup.config.ts",
           "mv dist/packages/guard/guard.boolean/index.esm.d.ts dist/packages/guard/guard.boolean/index.d.ts",
           "rm dist/packages/guard/guard.boolean/index.cjs.d.ts",
-          "cp packages/guard/guard.boolean/*.md dist/packages/guard/guard.boolean",
+          "cp packages/guard/guard.boolean/README.md dist/packages/guard/guard.boolean/README.md",
           "cp packages/guard/guard.boolean/package.json dist/packages/guard/guard.boolean/package.json",
           "uglifyjs dist/packages/guard/guard.boolean/index.esm.js -o dist/packages/guard/guard.boolean/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/guard/guard.boolean/index.cjs.js -o dist/packages/guard/guard.boolean/index.cjs.min.js -c --annotations --comments /@source/",

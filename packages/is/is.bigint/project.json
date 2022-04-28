@@ -23,7 +23,7 @@
           "rollup -c packages/is/is.bigint/rollup.config.ts",
           "mv dist/packages/is/is.bigint/index.esm.d.ts dist/packages/is/is.bigint/index.d.ts",
           "rm dist/packages/is/is.bigint/index.cjs.d.ts",
-          "cp packages/is/is.bigint/*.md dist/packages/is/is.bigint",
+          "cp packages/is/is.bigint/README.md dist/packages/is/is.bigint/README.md",
           "cp packages/is/is.bigint/package.json dist/packages/is/is.bigint/package.json",
           "uglifyjs dist/packages/is/is.bigint/index.esm.js -o dist/packages/is/is.bigint/index.esm.min.js -c --annotations --comments /@source/",
           "uglifyjs dist/packages/is/is.bigint/index.cjs.js -o dist/packages/is/is.bigint/index.cjs.min.js -c --annotations --comments /@source/",
