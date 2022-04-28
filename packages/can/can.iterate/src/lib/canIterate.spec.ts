@@ -1,21 +1,21 @@
 import { testData } from '../../../../testValues';
-import { isIterable } from './isIterable';
+import { canIterate } from './canIterate';
 
 // extract the positive test cases, the rest will be negative
 const { arrays, sets, maps, generators, typedArrays, ...rest } = testData;
 const positiveCases = [...arrays, ...sets, ...maps, ...generators, ...typedArrays];
 const negativeCases = Object.values(rest).flat();
 
-describe('isIterable', () => {
+describe('canIterate', () => {
   // @ts-ignore
-  test.each(positiveCases)('should allow a/an %s', (title, value) => {
+  test.each(positiveCases)('should return TRUE for a/an %s', (title, value) => {
     // @ts-ignore
-    expect(isIterable(value)).toEqual(true);
+    expect(canIterate(value)).toEqual(true);
   });
 
   // @ts-ignore
-  test.each(negativeCases)('should NOT allow a/an %s', (title, value) => {
+  test.each(negativeCases)('should return FALSE for a/an %s', (title, value) => {
     // @ts-ignore
-    expect(isIterable(value)).toEqual(false);
+    expect(canIterate(value)).toEqual(false);
   });
 });

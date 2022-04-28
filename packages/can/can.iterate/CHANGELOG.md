@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-### Changed
-
-## [0.1.x] - 2022-04-27
-
 ### Added
 
-- Create the `is.iterable` utility
+- Create the `can.iterate` utility

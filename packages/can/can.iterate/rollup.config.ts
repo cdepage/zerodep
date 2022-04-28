@@ -1,6 +1,6 @@
 import ts from 'rollup-plugin-ts';
 
-const dir = 'is/is.iterable';
+const dir = 'can/can.iterate';
 
 const banner = `/**
  * @source the https://github.com/cdepage/zerodep/tree/main/packages/${dir}

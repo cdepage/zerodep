@@ -4,6 +4,7 @@ describe('Utils barrel package', () => {
   it('should export specific packages and interfaces', () => {
     // console.log(Object.keys(utils))
     expect(Object.keys(utils)).toEqual([
+      'canIterate',
       'ZeroDepError',
       'ZeroDepErrorGuard',
       'ZeroDepErrorGuardType',
@@ -25,7 +26,6 @@ describe('Utils barrel package', () => {
       'isFloat',
       'isFunction',
       'isInteger',
-      'isIterable',
       'isMap',
       'isNil',
       'isNull',

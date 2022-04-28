@@ -11,6 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Introduce the `is.iterable` utility
+- Introduce the `can` barrel package
+- Introduce the `can.iterate` utility
 
 ### Changed
 

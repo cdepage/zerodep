@@ -9,7 +9,7 @@ This is a barrel package of all `@zerodep/is.*` utility packages within the @zer
 A quick howto by examples for quick reference:
 
 ```typescript
-import { isArray, isFloat, isString, isInteger, isIterable, isNumber } from '@zerodep/is.array';
+import { isArray, isFloat, isString, isInteger, isNumber } from '@zerodep/is';
 
 isArray([1, 2, 3]); // true
 isArray('a string'); // false
@@ -25,20 +25,15 @@ isInteger(3.14); // false
 
 isFloat(42); // false
 isFloat(3.14); // true
-
-isIterable(['an', 'array']); // true
 ```
 
-In case you were wondering, a "barrel" is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.
-
-Barrel packages group semantically or logically similar functionally together resulting in package size savings and fewer imports for the development to manage compared to installing each package individually.
+**Barrel Package:** "barrel" is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.
 
 ## Table of Contents
 
 - [Installation Instructions](#install)
-- [The `is` Family](#the-is-family)
-  - [Signature](#signature)
-  - [List of Packages](#list-of-packages)
+- [Included Packages](#included-packages)
+- [How to Use](#how-to-use)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
@@ -47,64 +42,49 @@ Barrel packages group semantically or logically similar functionally together re
 
 ## Install
 
-This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils).
-
 ```
-// entire set of @zerodep utilities
-npm install @zerodep/utils
-
-// all @zerodep "is" utilities
 npm install @zerodep/is
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
-## The `is` Family
+## Included Packages
 
-### Signature
+This barrel package includes all `@zerodep/is.*` packages:
 
-All `is` packages have the same signature, where "isXxxx" is the method name.
+| Method Name | Package | Purpose |
+| --- | --- | --- |
+| isArray | [is.array](https://www.npmjs.com/package/@zerodep/is.array) | A utility to determine if a value is an array |
+| isBigInt | [is.bigint](https://www.npmjs.com/package/@zerodep/is.bigint) | A utility to determine if a value is a BigInt |
+| isBoolean | [is.boolean](https://www.npmjs.com/package/@zerodep/is.boolean) | A utility to determine if a value is a boolean |
+| isDate | [is.date](https://www.npmjs.com/package/@zerodep/is.date) | A utility to determine if a value is a Date |
+| isFloat | [is.float](https://www.npmjs.com/package/@zerodep/is.float) | A utility to determine if a value is a non-infinite float |
+| isFunction | [is.function](https://www.npmjs.com/package/@zerodep/is.function) | A utility to determine if a value is a function |
+| isInteger | [is.integer](https://www.npmjs.com/package/@zerodep/is.integer) | A utility to determine if a value is a non-infinite integer |
+| isMap | [is.map](https://www.npmjs.com/package/@zerodep/is.map) | A utility to determine if a value is a Map |
+| isNil | [is.nil](https://www.npmjs.com/package/@zerodep/is.nil) | A utility to determine if a value is `null` or `undefined` |
+| isNull | [is.null](https://www.npmjs.com/package/@zerodep/is.null) | A utility to determine if a value is `null` |
+| isNumber | [is.number](https://www.npmjs.com/package/@zerodep/is.number) | A utility to determine if a value is a non-infinite float or integer |
+| isObject | [is.object](https://www.npmjs.com/package/@zerodep/is.object) | A utility to determine if a value is an object literal |
+| isRegex | [is.regex](https://www.npmjs.com/package/@zerodep/is.regex) | A utility to determine if a value is a regular expression |
+| isSet | [is.set](https://www.npmjs.com/package/@zerodep/is.set) | A utility to determine if a value is a Set |
+| isString | [is.string](https://www.npmjs.com/package/@zerodep/is.string) | A utility to determine if a value is a string |
+| isSymbol | [is.symbol](https://www.npmjs.com/package/@zerodep/is.symbol) | A utility to determine if a value is a Symbol |
+| isUndefined | [is.undefined](https://www.npmjs.com/package/@zerodep/is.undefined) | A utility to determine if a value is `undefined` |
+| isWeakMap | [is.weakmap](https://www.npmjs.com/package/@zerodep/is.weakmap) | A utility to determine if a value is a WeakMap |
+| isWeakSet | [is.weakset](https://www.npmjs.com/package/@zerodep/is.weakset) | A utility to determine if a value is a WeakSet |
+
+## How to Use
+
+For specific details and configuration options, see the specific package.
 
 ```typescript
-// typescript declaration
-declare const isXxxx: (value: any) => boolean;
+import { isNumber } from '@zerodep/is';
+
+// is-functions always return a boolean
+isNumber(42); // true
+isNumber('a string'); // false
 ```
-
-### List of Packages
-
-The following methods/packages are included in this barrel package.
-
-| Method Name | Brief Description | Approx Size <br /> CJS / ESM |
-| --- | --- | --- |
-| [isArray](https://www.npmjs.com/package/@zerodep/is.array) | Checks if a value is an array | 250b / 174b |
-| [isBigInt](https://www.npmjs.com/package/@zerodep/is.bigint) | Checks if a value is a BigInt | 256b / 179b |
-| [isBoolean](https://www.npmjs.com/package/@zerodep/is.boolean) | Checks if a value is a boolean | 260b / 182b |
-| [isDate](https://www.npmjs.com/package/@zerodep/is.date) | Checks if a value is a Date object | 271b / 196b |
-| [isError](https://www.npmjs.com/package/@zerodep/is.error) | Checks if a value is an Error object (or subclass thereof) | 252b / 176b |
-| [isFloat](https://www.npmjs.com/package/@zerodep/is.float) | Checks if a value is a float (excludes integers, NaN and infinite numbers) | 324b / 248b |
-| [isFunction](https://www.npmjs.com/package/@zerodep/is.function) | Checks if a value is a function | 266b / 187b |
-| [isInteger](https://www.npmjs.com/package/@zerodep/is.integer) | Checks if a value is an integer (excludes floats, NaN and infinite numbers) | 261b / 183b |
-| [isIterable](https://www.npmjs.com/package/@zerodep/is.iterable) | Checks if a value is iterable (can be used in a `for...of` loop, excludes strings) | 412b / 333b |
-| [isMap](https://www.npmjs.com/package/@zerodep/is.iterable) | Checks if a value is Map object | 242b / 168b |
-| [isNil](https://www.npmjs.com/package/@zerodep/is.nil) | Checks if a value is `null` or `undefined` | 233b / 159b |
-| [isNull](https://www.npmjs.com/package/@zerodep/is.null) | Checks if a value is `null` | 238b / 163b |
-| [isNumber](https://www.npmjs.com/package/@zerodep/is.number) | Checks if a value is a float or an integer (excludes NaN and infinite numbers) | 302b / 225b |
-| [isObject](https://www.npmjs.com/package/@zerodep/is.object) | Checks if a value is an object literal (not a JavaScript Object) | 342b / 265b |
-| [isRegex](https://www.npmjs.com/package/@zerodep/is.regex) | Checks if a value is a regular expression | 253b / 177b |
-| [isSet](https://www.npmjs.com/package/@zerodep/is.set) | Checks if a value is a Set object | 242b / 168b |
-| [isString](https://www.npmjs.com/package/@zerodep/is.string) | Checks if a value is a string | 256b / 179b |
-| [isSymbol](https://www.npmjs.com/package/@zerodep/is.symbol) | Checks if a value is a Symbol object | 256b / 179b |
-| [isUndefined](https://www.npmjs.com/package/@zerodep/is.undefined) | Checks if a value is `undefined` | 260b / 180b |
-| [isWeakMap](https://www.npmjs.com/package/@zerodep/is.weakmap) | Checks if a value is a WeakMap object | 262b / 184b |
-| [isWeakSet](https://www.npmjs.com/package/@zerodep/is.weakset) | Checks if a value is a WeakSet object | 262b / 184b |
-|  | Sum of all individual package sizes | **5.7kb** / **4.1kb** |
-|  |  |
-|  | **This barrel package** | **1.9kb** / **1.4kb** |
-|  | size difference | _3.8kb_ / _2.7kb_ |
-
-Above measurements are for the unpacked size of the minified javascript file (the part your build system will use and tree-shake). Of course given the included README and Typescript declarations the packages downloaded to the development machine or build server will be larger.
-
-Additional information for each method can be found on the respective package page.
 
 ## Advantages of @zerodep Packages
 
@@ -154,7 +134,7 @@ The above said, a security best practice is to pin your software packages to spe
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is/is/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

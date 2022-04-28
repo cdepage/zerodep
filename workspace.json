@@ -1,6 +1,9 @@
 {
   "version": 2,
   "projects": {
+    "app": "packages/app",
+    "can": "packages/can/can",
+    "can.iterate": "packages/can/can.iterate",
     "errors": "packages/errors",
     "guard": "packages/guard/guard",
     "guard.array": "packages/guard/guard.array",
@@ -22,7 +25,6 @@
     "is.float": "packages/is/is.float",
     "is.function": "packages/is/is.function",
     "is.integer": "packages/is/is.integer",
-    "is.iterable": "packages/is/is.iterable",
     "is.map": "packages/is/is.map",
     "is.nil": "packages/is/is.nil",
     "is.null": "packages/is/is.null",

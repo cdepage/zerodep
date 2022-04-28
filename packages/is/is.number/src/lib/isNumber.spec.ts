@@ -8,13 +8,13 @@ const negativeCases = Object.values(rest).flat();
 
 describe('isFunction', () => {
   // @ts-ignore
-  test.each(positiveCases)('should allow a/an %s', (title, value) => {
+  test.each(positiveCases)('should return TRUE for a/an %s', (title, value) => {
     // @ts-ignore
     expect(isNumber(value)).toEqual(true);
   });
 
   // @ts-ignore
-  test.each(negativeCases)('should NOT allow a/an %s', (title, value) => {
+  test.each(negativeCases)('should return FALSE for a/an %s', (title, value) => {
     // @ts-ignore
     expect(isNumber(value)).toEqual(false);
   });

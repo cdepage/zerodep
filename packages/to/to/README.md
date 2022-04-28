@@ -1,10 +1,31 @@
 # @zerodep/to
 
-A utility that determines if a value is a string.
+A set of utility methods to convert a value to a specific data type (or throw an error while trying).
+
+This is a barrel package of all `@zerodep/to.*` utility packages within the @zerodep monorepo.
+
+## tl;dr
+
+A quick howto by examples for quick reference:
+
+```typescript
+import { toString } from '@zerodep/to';
+
+// to-functions are HOFs - these examples use the default options
+toString()(42); // 42
+toString()(Symbol); // throws a ZeroDepErrorTo error
+```
+
+Definitions:
+
+**Barrel Package:** "barrel" is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.
+
+**HOF:** a Higher Order Function, a function-that-returns-a-function.
 
 ## Table of Contents
 
 - [Installation Instructions](#install)
+- [Included Packages](#included-packages)
 - [How to Use](#how-to-use)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
@@ -15,58 +36,52 @@ A utility that determines if a value is a string.
 ## Install
 
 ```
-// entire zerodep utils suite
-npm install @zerodep/utils
-
-// all @zerodep is utilities
 npm install @zerodep/is
-
-// only the to
-npm install @zerodep/to
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
-For completeness, links to the @zerodep repositories with this string:
+## Included Packages
 
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/to](https://github.com/cdepage/zerodep/tree/main/packages/to)
-- [@zerodep/to](https://github.com/cdepage/zerodep/tree/main/packages/to/to)
+This barrel package includes all `@zerodep/to.*` packages:
+
+| Method Name | Package | Purpose |
+| --- | --- | --- |
+| ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods |
+|  |  |
+| toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOC to convert a value to a string |
+| ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by @zerodep/to methods, they all subclass the `ZeroDepError` class |
 
 ## How to Use
 
+For specific details and configuration options, see the specific package.
+
 ```typescript
-import { isString } from '@zerodep/utils';
-// or
-import { isString } from '@zerodep/to';
-// or
-import { isString } from '@zerodep/to';
+import { toString } from '@zerodep/to';
 
-isString(new String()); // true
-
-isString(new Set()); // false
-isString({ an: 'object' }); // false
-isString(['a', 'b', 'c']); // false
-isString(42); // false
-isString(3.14); // false
-isString(100n); // false
-isString(true); // false
+// to-functions are HOFs - these examples use the default options
+toString()(42); // 42
+toString()(Symbol); // throws ZeroDepErrorTo
 ```
 
 ## Advantages of @zerodep Packages
 
+We help make source code more readable, more secure, faster to craft, less likely to have hidden defects, and easier to maintain.
+
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
-- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples and helpful tips
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
-- **100% Tested** - all methods are fully unit tested
-- **Semver** - predictably versioned for peace-of-mind upgrading
+- **100% Tested** - all methods and packages are fully unit tested
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
-This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
+All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 
@@ -97,7 +112,7 @@ The above said, a security best practice is to pin your software packages to spe
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/to/to/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is/is/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

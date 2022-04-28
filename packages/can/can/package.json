@@ -1,0 +1,19 @@
+{
+  "name": "@zerodep/guard",
+  "description": "A set of utility higher order functions that guard for specific data types",
+  "version": "0.2.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/guard/guard"
+  },
+  "homepage": "https://github.com/cdepage/zerodep",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris.depage+zerodep@gmail.com>",
+  "sideEffects": false,
+  "main": "index.cjs.min.js",
+  "module": "index.esm.min.js",
+  "types": "index.d.ts",
+  "keywords": []
+}

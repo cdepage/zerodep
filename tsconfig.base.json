@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@zerodep/app": ["packages/app/src/index.ts"],
+      "@zerodep/can": ["packages/can/can/src/index.ts"],
+      "@zerodep/can.iterate": ["packages/can/can.iterate/src/index.ts"],
       "@zerodep/errors": ["packages/errors/src/index.ts"],
       "@zerodep/guard": ["packages/guard/guard/src/index.ts"],
       "@zerodep/guard.array": ["packages/guard/guard.array/src/index.ts"],
@@ -36,7 +39,6 @@
       "@zerodep/is.float": ["packages/is/is.float/src/index.ts"],
       "@zerodep/is.function": ["packages/is/is.function/src/index.ts"],
       "@zerodep/is.integer": ["packages/is/is.integer/src/index.ts"],
-      "@zerodep/is.iterable": ["packages/is/is.iterable/src/index.ts"],
       "@zerodep/is.map": ["packages/is/is.map/src/index.ts"],
       "@zerodep/is.nil": ["packages/is/is.nil/src/index.ts"],
       "@zerodep/is.null": ["packages/is/is.null/src/index.ts"],

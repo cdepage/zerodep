@@ -8,6 +8,12 @@ This is a rollup of all CHANGELOG files in the monorepo. Each package also has i
 
 ## [Unreleased]
 
+### Added
+
+- Introduce the `app` barrel package
+- Introduce the `can` barrel package
+- Introduce the `can.iterate` utility
+
 ### Changed
 
 - Improve README files in all packages with better structure and examples

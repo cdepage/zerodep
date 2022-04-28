@@ -1,4 +1,4 @@
-# @zerodep/is.iterable
+# @zerodep/can.iterate
 
 A utility to determine if a value implements the [iterable protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) that supports the `for....of` construct.
 
@@ -11,14 +11,14 @@ On the flip side, object literals (JSON) are NOT iterable. You can run a `for...
 A quick howto by examples for quick reference:
 
 ```typescript
-import { isIterable } from '@zerodep/is.iterable';
+import { canIterate } from '@zerodep/can.iterate';
 
-isIterable(['a', 'b']); // true
-isIterable(new Map([['a', 1]])); // true
-isIterable(new Set(['a', 'b'])); // true
-isIterable({ plain: 'object' }); // false <-- CAUTION
-isIterable('a string'); // false <-- CAUTION
-isIterable(42); // false
+canIterate(['a', 'b']); // true
+canIterate(new Map([['a', 1]])); // true
+canIterate(new Set(['a', 'b'])); // true
+canIterate({ plain: 'object' }); // false <-- CAUTION
+canIterate('a string'); // false <-- CAUTION
+canIterate(42); // false
 ```
 
 ## Table of Contents
@@ -27,7 +27,6 @@ isIterable(42); // false
 - [How to Use](#how-to-use)
   - [Signature](#signature)
   - [Examples](#examples)
-- [Related Packages](#related-packages)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
@@ -36,17 +35,20 @@ isIterable(42); // false
 
 ## Install
 
-This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/is).
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/is).
 
 ```
+// all @zerodep features, capabilities and utilities
+npm install @zerodep/app
+
 // entire set of @zerodep utilities
 npm install @zerodep/utils
 
-// all @zerodep "is" utilities
-npm install @zerodep/is
+// all @zerodep "can" utilities
+npm install @zerodep/can
 
-// only the is.iterable utility
-npm install @zerodep/is.iterable
+// only the can.iterate utility
+npm install @zerodep/can.iterate
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
@@ -57,71 +59,62 @@ Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. On
 
 ```typescript
 // typescript declaration
-declare const isIterable: (value: any) => boolean;
+declare const canIterate: (value: any) => boolean;
 ```
 
 ### Examples
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { isIterable } from '@zerodep/is.iterable';
+import { canIterate } from '@zerodep/can.iterate';
 
-isIterable([]); // true
-isIterable([1, 2, 3]); // true
-isIterable(['a', 'b', 'c']); // true
-isIterable(new Set()); // true
-isIterable(new Set([1, 2, 3])); // true
-isIterable(new Map()); // true
-isIterable(new Map([['a', 1]])); // true
+canIterate([]); // true
+canIterate([1, 2, 3]); // true
+canIterate(['a', 'b', 'c']); // true
+canIterate(new Set()); // true
+canIterate(new Set([1, 2, 3])); // true
+canIterate(new Map()); // true
+canIterate(new Map([['a', 1]])); // true
 
 // strings
-isIterable(''); // false
-isIterable('a string'); // false
+canIterate(''); // false
+canIterate('a string'); // false
 
 // integers
-isIterable(42); // false
-isIterable(3e8); // false
+canIterate(42); // false
+canIterate(3e8); // false
 
 // floats
-isIterable(-273.15); // false
-isIterable(Math.PI); // false
+canIterate(-273.15); // false
+canIterate(Math.PI); // false
 
 // number-ish
-isIterable(Number.POSITIVE_INFINITY); // false
-isIterable(NaN); // false
+canIterate(Number.POSITIVE_INFINITY); // false
+canIterate(NaN); // false
 
 // bigints
-isIterable(8675309n); // false
+canIterate(8675309n); // false
 
 // object literals
-isIterable({}); // false
-isIterable({ a: 'one', b: 'two' }); // false
+canIterate({}); // false
+canIterate({ a: 'one', b: 'two' }); // false
 
 // booleans
-isIterable(true); // false
-isIterable(false); // false
+canIterate(true); // false
+canIterate(false); // false
 
 // other
-isIterable(/^$\d{7}/g); // false
-isIterable(new Date()); // false
-isIterable(new Date('2022-02-24')); // false
-isIterable(new Symbol()); // false
-isIterable(new Error()); // false
-isIterable(() => {}); // false
+canIterate(/^$\d{7}/g); // false
+canIterate(new Date()); // false
+canIterate(new Date('2022-02-24')); // false
+canIterate(new Symbol()); // false
+canIterate(new Error()); // false
+canIterate(() => {}); // false
 
 // nothing
-isIterable(null); // false
-isIterable(undefined); // false
+canIterate(null); // false
+canIterate(undefined); // false
 ```
-
-## Related Packages
-
-The following @zerodep packages may be helpful or more appropriate for your specific case:
-
-- [@zerodep/is.number](https://www.npmjs.com/package/@zerodep/is.number) - checks if a value is an iterable or float
-- [@zerodep/is.float](https://www.npmjs.com/package/@zerodep/is.float) - checks if a value is float
-- [@zerodep/is.bigint](https://www.npmjs.com/package/@zerodep/is.bigint) - checks if a value is a BigInt
-- [@zerodep/guard.iterable](https://www.npmjs.com/package/@zerodep/guard.iterable) - only allows iterable values (throws an error for non-iterable values), reduces the need to write `if/else` code, may be configured for minimum/maximum values
 
 ## Advantages of @zerodep Packages
 
@@ -171,7 +164,7 @@ The above said, a security best practice is to pin your software packages to spe
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is/is.iterable/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/can/can.iterate/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

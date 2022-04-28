@@ -1,0 +1,67 @@
+{
+  "root": "packages/app",
+  "sourceRoot": "packages/app/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/app/package.json",
+        "entryFile": "packages/app/src/index.ts",
+        "outputPath": "dist/packages/app",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/app/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/app",
+          "rollup -c packages/app/rollup.config.ts",
+          "mv dist/packages/app/index.esm.d.ts dist/packages/app/index.d.ts",
+          "rm dist/packages/app/index.cjs.d.ts",
+          "cp packages/app/README.md dist/packages/app/README.md",
+          "cp packages/app/package.json dist/packages/app/package.json",
+          "uglifyjs dist/packages/app/index.esm.js -o dist/packages/app/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/app/index.cjs.js -o dist/packages/app/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/app/index.esm.js",
+          "rm dist/packages/app/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/app/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/app"],
+      "options": {
+        "jestConfig": "packages/app/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/app"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/app"
+      }
+    }
+  },
+  "tags": []
+}
