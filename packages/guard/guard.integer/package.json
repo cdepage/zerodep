@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/guard.integer",
-  "description": "A utility to guard against non-float values / only allow integers and floats",
+  "description": "A higher-order function / defensive programming utility to guard against non-integer arguments",
   "version": "0.1.2",
   "license": "MIT",
   "repository": {

@@ -1,62 +1,63 @@
 # @zerodep/guard.float
 
-A defensive programming utility to guard against the use of non-floats / allow only floats and integers.
+A higher-order function / defensive programming utility to guard against non-float arguments.
 
 - on success, it returns the float
 - on fail, it throws a `ZeroDepErrorGuardType` or `ZeroDepErrorGuardRange` error
 
+**tl;dr**
+
+```typescript
+import { GuardFloatOptions, guardFloat } from '@zerodep/guard.array';
+
+const options: GuardFloatOptions = { min: 0, max: 1 };
+guardFloat(options)(0.5); // 0.5
+guardFloat(options)('a string'); // throws ZeroDepErrorGuard
+```
+
 ## Table of Contents
 
-- [Guards & Defensive Programming](#guards--defensive-programming)
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
   - [Signature](#signature)
   - [Examples](#examples)
+- [Related Packages](#related-packages)
+- [Guards & Defensive Programming](#guards--defensive-programming)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
 - [Resources](#resources)
 - [License](#license)
 
-## Guards & Defensive Programming
-
-Defensive programming promotes the practice of never trusting input to your function/method by placing "guards at the gate" of your code. These guards serve as pre-conditions that must be validated for your code to execute thereby reducing code defects.
-
-A guard stops code execution by throwing an error when invalid data is provided. The spirit/intention of guards is to protect at the smaller function-level, not at the macro gateway level checking user input. Be conscientious of where and why you are using guards in your code.
-
 ## Install
 
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/guards).
+
 ```
-// entire zerodep utils suite
+// entire set of @zerodep utilities
 npm install @zerodep/utils
 
-// all @zerodep guards
+// all @zerodep "guard" utilities
 npm install @zerodep/guard
 
-// only the string guard
-npm install @zerodep/guard.string
+// only the guard.float utility
+npm install @zerodep/guard.float
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
-
-For completeness, links to the @zerodep repositories with this function:
-
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/guard](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard)
-- [@zerodep/guard.string](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.string)
 
 ## How to Use
 
 ### Signature
 
 ```typescript
-// configure function => use function => number
-const configureGuard = (options?: OptionsGuardFloat) => (value: any) => number;
+// typescript declaration
+declare const guardFloat: (options?: GuardArrayOptions) => (value: any) => number;
 
-// configuration options
-interface OptionsGuardFloat {
-  min?: number; // the minimum value to accept
-  max?: number; // the maximum value to accept
+// optional configuration
+interface GuardFloatOptions {
+  min?: number;
+  max?: number;
 }
 ```
 
@@ -65,55 +66,45 @@ interface OptionsGuardFloat {
 **Simple Example**
 
 ```typescript
-import { guardFloat } from '@zerodep/utils';
-// or
-import { guardFloat } from '@zerodep/guard';
-// or
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
 import { guardFloat } from '@zerodep/guard.float';
 
 // configure, returns a function
-const intGuard = guardFloat();
+const guard = guardFloat();
 
 // use, returns a number or throws
-intGuard(3.14); // 3.14
-intGuard(42); // 42
-intGuard('not a float'); // throws a ZeroDepErrorGuardType
+guard(3.14); // 3.14
+guard('not a float'); // throws a ZeroDepErrorGuardType
 ```
 
-**Custom Example**
+**With Configuration Example**
 
 ```typescript
-import { OptionsGuardFloat, guardFloat } from '@zerodep/utils';
-// or
-import { OptionsGuardFloat, guardFloat } from '@zerodep/guard';
-// or
-import { OptionsGuardFloat, guardFloat } from '@zerodep/guard.float';
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
+import { GuardFloatOptions, guardFloat } from '@zerodep/guard.float';
 
 // configure, returns a function
-const options: OptionsGuardFloat = { min: 0, max: 4.5 };
+const options: GuardFloatOptions = { min: 0, max: 1 };
 const customGuard = guardFloat(options);
 
 // use, returns a number or throws
-customGuard(3.14); // 3.14
-customGuard(true); // throws a ZeroDepErrorGuardType
-customGuard(6.25); // throws a ZeroDepErrorGuardRange
+customGuard(0.08); // 0.08
+customGuard(18); // throws a ZeroDepErrorGuardRange
 ```
 
 **Error Example**
 
 ```typescript
-import { guardFloat } from '@zerodep/utils';
-// or
-import { guardFloat } from '@zerodep/guard';
-// or
-import { guardFloat } from '@zerodep/guard.float';
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
+import { GuardFloatOptions, guardFloat } from '@zerodep/guard.float';
 
 try {
-  configureGuard()('invalid');
-} catch (error) {
+  guardFloat()('not a float');
+} catch (error: any) {
   console.log(error.message); // "Value is not an float"
-  console.log(error.code); // 400
-  console.log(error.source); // "invalid" <-- value that caused the error
+  console.log(error.tax); // "type"
+  console.log(error.source); // "guard"
+  console.log(error.value); // "not a float" <-- value that caused the error
 
   // inheritance chain
   error instanceof ZeroDepErrorGuardRange; // false in this case
@@ -124,20 +115,38 @@ try {
 }
 ```
 
+## Related Packages
+
+The following @zerodep packages may be helpful or more appropriate for your specific case:
+
+- [@zerodep/is.float](https://www.npmjs.com/package/@zerodep/is.float) - checks if a value is a float
+
+## Guards & Defensive Programming
+
+Defensive programming promotes the practice of never trusting input to your function/method by placing "guards at the gate" of your function. These guards serve as pre-conditions that must be validated for your code to execute thereby preventing unexpected conditions from occurring.
+
+A guard stops code execution by throwing an error when invalid data is provided. The spirit/intention of guards is to protect at the smaller function-level, not at the macro gateway level checking user input. Be conscientious of where and why you are using guards in your code.
+
+Guards are intended for runtime safety, which is very different from Typescript/strong typing which handles compile time issues.
+
 ## Advantages of @zerodep Packages
 
+We help make source code more readable, more secure, faster to craft, less likely to have hidden defects, and easier to maintain.
+
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
-- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples and helpful tips
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
-- **100% Tested** - all methods are fully unit tested
-- **Semver** - predictably versioned for peace-of-mind upgrading
+- **100% Tested** - all methods and packages are fully unit tested
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
-This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
+All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 
@@ -163,7 +172,7 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
 - **patch versions**: are reserved for copy changes, documentation enhancements and bug fixes
 
-The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guard/guard.float/CHANGELOG.md) and any associated software changes.
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is.float/CHANGELOG.md) and any associated software changes.
 
 ## Resources
 

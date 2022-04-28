@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/guard.array",
-  "description": "A utility to guard against non-float values / only allow arrays and floats",
+  "description": "A higher-order function / defensive programming utility to guard against non-array arguments",
   "version": "0.1.2",
   "license": "MIT",
   "repository": {

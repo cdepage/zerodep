@@ -1,22 +1,86 @@
 # @zerodep/guard
 
-This is a barrel-package of all available guards for the different data types.
+A set of utility higher order functions that guard for specific data types
 
-Guards are defensive programming utilities to protect a method/function against incorrect data.
+This is a barrel package of all `@zerodep/guard.*` utility packages within the @zerodep monorepo.
+
+**tl;dr**
+
+```typescript
+import { guardString, guardInteger } from '@zerodep/guard';
+
+guardString('a string'); // true
+guardString([1, 2, 3]); // false
+
+guardInteger(42); // true
+guardInteger(3.14); // false
+```
+
+In case you were wondering, a "barrel" is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.
+
+Barrel packages group semantically or logically similar functionally together resulting in package size savings and fewer imports for the development to manage compared to installing each package individually.
 
 ## Table of Contents
 
-- [Guards & Defensive Programming](#guards--defensive-programming)
 - [Installation Instructions](#install)
-- [Types of Guards](#types-of-guards)
-- [How to Use](#how-to-use)
+- [The `guard` Family](#the-guard-family)
   - [Signature](#signature)
-  - [Examples](#examples)
+  - [List of Packages](#list-of-packages)
+- [Guards & Defensive Programming](#guards--defensive-programming)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
 - [Resources](#resources)
 - [License](#license)
+
+## Install
+
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils).
+
+```
+// entire set of @zerodep utilities
+npm install @zerodep/utils
+
+// all @zerodep "guard" utilities
+npm install @zerodep/guard
+```
+
+Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
+
+## The `guard` Family
+
+### Signature
+
+All `guard` packages have the same signature, where "guardXxxx" is the method name and "OptionsGuardXxxx" are the optional configurations.
+
+```typescript
+// typescript declaration
+declare const guardXxxx: (options: OptionsGuardXxxx) => (value: any) => [guarded type];
+```
+
+### List of Packages
+
+The following methods/packages are included in this barrel package.
+
+| Method Name | Brief Description | Approx Size <br /> CJS / ESM |
+| --- | --- | --- |
+| [guardArray](https://www.npmjs.com/package/@zerodep/is.array) | Guards against non-array values | 1.9kb / 1.8kb |
+| [guardBigInt](https://www.npmjs.com/package/@zerodep/is.bigint) | Guards against non-BigInt values | 1.8kb / 1.8kb |
+| [guardBoolean](https://www.npmjs.com/package/@zerodep/is.boolean) | Guards against non-boolean values | 1.2kb / 1.1kb |
+| [guardDate](https://www.npmjs.com/package/@zerodep/is.date) | Guards against non-Date values | 1.9kb / 1.8kb |
+| [guardFloat](https://www.npmjs.com/package/@zerodep/is.float) | Guards against non-float values | 1.9kb / 1.8kb |
+| [guardInteger](https://www.npmjs.com/package/@zerodep/is.integer) | Guards against non-integer values | 1.9kb / 1.8kb |
+| [guardNumber](https://www.npmjs.com/package/@zerodep/is.number) | Guards against non-float and non-integer values | 1.9kb / 1.8kb |
+| [guardObject](https://www.npmjs.com/package/@zerodep/is.object) | Guards against non-object literal values | 2.1kb / 2.0kb |
+| [guardString](https://www.npmjs.com/package/@zerodep/is.string) | Guards against non-string values | 1.9kb / 1.9kb |
+|  | Sum of all individual package sizes | **16.5kb** / **15.8kb** |
+|  |  |
+|  | **This barrel package** | **7.1kb** / **6.7kb** |
+|  | size difference | _9.4kb_ / _9.1kb_ |
+
+Above measurements are for the unpacked size of the minified javascript file (the part your build system will use and tree-shake). Of course given the included README and Typescript declarations the packages downloaded to the development machine or build server will be larger.
+
+Additional information for each guard can be found on the respective package page.
 
 ## Guards & Defensive Programming
 
@@ -24,124 +88,24 @@ Defensive programming promotes the practice of never trusting input to your func
 
 A guard stops code execution by throwing an error when invalid data is provided. The spirit/intention of guards is to protect at the smaller function-level, not at the macro gateway level checking user input. Be conscientious of where and why you are using guards in your code.
 
-## Install
-
-This package is available from two differently sized and tree shakeable, npm packages:
-
-```
-// entire zerodep utils suite
-npm install @zerodep/utils
-
-// all @zerodep guards
-npm install @zerodep/guard
-```
-
-Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
-
-For completeness, links to the @zerodep repositories with this function:
-
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/guard](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard)
-
-## Types of Guards
-
-This package has the following guards available. Most guards have optional configurations to further narrow the scope of the guard.
-
-| Only Allows | Method Name | Optional Configuration |
-| --- | --- | --- |
-| Strings | [guardString](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.string) | minLength, maxLength |
-| Integers + Floats | [guardNumber](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.number) | min, max |
-| Integers | [guardInteger](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.integer) | min, max |
-| Floats | [guardFloat](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.float) | min, max |
-| BigInts | [guardBigInt](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.bigint) | min, max |
-| Booleans | [guardBoolean](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.boolean) |  |
-| Dates | [guardDate](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.date) | earliest, latest |
-| Arrays | [guardArray](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.array) | minQuantity, maxQuantity |
-| Objects | [guardObject](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.object) | minQuantity, maxQuantity |
-
-## How to Use
-
-### Signature
-
-Each guard is a higher-order function that returns the guarding function. In the example below the `IGuardNumberOptions` represents the optional configurations from the table above.
-
-```typescript
-const intGuard = (options?: IGuardNumberOptions) => (value: any) => number;
-```
-
-### Examples
-
-**Simple Example**
-
-```typescript
-import { guardString } from '@zerodep/utils';
-// or
-import { guardString } from '@zerodep/guard';
-
-// configure, returns a function
-const stringGuard = guardString();
-
-// use, returns a string or throws
-stringGuard('some string'); // "some string"
-stringGuard(100); // throws a ZeroDepErrorGuardType
-```
-
-**Custom Example**
-
-```typescript
-import { IGuardFloatOptions, guardFloat } from '@zerodep/utils';
-// or
-import { IGuardFloatOptions, guardFloat } from '@zerodep/guard';
-
-// configure, returns a function
-const options: IGuardFloatOptions = {
-  min: 0,
-  max: 4.5,
-};
-const customGuard = guardFloat(options);
-
-// use, returns a number or throws
-customGuard(3.14); // 3.14
-customGuard('3.14'); // throws a ZeroDepErrorGuardType
-customGuard(6); // throws a ZeroDepErrorGuardRange
-```
-
-**Error Example**
-
-```typescript
-import { IGuardBigIntOptions, guardBigInt } from '@zerodep/utils';
-// or
-import { IGuardBigIntOptions, guardBigInt } from '@zerodep/guard';
-
-try {
-  configureGuard()(42);
-} catch (error) {
-  console.log(error.message); // "Value is not a bigint"
-  console.log(error.code); // 400
-  console.log(error.source); // 42 <-- value that caused the error
-
-  // inheritance chain
-  error instanceof ZeroDepErrorGuardType; // true
-  error instanceof ZeroDepErrorGuard; // true
-  error instanceof ZeroDepError; // true
-  error instanceof Error; // true
-}
-```
-
 ## Advantages of @zerodep Packages
 
+We help make source code more readable, more secure, faster to craft, less likely to have hidden defects, and easier to maintain.
+
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
-- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples and helpful tips
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
-- **100% Tested** - all methods are fully unit tested
-- **Semver** - predictably versioned for peace-of-mind upgrading
+- **100% Tested** - all methods and packages are fully unit tested
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
-This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
+All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 
@@ -167,12 +131,12 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
 - **patch versions**: are reserved for copy changes, documentation enhancements and bug fixes
 
-The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guard/guard/CHANGELOG.md) and any associated software changes.
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guard/CHANGELOG.md) and any associated software changes.
 
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guard/guard/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guard/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

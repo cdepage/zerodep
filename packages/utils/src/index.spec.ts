@@ -9,7 +9,7 @@ describe('Utils barrel package', () => {
       'ZeroDepErrorGuardType',
       'ZeroDepErrorGuardRange',
       'guardArray',
-      'guardBigint',
+      'guardBigInt',
       'guardBoolean',
       'guardDate',
       'guardFloat',

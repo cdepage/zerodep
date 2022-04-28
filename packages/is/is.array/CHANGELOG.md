@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
 - Improve README with better structure and examples
 - Add link to source code to the minified, distributed packages
 - Add more types and constructs to unit tests
@@ -14,4 +16,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Added the isArray check
+- Introduce the `is.array` utility

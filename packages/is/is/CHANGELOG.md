@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
 - Introduce the `is.iterable` utility
 - Improve README with better structure and examples
 - Add link to source code to the minified, distributed packages
@@ -17,6 +19,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Introduce the `is.nil` utility
 
+### Changed
+
+- Updated the `is` barrel package with the `is.nil` utility
+
 ## [0.2.x] - 2022-04-25
 
 ### Added
@@ -25,6 +31,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Introduce the `is.boolean` utility
 - Introduce the `is.bigint` utility
 - Introduce the `is.date` utility
+
+### Changed
+
+- Updated the `is` barrel package with the new utilities
 
 ## [0.1.x] - 2022-04-25
 

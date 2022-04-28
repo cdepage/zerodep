@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/guard.object",
-  "description": "A utility to guard against non-float values / only allow objects and floats",
+  "description": "A higher-order function / defensive programming utility to guard against non-object literal arguments",
   "version": "0.1.1",
   "license": "MIT",
   "repository": {

@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/guard",
-  "description": "A set of utilities that guard for specific data types",
+  "description": "A set of utility higher order functions that guard for specific data types",
   "version": "0.2.1",
   "license": "MIT",
   "repository": {

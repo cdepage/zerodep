@@ -1,5 +1,5 @@
 import { isArray } from '@zerodep/is.array';
-import { isBigint } from '@zerodep/is.bigint';
+import { isBigInt } from '@zerodep/is.bigint';
 import { isBoolean } from '@zerodep/is.boolean';
 import { isDate } from '@zerodep/is.date';
 import { isNil } from '@zerodep/is.nil';
@@ -21,7 +21,7 @@ export function toString(value: any): string {
     return `${value}`;
   }
 
-  if (isBigint(value)) {
+  if (isBigInt(value)) {
     return value.toString();
   }
 

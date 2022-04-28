@@ -158,7 +158,7 @@ The above said, a security best practice is to pin your software packages to spe
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is.string/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is/is.string/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

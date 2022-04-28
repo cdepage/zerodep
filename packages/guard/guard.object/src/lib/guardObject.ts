@@ -15,7 +15,7 @@ const defaultOptions: GuardObjectOptions = {
 export const guardObject = (options: GuardObjectOptions = {}) => {
   const config: GuardObjectOptions = { ...defaultOptions, ...options };
 
-  return (value: any): object => {
+  return (value: any): Record<string, any> => {
     if (!isObject(value)) {
       const error = new ZeroDepErrorGuardType('Value is not an object');
       error.value = value;

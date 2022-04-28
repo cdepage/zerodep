@@ -1,4 +1,4 @@
-import { testData } from '../../../testValues';
+import { testData } from '../../../../testValues';
 import { isArray } from './isArray';
 
 // extract the positive test cases, the rest will be negative

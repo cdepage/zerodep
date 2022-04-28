@@ -1,4 +1,4 @@
-import { testData } from '../../../testValues';
+import { testData } from '../../../../testValues';
 import { isError } from './isError';
 
 const negativeCases = Object.values(testData).flat();

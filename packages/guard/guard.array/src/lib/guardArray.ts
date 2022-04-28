@@ -6,16 +6,10 @@ export interface GuardArrayOptions {
   maxQuantity?: number;
 }
 
-// default options
-const defaultOptions: GuardArrayOptions = {
-  minQuantity: undefined,
-  maxQuantity: undefined,
-};
-
 export const guardArray = (options: GuardArrayOptions = {}) => {
-  const config: GuardArrayOptions = { ...defaultOptions, ...options };
+  const config: GuardArrayOptions = options;
 
-  return (value: any[]): object => {
+  return (value: any | any[]): any[] => {
     if (!isArray(value)) {
       const error = new ZeroDepErrorGuardType('Value is not an array');
       error.value = value;

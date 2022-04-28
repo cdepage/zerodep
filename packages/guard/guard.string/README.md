@@ -1,64 +1,63 @@
 # @zerodep/guard.string
 
-A defensive programming utility to guard against the use of non-strings / allow only strings.
+A higher-order function / defensive programming utility to guard against non-string arguments.
 
 - on success, it returns the string
 - on fail, it throws a `ZeroDepErrorGuardType` or `ZeroDepErrorGuardRange` error
 
+**tl;dr**
+
+```typescript
+import { GuardStringOptions, guardString } from '@zerodep/guard.array';
+
+const options: GuardStringOptions = { minLength: 1, maxLength: 20 };
+guardString(options)('a string'); // "a string"
+guardString(options)(42); // throws ZeroDepErrorGuard
+```
+
 ## Table of Contents
 
-- [Guards & Defensive Programming](#guards--defensive-programming)
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
   - [Signature](#signature)
   - [Examples](#examples)
+- [Related Packages](#related-packages)
+- [Guards & Defensive Programming](#guards--defensive-programming)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
 - [Resources](#resources)
 - [License](#license)
 
-## Guards & Defensive Programming
-
-Defensive programming promotes the practice of never trusting input to your function/method by placing "guards at the gate" of your code. These guards serve as pre-conditions that must be validated for your code to execute thereby reducing code defects.
-
-A guard stops code execution by throwing an error when invalid data is provided. The spirit/intention of guards is to protect at the smaller function-level, not at the macro gateway level checking user input. Be conscientious of where and why you are using guards in your code.
-
 ## Install
 
-This package is available from three differently sized and tree shakeable, npm packages:
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/guards).
 
 ```
-// entire zerodep utils suite
+// entire set of @zerodep utilities
 npm install @zerodep/utils
 
-// all @zerodep guards
+// all @zerodep "guard" utilities
 npm install @zerodep/guard
 
-// only the string guard
+// only the guard.string utility
 npm install @zerodep/guard.string
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
-
-For completeness, links to the @zerodep repositories with this function:
-
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/guard](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard)
-- [@zerodep/guard.string](https://github.com/cdepage/zerodep/tree/main/packages/guard/guard.string)
 
 ## How to Use
 
 ### Signature
 
 ```typescript
-// configure function => use function => number
-const configureGuard = (options?: IGuardStringOptions) => (value: any) => number;
+// typescript declaration
+declare const guardString: (options?: GuardStringOptions) => (value: any) => string;
 
-// configuration options
-interface IGuardStringOptions {
-  minLength?: number; // the minimum allowed length of string
-  maxnLength?: number; // the maximum allowed length of string
+// optional configuration
+interface GuardStringOptions {
+  maxLength?: number;
+  maxQuantity?: number;
 }
 ```
 
@@ -67,32 +66,25 @@ interface IGuardStringOptions {
 **Simple Example**
 
 ```typescript
-import { guardString } from '@zerodep/utils';
-// or
-import { guardString } from '@zerodep/guard';
-// or
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
 import { guardString } from '@zerodep/guard.string';
 
 // configure, returns a function
-const stringGuard = guardString();
+const guard = guardString();
 
 // use, returns a string or throws
-stringGuard('some string'); // "some string"
-stringGuard(100); // throws a ZeroDepErrorGuardType
-stringGuard(false); // throws a ZeroDepErrorGuardType
+guard('some string'); // "some string"
+guard(100); // throws a ZeroDepErrorGuardType
 ```
 
-**Custom Example**
+**With Configuration Example**
 
 ```typescript
-import { IGuardStringOptions, guardString } from '@zerodep/utils';
-// or
-import { IGuardStringOptions, guardString } from '@zerodep/guard';
-// or
-import { IGuardStringOptions, guardString } from '@zerodep/guard.string';
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
+import { GuardStringOptions, guardString } from '@zerodep/guard.string';
 
 // configure, returns a function
-const options: IGuardStringOptions = {
+const options: GuardStringOptions = {
   minLength: 8,
   maxLength: 255,
 };
@@ -100,25 +92,22 @@ const customGuard = guardString(options);
 
 // use, returns a number or throws
 customGuard('L()ve_5ex-$3cr37 60d!'); // L()ve_5ex-$3cr37 60d!
-customGuard(3.14); // throws a ZeroDepErrorGuardType
 customGuard('secret'); // throws a ZeroDepErrorGuardRange
 ```
 
 **Error Example**
 
 ```typescript
-import { IGuardStringOptions, guardString } from '@zerodep/utils';
-// or
-import { IGuardStringOptions, guardString } from '@zerodep/guard';
-// or
-import { IGuardStringOptions, guardString } from '@zerodep/guard.string';
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
+import { guardString } from '@zerodep/guard.string';
 
 try {
-  configureGuard()(8675309);
-} catch (error) {
+  guardString()(42);
+} catch (error: any) {
   console.log(error.message); // "Value is not a string"
-  console.log(error.code); // 400
-  console.log(error.source); // 8675309 <-- value that caused the error
+  console.log(error.tax); // "type"
+  console.log(error.source); // "guard"
+  console.log(error.value); // 42 <-- value that caused the error
 
   // inheritance chain
   error instanceof ZeroDepErrorGuardRange; // false in this case
@@ -129,20 +118,38 @@ try {
 }
 ```
 
+## Related Packages
+
+The following @zerodep packages may be helpful or more appropriate for your specific case:
+
+- [@zerodep/is.string](https://www.npmjs.com/package/@zerodep/is.string) - checks if a value is a string
+
+## Guards & Defensive Programming
+
+Defensive programming promotes the practice of never trusting input to your function/method by placing "guards at the gate" of your function. These guards serve as pre-conditions that must be validated for your code to execute thereby preventing unexpected conditions from occurring.
+
+A guard stops code execution by throwing an error when invalid data is provided. The spirit/intention of guards is to protect at the smaller function-level, not at the macro gateway level checking user input. Be conscientious of where and why you are using guards in your code.
+
+Guards are intended for runtime safety, which is very different from Typescript/strong typing which handles compile time issues.
+
 ## Advantages of @zerodep Packages
 
+We help make source code more readable, more secure, faster to craft, less likely to have hidden defects, and easier to maintain.
+
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
-- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples and helpful tips
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
-- **100% Tested** - all methods are fully unit tested
-- **Semver** - predictably versioned for peace-of-mind upgrading
+- **100% Tested** - all methods and packages are fully unit tested
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
-This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
+All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 
@@ -168,7 +175,7 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
 - **patch versions**: are reserved for copy changes, documentation enhancements and bug fixes
 
-The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/guard/guard.string/CHANGELOG.md) and any associated software changes.
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is.string/CHANGELOG.md) and any associated software changes.
 
 ## Resources
 

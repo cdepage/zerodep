@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/guard.date",
-  "description": "A utility to guard against non-float values / only allow dates and floats",
+  "description": "A higher-order function / defensive programming utility to guard against non-Date arguments",
   "version": "0.1.2",
   "license": "MIT",
   "repository": {

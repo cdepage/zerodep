@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/guard.boolean",
-  "description": "A utility to guard against non-float values / only allow booleans and floats",
+  "description": "A higher-order function / defensive programming utility to guard against non-boolean arguments",
   "version": "0.1.2",
   "license": "MIT",
   "repository": {

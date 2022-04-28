@@ -100,7 +100,7 @@ The following methods/packages are included in this barrel package.
 |  | **This barrel package** | **1.9kb** / **1.4kb** |
 |  | size difference | _3.8kb_ / _2.7kb_ |
 
-Above sizes are for the unpacked size of the minified javascript file (the part your build system will use and tree-shake). Of course given the included README and Typescript declarations the packages downloaded to the development machine or build server will be larger.
+Above measurements are for the unpacked size of the minified javascript file (the part your build system will use and tree-shake). Of course given the included README and Typescript declarations the packages downloaded to the development machine or build server will be larger.
 
 Additional information for each method can be found on the respective package page.
 
@@ -147,7 +147,7 @@ All [@zerodep](https://github.com/cdepage/zerodep) packages, including this one,
 - **minor versions**: includes addition of new functionality or backwards-compatible software improvements
 - **patch versions**: are reserved for copy changes, documentation enhancements and bug fixes
 
-The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is.array/CHANGELOG.md) and any associated software changes.
+The above said, a security best practice is to pin your software packages to specific versions and only upgrade to more recent releases after careful inspection of both the [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is/CHANGELOG.md) and any associated software changes.
 
 ## Resources
 
