@@ -42,7 +42,7 @@ This barrel package includes all `@zerodep/can.*` packages :
 
 | Method Name | Package | Purpose |
 | --- | --- | --- |
-| canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safeguards) |
+| canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safecans) |
 
 ## How to Use
 

@@ -8,6 +8,8 @@ This is a rollup of all CHANGELOG files in the monorepo. Each package also has i
 
 ## [Unreleased]
 
+## [0.3.0] - 2022-04-28
+
 ### Added
 
 - Introduce the `app` barrel package

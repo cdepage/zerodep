@@ -1,12 +1,12 @@
 {
-  "name": "@zerodep/guard",
-  "description": "A set of utility higher order functions that guard for specific data types",
-  "version": "0.2.1",
+  "name": "@zerodep/can",
+  "description": "A set of utility higher order functions that can for specific data types",
+  "version": "0.2.2",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdepage/zerodep.git",
-    "directory": "packages/guard/guard"
+    "directory": "packages/can/can"
   },
   "homepage": "https://github.com/cdepage/zerodep",
   "bugs": "https://github.com/cdepage/zerodep/issues",

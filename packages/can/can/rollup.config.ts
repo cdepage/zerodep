@@ -1,6 +1,6 @@
 import ts from 'rollup-plugin-ts';
 
-const dir = 'guard/guard';
+const dir = 'can/can';
 
 const banner = `/**
  * @source the https://github.com/cdepage/zerodep/tree/main/packages/${dir}

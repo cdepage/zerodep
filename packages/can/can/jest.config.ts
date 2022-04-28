@@ -6,7 +6,7 @@ const { exclude: _, ...swcJestConfig } = JSON.parse(
   fs.readFileSync(`${__dirname}/.lib.swcrc`, 'utf-8')
 );
 
-const dir = 'guard';
+const dir = 'can';
 
 module.exports = {
   displayName: dir,
@@ -15,5 +15,5 @@ module.exports = {
     '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: `../../../coverage/packages/guard/${dir}`,
+  coverageDirectory: `../../../coverage/packages/can/${dir}`,
 };
