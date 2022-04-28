@@ -172,18 +172,22 @@ try {
 
 ## Advantages of @zerodep Packages
 
+We help make source code more readable, more secure, faster to craft, less likely to have hidden defects, and easier to maintain.
+
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases `node_modules` folder size
-- **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
-- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples and helpful tips
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
-- **100% Tested** - all methods are fully unit tested
-- **Semver** - predictably versioned for peace-of-mind upgrading
+- **100% Tested** - all methods and packages are fully unit tested
+- **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 
 ## Support
 
-This package has been tested, and built for, the following platforms/browsers in both ESM and CJS formats:
+All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 

@@ -4,18 +4,73 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+This is a rollup of all CHANGELOG files in the monorepo. Each package also has its own CHANGELOG.
+
+## [Unreleased]
+
+### Changed
+
+- Improve README files in all packages with better structure and examples
+- Add link to source code to the minified, distributed packages
+- Remove the CHANGELOG.md file from the distributed packages
+- Add more types and constructs to unit tests for all packages
+
+## [0.2.3] - 2022-04-26
+
+### Changed
+
+- Documentation enhancements
+
+## [0.2.2] - 2022-04-26
+
+### Changed
+
+- Update all `guard` packages to leverage the `is` utilities
+
+## [0.2.1] - 2022-04-26
+
+### Added
+
+- Introduce the `utils` barrel packages
+- Introduce the `guard` barrel packages
+- Introduce the `is.array` utility
+- Introduce the `is.bigint` utility
+- Introduce the `is.boolean` utility
+- Introduce the `is.date` utility
+- Introduce the `is.float` utility
+- Introduce the `is.function` utility
+- Introduce the `is.integer` utility
+- Introduce the `is.iterable` utility
+- Introduce the `is.map` utility
+- Introduce the `is.nil` utility
+- Introduce the `is.null` utility
+- Introduce the `is.number` utility
+- Introduce the `is.object` utility
+- Introduce the `is.regex` utility
+- Introduce the `is.set` utility
+- Introduce the `is.string` utility
+- Introduce the `is.symbol` utility
+- Introduce the `is.undefined` utility
+- Introduce the `is.weakmap` utility
+- Introduce the `is.weakset` utility
+
 ## [0.2.0] - 2022-04-25
 
 ### Added
 
-- is.* packages
-- is barrel package
-- guards for arrays, bigints, booleans, dates, and objects
+- Introduce the `guard` barrel packages
+- Introduce the `guard.array` utility
+- Introduce the `guard.bigint` utility
+- Introduce the `guard.boolean` utility
+- Introduce the `guard.date` utility
+- Introduce the `guard.object` utility
 
 ## [0.1.0] - 2022-04-25
 
 ### Added
 
-- ZeroDepError base error class
-- Guards for strings and numbers
-- Barrel packages for guards and utils
+- Introduce the `ZeroDepError` base error class
+- Introduce the `guard.strings` utility
+- Introduce the `guard.float` utility
+- Introduce the `guard.integer` utility
+- Introduce the `guard.number` utility
