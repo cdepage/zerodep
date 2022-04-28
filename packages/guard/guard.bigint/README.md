@@ -5,7 +5,9 @@ A higher-order function / defensive programming utility to guard against non-Big
 - on success, it returns the BigInt
 - on fail, it throws a `ZeroDepErrorGuardType` or `ZeroDepErrorGuardRange` error
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { GuardBigIntOptions, guardBigInt } from '@zerodep/guard.array';

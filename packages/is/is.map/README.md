@@ -2,7 +2,9 @@
 
 A utility to determine if a value is a Map.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isMap } from '@zerodep/is.map';

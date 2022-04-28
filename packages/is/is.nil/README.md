@@ -2,7 +2,9 @@
 
 A utility to determine if a value is `null` or `undefined`.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isNil } from '@zerodep/is.nil';

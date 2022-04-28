@@ -5,7 +5,9 @@ A higher-order function / defensive programming utility to guard against non-flo
 - on success, it returns the float
 - on fail, it throws a `ZeroDepErrorGuardType` or `ZeroDepErrorGuardRange` error
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { GuardFloatOptions, guardFloat } from '@zerodep/guard.array';

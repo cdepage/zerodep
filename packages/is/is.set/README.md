@@ -2,7 +2,9 @@
 
 A utility to determine if a value is a Set.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isSet } from '@zerodep/is.set';

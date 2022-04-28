@@ -2,7 +2,9 @@
 
 A utility to determine if a value is a function.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isFunction } from '@zerodep/is.function';

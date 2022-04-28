@@ -5,7 +5,9 @@ A higher-order function / defensive programming utility to guard against non-str
 - on success, it returns the string
 - on fail, it throws a `ZeroDepErrorGuardType` or `ZeroDepErrorGuardRange` error
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { GuardStringOptions, guardString } from '@zerodep/guard.array';

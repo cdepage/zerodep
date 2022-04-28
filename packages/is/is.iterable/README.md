@@ -6,7 +6,9 @@ This utility **INTENTIONALLY EXCLUDES** strings, `null` and `undefined` as itera
 
 On the flip side, object literals (JSON) are NOT iterable. You can run a `for...in` loop on them, but not a `for...of`.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isIterable } from '@zerodep/is.iterable';

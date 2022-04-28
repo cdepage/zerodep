@@ -4,7 +4,9 @@ A set of utility methods to determine if a given value is of a specific type of 
 
 This is a barrel package of all `@zerodep/is.*` utility packages within the @zerodep monorepo.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isArray, isFloat, isString, isInteger, isIterable, isNumber } from '@zerodep/is.array';

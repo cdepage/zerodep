@@ -5,7 +5,9 @@ A higher-order function / defensive programming utility to guard against non-Dat
 - on success, it returns the Date
 - on fail, it throws a `ZeroDepErrorGuardType` or `ZeroDepErrorGuardRange` error
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { GuardDateOptions, guardDate } from '@zerodep/guard.array';

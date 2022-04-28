@@ -2,7 +2,9 @@
 
 A utility to determine if a value is an object literal (AKA a JSON object).
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isObject } from '@zerodep/is.object';

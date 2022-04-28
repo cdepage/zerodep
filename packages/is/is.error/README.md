@@ -2,7 +2,9 @@
 
 A utility to determine if a value is an Error (or instance of the Error class).
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isError } from '@zerodep/is.error';

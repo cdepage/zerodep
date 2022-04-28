@@ -2,7 +2,9 @@
 
 A utility to determine if a value is a `Symbol`.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isSymbol } from '@zerodep/is.symbol';

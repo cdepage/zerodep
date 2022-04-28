@@ -2,7 +2,9 @@
 
 A utility to determine if a value is an array.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isArray } from '@zerodep/is.array';

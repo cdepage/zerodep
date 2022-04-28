@@ -4,7 +4,9 @@ A set of utility higher order functions that guard for specific data types
 
 This is a barrel package of all `@zerodep/guard.*` utility packages within the @zerodep monorepo.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { guardString, guardInteger } from '@zerodep/guard';

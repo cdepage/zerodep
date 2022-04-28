@@ -2,7 +2,9 @@
 
 A utility to determine if a value is a finite float or integer.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isNumber } from '@zerodep/is.number';

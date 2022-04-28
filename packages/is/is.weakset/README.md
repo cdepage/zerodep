@@ -2,7 +2,9 @@
 
 A utility to determine if a value is a WeakSet.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isWeakSet } from '@zerodep/is.weakset';

@@ -2,7 +2,9 @@
 
 A utility that determines if a value is a Date object.
 
-**tl;dr**
+## tl;dr
+
+A quick howto by examples for quick reference:
 
 ```typescript
 import { isDate } from '@zerodep/is.date';
