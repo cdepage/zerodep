@@ -89,9 +89,9 @@ isNil({}); // false
 isNil({ a: 'one', b: 'two' }); // false
 
 // arrays
-isNil([]); // true
-isNil([1, 2, 3]); // true
-isNil(['a', 'b', 'c']); // true
+isNil([]); // false
+isNil([1, 2, 3]); // false
+isNil(['a', 'b', 'c']); // false
 
 // booleans
 isNil(true); // false

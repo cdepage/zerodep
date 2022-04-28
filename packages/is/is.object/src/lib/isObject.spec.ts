@@ -6,7 +6,7 @@ const { objectLiterals, ...rest } = testData;
 const positiveCases = [...objectLiterals];
 const negativeCases = Object.values(rest).flat();
 
-describe('isFunction', () => {
+describe('isObject', () => {
   // @ts-ignore
   test.each(positiveCases)('should return TRUE for a/an %s', (title, value) => {
     // @ts-ignore

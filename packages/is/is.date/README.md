@@ -89,9 +89,9 @@ isDate({}); // false
 isDate({ a: 'one', b: 'two' }); // false
 
 // arrays
-isDate([]); // true
-isDate([1, 2, 3]); // true
-isDate(['a', 'b', 'c']); // true
+isDate([]); // false
+isDate([1, 2, 3]); // false
+isDate(['a', 'b', 'c']); // false
 
 // booleans
 isDate(true); // false

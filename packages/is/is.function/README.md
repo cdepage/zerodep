@@ -88,9 +88,9 @@ isFunction({}); // false
 isFunction({ a: 'one', b: 'two' }); // false
 
 // arrays
-isFunction([]); // true
-isFunction([1, 2, 3]); // true
-isFunction(['a', 'b', 'c']); // true
+isFunction([]); // false
+isFunction([1, 2, 3]); // false
+isFunction(['a', 'b', 'c']); // false
 
 // booleans
 isFunction(true); // false

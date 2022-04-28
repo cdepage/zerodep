@@ -25,6 +25,7 @@
     "is.float": "packages/is/is.float",
     "is.function": "packages/is/is.function",
     "is.integer": "packages/is/is.integer",
+    "is.json": "packages/is/is.json",
     "is.map": "packages/is/is.map",
     "is.nil": "packages/is/is.nil",
     "is.null": "packages/is/is.null",

@@ -39,6 +39,7 @@
       "@zerodep/is.float": ["packages/is/is.float/src/index.ts"],
       "@zerodep/is.function": ["packages/is/is.function/src/index.ts"],
       "@zerodep/is.integer": ["packages/is/is.integer/src/index.ts"],
+      "@zerodep/is.json": ["packages/is/is.json/src/index.ts"],
       "@zerodep/is.map": ["packages/is/is.map/src/index.ts"],
       "@zerodep/is.nil": ["packages/is/is.nil/src/index.ts"],
       "@zerodep/is.null": ["packages/is/is.null/src/index.ts"],

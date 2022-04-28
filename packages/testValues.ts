@@ -126,10 +126,6 @@ export const testData = {
     ['object literal of empty strings', { a: '', b: '' }],
     ['object literal of positive integers', { a: 1, b: 2 }],
     ['object literal of negative integers', { a: -1, b: -2 }],
-    // @ts-ignore
-    ['object literal of positive bigints', { a: 1n, b: 2n }],
-    // @ts-ignore
-    ['object literal of negative bigints', { a: -1n, b: -2n }],
     ['object literal of positive floats', { a: 3.14, b: 0.08 }],
     ['object literal of negative floats', { a: -3.14, b: -0.08 }],
     ['object literal of booleans ', { a: true, b: false }],
@@ -146,10 +142,6 @@ export const testData = {
     ['empty array', []],
     ['array of positive integers', [1, 2]],
     ['array of negative integers', [-1, -2]],
-    // @ts-ignore
-    ['array of positive bigints', [1n, 2n]],
-    // @ts-ignore
-    ['array of negative bigints', [-1n, -2n]],
     ['array of positive floats', [3.14, 0.08]],
     ['array of negative floats', [-3.14, -0.08]],
     ['array of strings', ['a', 'b']],

@@ -84,9 +84,9 @@ isString({}); // false
 isString({ a: 'one', b: 'two' }); // false
 
 // arrays
-isString([]); // true
-isString([1, 2, 3]); // true
-isString(['a', 'b', 'c']); // true
+isString([]); // false
+isString([1, 2, 3]); // false
+isString(['a', 'b', 'c']); // false
 
 // booleans
 isString(true); // false

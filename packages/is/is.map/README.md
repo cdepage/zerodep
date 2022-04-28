@@ -88,9 +88,9 @@ isMap({}); // false
 isMap({ a: 'one', b: 'two' }); // false
 
 // arrays
-isMap([]); // true
-isMap([1, 2, 3]); // true
-isMap(['a', 'b', 'c']); // true
+isMap([]); // false
+isMap([1, 2, 3]); // false
+isMap(['a', 'b', 'c']); // false
 
 // booleans
 isMap(true); // false
@@ -115,7 +115,7 @@ isMap(undefined); // false
 
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
-- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object literal
+- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object
 - [@zerodep/is.weakmap](https://www.npmjs.com/package/@zerodep/is.weakset) - checks if a value is a WeakMap object
 - [@zerodep/guard.map](https://www.npmjs.com/package/@zerodep/guard.map) - only allows Map objects (throws an error for non-map values), reduces the need to write `if/else` code, may be configured for minimum/maximum quantity of elements and types
 

@@ -86,9 +86,9 @@ isFloat({}); // false
 isFloat({ a: 'one', b: 'two' }); // false
 
 // arrays
-isFloat([]); // true
-isFloat([1, 2, 3]); // true
-isFloat(['a', 'b', 'c']); // true
+isFloat([]); // false
+isFloat([1, 2, 3]); // false
+isFloat(['a', 'b', 'c']); // false
 
 // booleans
 isFloat(true); // false

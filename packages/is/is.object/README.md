@@ -1,6 +1,6 @@
 # @zerodep/is.object
 
-A utility to determine if a value is an object literal (AKA a JSON object).
+A utility to determine if a value is an object.
 
 ## tl;dr
 
@@ -84,9 +84,9 @@ isObject(NaN); // false
 isObject(8675309n); // false
 
 // arrays
-isObject([]); // true
-isObject([1, 2, 3]); // true
-isObject(['a', 'b', 'c']); // true
+isObject([]); // false
+isObject([1, 2, 3]); // false
+isObject(['a', 'b', 'c']); // false
 
 // booleans
 isObject(true); // false
@@ -113,7 +113,7 @@ isObject(undefined); // false
 
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
-- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object literal
+- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object
 - [@zerodep/is.weakmap](https://www.npmjs.com/package/@zerodep/is.weakset) - checks if a value is a WeakMap object
 - [@zerodep/guard.object](https://www.npmjs.com/package/@zerodep/guard.object) - only allows object literal values (throws an error for non-object literal values), reduces the need to write `if/else` code
 

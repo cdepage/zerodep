@@ -93,9 +93,9 @@ isBoolean({}); // false
 isBoolean({ a: 'one', b: 'two' }); // false
 
 // arrays
-isBoolean([]); // true
-isBoolean([1, 2, 3]); // true
-isBoolean(['a', 'b', 'c']); // true
+isBoolean([]); // false
+isBoolean([1, 2, 3]); // false
+isBoolean(['a', 'b', 'c']); // false
 
 // other
 isBoolean(/^$\d{7}/g); // false

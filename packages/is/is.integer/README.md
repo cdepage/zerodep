@@ -88,9 +88,9 @@ isInteger({}); // false
 isInteger({ a: 'one', b: 'two' }); // false
 
 // arrays
-isInteger([]); // true
-isInteger([1, 2, 3]); // true
-isInteger(['a', 'b', 'c']); // true
+isInteger([]); // false
+isInteger([1, 2, 3]); // false
+isInteger(['a', 'b', 'c']); // false
 
 // booleans
 isInteger(true); // false

@@ -89,9 +89,9 @@ isUndefined({}); // false
 isUndefined({ a: 'one', b: 'two' }); // false
 
 // arrays
-isUndefined([]); // true
-isUndefined([1, 2, 3]); // true
-isUndefined(['a', 'b', 'c']); // true
+isUndefined([]); // false
+isUndefined([1, 2, 3]); // false
+isUndefined(['a', 'b', 'c']); // false
 
 // booleans
 isUndefined(true); // false

@@ -87,9 +87,9 @@ isSymbol({}); // false
 isSymbol({ a: 'one', b: 'two' }); // false
 
 // arrays
-isSymbol([]); // true
-isSymbol([1, 2, 3]); // true
-isSymbol(['a', 'b', 'c']); // true
+isSymbol([]); // false
+isSymbol([1, 2, 3]); // false
+isSymbol(['a', 'b', 'c']); // false
 
 // booleans
 isSymbol(true); // false

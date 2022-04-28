@@ -85,9 +85,9 @@ isNumber({}); // false
 isNumber({ a: 'one', b: 'two' }); // false
 
 // arrays
-isNumber([]); // true
-isNumber([1, 2, 3]); // true
-isNumber(['a', 'b', 'c']); // true
+isNumber([]); // false
+isNumber([1, 2, 3]); // false
+isNumber(['a', 'b', 'c']); // false
 
 // booleans
 isNumber(true); // false

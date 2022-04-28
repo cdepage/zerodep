@@ -87,9 +87,9 @@ isWeakMap({}); // false
 isWeakMap({ a: 'one', b: 'two' }); // false
 
 // arrays
-isWeakMap([]); // true
-isWeakMap([1, 2, 3]); // true
-isWeakMap(['a', 'b', 'c']); // true
+isWeakMap([]); // false
+isWeakMap([1, 2, 3]); // false
+isWeakMap(['a', 'b', 'c']); // false
 
 // booleans
 isWeakMap(true); // false
@@ -116,7 +116,7 @@ isWeakMap(undefined); // false
 
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
-- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object literal
+- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object
 - [@zerodep/is.map](https://www.npmjs.com/package/@zerodep/is.set) - checks if a value is a Map object
 - [@zerodep/guard.weakmap](https://www.npmjs.com/package/@zerodep/guard.weakmap) - only allows WeakMap objects (throws an error for non-weakmap values), reduces the need to write `if/else` code
 

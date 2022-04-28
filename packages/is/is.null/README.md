@@ -89,9 +89,9 @@ isNull({}); // false
 isNull({ a: 'one', b: 'two' }); // false
 
 // arrays
-isNull([]); // true
-isNull([1, 2, 3]); // true
-isNull(['a', 'b', 'c']); // true
+isNull([]); // false
+isNull([1, 2, 3]); // false
+isNull(['a', 'b', 'c']); // false
 
 // booleans
 isNull(true); // false

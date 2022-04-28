@@ -88,9 +88,9 @@ isRegex({}); // false
 isRegex({ a: 'one', b: 'two' }); // false
 
 // arrays
-isRegex([]); // true
-isRegex([1, 2, 3]); // true
-isRegex(['a', 'b', 'c']); // true
+isRegex([]); // false
+isRegex([1, 2, 3]); // false
+isRegex(['a', 'b', 'c']); // false
 
 // booleans
 isRegex(true); // false

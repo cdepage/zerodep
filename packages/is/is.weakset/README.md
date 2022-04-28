@@ -87,9 +87,9 @@ isWeakSet({}); // false
 isWeakSet({ a: 'one', b: 'two' }); // false
 
 // arrays
-isWeakSet([]); // true
-isWeakSet([1, 2, 3]); // true
-isWeakSet(['a', 'b', 'c']); // true
+isWeakSet([]); // false
+isWeakSet([1, 2, 3]); // false
+isWeakSet(['a', 'b', 'c']); // false
 
 // booleans
 isWeakSet(true); // false

@@ -88,9 +88,9 @@ isSet({}); // false
 isSet({ a: 'one', b: 'two' }); // false
 
 // arrays
-isSet([]); // true
-isSet([1, 2, 3]); // true
-isSet(['a', 'b', 'c']); // true
+isSet([]); // false
+isSet([1, 2, 3]); // false
+isSet(['a', 'b', 'c']); // false
 
 // booleans
 isSet(true); // false

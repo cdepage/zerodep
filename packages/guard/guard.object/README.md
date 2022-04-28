@@ -104,12 +104,12 @@ customGuard({ a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }); // throws a ZeroDepErrorGua
 import { guardObject } from '@zerodep/guard.object';
 
 try {
-  guardObject()('not an object literal');
+  guardObject()('not an object');
 } catch (error: any) {
   console.log(error.message); // "Value is not an object"
   console.log(error.tax); // "type"
   console.log(error.source); // "guard"
-  console.log(error.value); // "not an object literal" <-- value that caused the error
+  console.log(error.value); // "not an object" <-- value that caused the error
 
   // inheritance chain
   error instanceof ZeroDepErrorGuardRange; // false in this case
@@ -124,7 +124,7 @@ try {
 
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
-- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object literal
+- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object
 
 ## Guards & Defensive Programming
 

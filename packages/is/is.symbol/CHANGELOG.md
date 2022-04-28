@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Fixed "How to Use" examples for arrays
+
 ## [0.1.4] - 2022-04-28
 
 ### Changed

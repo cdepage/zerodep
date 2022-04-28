@@ -86,9 +86,9 @@ isError({}); // false
 isError({ a: 'one', b: 'two' }); // false
 
 // arrays
-isError([]); // true
-isError([1, 2, 3]); // true
-isError(['a', 'b', 'c']); // true
+isError([]); // false
+isError([1, 2, 3]); // false
+isError(['a', 'b', 'c']); // false
 
 // booleans
 isError(true); // false
