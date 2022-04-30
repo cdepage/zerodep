@@ -8,13 +8,25 @@ This is a rollup of all CHANGELOG files in the monorepo. Each package also has i
 
 ## [Unreleased]
 
+### Added
+
+- Introduce the `is.promise` utility
+- Introduce the `ZeroDepErrorTo` class
+- Introduce the `to.json` converter
+
+### Changed
+
+- Performance improvements to the `is.*` utilities
+- Fixed "How to Use" examples for arrays
+
 ## [0.3.0] - 2022-04-28
 
 ### Added
 
+- Introduce the `is.iterable` utility
+- Introduce the `can.iterate` utility
 - Introduce the `app` barrel package
 - Introduce the `can` barrel package
-- Introduce the `can.iterate` utility
 
 ### Changed
 

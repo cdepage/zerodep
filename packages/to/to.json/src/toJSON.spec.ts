@@ -21,12 +21,12 @@ import {
   testTypedArray9,
   testWeakMap,
   testWeakSet,
-} from '../../../../testValues';
-import { toJson } from './toJson';
+} from '../../../testValues';
+import { toJSON, toJSONHOF } from './toJSON';
 
-describe('toJson', () => {
+describe('toJSON', () => {
   describe('with default options', () => {
-    const convert = toJson();
+    const convert = toJSON;
 
     it('should throw a ZeroDepErrorTo error', () => {
       const fn = () => convert('a string');
@@ -36,35 +36,35 @@ describe('toJson', () => {
     // STRING
     it('should NOT convert a string', () => {
       const fn = () => convert('a string');
-      expect(fn).toThrow('Cannot convert a string to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // NUMBERS
     it('should NOT convert a float', () => {
       const fn = () => convert(3.14);
-      expect(fn).toThrow('Cannot convert a number to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert an integer', () => {
       const fn = () => convert(42);
-      expect(fn).toThrow('Cannot convert a number to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert a scientific notation', () => {
       const fn = () => convert(100e10);
-      expect(fn).toThrow('Cannot convert a number to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert NaN', () => {
       const fn = () => convert(NaN);
-      expect(fn).toThrow('Cannot convert a number to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert an infinite number', () => {
       const fn = () => convert(Number.POSITIVE_INFINITY);
-      expect(fn).toThrow('Cannot convert a number to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // BIG INT
     it('should NOT convert a bigInt', () => {
       const fn = () => convert(8675309n);
-      expect(fn).toThrow('Cannot convert a bigint to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // OBJECT LITERALS
@@ -100,6 +100,13 @@ describe('toJson', () => {
     });
     it('should convert an object literal with a BigInt', () => {
       expect(convert({ bigInt: 8675309n })).toEqual({ bigInt: '8675309' });
+    });
+    it('should convert an intantiated class with a toJSON method', () => {
+      expect(convert({ instance: testClassInstance1 })).toEqual({ instance: { a: 1 } });
+    });
+    it('should NOT convert an object literal with a Symbol', () => {
+      const fn = () => convert({ symbol: testSymbol1 });
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // ARRAYS
@@ -157,35 +164,35 @@ describe('toJson', () => {
     // WEAKMAP
     it('should NOT convert a WeakMap', () => {
       const fn = () => convert(testWeakMap);
-      expect(fn).toThrow('Cannot convert a object to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // WEAKSET
     it('should NOT convert a WeakSet', () => {
       const fn = () => convert(testWeakSet);
-      expect(fn).toThrow('Cannot convert a object to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // PROMISE
     it('should NOT convert a Promise', () => {
       const fn = () => convert(testPromise1);
-      expect(fn).toThrow('Cannot convert a object to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // SYMBOL
     it('should NOT convert a Symbol', () => {
       const fn = () => convert(testSymbol1);
-      expect(fn).toThrow('Cannot convert a symbol to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // CLASSES
     it('should NOT convert a class with a toJSON method', () => {
       const fn = () => convert(TestClass1);
-      expect(fn).toThrow('Cannot convert a function to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert a class without a toJSON method', () => {
       const fn = () => convert(TestClass2);
-      expect(fn).toThrow('Cannot convert a function to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should convert an instantiated class with a toJSON method', () => {
       expect(convert(testClassInstance1)).toEqual({ a: 1 });
@@ -229,17 +236,17 @@ describe('toJson', () => {
     // FUNCTION
     it('should NOT convert a testFunction1', () => {
       const fn = () => convert(testFunction1);
-      expect(fn).toThrow('Cannot convert a function to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // REGEX
     it('should NOT convert a regex', () => {
       const fn = () => convert(testRegex1);
-      expect(fn).toThrow('Cannot convert a object to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert a RegExp', () => {
       const fn = () => convert(testRegex2);
-      expect(fn).toThrow('Cannot convert a object to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // NOTHINGS
@@ -251,8 +258,8 @@ describe('toJson', () => {
     });
   });
 
-  describe('with custom configs: convertErrorToNull = true', () => {
-    const convert = toJson({ convertErrorsToNull: true });
+  describe('with custom configs: convertInvalidToNull = true', () => {
+    const convert = toJSONHOF({ convertInvalidToNull: true });
 
     // EXCEPTIONS by this config
     it('should convert a WeakMap property to a null', () => {
@@ -271,35 +278,35 @@ describe('toJson', () => {
     // STRING
     it('should NOT convert a string', () => {
       const fn = () => convert('a string');
-      expect(fn).toThrow('Cannot convert a string to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // NUMBERS
     it('should NOT convert a float', () => {
       const fn = () => convert(3.14);
-      expect(fn).toThrow('Cannot convert a number to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert an integer', () => {
       const fn = () => convert(42);
-      expect(fn).toThrow('Cannot convert a number to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert a scientific notation', () => {
       const fn = () => convert(100e10);
-      expect(fn).toThrow('Cannot convert a number to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert NaN', () => {
       const fn = () => convert(NaN);
-      expect(fn).toThrow('Cannot convert a number to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert an infinite number', () => {
       const fn = () => convert(Number.POSITIVE_INFINITY);
-      expect(fn).toThrow('Cannot convert a number to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // BIG INT
     it('should NOT convert a bigInt', () => {
       const fn = () => convert(8675309n);
-      expect(fn).toThrow('Cannot convert a bigint to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // OBJECT LITERALS
@@ -392,35 +399,35 @@ describe('toJson', () => {
     // WEAKMAP
     it('should NOT convert a WeakMap', () => {
       const fn = () => convert(testWeakMap);
-      expect(fn).toThrow('Cannot convert a object to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // WEAKSET
     it('should NOT convert a WeakSet', () => {
       const fn = () => convert(testWeakSet);
-      expect(fn).toThrow('Cannot convert a object to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // PROMISE
     it('should NOT convert a Promise', () => {
       const fn = () => convert(testPromise1);
-      expect(fn).toThrow('Cannot convert a object to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // SYMBOL
     it('should NOT convert a Symbol', () => {
       const fn = () => convert(testSymbol1);
-      expect(fn).toThrow('Cannot convert a symbol to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // CLASSES
     it('should NOT convert a class with a toJSON method', () => {
       const fn = () => convert(TestClass1);
-      expect(fn).toThrow('Cannot convert a function to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert a class without a toJSON method', () => {
       const fn = () => convert(TestClass2);
-      expect(fn).toThrow('Cannot convert a function to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should convert an instantiated class with a toJSON method', () => {
       expect(convert(testClassInstance1)).toEqual({ a: 1 });
@@ -464,17 +471,17 @@ describe('toJson', () => {
     // FUNCTION
     it('should NOT convert a testFunction1', () => {
       const fn = () => convert(testFunction1);
-      expect(fn).toThrow('Cannot convert a function to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // REGEX
     it('should NOT convert a regex', () => {
       const fn = () => convert(testRegex1);
-      expect(fn).toThrow('Cannot convert a object to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
     it('should NOT convert a RegExp', () => {
       const fn = () => convert(testRegex2);
-      expect(fn).toThrow('Cannot convert a object to JSON');
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // NOTHINGS

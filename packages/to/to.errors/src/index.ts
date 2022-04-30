@@ -1,1 +1,1 @@
-export * from './lib/ZeroDepErrorTo';
+export * from './ZeroDepErrorTo';

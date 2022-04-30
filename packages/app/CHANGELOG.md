@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Performance improvements to `is.*` algorithms
+- Fixed "How to Use" examples for arrays
 
 ## [0.1.0] - 2022-04-28
 

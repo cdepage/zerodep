@@ -1,1 +1,1 @@
-export * from './lib/toJson';
+export * from './toJSON';

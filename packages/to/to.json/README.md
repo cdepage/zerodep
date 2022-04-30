@@ -1,28 +1,50 @@
 # @zerodep/to.json
 
-A higher-order function to convert a value to a JSON object. This includes converting `Date`, `Map`, `Set`, and `BigInt` values. If an object or class with a `toJSON()` method is found, the result of calling the method will be used.
+A function that converts a value to a JSON object. This includes converting `Date`, `Map`, `Set`, and `BigInt` values. If an object or class with a `toJSON()` method is found, the result of calling the method will be used.
 
-The returned structure will be an object literal, an array or `null`.
+The toJSON method can be optionally configured to convert non-JSON-able values (e.g. `Symbol` or `WeakMap`) to `null` instead of throwing errors.
+
+The function returns a plain JSON object, which means an object literal, an array or `null`.
 
 ## tl;dr
 
 A quick howto by examples for quick reference:
 
 ```typescript
-import { toJson } from '@zerodep/to.json';
+import { toJSON } from '@zerodep/to.json';
 
-// toJson is a higher-order function, shown here using the default options
-toJson()({ one: 1, two: 2 }); // { "one": 1, "two: 2 }
-toJson()(['a', 'b', 'c']); // ["a", "b", "c"]
-toJson()(42); // throws ZeroDepErrorTo
+// uses the default configuration options
+toJSON({ one: 1, two: 2 }); // { "one": 1, "two: 2 }
+toJSON(['a', 'b', 'c']); // ["a", "b", "c"]
+toJSON(42); // throws ZeroDepErrorTo
+toJSON({ wm: new Promise(() => {}) }); // throws ZeroDepErrorTo
 ```
+
+and
+
+```typescript
+import { toJSONHOF, ToJSONOptions } from '@zerodep/to.json';
+
+// uses a custom configuration options
+const options: ToJSONOptions = { convertInvalidToNull: true };
+const toJSON = toJSONHOF(options);
+
+toJSON({ one: 1, two: 2 }); // { "one": 1, "two: 2 }
+toJSON(['a', 'b', 'c']); // ["a", "b", "c"]
+toJSON(42); // still throws ZeroDepErrorTo
+toJSON({ wm: new Promise(() => {}) }); // { "wm": null }
+```
+
+Apologies for the mess of capital letters, however both JSON and HOF are abbreviations. Not keeping either one uppercase would violate the naming patterns of the @zerodep packages.
 
 ## Table of Contents
 
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
   - [Signature](#signature)
+  - [Configuration Options](#configuration-options)
   - [Examples](#examples)
+- [Configuration via Higher Order Function](#configuration-via-higher-order-function)
 - [Related Packages](#related-packages)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
@@ -54,46 +76,55 @@ Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. On
 
 ### Signature
 
+Typescript declarations:
+
 ```typescript
-// typescript declaration
-declare const toJson: <T = any[] | Record<string, any>>(
+// using default configuration options
+declare const toJSON: (value: any | any[]) => any[] | Record<string, any> | null;
+
+// customizing the configuration options
+declare const toJSONHOF: <T = any[] | Record<string, any>>(
   options?: ToJsonOptions
 ) => (value: any | any[]) => T | null;
 
 // optional configuration
-interface ToJsonOptions {
-  convertErrorsToNull?: boolean; // default is false
+interface ToJSONOptions {
+  convertInvalidToNull?: boolean; // default is false
 }
 ```
 
+### Configuration Options
+
+**convertInvalidToNull:**
+
+- If `true` it will convert any non-JSON-able properties to `null` instead of throwing the appropriate ZeroDepError
+- Defaults to: `false`
+
 ### Examples
 
-**Simple Example**
+**Using Default Configuration Options**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { toJson } from '@zerodep/to.json';
-
-// configure, returns a function
-const convert = toJson();
+import { toJSON } from '@zerodep/to.json';
 
 // use, returns an object literal, an array or null (or throws an error)
-convert({}); // {}
-convert({ a: 'one', b: 'two' }); // { "a": 'one', "b": 'two' }
+toJSON({}); // {}
+toJSON({ a: 'one', b: 'two' }); // { "a": 'one', "b": 'two' }
 
-convert([]); // []
-convert([1, 2, 3]); // [1, 2, 3]
-convert(['a', 'b', 'c']); // ["a", "b", "c"]
+toJSON([]); // []
+toJSON([1, 2, 3]); // [1, 2, 3]
+toJSON(['a', 'b', 'c']); // ["a", "b", "c"]
 
-convert(new Set()); // []
-convert(new Set([1, 2, 3])); // [1, 2, 3]
-convert(new Map()); // {}
-convert(new Map([['a', 1]])); // [["a", 1]]
+toJSON(new Set()); // []
+toJSON(new Set([1, 2, 3])); // [1, 2, 3]
+toJSON(new Map()); // {}
+toJSON(new Map([['a', 1]])); // [["a", 1]]
 
-convert(null); // null
-convert(undefined); // null
+toJSON(null); // null
+toJSON(undefined); // null
 
-convert({
+toJSON({
   string: 'a string',
   date: new Date('2022-02-24'),
   int: 42,
@@ -112,76 +143,75 @@ convert({
 //   "boolF": false,
 // }
 
-// object properties that cannot be converted to JSON
-convert({ key: new WeakMap() }); // throws ZeroDepErrorTo
-convert({ key: new WeakSet() }); // throws ZeroDepErrorTo
-convert({ key: new Promise(() => {}) }); // throws ZeroDepErrorTo
-convert({ key: new Error(() => {}) }); // throws ZeroDepErrorTo
-convert({ key: Symbol() }); // throws ZeroDepErrorTo
-convert({ key: () => {} }); // throws ZeroDepErrorTo
+// object properties that cannot be toJSONed to JSON
+toJSON({ key: new WeakMap() }); // throws ZeroDepErrorTo
+toJSON({ key: new WeakSet() }); // throws ZeroDepErrorTo
+toJSON({ key: new Promise(() => {}) }); // throws ZeroDepErrorTo
+toJSON({ key: new Error(() => {}) }); // throws ZeroDepErrorTo
+toJSON({ key: Symbol() }); // throws ZeroDepErrorTo
+toJSON({ key: () => {} }); // throws ZeroDepErrorTo
 
 // strings
-convert(''); // throws ZeroDepErrorTo
-convert('a string'); // throws ZeroDepErrorTo
+toJSON(''); // throws ZeroDepErrorTo
+toJSON('a string'); // throws ZeroDepErrorTo
 
 // integers
-convert(42); // throws ZeroDepErrorTo
-convert(3e8); // throws ZeroDepErrorTo
+toJSON(42); // throws ZeroDepErrorTo
+toJSON(3e8); // throws ZeroDepErrorTo
 
 // floats
-convert(-273.15); // throws ZeroDepErrorTo
-convert(Math.PI); // throws ZeroDepErrorTo
+toJSON(-273.15); // throws ZeroDepErrorTo
+toJSON(Math.PI); // throws ZeroDepErrorTo
 
 // number-ish
-convert(Number.POSITIVE_INFINITY); // throws ZeroDepErrorTo
-convert(NaN); // throws ZeroDepErrorTo
+toJSON(Number.POSITIVE_INFINITY); // throws ZeroDepErrorTo
+toJSON(NaN); // throws ZeroDepErrorTo
 
 // bigints
-convert(8675309n); // throws ZeroDepErrorTo
+toJSON(8675309n); // throws ZeroDepErrorTo
 
 // booleans
-convert(true); // throws ZeroDepErrorTo
-convert(false); // throws ZeroDepErrorTo
+toJSON(true); // throws ZeroDepErrorTo
+toJSON(false); // throws ZeroDepErrorTo
 
 // other
-convert(/^$\d{7}/g); // throws ZeroDepErrorTo
-convert(new Date()); // throws ZeroDepErrorTo
-convert(new Date('2022-02-24')); // throws ZeroDepErrorTo
-convert(Symbol()); // throws ZeroDepErrorTo
-convert(new Error()); // throws ZeroDepErrorTo
-convert(() => {}); // throws ZeroDepErrorTo
+toJSON(/^$\d{7}/g); // throws ZeroDepErrorTo
+toJSON(new Date()); // throws ZeroDepErrorTo
+toJSON(new Date('2022-02-24')); // throws ZeroDepErrorTo
+toJSON(Symbol()); // throws ZeroDepErrorTo
+toJSON(new Error()); // throws ZeroDepErrorTo
+toJSON(() => {}); // throws ZeroDepErrorTo
 ```
 
-**With Configuration Example**
+**Using Customized Configuration Options**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { toJson, ToJsonOptions } from '@zerodep/to.json';
+import { ToJSONOptions, toJSONHOF } from '@zerodep/to.json';
 
-// configure, returns a function
-const options: ToJsonOptions = { convertErrorsToNull: true };
-const convert = toJson();
+const options: ToJSONOptions = { convertInvalidToNull: true };
+const toJSON = toJSONHOF(options);
 
 // all examples the same as the simple example above, EXCEPT the following now return null instead of an error
-convert({ key: new WeakMap() }); // { "key": null }
-convert({ key: new WeakSet() }); // { "key": null }
-convert({ key: new Promise(() => {}) }); // { "key": null }
-convert({ key: new Error(() => {}) }); // { "key": null }
-convert({ key: Symbol() }); // { "key": null }
-convert({ key: () => {} }); // { "key": null }
+toJSON({ key: new WeakMap() }); // { "key": null }
+toJSON({ key: new WeakSet() }); // { "key": null }
+toJSON({ key: new Promise(() => {}) }); // { "key": null }
+toJSON({ key: new Error(() => {}) }); // { "key": null }
+toJSON({ key: Symbol() }); // { "key": null }
+toJSON({ key: () => {} }); // { "key": null }
 ```
 
-**Error Example**
+**ZeroDepErrorTo Example**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { toJson } from '@zerodep/to.json';
+import { toJSON } from '@zerodep/to.json';
 
 try {
-  toJson()('invalid JSON');
+  toJSON('invalid JSON');
 } catch (error: any) {
-  console.log(error.message); // "Cannot convert a string to JSON"
-  console.log(error.tax); // "type"
+  console.log(error.message); // "Cannot convert to JSON"
+  console.log(error.tax); // "syntax"
   console.log(error.source); // "to"
   console.log(error.value); // "invalid JSON" <-- value that caused the error
 
@@ -192,12 +222,24 @@ try {
 }
 ```
 
+## Configuration via Higher Order Function
+
+Let's begin with a definition to ensure a common vocabulary: a Higher Order Function (HOF) is just a function that returns another function.
+
+This package uses a Higher Order Function as a way to set up/configure its functionality for:
+
+- **cleaner code:** having to pass configuration options once instead of to every call to the function making your code easier to read and reason about
+- **improved performance:** any time a set of configuration options is passed to a function, it is merged with some default values, doing this once means fewer CPU cycles and memory consumption
+- **future scalability:** if/when additional configuration options are available they will have no impact on your existing code and will be easier to add should you wish to use them
+- **consistency:** all @zerodep packages that may be configured follow the same pattern, making the Developer Experience (DX) just a little sweeter
+
 ## Related Packages
 
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
-- [@zerodep/is.json](https://www.npmjs.com/package/@zerodep/is.number) - checks if a value is a JSON object
-- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.float) - checks if a value is an object
+- [@zerodep/is.json](https://www.npmjs.com/package/@zerodep/is.json) - checks if a value is a JSON object
+- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object
+- [@zerodep/is.array](https://www.npmjs.com/package/@zerodep/is.array) - checks if a value is an array
 
 ## Advantages of @zerodep Packages
 
@@ -207,7 +249,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **Semantically named** - package and method names are easy to grok, remember, use, and read
 - **Documented** - actually useful documentation with examples and helpful tips
-- **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software

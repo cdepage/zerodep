@@ -49,7 +49,7 @@ This barrel package includes all `@zerodep/to.*` packages:
 | --- | --- | --- |
 | ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods |
 |  |  |
-| toJson | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOC to convert a value to JSON |
+| toJSON | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOC to convert a value to JSON |
 | toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOC to convert a value to a string |
 | ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by @zerodep/to methods, they all subclass the `ZeroDepError` class |
 
@@ -73,7 +73,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **Semantically named** - package and method names are easy to grok, remember, use, and read
 - **Documented** - actually useful documentation with examples and helpful tips
-- **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
