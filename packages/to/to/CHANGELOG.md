@@ -6,8 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
 - Introduce the `ZeroDepErrorTo` class
 - Introduce the `to.json` converter
+
+### Changed
+
+- Internal error `tax` value renamed to `category` for clarity
 
 ## [0.1.4] - 2022-04-25
 

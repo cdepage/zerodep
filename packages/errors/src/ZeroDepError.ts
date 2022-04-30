@@ -1,18 +1,18 @@
-import { ZeroDepErrorSource, ZeroDepErrorTax } from './types';
+import { ZeroDepErrorSource, ZeroDepErrorCategory } from './types';
 
 export class ZeroDepError extends Error {
-  public tax: ZeroDepErrorTax;
+  public category: ZeroDepErrorCategory;
   public source: ZeroDepErrorSource;
   public value: any;
 
   constructor(
     message = 'An unexpected error has occurred',
-    tax: ZeroDepErrorTax = 'unknown',
+    category: ZeroDepErrorCategory = 'unknown',
     source: ZeroDepErrorSource = 'unknown',
     value: any = undefined
   ) {
     super(message);
-    this.tax = tax;
+    this.category = category;
     this.source = source;
     this.value = value;
 

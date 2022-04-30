@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Internal error `tax` value renamed to `category` for clarity
 - Performance improvements
 
 ### Added

@@ -1,13 +1,13 @@
-import { ZeroDepError, ZeroDepErrorSource, ZeroDepErrorTax } from '@zerodep/errors';
+import { ZeroDepError, ZeroDepErrorSource, ZeroDepErrorCategory } from '@zerodep/errors';
 
 export class ZeroDepErrorTo extends ZeroDepError {
   constructor(
     message = 'Cannot convert value',
-    tax: ZeroDepErrorTax = 'syntax',
+    category: ZeroDepErrorCategory = 'syntax',
     source: ZeroDepErrorSource = 'to',
     value: any = undefined
   ) {
-    super(message, tax, source, value);
+    super(message, category, source, value);
 
     // ensure the name matches the class
     this.name = this.constructor.name;

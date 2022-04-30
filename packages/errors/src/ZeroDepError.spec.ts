@@ -17,7 +17,7 @@ describe('ZeroDepError', () => {
 
   it('should have default values', () => {
     expect(err.message).toEqual('An unexpected error has occurred');
-    expect(err.tax).toEqual('unknown');
+    expect(err.category).toEqual('unknown');
     expect(err.source).toEqual('unknown');
     expect(err.value).toEqual(undefined);
   });

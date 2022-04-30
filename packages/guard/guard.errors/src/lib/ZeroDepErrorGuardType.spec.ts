@@ -21,7 +21,7 @@ describe('ZeroDepErrorGuardType', () => {
 
   it('should have default values', () => {
     expect(err.message).toEqual('Value is incorrect type');
-    expect(err.tax).toEqual('type');
+    expect(err.category).toEqual('type');
     expect(err.source).toEqual('guard');
     expect(err.value).toEqual(undefined);
   });

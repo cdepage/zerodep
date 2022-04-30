@@ -211,7 +211,7 @@ try {
   toJSON('invalid JSON');
 } catch (error: any) {
   console.log(error.message); // "Cannot convert to JSON"
-  console.log(error.tax); // "syntax"
+  console.log(error.category); // "syntax"
   console.log(error.source); // "to"
   console.log(error.value); // "invalid JSON" <-- value that caused the error
 

@@ -42,17 +42,17 @@ Examples of conditions that **SHOULD** throw an error:
 
 We subclass the root `Error` object to make it easier for developers to elegantly identify the :
 
-- **tax** (short for taxonomy) of the error (`type`, `range`, `reference`, `syntax`, `uri`, or `general`)
+- **category** of the error (`type`, `range`, `reference`, `syntax`, `uri`, or `unknown`)
 - **source** of the error within the @zerodep ecosystem (a guard, network, storage, etc)
-- **value** of the problem (the string|number|array|object that caused the issue, if there is one. We have found this incredibly useful in Promise.all() and similar situations)
+- **value** of the problem (the string|number|array|object that caused the issue, if there is one. We have found this incredibly useful in Promise.all() and similar situations involving data iteration)
 
-Why `tax` (short for taxonomy), you ask? The word `type` would be semantically most appropriate, followed closely by `class`. Typescript already has a `type` property on its errors. `class` is a reserved word. Some editors treat `type` in a special manner. We want to avoid collisions with other libraries.
+Why `category`, you ask? The word `type` would be semantically most appropriate, followed closely by `class`. Typescript already has a `type` property on its errors. `class` is a reserved word. Some editors treat `type` in a special manner. We want to avoid collisions with other libraries.
 
 We add the above fields to each of our errors, while ensuring the `message`, `stack` and `name` values of the `Error` work as expected to ensure any existing code works as expected. We also ALWAYS add a `message`, which should simplify error logging.
 
-Most @zerodep packages will further subclass the `ZeroDepError` to provide even more granularity and specificity to thrown errors while ensuring the `tax` and `source` fields are appropriately populated. Some even add additional properties.
+Most @zerodep packages will further subclass the `ZeroDepError` to provide even more granularity and specificity to thrown errors while ensuring the `category` and `source` fields are appropriately populated. Some even add additional properties.
 
-**Limitation** JavaScript only supports single-inheritance. This means that all subclasses of our `ZeroDepError` will be instances of the root `Error` and never of a `TypeError`, `RangeError` or other native error type. It is due to this limitation that the `tax` property was added.
+**Limitation** JavaScript only supports single-inheritance. This means that all subclasses of our `ZeroDepError` will be instances of the root `Error` and never of a `TypeError`, `RangeError` or other native error type. It is due to this limitation that the `category` property was added.
 
 ## Install
 
@@ -81,7 +81,7 @@ For completeness, links to the @zerodep repositories with this function:
 // default values are shown, if they exist
 new ZeroDepError(
   message: string = 'An unknown error has occurred',
-  tax: ZeroDepErrorType = 'unknown',
+  category: ZeroDepErrorType = 'unknown',
   source: ZeroDepErrorSource = 'unknown',
   value?: any
 );
@@ -113,9 +113,9 @@ const error5 = new ZeroDepError();
 console.log(error1.message); // "Integer expected"
 console.log(error5.message); // "An unknown error has occurred"
 
-// error.tax
-console.log(error1.tax); // "range"
-console.log(error5.tax); // "unknown"
+// error.category
+console.log(error1.category); // "range"
+console.log(error5.category); // "unknown"
 
 // error.source
 console.log(error1.source); // "guard"
@@ -154,7 +154,7 @@ import { ZeroDepError } from '@zerodep/errors';
 try {
   throw new ZeroDepError('Integer expected', 'range', 'guard');
 } catch (error: any) {
-  switch (error.tax) {
+  switch (error.category) {
     case 'type':
       // custom code
       break;

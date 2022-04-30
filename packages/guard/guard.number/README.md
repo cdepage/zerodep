@@ -110,7 +110,7 @@ try {
   guardNumber()('not a float or integer');
 } catch (error: any) {
   console.log(error.message); // "Value is not an number"
-  console.log(error.tax); // "type"
+  console.log(error.category); // "type"
   console.log(error.source); // "guard"
   console.log(error.value); // "not a float or integer" <-- value that caused the error
 

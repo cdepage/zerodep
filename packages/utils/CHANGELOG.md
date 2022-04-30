@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Performance improvements to `is.*` algorithms
+- ZeroDepError `tax` value renamed to `category` for clarity
 
 ## [0.4.0] - 2022-04-28
 

@@ -19,7 +19,7 @@ describe('ZeroDepErrorGuard', () => {
 
   it('should have default values', () => {
     expect(err.message).toEqual('Cannot convert value');
-    expect(err.tax).toEqual('syntax');
+    expect(err.category).toEqual('syntax');
     expect(err.source).toEqual('to');
     expect(err.value).toEqual(undefined);
   });

@@ -109,7 +109,7 @@ try {
   guardArray()('not an array');
 } catch (error: any) {
   console.log(error.message); // "Value is not an array"
-  console.log(error.tax); // "type"
+  console.log(error.category); // "type"
   console.log(error.source); // "guard"
   console.log(error.value); // "not an array" <-- value that caused the error
 

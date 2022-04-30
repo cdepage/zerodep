@@ -30,11 +30,11 @@ All tos will throw a `ZeroDepErrorTo` (or instance thereof) error when they enco
 
 The `ZeroDepErrorTo` object includes the standard `Error` fields (message, stack and name) as wel as:
 
-- **tax** (short for taxonomy) of the error (`type`, `range`, `reference`, `syntax`, `uri`, or `general`)
+- **category** of the error (`type`, `range`, `reference`, `syntax`, `uri`, or `unknown`)
 - **source** of the error within the @zerodep ecosystem (a to, network, storage, etc)
 - **value** of the problem (the string|number|array|object that caused the issue, if there is one. We have found this incredibly useful in Promise.all() and similar situations)
 
-Why `tax` (short for taxonomy), you ask? The word `type` would be semantically most appropriate, followed closely by `class`. Typescript already has a `type` property on its errors. `class` is a reserved word. Some editors treat `type` in a special manner. We want to avoid collisions with other libraries.
+Why `category`, you ask? The word `type` would be semantically most appropriate, followed closely by `class`. Typescript already has a `type` property on its errors. `class` is a reserved word. Some editors treat `type` in a special manner. We want to avoid collisions with other libraries.
 
 We add the above fields to each of our errors, while ensuring the `message`, `stack` and `name` values of the `Error` work as expected to ensure any existing code works as expected. We also ALWAYS add a `message`, which should simplify error logging.
 
@@ -77,7 +77,7 @@ error.value = 42;
 
 // properties may be set after instantiation
 console.log(error.message); // "Value is invalid"
-console.log(error.tax); // "unknown"
+console.log(error.category); // "unknown"
 console.log(error.source); // "to"
 console.log(error.value); // 42
 ```
@@ -97,7 +97,7 @@ error.value = '42';
 
 // error properties
 console.log(error.message); // "Value is incorrect type"
-console.log(error.tax); // "type"
+console.log(error.category); // "type"
 console.log(error.source); // "to"
 console.log(error.value); // "42"
 ```
@@ -117,7 +117,7 @@ error.value = { answer: 42 };
 
 // error properties
 console.log(error.message); // "Value is out-of-range"
-console.log(error.tax); // "range"
+console.log(error.category); // "range"
 console.log(error.source); // "guard"
 console.log(error.value); // { answer: 42 }
 ```

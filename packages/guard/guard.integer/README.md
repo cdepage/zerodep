@@ -107,7 +107,7 @@ try {
   guardInteger()('not an integer');
 } catch (error: any) {
   console.log(error.message); // "Value is not an integer"
-  console.log(error.tax); // "type"
+  console.log(error.category); // "type"
   console.log(error.source); // "guard"
   console.log(error.value); // "not an integer" <-- value that caused the error
 

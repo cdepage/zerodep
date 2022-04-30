@@ -1,14 +1,14 @@
-import { ZeroDepErrorSource, ZeroDepErrorTax } from '@zerodep/errors';
+import { ZeroDepErrorSource, ZeroDepErrorCategory } from '@zerodep/errors';
 import { ZeroDepErrorGuard } from './ZeroDepErrorGuard';
 
 export class ZeroDepErrorGuardType extends ZeroDepErrorGuard {
   constructor(
     message = 'Value is incorrect type',
-    tax: ZeroDepErrorTax = 'type',
+    category: ZeroDepErrorCategory = 'type',
     source: ZeroDepErrorSource = 'guard',
     value: any = undefined
   ) {
-    super(message, tax, source, value);
+    super(message, category, source, value);
 
     // ensure the name matches the class
     this.name = this.constructor.name;

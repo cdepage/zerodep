@@ -21,7 +21,7 @@ describe('ZeroDepErrorGuardRange', () => {
 
   it('should have default values', () => {
     expect(err.message).toEqual('Value is out-of-range');
-    expect(err.tax).toEqual('range');
+    expect(err.category).toEqual('range');
     expect(err.source).toEqual('guard');
     expect(err.value).toEqual(undefined);
   });

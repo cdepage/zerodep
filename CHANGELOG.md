@@ -18,6 +18,7 @@ This is a rollup of all CHANGELOG files in the monorepo. Each package also has i
 
 - Performance improvements to the `is.*` utilities
 - Fixed "How to Use" examples for arrays
+- ZeroDepError `tax` value renamed to `category` for clarity
 
 ## [0.3.0] - 2022-04-28
 

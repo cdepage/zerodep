@@ -86,7 +86,7 @@ try {
   guardBoolean()('not a boolean');
 } catch (error: any) {
   console.log(error.message); // "Value is not an boolean"
-  console.log(error.tax); // "type"
+  console.log(error.category); // "type"
   console.log(error.source); // "guard"
   console.log(error.value); // "not a boolean" <-- value that caused the error
 

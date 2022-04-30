@@ -107,7 +107,7 @@ try {
   guardFloat()('not a float');
 } catch (error: any) {
   console.log(error.message); // "Value is not an float"
-  console.log(error.tax); // "type"
+  console.log(error.category); // "type"
   console.log(error.source); // "guard"
   console.log(error.value); // "not a float" <-- value that caused the error
 

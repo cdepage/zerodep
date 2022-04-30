@@ -1,2 +1,2 @@
-export * from './lib/ZeroDepError';
-export * from './lib/types';
+export * from './ZeroDepError';
+export * from './types';

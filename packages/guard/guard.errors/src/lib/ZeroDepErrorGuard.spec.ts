@@ -19,7 +19,7 @@ describe('ZeroDepErrorGuard', () => {
 
   it('should have default values', () => {
     expect(err.message).toEqual('Value is invalid');
-    expect(err.tax).toEqual('unknown');
+    expect(err.category).toEqual('unknown');
     expect(err.source).toEqual('guard');
     expect(err.value).toEqual(undefined);
   });
