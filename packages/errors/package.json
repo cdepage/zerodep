@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/errors",
-  "description": "A set of utilities to guard enforce variable types",
+  "description": "The ZeroDepError class all @zerodep packages use/extend",
   "version": "0.1.3",
   "license": "MIT",
   "repository": {

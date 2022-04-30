@@ -4,4 +4,4 @@ export type ZeroDepErrorTax = 'type' | 'range' | 'reference' | 'syntax' | 'uri' 
 
 // DEV REMINDER:
 // - update the README.md when this is changed
-export type ZeroDepErrorSource = 'guard' | 'unknown';
+export type ZeroDepErrorSource = 'guard' | 'to' | 'unknown';

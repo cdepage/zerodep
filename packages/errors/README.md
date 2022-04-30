@@ -1,6 +1,6 @@
 # @zerodep/errors
 
-All @zerodep packages that throw errors will throw a `ZeroDepError`. This error extends the base `Error`.
+The ZeroDepError class all @zerodep packages use/extend. This error extends the base `Error`.
 
 ## Table of Contents
 
