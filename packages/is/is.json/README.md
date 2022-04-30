@@ -2,6 +2,8 @@
 
 A utility to determine if a value is a JSON object.
 
+A JSON object is an array or collection of key:value pairs where the values are strings, numbers, objects, arrays, booleans or nulls. JSON objects may be serialized without loss of data integrity. See [json.org](https://www.json.org) for more.
+
 ## tl;dr
 
 A quick howto by examples for quick reference:
@@ -64,10 +66,11 @@ declare const isJson: (value: any) => boolean;
 import { isJson } from '@zerodep/is.json';
 
 isJson({}); // true
-isJson({ a: 'one', b: 'two' }); // true
+isJson({ a: 'one', b: 2, c: true, d: null }); // true
+isJson({ obj1: { sub: 'nested' } }); // true
 isJson([]); // true
-isJson([1, 2, 3]); // true
-isJson(['a', 'b', 'c']); // true
+isJson([1, 'b', true, null]); // true
+isJson(['a', ['deeply', ['nested', 'array']]]); // true
 
 // strings
 isJson(''); // false
@@ -113,10 +116,8 @@ isJson(undefined); // false
 
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
-- [@zerodep/is.number](https://www.npmjs.com/package/@zerodep/is.number) - checks if a value is an json or float
-- [@zerodep/is.float](https://www.npmjs.com/package/@zerodep/is.float) - checks if a value is float
-- [@zerodep/is.bigint](https://www.npmjs.com/package/@zerodep/is.bigint) - checks if a value is a BigInt
-- [@zerodep/guard.json](https://www.npmjs.com/package/@zerodep/guard.json) - only allows JSON objects (throws an error for non-JSON values), reduces the need to write `if/else` code
+- [@zerodep/is.object](https://www.npmjs.com/package/@zerodep/is.object) - checks if a value is an object
+- [@zerodep/to.json](https://www.npmjs.com/package/@zerodep/to.json) - converts a value to a JSON object
 
 ## Advantages of @zerodep Packages
 

@@ -3,8 +3,8 @@ import { testData } from '../../../../testValues';
 import { guardArray, GuardArrayOptions } from './guardArray';
 
 // extract the positive test cases, the rest will be negative
-const { arrays, ...rest } = testData;
-const positiveCases = [...arrays];
+const { arraysSafe, arraysUnsafe, ...rest } = testData;
+const positiveCases = [...arraysSafe, ...arraysUnsafe];
 const negativeCases = Object.values(rest).flat();
 
 describe('guardInteger', () => {

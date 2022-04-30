@@ -2,8 +2,15 @@ import { testData } from '../../../../testValues';
 import { canIterate } from './canIterate';
 
 // extract the positive test cases, the rest will be negative
-const { arrays, sets, maps, generators, typedArrays, ...rest } = testData;
-const positiveCases = [...arrays, ...sets, ...maps, ...generators, ...typedArrays];
+const { arraysSafe, arraysUnsafe, sets, maps, generators, typedArrays, ...rest } = testData;
+const positiveCases = [
+  ...arraysSafe,
+  ...arraysUnsafe,
+  ...sets,
+  ...maps,
+  ...generators,
+  ...typedArrays,
+];
 const negativeCases = Object.values(rest).flat();
 
 describe('canIterate', () => {

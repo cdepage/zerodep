@@ -1,9 +1,9 @@
-import { testData } from '../../../../testValues';
+import { testData } from '../../../testValues';
 import { isJson } from './isJson';
 
 // extract the positive test cases, the rest will be negative
-const { arrays, objectLiterals, ...rest } = testData;
-const positiveCases = [...arrays, ...objectLiterals];
+const { arraysSafe, objectLiteralsSafe, ...rest } = testData;
+const positiveCases = [...arraysSafe, ...objectLiteralsSafe];
 const negativeCases = Object.values(rest).flat();
 
 describe('isJson', () => {

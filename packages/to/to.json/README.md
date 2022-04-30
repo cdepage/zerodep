@@ -4,7 +4,7 @@ A function that converts a value to a JSON object. This includes converting `Dat
 
 The toJSON method can be optionally configured to convert non-JSON-able values (e.g. `Symbol` or `WeakMap`) to `null` instead of throwing errors.
 
-The function returns a plain JSON object, which means an object literal, an array or `null`.
+The function returns a plain JSON object, which means an object literal, an array or `null`. This object could be serialized (converted to a string) without affecting data integrity.
 
 ## tl;dr
 

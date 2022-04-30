@@ -132,7 +132,7 @@ export const testData = {
     ['negative large BigInt', BigInt(-Number.MAX_VALUE - 1)],
   ],
 
-  objectLiterals: [
+  objectLiteralsSafe: [
     ['empty object literal', {}],
     ['object literal of strings', { a: 'a', b: 'b' }],
     ['object literal of empty strings', { a: '', b: '' }],
@@ -141,16 +141,19 @@ export const testData = {
     ['object literal of positive floats', { a: 3.14, b: 0.08 }],
     ['object literal of negative floats', { a: -3.14, b: -0.08 }],
     ['object literal of booleans ', { a: true, b: false }],
-    ['object literal of dates ', { a: testDate1, b: testDate2 }],
     ['object literal of arrays ', { a: [], b: [] }],
     ['object literal of objects ', { a: {}, b: {} }],
-    ['object literal of symbols ', { a: testSymbol1, b: testSymbol2 }],
-    ['object literal of promises ', { a: testPromise1, b: testPromise2 }],
     ['object literal of nulls ', { a: null, b: null }],
-    ['object literal of undefined ', { a: undefined, b: undefined }],
   ],
 
-  arrays: [
+  objectLiteralsUnsafe: [
+    ['object literal of undefined ', { a: undefined, b: undefined }],
+    ['object literal of dates ', { a: testDate1, b: testDate2 }],
+    ['object literal of symbols ', { a: testSymbol1, b: testSymbol2 }],
+    ['object literal of promises ', { a: testPromise1, b: testPromise2 }],
+  ],
+
+  arraysSafe: [
     ['empty array', []],
     ['array of positive integers', [1, 2]],
     ['array of negative integers', [-1, -2]],
@@ -158,15 +161,18 @@ export const testData = {
     ['array of negative floats', [-3.14, -0.08]],
     ['array of strings', ['a', 'b']],
     ['array of booleans', [true, false]],
-    ['array of dates', [testDate1, testDate2]],
     ['array of arrays', [[], []]],
     ['array of objects', [{}, {}]],
+    ['array of nulls', [null, null]],
+  ],
+
+  arraysUnsafe: [
+    ['array of undefined', [undefined, undefined]],
+    ['array of dates', [testDate1, testDate2]],
     ['array of symbols', [testSymbol1, testSymbol2]],
     ['array of promises', [testPromise1, testPromise2]],
     ['array of classes', [TestClass1, TestClass2]],
     ['array of instantiated classes', [testClassInstance1, testClassInstance2]],
-    ['array of nulls', [null, null]],
-    ['array of undefined', [undefined, undefined]],
   ],
 
   // arrayFroms: [],

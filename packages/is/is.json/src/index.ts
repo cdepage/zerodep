@@ -1,1 +1,1 @@
-export * from './lib/isJson';
+export * from './isJson';

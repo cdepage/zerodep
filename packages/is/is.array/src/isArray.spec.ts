@@ -2,8 +2,8 @@ import { testData } from '../../../testValues';
 import { isArray } from './isArray';
 
 // extract the positive test cases, the rest will be negative
-const { arrays, ...rest } = testData;
-const positiveCases = [...arrays];
+const { arraysSafe, arraysUnsafe, ...rest } = testData;
+const positiveCases = [...arraysSafe, ...arraysUnsafe];
 const negativeCases = Object.values(rest).flat();
 
 describe('isInteger', () => {
