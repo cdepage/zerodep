@@ -41,7 +41,8 @@ describe('Utils barrel package', () => {
       'isUndefined',
       'isWeakMap',
       'isWeakSet',
-      'toJson',
+      'toJSON',
+      'toJSONHOF',
       'toString',
     ]);
   });

@@ -130,7 +130,7 @@ More information about error configuration can be found in the [@zerodep/errors]
 - **FP Inspired** - encourages the functional programming style for cleaner and more maintainable code
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
-- **Intelligently Packaged** - multiple npm packages of different sizes available allowing an a-la-carte composition of capabilities
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods are fully unit tested
 - **Semver** - predictably versioned for peace-of-mind upgrading
 - **MIT Licensed** - permissively licensed for maximum usability
