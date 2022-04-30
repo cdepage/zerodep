@@ -1,1 +1,1 @@
-export * from './lib/isInteger';
+export * from './isInteger';

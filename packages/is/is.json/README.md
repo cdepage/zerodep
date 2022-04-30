@@ -11,7 +11,7 @@ import { isJson } from '@zerodep/is.json';
 
 isJson({ a: 1 }); // true
 isJson(['a', 'b', 'c']); // true
-isJson([{ one: 1 }, { two: 2}]); // true
+isJson([{ one: 1 }, { two: 2 }]); // true
 isJson(42); // false
 ```
 
@@ -100,7 +100,7 @@ isJson(new Set()); // false
 isJson(new Set([1, 2, 3])); // false
 isJson(new Map()); // false
 isJson(new Map([['a', 1]])); // false
-isJson(new Symbol()); // false
+isJson(Symbol()); // false
 isJson(new Error()); // false
 isJson(() => {}); // false
 

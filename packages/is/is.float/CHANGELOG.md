@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Fixed "How to Use" examples for arrays
+- Performance improvements
 
 ## [0.1.3] - 2022-04-28
 

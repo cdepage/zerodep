@@ -45,6 +45,7 @@
       "@zerodep/is.null": ["packages/is/is.null/src/index.ts"],
       "@zerodep/is.number": ["packages/is/is.number/src/index.ts"],
       "@zerodep/is.object": ["packages/is/is.object/src/index.ts"],
+      "@zerodep/is.promise": ["packages/is/is.promise/src/index.ts"],
       "@zerodep/is.regex": ["packages/is/is.regex/src/index.ts"],
       "@zerodep/is.set": ["packages/is/is.set/src/index.ts"],
       "@zerodep/is.string": ["packages/is/is.string/src/index.ts"],
@@ -53,6 +54,8 @@
       "@zerodep/is.weakmap": ["packages/is/is.weakmap/src/index.ts"],
       "@zerodep/is.weakset": ["packages/is/is.weakset/src/index.ts"],
       "@zerodep/to": ["packages/to/to/src/index.ts"],
+      "@zerodep/to.errors": ["packages/to/to.errors/src/index.ts"],
+      "@zerodep/to.json": ["packages/to/to.json/src/index.ts"],
       "@zerodep/to.string": ["packages/to/to.string/src/index.ts"],
       "@zerodep/utils": ["packages/utils/src/index.ts"]
     }

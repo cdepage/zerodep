@@ -102,7 +102,7 @@ isFloat(new Set()); // false
 isFloat(new Set([1, 2, 3])); // false
 isFloat(new Map()); // false
 isFloat(new Map([['a', 1]])); // false
-isFloat(new Symbol()); // false
+isFloat(Symbol()); // false
 isFloat(new Error()); // false
 isFloat(() => {}); // false
 

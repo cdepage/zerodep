@@ -1,9 +1,10 @@
 import { isNil } from '@zerodep/is.nil';
+import { isString } from "@zerodep/is.string";
 
 export function canIterate(value: any): boolean {
-  // we do not want any kind of number or string to be iterable
-  const type = typeof value;
-  if (type === 'string' || isNil(value)) {
+  // we do not want to report strings as iterable (JavaScript says they are)
+  // - this is a potential source of software defects / unexpected behaviours
+  if (isString(value) || isNil(value)) {
     return false;
   }
 

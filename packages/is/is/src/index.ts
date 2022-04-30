@@ -12,6 +12,7 @@ export * from '@zerodep/is.nil';
 export * from '@zerodep/is.null';
 export * from '@zerodep/is.number';
 export * from '@zerodep/is.object';
+export * from '@zerodep/is.promise';
 export * from '@zerodep/is.regex';
 export * from '@zerodep/is.set';
 export * from '@zerodep/is.string';

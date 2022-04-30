@@ -105,7 +105,7 @@ isNull(new Set()); // false
 isNull(new Set([1, 2, 3])); // false
 isNull(new Map()); // false
 isNull(new Map([['a', 1]])); // false
-isNull(new Symbol()); // false
+isNull(Symbol()); // false
 isNull(new Error()); // false
 isNull(() => {}); // false
 ```

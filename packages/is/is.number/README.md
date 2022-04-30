@@ -101,7 +101,7 @@ isNumber(new Set()); // false
 isNumber(new Set([1, 2, 3])); // false
 isNumber(new Map()); // false
 isNumber(new Map([['a', 1]])); // false
-isNumber(new Symbol()); // false
+isNumber(Symbol()); // false
 isNumber(new Error()); // false
 isNumber(() => {}); // false
 

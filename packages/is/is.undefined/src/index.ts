@@ -1,1 +1,1 @@
-export * from './lib/isUndefined';
+export * from './isUndefined';

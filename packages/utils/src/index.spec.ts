@@ -2,13 +2,14 @@ import * as utils from './index';
 
 describe('Utils barrel package', () => {
   it('should export specific packages and interfaces', () => {
-    // console.log(Object.keys(utils))
-    expect(Object.keys(utils)).toEqual([
-      'canIterate',
+    // console.log(Object.keys(utils).sort());
+    expect(Object.keys(utils).sort()).toStrictEqual([
       'ZeroDepError',
       'ZeroDepErrorGuard',
-      'ZeroDepErrorGuardType',
       'ZeroDepErrorGuardRange',
+      'ZeroDepErrorGuardType',
+      'ZeroDepErrorTo',
+      'canIterate',
       'guardArray',
       'guardBigInt',
       'guardBoolean',
@@ -32,6 +33,7 @@ describe('Utils barrel package', () => {
       'isNull',
       'isNumber',
       'isObject',
+      'isPromise',
       'isRegex',
       'isSet',
       'isString',
@@ -39,6 +41,8 @@ describe('Utils barrel package', () => {
       'isUndefined',
       'isWeakMap',
       'isWeakSet',
+      'toJson',
+      'toString',
     ]);
   });
 });

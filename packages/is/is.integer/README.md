@@ -13,7 +13,7 @@ isInteger(42); // true
 isInteger(3.14); // false
 isInteger(NaN); // false
 isInteger(Number.POSITIVE_INFINITY); // false <-- CAUTION
-isArray('a string'); // false
+isInteger('a string'); // false
 ```
 
 ## Table of Contents
@@ -104,7 +104,7 @@ isInteger(new Set()); // false
 isInteger(new Set([1, 2, 3])); // false
 isInteger(new Map()); // false
 isInteger(new Map([['a', 1]])); // false
-isInteger(new Symbol()); // false
+isInteger(Symbol()); // false
 isInteger(new Error()); // false
 isInteger(() => {}); // false
 

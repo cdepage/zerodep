@@ -1,1 +1,1 @@
-export * from './lib/isFunction';
+export * from './isFunction';

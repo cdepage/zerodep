@@ -57,6 +57,7 @@ This barrel package includes all packages in the @zerodep ecosystem:
 | isNull | [is.null](https://www.npmjs.com/package/@zerodep/is.null) | A utility to determine if a value is `null` |
 | isNumber | [is.number](https://www.npmjs.com/package/@zerodep/is.number) | A utility to determine if a value is a non-infinite float or integer |
 | isObject | [is.object](https://www.npmjs.com/package/@zerodep/is.object) | A utility to determine if a value is an object |
+| isPromise | [is.promise](https://www.npmjs.com/package/@zerodep/is.promise) | A utility to determine if a value is a Promise |
 | isRegex | [is.regex](https://www.npmjs.com/package/@zerodep/is.regex) | A utility to determine if a value is a regular expression |
 | isSet | [is.set](https://www.npmjs.com/package/@zerodep/is.set) | A utility to determine if a value is a Set |
 | isString | [is.string](https://www.npmjs.com/package/@zerodep/is.string) | A utility to determine if a value is a string |
@@ -65,8 +66,9 @@ This barrel package includes all packages in the @zerodep ecosystem:
 | isWeakMap | [is.weakmap](https://www.npmjs.com/package/@zerodep/is.weakmap) | A utility to determine if a value is a WeakMap |
 | isWeakSet | [is.weakset](https://www.npmjs.com/package/@zerodep/is.weakset) | A utility to determine if a value is a WeakSet |
 |  |  |
-| toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOC to convert a value to a string |
 | ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by @zerodep/to methods, they all subclass the `ZeroDepError` class |
+| toJson | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOC to convert a value to JSON |
+| toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOC to convert a value to a string |
 
 ## How to Use
 

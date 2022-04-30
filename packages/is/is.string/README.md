@@ -100,7 +100,7 @@ isString(new Set()); // false
 isString(new Set([1, 2, 3])); // false
 isString(new Map()); // false
 isString(new Map([['a', 1]])); // false
-isString(new Symbol()); // false
+isString(Symbol()); // false
 isString(new Error()); // false
 isString(() => {}); // false
 

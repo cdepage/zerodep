@@ -105,7 +105,7 @@ isUndefined(new Set()); // false
 isUndefined(new Set([1, 2, 3])); // false
 isUndefined(new Map()); // false
 isUndefined(new Map([['a', 1]])); // false
-isUndefined(new Symbol()); // false
+isUndefined(Symbol()); // false
 isUndefined(new Error()); // false
 isUndefined(() => {}); // false
 ```

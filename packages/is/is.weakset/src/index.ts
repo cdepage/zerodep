@@ -1,1 +1,1 @@
-export * from './lib/isWeakSet';
+export * from './isWeakSet';

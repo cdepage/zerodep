@@ -1,1 +1,1 @@
-export * from './lib/isString';
+export * from './isString';

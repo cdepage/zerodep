@@ -1,1 +1,1 @@
-export * from './lib/isBigInt';
+export * from './isBigInt';

@@ -102,7 +102,7 @@ isError(new Set()); // false
 isError(new Set([1, 2, 3])); // false
 isError(new Map()); // false
 isError(new Map([['a', 1]])); // false
-isError(new Symbol()); // false
+isError(Symbol()); // false
 isError(() => {}); // false
 
 // nothing

@@ -9,6 +9,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Introduce the `is.json` utility
+- Introduce the `is.promise` utility
+
+### Changed
+
+- Performance improvements to `is.*` algorithms
+-
 
 ## [0.3.1] - 2022-04-28
 

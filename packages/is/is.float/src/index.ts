@@ -1,1 +1,1 @@
-export * from './lib/isFloat';
+export * from './isFloat';

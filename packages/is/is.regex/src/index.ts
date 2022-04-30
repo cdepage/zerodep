@@ -1,1 +1,1 @@
-export * from './lib/isRegex';
+export * from './isRegex';

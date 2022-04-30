@@ -101,7 +101,7 @@ isArray(new Set()); // false
 isArray(new Set([1, 2, 3])); // false
 isArray(new Map()); // false
 isArray(new Map([['a', 1]])); // false
-isArray(new Symbol()); // false
+isArray(Symbol()); // false
 isArray(new Error()); // false
 isArray(() => {}); // false
 

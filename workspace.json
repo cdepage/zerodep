@@ -31,6 +31,7 @@
     "is.null": "packages/is/is.null",
     "is.number": "packages/is/is.number",
     "is.object": "packages/is/is.object",
+    "is.promise": "packages/is/is.promise",
     "is.regex": "packages/is/is.regex",
     "is.set": "packages/is/is.set",
     "is.string": "packages/is/is.string",
@@ -39,6 +40,8 @@
     "is.weakmap": "packages/is/is.weakmap",
     "is.weakset": "packages/is/is.weakset",
     "to": "packages/to/to",
+    "to.errors": "packages/to/to.errors",
+    "to.json": "packages/to/to.json",
     "to.string": "packages/to/to.string",
     "utils": "packages/utils"
   }

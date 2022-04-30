@@ -1,1 +1,1 @@
-export * from './lib/isMap';
+export * from './isMap';

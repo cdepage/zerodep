@@ -100,7 +100,7 @@ isBigInt(new Set()); // false
 isBigInt(new Set([1, 2, 3])); // false
 isBigInt(new Map()); // false
 isBigInt(new Map([['a', 1]])); // false
-isBigInt(new Symbol()); // false
+isBigInt(Symbol()); // false
 isBigInt(new Error()); // false
 isBigInt(() => {}); // false
 

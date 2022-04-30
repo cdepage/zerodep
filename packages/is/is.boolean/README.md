@@ -105,7 +105,7 @@ isBoolean(new Set()); // false
 isBoolean(new Set([1, 2, 3])); // false
 isBoolean(new Map()); // false
 isBoolean(new Map([['a', 1]])); // false
-isBoolean(new Symbol()); // false
+isBoolean(Symbol()); // false
 isBoolean(new Error()); // false
 isBoolean(() => {}); // false
 

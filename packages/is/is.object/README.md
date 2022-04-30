@@ -100,7 +100,7 @@ isObject(new Set()); // false
 isObject(new Set([1, 2, 3])); // false
 isObject(new Map()); // false
 isObject(new Map([['a', 1]])); // false
-isObject(new Symbol()); // false
+isObject(Symbol()); // false
 isObject(new Error()); // false
 isObject(() => {}); // false
 

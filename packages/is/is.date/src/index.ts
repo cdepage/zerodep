@@ -1,1 +1,1 @@
-export * from './lib/isDate';
+export * from './isDate';

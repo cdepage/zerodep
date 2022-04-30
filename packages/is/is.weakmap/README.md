@@ -103,7 +103,7 @@ isWeakMap(new Set()); // false
 isWeakMap(new Set([1, 2, 3])); // false
 isWeakMap(new Map()); // false
 isWeakMap(new Map([['a', 1]])); // false
-isWeakMap(new Symbol()); // false
+isWeakMap(Symbol()); // false
 isWeakMap(new Error()); // false
 isWeakMap(() => {}); // false
 

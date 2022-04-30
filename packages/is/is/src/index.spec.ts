@@ -17,6 +17,7 @@ describe('Guards barrel package', () => {
       'isNull',
       'isNumber',
       'isObject',
+      'isPromise',
       'isRegex',
       'isSet',
       'isString',

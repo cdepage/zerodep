@@ -105,7 +105,7 @@ isNil(new Set()); // false
 isNil(new Set([1, 2, 3])); // false
 isNil(new Map()); // false
 isNil(new Map([['a', 1]])); // false
-isNil(new Symbol()); // false
+isNil(Symbol()); // false
 isNil(new Error()); // false
 isNil(() => {}); // false
 ```

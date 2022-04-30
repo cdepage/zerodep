@@ -9,7 +9,7 @@ A quick howto by examples for quick reference:
 ```typescript
 import { isSymbol } from '@zerodep/is.symbol';
 
-isSymbol(new Symbol()); // true
+isSymbol(Symbol()); // true
 isSymbol('a string'); // false
 ```
 
@@ -61,7 +61,7 @@ declare const isSymbol: (value: any) => boolean;
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
 import { isSymbol } from '@zerodep/is.symbol';
 
-isSymbol(new Symbol()); // true
+isSymbol(Symbol()); // true
 
 // strings
 isSymbol(''); // false

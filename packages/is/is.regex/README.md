@@ -103,7 +103,7 @@ isRegex(new Set()); // false
 isRegex(new Set([1, 2, 3])); // false
 isRegex(new Map()); // false
 isRegex(new Map([['a', 1]])); // false
-isRegex(new Symbol()); // false
+isRegex(Symbol()); // false
 isRegex(new Error()); // false
 isRegex(() => {}); // false
 

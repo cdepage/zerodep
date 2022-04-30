@@ -67,6 +67,7 @@ This barrel package includes all `@zerodep/is.*` packages:
 | isNull | [is.null](https://www.npmjs.com/package/@zerodep/is.null) | A utility to determine if a value is `null` |
 | isNumber | [is.number](https://www.npmjs.com/package/@zerodep/is.number) | A utility to determine if a value is a non-infinite float or integer |
 | isObject | [is.object](https://www.npmjs.com/package/@zerodep/is.object) | A utility to determine if a value is an object |
+| isPromise | [is.promise](https://www.npmjs.com/package/@zerodep/is.promise) | A utility to determine if a value is a Promise |
 | isRegex | [is.regex](https://www.npmjs.com/package/@zerodep/is.regex) | A utility to determine if a value is a regular expression |
 | isSet | [is.set](https://www.npmjs.com/package/@zerodep/is.set) | A utility to determine if a value is a Set |
 | isString | [is.string](https://www.npmjs.com/package/@zerodep/is.string) | A utility to determine if a value is a string |

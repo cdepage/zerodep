@@ -1,1 +1,1 @@
-export * from './lib/isSet';
+export * from './isSet';

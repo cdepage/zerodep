@@ -49,6 +49,7 @@ This barrel package includes all `@zerodep/to.*` packages:
 | --- | --- | --- |
 | ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods |
 |  |  |
+| toJson | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOC to convert a value to JSON |
 | toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOC to convert a value to a string |
 | ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by @zerodep/to methods, they all subclass the `ZeroDepError` class |
 

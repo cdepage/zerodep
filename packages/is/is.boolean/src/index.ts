@@ -1,1 +1,1 @@
-export * from './lib/isBoolean';
+export * from './isBoolean';

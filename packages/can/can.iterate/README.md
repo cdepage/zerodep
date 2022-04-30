@@ -107,7 +107,7 @@ canIterate(false); // false
 canIterate(/^$\d{7}/g); // false
 canIterate(new Date()); // false
 canIterate(new Date('2022-02-24')); // false
-canIterate(new Symbol()); // false
+canIterate(Symbol()); // false
 canIterate(new Error()); // false
 canIterate(() => {}); // false
 

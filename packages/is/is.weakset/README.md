@@ -103,7 +103,7 @@ isWeakSet(new Set()); // false
 isWeakSet(new Set([1, 2, 3])); // false
 isWeakSet(new Map()); // false
 isWeakSet(new Map([['a', 1]])); // false
-isWeakSet(new Symbol()); // false
+isWeakSet(Symbol()); // false
 isWeakSet(new Error()); // false
 isWeakSet(() => {}); // false
 

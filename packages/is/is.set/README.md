@@ -102,7 +102,7 @@ isSet(new Date()); // false
 isSet(new Date('2022-02-24')); // false
 isSet(new Map()); // false
 isSet(new Map([['a', 1]])); // false
-isSet(new Symbol()); // false
+isSet(Symbol()); // false
 isSet(new Error()); // false
 isSet(() => {}); // false
 

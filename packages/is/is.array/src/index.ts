@@ -1,1 +1,1 @@
-export * from './lib/isArray';
+export * from './isArray';

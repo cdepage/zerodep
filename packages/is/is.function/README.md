@@ -104,7 +104,7 @@ isFunction(new Set()); // false
 isFunction(new Set([1, 2, 3])); // false
 isFunction(new Map()); // false
 isFunction(new Map([['a', 1]])); // false
-isFunction(new Symbol()); // false
+isFunction(Symbol()); // false
 isFunction(new Error()); // false
 
 // nothing

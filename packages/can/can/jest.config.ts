@@ -16,4 +16,10 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: `../../../coverage/packages/can/${dir}`,
+  coverageThreshold: {
+    global: {
+      functions: 100,
+      lines: 100,
+    },
+  },
 };

@@ -16,4 +16,10 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: `../../../coverage/packages/guard/${dir}`,
+  coverageThreshold: {
+    global: {
+      functions: 100,
+      lines: 100,
+    },
+  },
 };

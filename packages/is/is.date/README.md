@@ -103,7 +103,7 @@ isDate(new Set()); // false
 isDate(new Set([1, 2, 3])); // false
 isDate(new Map()); // false
 isDate(new Map([['a', 1]])); // false
-isDate(new Symbol()); // false
+isDate(Symbol()); // false
 isDate(new Error()); // false
 isDate(() => {}); // false
 
