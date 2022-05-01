@@ -1,9 +1,8 @@
 # @zerodep/guard.number
 
-A higher-order function / defensive programming utility to guard against non-float/non-integer arguments.
+A defensive programming utility to guard against non-number (float or integer) arguments.
 
-- on success, it returns the number
-- on fail, it throws a `ZeroDepErrorGuardType` or `ZeroDepErrorGuardRange` error
+Guards do not return a value, they only throw an error if the guarded value is not of the correct type.
 
 ## tl;dr
 
@@ -12,10 +11,22 @@ A quick howto by examples for quick reference:
 ```typescript
 import { GuardNumberOptions, guardNumber } from '@zerodep/guard.number';
 
+guardNumber(7); // void
+guardNumber(3.14); // void
+guardNumber('a string'); // throws ZeroDepErrorGuard
+```
+
+and
+
+```typescript
+import { GuardNumberOptions, guardNumberHOF } from '@zerodep/guard.number';
+
 const options: GuardNumberOptions = { min: 1, max: 10 };
-guardNumber(options)(7); // 7
-guardNumber(options)(3.14); // 3.14
-guardNumber(options)('a string'); // throws ZeroDepErrorGuard
+const guardNumber = guardNumberHOF(options);
+
+guardNumber(7); // void
+guardNumber(3.14); // void
+guardNumber('a string'); // throws ZeroDepErrorGuard
 ```
 
 ## Table of Contents
@@ -23,8 +34,10 @@ guardNumber(options)('a string'); // throws ZeroDepErrorGuard
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
   - [Signature](#signature)
+  - [Configuration Options](#configuration-options)
   - [Examples](#examples)
 - [Related Packages](#related-packages)
+- [Configuration via Higher Order Function](#configuration-via-higher-order-function)
 - [Guards & Defensive Programming](#guards--defensive-programming)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
@@ -34,7 +47,7 @@ guardNumber(options)('a string'); // throws ZeroDepErrorGuard
 
 ## Install
 
-This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/guards).
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/guards](https://www.npmjs.com/package/@zerodep/guards).
 
 ```
 // all @zerodep features, capabilities and utilities
@@ -46,7 +59,7 @@ npm install @zerodep/utils
 // all @zerodep "guard" utilities
 npm install @zerodep/guard
 
-// only the guard.number utility
+// only the guard.number package
 npm install @zerodep/guard.number
 ```
 
@@ -56,9 +69,14 @@ Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. On
 
 ### Signature
 
+Typescript declarations:
+
 ```typescript
-// typescript declaration
-declare const guardNumber: (options?: GuardNumberOptions) => (value: any) => number;
+// using default configuration options
+declare const guardNumber: (value: any | any[]) => void;
+
+// customizing the configuration options
+declare const guardNumberHOF: (options?: GuardNumberOptions) => (value: any | any[]) => void;
 
 // optional configuration
 interface GuardNumberOptions {
@@ -69,35 +87,31 @@ interface GuardNumberOptions {
 
 ### Examples
 
-**Simple Example**
+**Using Default Configuration Options**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
 import { guardNumber } from '@zerodep/guard.number';
 
-// configure, returns a function
-const guard = guardNumber();
-
-// use, returns a number or throws
-guard(3.14); // 3.14
-guard(42); // 42
+guard(3.14); // void
+guard(42); // void
 guard('not a number'); // throws a ZeroDepErrorGuardType
 ```
 
-**With Configuration Example**
+**Using Customized Configuration Options**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { GuardNumberOptions, guardNumber } from '@zerodep/guard.number';
+import { GuardNumberOptions, guardNumberHOF } from '@zerodep/guard.number';
 
-// configure, returns a function
-const options: GuardNumberOptions = { min: 0, max: 4.5 };
-const customGuard = guardNumber(options);
+const options: GuardNumberOptions = { min: 1, max: 10 };
+const guardNumber = guardNumberHOF(options);
 
-// use, returns a number or throws
-customGuard(4.3); // 4.3
-customGuard(3); // 3
-customGuard(777); // throws a ZeroDepErrorGuardRange
+guardNumber(7); // void
+guardNumber(3.14); // void
+guardNumber('a string'); // throws ZeroDepErrorGuardType
+guardNumber(0.5); // throws ZeroDepErrorGuardRange
+guardNumber(50); // throws ZeroDepErrorGuardRange
 ```
 
 **Error Example**
@@ -107,7 +121,7 @@ customGuard(777); // throws a ZeroDepErrorGuardRange
 import { guardNumber } from '@zerodep/guard.number';
 
 try {
-  guardNumber()('not a float or integer');
+  guardNumber('not a float or integer');
 } catch (error: any) {
   console.log(error.message); // "Value is not an number"
   console.log(error.category); // "type"
@@ -128,6 +142,17 @@ try {
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
 - [@zerodep/is.number](https://www.npmjs.com/package/@zerodep/is.array) - checks if a value is a float or an integer
+
+## Configuration via Higher Order Function
+
+Let's begin with a definition to ensure a common vocabulary: a Higher Order Function (HOF) is just a function that returns another function.
+
+This package uses a Higher Order Function as a way to set up/configure its functionality for:
+
+- **cleaner code:** having to pass configuration options once instead of to every call to the function making your code easier to read and reason about
+- **improved performance:** any time a set of configuration options is passed to a function, it is merged with some default values, doing this once means fewer CPU cycles and memory consumption
+- **future scalability:** if/when additional configuration options are available they will have no impact on your existing code and will be easier to add should you wish to use them
+- **consistency:** all @zerodep packages that may be configured follow the same pattern, making the Developer Experience (DX) just a little sweeter
 
 ## Guards & Defensive Programming
 

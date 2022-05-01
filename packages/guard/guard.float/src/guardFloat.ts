@@ -12,10 +12,10 @@ const defaultOptions: GuardFloatOptions = {
   max: undefined,
 };
 
-export const guardFloat = (options: GuardFloatOptions = {}) => {
+export const guardFloatHOF = (options: GuardFloatOptions = {}) => {
   const config: GuardFloatOptions = { ...defaultOptions, ...options };
 
-  return (value: any): number => {
+  return (value: any): void => {
     // we need to check for the typeof first as "undefined" will cause isFloat() to error
     if (!isFloat(value)) {
       const error = new ZeroDepErrorGuardType('Value is not a float');
@@ -35,6 +35,9 @@ export const guardFloat = (options: GuardFloatOptions = {}) => {
       throw error;
     }
 
-    return value;
+    return;
   };
 };
+
+// for every HOF that is for configuration (not argument currying) export a function using the default values
+export const guardFloat = guardFloatHOF();

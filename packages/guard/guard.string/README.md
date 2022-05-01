@@ -1,20 +1,32 @@
 # @zerodep/guard.string
 
-A higher-order function / defensive programming utility to guard against non-string arguments.
+A defensive programming utility to guard against non-string arguments.
 
-- on success, it returns the string
-- on fail, it throws a `ZeroDepErrorGuardType` or `ZeroDepErrorGuardRange` error
+Guards do not return a value, they only throw an error if the guarded value is not of the correct type.
 
 ## tl;dr
 
 A quick howto by examples for quick reference:
 
 ```typescript
-import { GuardStringOptions, guardString } from '@zerodep/guard.array';
+import { guardString } from '@zerodep/guard.array';
 
+// uses the default configuration options
+guardString('a string'); // "a string"
+guardString(42); // throws ZeroDepErrorGuard
+```
+
+and
+
+```typescript
+import { GuardStringOptions, guardStringHOF } from '@zerodep/guard.array';
+
+// uses a custom configuration options
 const options: GuardStringOptions = { minLength: 1, maxLength: 20 };
-guardString(options)('a string'); // "a string"
-guardString(options)(42); // throws ZeroDepErrorGuard
+const guardString = guardStringHOF(options);
+
+guardString('a string'); // "a string"
+guardString(42); // throws ZeroDepErrorGuard
 ```
 
 ## Table of Contents
@@ -22,8 +34,10 @@ guardString(options)(42); // throws ZeroDepErrorGuard
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
   - [Signature](#signature)
+  - [Configuration Options](#configuration-options)
   - [Examples](#examples)
 - [Related Packages](#related-packages)
+- [Configuration via Higher Order Function](#configuration-via-higher-order-function)
 - [Guards & Defensive Programming](#guards--defensive-programming)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
@@ -33,7 +47,7 @@ guardString(options)(42); // throws ZeroDepErrorGuard
 
 ## Install
 
-This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/guards).
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/guards](https://www.npmjs.com/package/@zerodep/guards).
 
 ```
 // all @zerodep features, capabilities and utilities
@@ -45,7 +59,7 @@ npm install @zerodep/utils
 // all @zerodep "guard" utilities
 npm install @zerodep/guard
 
-// only the guard.string utility
+// only the guard.string package
 npm install @zerodep/guard.string
 ```
 
@@ -56,8 +70,11 @@ Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. On
 ### Signature
 
 ```typescript
-// typescript declaration
-declare const guardString: (options?: GuardStringOptions) => (value: any) => string;
+// using default configuration options
+declare const guardString: (value: any | any[]) => void;
+
+// customizing the configuration options
+declare const guardStringHOF: (options?: GuardStringOptions) => (value: any) => void;
 
 // optional configuration
 interface GuardStringOptions {
@@ -68,36 +85,33 @@ interface GuardStringOptions {
 
 ### Examples
 
-**Simple Example**
+**Using Default Configuration Options**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
 import { guardString } from '@zerodep/guard.string';
 
-// configure, returns a function
-const guard = guardString();
-
-// use, returns a string or throws
-guard('some string'); // "some string"
-guard(100); // throws a ZeroDepErrorGuardType
+guardString('some string'); // "some string"
+guardString(100); // throws a ZeroDepErrorGuardType
 ```
 
-**With Configuration Example**
+**Using Customized Configuration Options**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { GuardStringOptions, guardString } from '@zerodep/guard.string';
+import { GuardStringOptions, guardStringHOF } from '@zerodep/guard.string';
 
-// configure, returns a function
 const options: GuardStringOptions = {
   minLength: 8,
-  maxLength: 255,
+  maxLength: 25,
 };
-const customGuard = guardString(options);
+const guardString = guardString(options);
 
 // use, returns a number or throws
-customGuard('L()ve_5ex-$3cr37 60d!'); // L()ve_5ex-$3cr37 60d!
-customGuard('secret'); // throws a ZeroDepErrorGuardRange
+guardString('L()ve_5ex-$3cr37 60d!'); // L()ve_5ex-$3cr37 60d!
+guardString(100); // throws a ZeroDepErrorGuardType
+guardString('secret'); // throws a ZeroDepErrorGuardRange
+guardString('a string that is far too long'); // throws a ZeroDepErrorGuardRange
 ```
 
 **Error Example**
@@ -107,7 +121,7 @@ customGuard('secret'); // throws a ZeroDepErrorGuardRange
 import { guardString } from '@zerodep/guard.string';
 
 try {
-  guardString()(42);
+  guardString(42);
 } catch (error: any) {
   console.log(error.message); // "Value is not a string"
   console.log(error.category); // "type"
@@ -128,6 +142,17 @@ try {
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
 - [@zerodep/is.string](https://www.npmjs.com/package/@zerodep/is.string) - checks if a value is a string
+
+## Configuration via Higher Order Function
+
+Let's begin with a definition to ensure a common vocabulary: a Higher Order Function (HOF) is just a function that returns another function.
+
+This package uses a Higher Order Function as a way to set up/configure its functionality for:
+
+- **cleaner code:** having to pass configuration options once instead of to every call to the function making your code easier to read and reason about
+- **improved performance:** any time a set of configuration options is passed to a function, it is merged with some default values, doing this once means fewer CPU cycles and memory consumption
+- **future scalability:** if/when additional configuration options are available they will have no impact on your existing code and will be easier to add should you wish to use them
+- **consistency:** all @zerodep packages that may be configured follow the same pattern, making the Developer Experience (DX) just a little sweeter
 
 ## Guards & Defensive Programming
 

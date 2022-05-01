@@ -12,10 +12,10 @@ const defaultOptions: GuardBigIntOptions = {
   max: undefined,
 };
 
-export const guardBigInt = (options: GuardBigIntOptions = {}) => {
+export const guardBigIntHOF = (options: GuardBigIntOptions = {}) => {
   const config: GuardBigIntOptions = { ...defaultOptions, ...options };
 
-  return (value: any): BigInt => {
+  return (value: any): void => {
     // we need to check for the typeof first as "undefined" will cause isInteger() to error
     if (!isBigInt(value)) {
       const error = new ZeroDepErrorGuardType('Value is not a BigInt');
@@ -35,6 +35,9 @@ export const guardBigInt = (options: GuardBigIntOptions = {}) => {
       throw error;
     }
 
-    return value;
+    return;
   };
 };
+
+// for every HOF that is for configuration (not argument currying) export a function using the default values
+export const guardBigInt = guardBigIntHOF();

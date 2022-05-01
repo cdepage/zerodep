@@ -1,1 +1,1 @@
-export * from './lib/guardInteger';
+export * from './guardInteger';

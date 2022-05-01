@@ -1,5 +1,5 @@
 import { ZeroDepErrorGuardType } from '@zerodep/guard.errors';
-import { testData } from '../../../../testValues';
+import { testData } from '../../../testValues';
 import { guardBoolean } from './guardBoolean';
 
 // extract the positive test cases, the rest will be negative
@@ -9,7 +9,7 @@ const negativeCases = Object.values(rest).flat();
 
 describe('guardInteger', () => {
   describe('with default options', () => {
-    const guard = guardBoolean();
+    const guard = guardBoolean;
 
     it('should throw a ZeroDepErrorGuardType error when invalid', () => {
       const fn = () => guard('not an integer');
@@ -17,7 +17,7 @@ describe('guardInteger', () => {
     });
 
     test.each(positiveCases)('should allow a/an %s', (title, value) => {
-      expect(guard(value)).toEqual(value);
+      expect(guard(value)).toBeUndefined();
     });
 
     // @ts-ignore

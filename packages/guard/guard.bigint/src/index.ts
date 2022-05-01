@@ -1,1 +1,1 @@
-export * from './lib/guardBigint';
+export * from './guardBigint';

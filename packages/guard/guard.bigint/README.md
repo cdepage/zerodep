@@ -1,20 +1,30 @@
 # @zerodep/guard.bigint
 
-A higher-order function / defensive programming utility to guard against non-BigInt arguments.
+A defensive programming utility to guard against non-BigInt arguments.
 
-- on success, it returns the BigInt
-- on fail, it throws a `ZeroDepErrorGuardType` or `ZeroDepErrorGuardRange` error
+Guards do not return a value, they only throw an error if the guarded value is not of the correct type.
 
 ## tl;dr
 
 A quick howto by examples for quick reference:
 
 ```typescript
-import { GuardBigIntOptions, guardBigInt } from '@zerodep/guard.array';
+import { guardBigInt } from '@zerodep/guard.bigint';
+
+guardBigInt(40n); // void
+guardBigInt('a string'); // throws ZeroDepErrorGuard
+```
+
+```typescript
+import { GuardBigIntOptions, guardBigIntHOF } from '@zerodep/guard.bigint';
 
 const options: GuardBigIntOptions = { min: 10n, max: 50n };
-guardBigInt(options)(40n); // 40n
-guardBigInt(options)('a string'); // throws ZeroDepErrorGuard
+const guardBigInt = guardBigIntHOF(options);
+
+guardBigInt(30n); // void
+guardBigInt('a string'); // throws ZeroDepErrorGuardType
+guardBigInt(5n); // throws ZeroDepErrorGuardRange
+guardBigInt(100n); // throws ZeroDepErrorGuardRange
 ```
 
 ## Table of Contents
@@ -22,8 +32,10 @@ guardBigInt(options)('a string'); // throws ZeroDepErrorGuard
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
   - [Signature](#signature)
+  - [Configuration Options](#configuration-options)
   - [Examples](#examples)
 - [Related Packages](#related-packages)
+- [Configuration via Higher Order Function](#configuration-via-higher-order-function)
 - [Guards & Defensive Programming](#guards--defensive-programming)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
@@ -33,7 +45,7 @@ guardBigInt(options)('a string'); // throws ZeroDepErrorGuard
 
 ## Install
 
-This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/guards).
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/guards](https://www.npmjs.com/package/@zerodep/guards).
 
 ```
 // all @zerodep features, capabilities and utilities
@@ -45,7 +57,7 @@ npm install @zerodep/utils
 // all @zerodep "guard" utilities
 npm install @zerodep/guard
 
-// only the guard.bigint utility
+// only the guard.bigint package
 npm install @zerodep/guard.bigint
 ```
 
@@ -55,16 +67,33 @@ Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. On
 
 ### Signature
 
+Typescript declarations:
+
 ```typescript
-// typescript declaration
-declare const guardBigInt: (options?: GuardBigIntOptions) => (value: any) => BigInt;
+// using default configuration options
+declare const guardBigInt: (value: any | any[]) => void;
+
+// customizing the configuration options
+declare const guardBigIntHOF: (options?: GuardBigIntOptions) => (value: any) => void;
 
 // configuration options
 interface GuardBigIntOptions {
-  min?: BigInt; // the minimum value to accept
-  max?: BigInt; // the maximum value to accept
+  min?: BigInt;
+  max?: BigInt;
 }
 ```
+
+### Configuration Options
+
+**min:**
+
+- Defaults to: undefined
+- If set, and the value is less than this number, a ZeroDepErrorGuardRange error will be thrown
+
+**max:**
+
+- Defaults to: undefined
+- If set, and the value is more than this number, a ZeroDepErrorGuardRange error will be thrown
 
 ### Examples
 
@@ -72,40 +101,36 @@ interface GuardBigIntOptions {
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { guardBigint } from '@zerodep/guard.bigint';
-
-// configure, returns a function
-const guard = guardBigint();
+import { guardBigInt } from '@zerodep/guard.bigint';
 
 // use, returns a number or throws
-guard(8675309n); // 8675309n
-guard('not an bigint'); // throws a ZeroDepErrorGuardType
+guardBigInt(8675309n); // void
+guardBigInt('a string'); // throws a ZeroDepErrorGuardType
 ```
 
-**With Configuration Example**
+**Using Customized Configuration Options**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { guardBigint } from '@zerodep/guard.bigint';
+import { GuardBigIntOptions, guardBigIntHOF } from '@zerodep/guard.bigint';
 
-// configure, returns a function
-const options: GuardArrayOptions = { min: 5n, max: 20n };
-const customGuard = guardBigint(options);
+const options: GuardBigIntOptions = { min: 5n, max: 20n };
+const guardBigInt = guardBigIntHOF(options);
 
-// use, returns a number or throws
-customGuard(8675309n); // 8675309n
-customGuard('a string'); // throws a ZeroDepErrorGuardType
-customGuard(500n); // throws a ZeroDepErrorGuardRange
+guardBigInt(10n); // void
+guardBigInt('a string'); // throws a ZeroDepErrorGuardType
+guardBigInt(-25n); // throws a ZeroDepErrorGuardRange
+guardBigInt(50n); // throws a ZeroDepErrorGuardRange
 ```
 
 **Error Example**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { guardBigint } from '@zerodep/guard.bigint';
+import { guardBigInt } from '@zerodep/guard.bigint';
 
 try {
-  guardBigint()('not a big int');
+  guardBigInt()('not a big int');
 } catch (error: any) {
   console.log(error.message); // "Value is not an bigint"
   console.log(error.category); // "type"
@@ -113,7 +138,6 @@ try {
   console.log(error.value); // "not a big int" <-- value that caused the error
 
   // inheritance chain
-  error instanceof ZeroDepErrorGuardRange; // false in this case
   error instanceof ZeroDepErrorGuardType; // true
   error instanceof ZeroDepErrorGuard; // true
   error instanceof ZeroDepError; // true
@@ -125,7 +149,16 @@ try {
 
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
-- [@zerodep/is.bigint](https://www.npmjs.com/package/@zerodep/is.bigint) - checks if a value is a BigInt
+## Configuration via Higher Order Function
+
+Let's begin with a definition to ensure a common vocabulary: a Higher Order Function (HOF) is just a function that returns another function.
+
+This package uses a Higher Order Function as a way to set up/configure its functionality for:
+
+- **cleaner code:** having to pass configuration options once instead of to every call to the function making your code easier to read and reason about
+- **improved performance:** any time a set of configuration options is passed to a function, it is merged with some default values, doing this once means fewer CPU cycles and memory consumption
+- **future scalability:** if/when additional configuration options are available they will have no impact on your existing code and will be easier to add should you wish to use them
+- **consistency:** all @zerodep packages that may be configured follow the same pattern, making the Developer Experience (DX) just a little sweeter
 
 ## Guards & Defensive Programming
 
@@ -134,6 +167,8 @@ Defensive programming promotes the practice of never trusting input to your func
 A guard stops code execution by throwing an error when invalid data is provided. The spirit/intention of guards is to protect at the smaller function-level, not at the macro gateway level checking user input. Be conscientious of where and why you are using guards in your code.
 
 Guards are intended for runtime safety, which is very different from Typescript/strong typing which handles compile time issues.
+
+- [@zerodep/is.bigint](https://www.npmjs.com/package/@zerodep/is.bigint) - checks if a value is a BigInt
 
 ## Advantages of @zerodep Packages
 

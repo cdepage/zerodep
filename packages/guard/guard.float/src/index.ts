@@ -1,1 +1,1 @@
-export * from './lib/guardFloat';
+export * from './guardFloat';

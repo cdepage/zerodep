@@ -6,10 +6,10 @@ export interface GuardArrayOptions {
   maxQuantity?: number;
 }
 
-export const guardArray = (options: GuardArrayOptions = {}) => {
+export const guardArrayHOF = (options: GuardArrayOptions = {}) => {
   const config: GuardArrayOptions = options;
 
-  return (value: any | any[]): any[] => {
+  return (value: any | any[]): void => {
     if (!isArray(value)) {
       const error = new ZeroDepErrorGuardType('Value is not an array');
       error.value = value;
@@ -27,7 +27,8 @@ export const guardArray = (options: GuardArrayOptions = {}) => {
       error.value = value;
       throw error;
     }
-
-    return value;
   };
 };
+
+// for every HOF that is for configuration (not argument currying) export a function using the default values
+export const guardArray = guardArrayHOF();

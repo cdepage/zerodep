@@ -1,20 +1,34 @@
 # @zerodep/guard.float
 
-A higher-order function / defensive programming utility to guard against non-float arguments.
+A defensive programming utility to guard against non-float arguments.
 
-- on success, it returns the float
-- on fail, it throws a `ZeroDepErrorGuardType` or `ZeroDepErrorGuardRange` error
+Guards do not return a value, they only throw an error if the guarded value is not of the correct type.
 
 ## tl;dr
 
 A quick howto by examples for quick reference:
 
 ```typescript
-import { GuardFloatOptions, guardFloat } from '@zerodep/guard.array';
+import { guardFloat } from '@zerodep/guard.array';
 
+// uses the default configuration options
+guardFloat(0.5); // void
+guardFloat('a string'); // throws ZeroDepErrorGuard
+```
+
+and
+
+```typescript
+import { GuardFloatOptions, guardFloatHOF } from '@zerodep/guard.array';
+
+// uses a custom configuration options
 const options: GuardFloatOptions = { min: 0, max: 1 };
-guardFloat(options)(0.5); // 0.5
-guardFloat(options)('a string'); // throws ZeroDepErrorGuard
+const guardFloat = guardFloatHOF(options);
+
+guardFloat(0.5); // void
+guardFloat('a string'); // throws ZeroDepErrorGuardType
+guardArray(-171.3); // throws ZeroDepErrorGuardRange
+guardArray(98.6); // throws ZeroDepErrorGuardRange
 ```
 
 ## Table of Contents
@@ -22,8 +36,10 @@ guardFloat(options)('a string'); // throws ZeroDepErrorGuard
 - [Installation Instructions](#install)
 - [How to Use](#how-to-use)
   - [Signature](#signature)
+  - [Configuration Options](#configuration-options)
   - [Examples](#examples)
 - [Related Packages](#related-packages)
+- [Configuration via Higher Order Function](#configuration-via-higher-order-function)
 - [Guards & Defensive Programming](#guards--defensive-programming)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
@@ -33,7 +49,7 @@ guardFloat(options)('a string'); // throws ZeroDepErrorGuard
 
 ## Install
 
-This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/guards).
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/guards](https://www.npmjs.com/package/@zerodep/guards).
 
 ```
 // all @zerodep features, capabilities and utilities
@@ -45,7 +61,7 @@ npm install @zerodep/utils
 // all @zerodep "guard" utilities
 npm install @zerodep/guard
 
-// only the guard.float utility
+// only the guard.float package
 npm install @zerodep/guard.float
 ```
 
@@ -55,9 +71,14 @@ Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. On
 
 ### Signature
 
+Typescript declarations:
+
 ```typescript
-// typescript declaration
-declare const guardFloat: (options?: GuardArrayOptions) => (value: any) => number;
+// using default configuration options
+declare const guardFloat: (value: any | any[]) => void;
+
+// customizing the configuration options
+declare const guardFloatHOF: (options?: GuardFloatOptions) => (value: any) => void;
 
 // optional configuration
 interface GuardFloatOptions {
@@ -66,35 +87,43 @@ interface GuardFloatOptions {
 }
 ```
 
+### Configuration Options
+
+**min:**
+
+- Defaults to: undefined
+- If set, and the value is less than this number, a ZeroDepErrorGuardRange error will be thrown
+
+**max:**
+
+- Defaults to: undefined
+- If set, and the value is more than this number, a ZeroDepErrorGuardRange error will be thrown
+
 ### Examples
 
-**Simple Example**
+**Using Default Configuration Options**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
 import { guardFloat } from '@zerodep/guard.float';
 
-// configure, returns a function
-const guard = guardFloat();
-
-// use, returns a number or throws
-guard(3.14); // 3.14
-guard('not a float'); // throws a ZeroDepErrorGuardType
+guardFloat(0.5); // void
+guardFloat('a string'); // throws ZeroDepErrorGuard
 ```
 
 **With Configuration Example**
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { GuardFloatOptions, guardFloat } from '@zerodep/guard.float';
+import { GuardFloatOptions, guardFloatHOF } from '@zerodep/guard.float';
 
-// configure, returns a function
 const options: GuardFloatOptions = { min: 0, max: 1 };
-const customGuard = guardFloat(options);
+const guardFloat = guardFloatHOF(options);
 
-// use, returns a number or throws
-customGuard(0.08); // 0.08
-customGuard(18); // throws a ZeroDepErrorGuardRange
+guardFloat(0.5); // void
+guardFloat('a string'); // throws ZeroDepErrorGuardType
+guardArray(-171.3); // throws ZeroDepErrorGuardRange
+guardArray(98.6); // throws ZeroDepErrorGuardRange
 ```
 
 **Error Example**
@@ -104,7 +133,7 @@ customGuard(18); // throws a ZeroDepErrorGuardRange
 import { GuardFloatOptions, guardFloat } from '@zerodep/guard.float';
 
 try {
-  guardFloat()('not a float');
+  guardFloat('not a float');
 } catch (error: any) {
   console.log(error.message); // "Value is not an float"
   console.log(error.category); // "type"
@@ -112,7 +141,6 @@ try {
   console.log(error.value); // "not a float" <-- value that caused the error
 
   // inheritance chain
-  error instanceof ZeroDepErrorGuardRange; // false in this case
   error instanceof ZeroDepErrorGuardType; // true
   error instanceof ZeroDepErrorGuard; // true
   error instanceof ZeroDepError; // true
@@ -125,6 +153,17 @@ try {
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
 - [@zerodep/is.float](https://www.npmjs.com/package/@zerodep/is.float) - checks if a value is a float
+
+## Configuration via Higher Order Function
+
+Let's begin with a definition to ensure a common vocabulary: a Higher Order Function (HOF) is just a function that returns another function.
+
+This package uses a Higher Order Function as a way to set up/configure its functionality for:
+
+- **cleaner code:** having to pass configuration options once instead of to every call to the function making your code easier to read and reason about
+- **improved performance:** any time a set of configuration options is passed to a function, it is merged with some default values, doing this once means fewer CPU cycles and memory consumption
+- **future scalability:** if/when additional configuration options are available they will have no impact on your existing code and will be easier to add should you wish to use them
+- **consistency:** all @zerodep packages that may be configured follow the same pattern, making the Developer Experience (DX) just a little sweeter
 
 ## Guards & Defensive Programming
 

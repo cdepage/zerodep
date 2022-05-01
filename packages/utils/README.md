@@ -33,15 +33,15 @@ This barrel package includes all utility packages in the @zerodep ecosystem:
 |  |  |
 | canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safeguards) |
 |  |  |
-| guardArray | [guard.array](https://www.npmjs.com/package/@zerodep/guard.array) | A configurable HOC to guard against non-array arguments |
-| guardBigInt | [guard.bigint](https://www.npmjs.com/package/@zerodep/guard.bigint) | A configurable HOC to guard against non-BigInt arguments |
-| guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable HOC to guard against non-boolean arguments |
-| guardDate | [guard.date](https://www.npmjs.com/package/@zerodep/guard.date) | A configurable HOC to guard against non-Date arguments |
-| guardFloat | [guard.float](https://www.npmjs.com/package/@zerodep/guard.float) | A configurable HOC to guard against non-float arguments |
-| guardInteger | [guard.integer](https://www.npmjs.com/package/@zerodep/guard.integer) | A configurable HOC to guard against non-integer arguments |
-| guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable HOC to guard against non-float/non-integer arguments |
-| guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable HOC to guard against non-object literal arguments |
-| guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable HOC to guard against non-string arguments |
+| guardArray | [guard.array](https://www.npmjs.com/package/@zerodep/guard.array) | A configurable HOF to guard against non-array arguments |
+| guardBigInt | [guard.bigint](https://www.npmjs.com/package/@zerodep/guard.bigint) | A configurable HOF to guard against non-BigInt arguments |
+| guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable HOF to guard against non-boolean arguments |
+| guardDate | [guard.date](https://www.npmjs.com/package/@zerodep/guard.date) | A configurable HOF to guard against non-Date arguments |
+| guardFloat | [guard.float](https://www.npmjs.com/package/@zerodep/guard.float) | A configurable HOF to guard against non-float arguments |
+| guardInteger | [guard.integer](https://www.npmjs.com/package/@zerodep/guard.integer) | A configurable HOF to guard against non-integer arguments |
+| guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable HOF to guard against non-float/non-integer arguments |
+| guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable HOF to guard against non-object literal arguments |
+| guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable HOF to guard against non-string arguments |
 | ZeroDepErrorGuard, <br />ZeroDepErrorGuardType, <br />ZeroDepErrorGuardRange | [guard.errors](https://www.npmjs.com/package/@zerodep/guard.errors) | The error types thrown by @zerodep/guard methods, they all subclass the `ZeroDepError` class, some with additional properties |
 |  |  |
 | isArray | [is.array](https://www.npmjs.com/package/@zerodep/is.array) | A utility to determine if a value is an array |
@@ -68,8 +68,8 @@ This barrel package includes all utility packages in the @zerodep ecosystem:
 | isWeakSet | [is.weakset](https://www.npmjs.com/package/@zerodep/is.weakset) | A utility to determine if a value is a WeakSet |
 |  |  |
 | ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by @zerodep/to methods, they all subclass the `ZeroDepError` class |
-| toJSON | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOC to convert a value to JSON |
-| toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOC to convert a value to a string |
+| toJSON | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOF to convert a value to JSON |
+| toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOF to convert a value to a string |
 
 ## How to Use
 

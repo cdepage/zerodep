@@ -1,1 +1,1 @@
-export * from './lib/guardString';
+export * from './guardString';

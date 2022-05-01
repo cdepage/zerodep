@@ -12,10 +12,10 @@ const defaultOptions: GuardDateOptions = {
   latest: undefined,
 };
 
-export const guardDate = (options: GuardDateOptions = {}) => {
+export const guardDateHOF = (options: GuardDateOptions = {}) => {
   const config: GuardDateOptions = { ...defaultOptions, ...options };
 
-  return (value: any): Date => {
+  return (value: any): void => {
     if (!isDate(value)) {
       const error = new ZeroDepErrorGuardType('Value is not a date');
       error.value = value;
@@ -38,6 +38,9 @@ export const guardDate = (options: GuardDateOptions = {}) => {
       throw error;
     }
 
-    return value;
+    return;
   };
 };
+
+// for every HOF that is for configuration (not argument currying) export a function using the default values
+export const guardDate = guardDateHOF();

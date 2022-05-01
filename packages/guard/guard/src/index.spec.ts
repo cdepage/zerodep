@@ -2,19 +2,28 @@ import * as guards from './index';
 
 describe('Guards barrel package', () => {
   it('should export specific packages and interfaces', () => {
-    expect(Object.keys(guards)).toEqual([
+    expect(Object.keys(guards).sort()).toStrictEqual([
       'ZeroDepErrorGuard',
-      'ZeroDepErrorGuardType',
       'ZeroDepErrorGuardRange',
+      'ZeroDepErrorGuardType',
       'guardArray',
+      'guardArrayHOF',
       'guardBigInt',
+      'guardBigIntHOF',
       'guardBoolean',
+      'guardBooleanHOF',
       'guardDate',
+      'guardDateHOF',
       'guardFloat',
+      'guardFloatHOF',
       'guardInteger',
+      'guardIntegerHOF',
       'guardNumber',
+      'guardNumberHOF',
       'guardObject',
+      'guardObjectHOF',
       'guardString',
+      'guardStringHOF',
     ]);
   });
 });

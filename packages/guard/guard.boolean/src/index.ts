@@ -1,1 +1,1 @@
-export * from './lib/guardBoolean';
+export * from './guardBoolean';

@@ -12,10 +12,10 @@ const defaultOptions: GuardIntegerOptions = {
   max: undefined,
 };
 
-export const guardInteger = (options: GuardIntegerOptions = {}) => {
+export const guardIntegerHOF = (options: GuardIntegerOptions = {}) => {
   const config: GuardIntegerOptions = { ...defaultOptions, ...options };
 
-  return (value: any): number => {
+  return (value: any): void => {
     // we need to check for the typeof first as "undefined" will cause isInteger() to error
     if (!isInteger(value)) {
       const error = new ZeroDepErrorGuardType('Value is not an integer');
@@ -35,6 +35,9 @@ export const guardInteger = (options: GuardIntegerOptions = {}) => {
       throw error;
     }
 
-    return value;
+    return;
   };
 };
+
+// for every HOF that is for configuration (not argument currying) export a function using the default values
+export const guardInteger = guardIntegerHOF();

@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Simplify the `guardXxxx` and `guardXxxxHOF` methods for all guards
 - Enhance the `to.string` detection and formatting algorithm
 - Performance improvements to `is.*` algorithms
 - ZeroDepError `tax` value renamed to `category` for clarity

@@ -1,6 +1,6 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guard.errors';
-import { testData } from '../../../../testValues';
-import { guardDate, GuardDateOptions } from './guardDate';
+import { testData } from '../../../testValues';
+import { guardDate, guardDateHOF, GuardDateOptions } from './guardDate';
 
 // extract the positive test cases, the rest will be negative
 const { dates, ...rest } = testData;
@@ -9,7 +9,7 @@ const negativeCases = Object.values(rest).flat();
 
 describe('guardDate', () => {
   describe('with default options', () => {
-    const guard = guardDate();
+    const guard = guardDate;
 
     it('should throw a ZeroDepErrorGuardType error when invalid', () => {
       const fn = () => guard('not a date');
@@ -17,7 +17,7 @@ describe('guardDate', () => {
     });
 
     test.each(positiveCases)('should allow a/an %s', (title, value) => {
-      expect(guard(value)).toEqual(value);
+      expect(guard(value)).toBeUndefined();
     });
 
     // @ts-ignore
@@ -32,7 +32,7 @@ describe('guardDate', () => {
       earliest: new Date('2000-01-01'),
       latest: new Date('2038-01-19T00:00:00.000Z'),
     };
-    const guard = guardDate(options);
+    const guard = guardDateHOF(options);
 
     it('should throw a ZeroDepErrorGuardRange error when date too small', () => {
       const fn = () => guard(new Date('1999-12-25'));
@@ -42,12 +42,12 @@ describe('guardDate', () => {
 
     it('should allow an float at the lower limit', () => {
       const value = new Date('2000-01-01');
-      expect(guard(value)).toEqual(value);
+      expect(guard(value)).toBeUndefined();
     });
 
     it('should allow an float at the upper limit', () => {
       const value = new Date('2038-01-19T00:00:00.000Z');
-      expect(guard(value)).toEqual(value);
+      expect(guard(value)).toBeUndefined();
     });
 
     it('should throw a ZeroDepErrorGuardRange error when float too large', () => {

@@ -12,10 +12,10 @@ const defaultOptions: GuardObjectOptions = {
   maxQuantity: undefined,
 };
 
-export const guardObject = (options: GuardObjectOptions = {}) => {
+export const guardObjectHOF = (options: GuardObjectOptions = {}) => {
   const config: GuardObjectOptions = { ...defaultOptions, ...options };
 
-  return (value: any): Record<string, any> => {
+  return (value: any): void => {
     if (!isObject(value)) {
       const error = new ZeroDepErrorGuardType('Value is not an object');
       error.value = value;
@@ -40,6 +40,9 @@ export const guardObject = (options: GuardObjectOptions = {}) => {
       throw error;
     }
 
-    return value;
+    return;
   };
 };
+
+// for every HOF that is for configuration (not argument currying) export a function using the default values
+export const guardObject = guardObjectHOF();

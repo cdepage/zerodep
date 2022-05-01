@@ -1,3 +1,3 @@
-export * from './lib/ZeroDepErrorGuard';
-export * from './lib/ZeroDepErrorGuardType';
-export * from './lib/ZeroDepErrorGuardRange';
+export * from './ZeroDepErrorGuard';
+export * from './ZeroDepErrorGuardType';
+export * from './ZeroDepErrorGuardRange';

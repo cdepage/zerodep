@@ -1,6 +1,6 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guard.errors';
-import { testData } from '../../../../testValues';
-import { guardBigInt, GuardBigIntOptions } from './guardBigint';
+import { testData } from '../../../testValues';
+import { guardBigInt, guardBigIntHOF, GuardBigIntOptions } from './guardBigint';
 
 // extract the positive test cases, the rest will be negative
 const { bigInts, ...rest } = testData;
@@ -9,7 +9,7 @@ const negativeCases = Object.values(rest).flat();
 
 describe('guardInteger', () => {
   describe('with default options', () => {
-    const guard = guardBigInt();
+    const guard = guardBigInt;
 
     it('should throw a ZeroDepErrorGuardType error when invalid', () => {
       const fn = () => guard('not a BigInt');
@@ -17,7 +17,7 @@ describe('guardInteger', () => {
     });
 
     test.each(positiveCases)('should allow a/an %s', (title, value) => {
-      expect(guard(value)).toEqual(value);
+      expect(guard(value)).toBeUndefined();
     });
 
     // @ts-ignore
@@ -29,7 +29,7 @@ describe('guardInteger', () => {
 
   describe('with custom options', () => {
     const options: GuardBigIntOptions = { min: 50n, max: 100n };
-    const guard = guardBigInt(options);
+    const guard = guardBigIntHOF(options);
 
     it('should throw a ZeroDepErrorGuardRange error when BigInt too small', () => {
       const fn = () => guard(49n);
@@ -38,11 +38,11 @@ describe('guardInteger', () => {
     });
 
     it('should allow a BigInt at the lower limit', () => {
-      expect(guard(50n)).toEqual(50n);
+      expect(guard(50n)).toBeUndefined();
     });
 
     it('should allow a BigInt at the upper limit', () => {
-      expect(guard(100n)).toEqual(100n);
+      expect(guard(100n)).toBeUndefined();
     });
 
     it('should throw a ZeroDepErrorGuardRange error when BigInt too large', () => {

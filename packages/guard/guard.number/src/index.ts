@@ -1,1 +1,1 @@
-export * from './lib/guardNumber';
+export * from './guardNumber';

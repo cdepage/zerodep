@@ -1,6 +1,6 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guard.errors';
-import { testData } from '../../../../testValues';
-import { guardString, GuardStringOptions } from './guardString';
+import { testData } from '../../../testValues';
+import { guardString, guardStringHOF, GuardStringOptions } from './guardString';
 
 // extract the positive test cases, the rest will be negative
 const { strings, ...rest } = testData;
@@ -9,7 +9,7 @@ const negativeCases = Object.values(rest).flat();
 
 describe('guardString', () => {
   describe('with default options', () => {
-    const guard = guardString();
+    const guard = guardString;
 
     it('should throw a ZeroDepErrorGuard error when invalid', () => {
       const fn = () => guard(0);
@@ -17,7 +17,7 @@ describe('guardString', () => {
     });
 
     test.each(positiveCases)('should allow a/an %s', (title, value) => {
-      expect(guard(value)).toEqual(value);
+      expect(guard(value)).toBeUndefined();
     });
 
     // @ts-ignore
@@ -29,7 +29,7 @@ describe('guardString', () => {
 
   describe('with custom options', () => {
     const options: GuardStringOptions = { minLength: 1, maxLength: 10 };
-    const guard = guardString(options);
+    const guard = guardStringHOF(options);
 
     it('should throw a ZeroDepErrorGuardRange error when string too short', () => {
       const fn = () => guard('');
@@ -38,11 +38,11 @@ describe('guardString', () => {
     });
 
     it('should allow a string at the lower limit', () => {
-      expect(guard('a')).toEqual('a');
+      expect(guard('a')).toBeUndefined();
     });
 
     it('should allow an integer at the upper limit', () => {
-      expect(guard('abcdefghij')).toEqual('abcdefghij');
+      expect(guard('abcdefghij')).toBeUndefined();
     });
 
     it('should throw a ZeroDepErrorGuardRange error when integer too large', () => {

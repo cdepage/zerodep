@@ -12,10 +12,10 @@ const defaultOptions: GuardStringOptions = {
   maxLength: undefined,
 };
 
-export const guardString = (options: GuardStringOptions = {}) => {
+export const guardStringHOF = (options: GuardStringOptions = {}) => {
   const config: GuardStringOptions = { ...defaultOptions, ...options };
 
-  return (value: any): string => {
+  return (value: any): void => {
     // we need to check for the typeof first as "undefined" will cause isInteger() to error
     if (!isString(value)) {
       const error = new ZeroDepErrorGuardType('Value is not a string');
@@ -39,6 +39,9 @@ export const guardString = (options: GuardStringOptions = {}) => {
       throw error;
     }
 
-    return value;
+    return;
   };
 };
+
+// for every HOF that is for configuration (not argument currying) export a function using the default values
+export const guardString = guardStringHOF();

@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Simplify the `guardDate` and `guardDateHOF` methods
 - Internal `tax` value renamed to `category` for clarity
 - Copy changes in the README
 

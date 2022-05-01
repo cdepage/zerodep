@@ -12,10 +12,10 @@ const defaultOptions: GuardNumberOptions = {
   max: undefined,
 };
 
-export const guardNumber = (options: GuardNumberOptions = {}) => {
+export const guardNumberHOF = (options: GuardNumberOptions = {}) => {
   const config: GuardNumberOptions = { ...defaultOptions, ...options };
 
-  return (value: any): number => {
+  return (value: any): void => {
     // we need to check for the typeof first as "undefined" will cause isNumber() to error
     if (!isNumber(value)) {
       const error = new ZeroDepErrorGuardType('Value is not a number');
@@ -35,6 +35,9 @@ export const guardNumber = (options: GuardNumberOptions = {}) => {
       throw error;
     }
 
-    return value;
+    return;
   };
 };
+
+// for every HOF that is for configuration (not argument currying) export a function using the default values
+export const guardNumber = guardNumberHOF();

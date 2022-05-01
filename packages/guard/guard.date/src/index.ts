@@ -1,1 +1,1 @@
-export * from './lib/guardDate';
+export * from './guardDate';

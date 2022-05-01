@@ -10,7 +10,9 @@ This is a rollup of all CHANGELOG files in the monorepo. Each package also has i
 
 ### Added
 
+- Introduce the `is.json` utility
 - Introduce the `is.promise` utility
+- Introduce the `is.typedarray` utility
 - Introduce the `ZeroDepErrorTo` class
 - Introduce the `to.json` converter
 - Introduce the `types.locales` declaration
@@ -18,6 +20,8 @@ This is a rollup of all CHANGELOG files in the monorepo. Each package also has i
 
 ### Changed
 
+- Simplify the `guardXxxx` and `guardXxxxHOF` methods for all `guard.*` packages
+- Enhance the `to.string` detection and formatting algorithm
 - Performance improvements to the `is.*` utilities
 - Fixed "How to Use" examples for arrays
 - ZeroDepError `tax` value renamed to `category` for clarity

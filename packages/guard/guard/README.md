@@ -11,13 +11,11 @@ A quick howto by examples for quick reference:
 ```typescript
 import { guardString, guardInteger } from '@zerodep/guard';
 
-// guards are HOFs - these examples use the default options
-guardString()('a string'); // true
-guardString()([1, 2, 3]); // false
+guardString('a string'); // true
+guardString([1, 2, 3]); // false
 
-// guards are HOFs - these examples use the default options
-guardInteger()(42); // true
-guardInteger()(3.14); // false
+guardInteger(42); // true
+guardInteger(3.14); // false
 ```
 
 Definitions:
@@ -50,19 +48,19 @@ Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. On
 
 This barrel package includes all `@zerodep/guard.*` packages:
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods |
+| Method Name | Package | Purpose                                                                                                                       |
+| --- | --- |-------------------------------------------------------------------------------------------------------------------------------|
+| ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods                          |
 |  |  |
-| guardArray | [guard.array](https://www.npmjs.com/package/@zerodep/guard.array) | A configurable HOC to guard against non-array arguments |
-| guardBigInt | [guard.bigint](https://www.npmjs.com/package/@zerodep/guard.bigint) | A configurable HOC to guard against non-BigInt arguments |
-| guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable HOC to guard against non-boolean arguments |
-| guardDate | [guard.date](https://www.npmjs.com/package/@zerodep/guard.date) | A configurable HOC to guard against non-Date arguments |
-| guardFloat | [guard.float](https://www.npmjs.com/package/@zerodep/guard.float) | A configurable HOC to guard against non-float arguments |
-| guardInteger | [guard.integer](https://www.npmjs.com/package/@zerodep/guard.integer) | A configurable HOC to guard against non-integer arguments |
-| guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable HOC to guard against non-float/non-integer arguments |
-| guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable HOC to guard against non-object literal arguments |
-| guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable HOC to guard against non-string arguments |
+| guardArray | [guard.array](https://www.npmjs.com/package/@zerodep/guard.array) | A configurable HOF to guard against non-array arguments                                                                       |
+| guardBigInt | [guard.bigint](https://www.npmjs.com/package/@zerodep/guard.bigint) | A configurable HOF to guard against non-BigInt arguments                                                                      |
+| guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable HOF to guard against non-boolean arguments                                                                     |
+| guardDate | [guard.date](https://www.npmjs.com/package/@zerodep/guard.date) | A configurable HOF to guard against non-Date arguments                                                                        |
+| guardFloat | [guard.float](https://www.npmjs.com/package/@zerodep/guard.float) | A configurable HOF to guard against non-float arguments                                                                       |
+| guardInteger | [guard.integer](https://www.npmjs.com/package/@zerodep/guard.integer) | A configurable HOF to guard against non-integer arguments                                                                     |
+| guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable HOF to guard against non-float/non-integer arguments                                                           |
+| guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable HOF to guard against non-object literal arguments                                                              |
+| guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable HOF to guard against non-string arguments                                                                      |
 | ZeroDepErrorGuard, <br />ZeroDepErrorGuardType, <br />ZeroDepErrorGuardRange | [guard.errors](https://www.npmjs.com/package/@zerodep/guard.errors) | The error types thrown by @zerodep/guard methods, they all subclass the `ZeroDepError` class, some with additional properties |
 
 ## How to Use

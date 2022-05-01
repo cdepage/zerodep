@@ -1,6 +1,6 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guard.errors';
-import { testData } from '../../../../testValues';
-import { guardFloat, GuardFloatOptions } from './guardFloat';
+import { testData } from '../../../testValues';
+import { guardFloat, guardFloatHOF, GuardFloatOptions } from './guardFloat';
 
 // extract the positive test cases, the rest will be negative
 const { floats, floatENotation, ...rest } = testData;
@@ -9,7 +9,7 @@ const negativeCases = Object.values(rest).flat();
 
 describe('guardInteger', () => {
   describe('with default options', () => {
-    const guard = guardFloat();
+    const guard = guardFloat;
 
     it('should throw a ZeroDepErrorGuardType error when invalid', () => {
       const fn = () => guard('not an integer');
@@ -17,7 +17,7 @@ describe('guardInteger', () => {
     });
 
     test.each(positiveCases)('should allow a/an %s', (title, value) => {
-      expect(guard(value)).toEqual(value);
+      expect(guard(value)).toBeUndefined();
     });
 
     // @ts-ignore
@@ -29,7 +29,7 @@ describe('guardInteger', () => {
 
   describe('with custom options', () => {
     const options: GuardFloatOptions = { min: 50, max: 100 };
-    const guard = guardFloat(options);
+    const guard = guardFloatHOF(options);
 
     it('should throw a ZeroDepErrorGuardRange error when float too small', () => {
       const fn = () => guard(49.9);
@@ -38,11 +38,11 @@ describe('guardInteger', () => {
     });
 
     it('should allow an float at the lower limit', () => {
-      expect(guard(50.1)).toEqual(50.1);
+      expect(guard(50.1)).toBeUndefined();
     });
 
     it('should allow an float at the upper limit', () => {
-      expect(guard(99.999)).toEqual(99.999);
+      expect(guard(99.999)).toBeUndefined();
     });
 
     it('should throw a ZeroDepErrorGuardRange error when float too large', () => {

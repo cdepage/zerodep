@@ -1,6 +1,6 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guard.errors';
-import { testData } from '../../../../testValues';
-import { guardArray, GuardArrayOptions } from './guardArray';
+import { testData } from '../../../testValues';
+import { guardArray, guardArrayHOF, GuardArrayOptions } from './guardArray';
 
 // extract the positive test cases, the rest will be negative
 const { arraysSafe, arraysUnsafe, ...rest } = testData;
@@ -9,7 +9,7 @@ const negativeCases = Object.values(rest).flat();
 
 describe('guardInteger', () => {
   describe('with default options', () => {
-    const guard = guardArray();
+    const guard = guardArray;
 
     it('should throw a ZeroDepErrorGuardType error when invalid', () => {
       // @ts-ignore
@@ -19,8 +19,7 @@ describe('guardInteger', () => {
 
     // @ts-ignore
     test.each(positiveCases)('should allow a/an %s', (title, value) => {
-      // @ts-ignore
-      expect(guard(value)).toEqual(value);
+      expect(guard(value)).toBeUndefined();
     });
 
     // @ts-ignore
@@ -33,7 +32,7 @@ describe('guardInteger', () => {
 
   describe('with custom options', () => {
     const options: GuardArrayOptions = { minQuantity: 2, maxQuantity: 5 };
-    const guard = guardArray(options);
+    const guard = guardArrayHOF(options);
 
     it('should throw a ZeroDepErrorGuardRange error when array too small', () => {
       const fn = () => guard([1]);
@@ -41,14 +40,14 @@ describe('guardInteger', () => {
       expect(fn).toThrow('Array has fewer than 2 items');
     });
 
-    it('should allow a bigint at the lower limit', () => {
+    it('should allow an array with the fewest allowed number of items', () => {
       const value = ['a', 'b'];
-      expect(guard(value)).toEqual(value);
+      expect(guard(value)).toBeUndefined();
     });
 
-    it('should allow a bigint at the upper limit', () => {
+    it('should allow an array with the maximum allowed number of items', () => {
       const value = ['a', 'b', 'c', 'd', 'e'];
-      expect(guard(value)).toEqual(value);
+      expect(guard(value)).toBeUndefined();
     });
 
     it('should throw a ZeroDepErrorGuardRange error when bigint too large', () => {

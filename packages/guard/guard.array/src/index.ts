@@ -1,1 +1,1 @@
-export * from './lib/guardArray';
+export * from './guardArray';
