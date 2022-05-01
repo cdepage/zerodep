@@ -1,0 +1,67 @@
+{
+  "root": "packages/types/types",
+  "sourceRoot": "packages/types/types/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/types/types/package.json",
+        "entryFile": "packages/types/types/src/index.ts",
+        "outputPath": "dist/packages/types/types",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/types/types/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/types/types",
+          "rollup -c packages/types/types/rollup.config.ts",
+          "mv dist/packages/types/types/index.esm.d.ts dist/packages/types/types/index.d.ts",
+          "rm dist/packages/types/types/index.cjs.d.ts",
+          "cp packages/types/types/README.md dist/packages/types/types/README.md",
+          "cp packages/types/types/package.json dist/packages/types/types/package.json",
+          "uglifyjs dist/packages/types/types/index.esm.js -o dist/packages/types/types/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/types/types/index.cjs.js -o dist/packages/types/types/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/types/types/index.esm.js",
+          "rm dist/packages/types/types/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/types/types/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/types/types"],
+      "options": {
+        "jestConfig": "packages/types/types/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/types/types"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/types/types"
+      }
+    }
+  },
+  "tags": []
+}

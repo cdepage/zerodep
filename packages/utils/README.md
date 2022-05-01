@@ -62,6 +62,7 @@ This barrel package includes all utility packages in the @zerodep ecosystem:
 | isSet | [is.set](https://www.npmjs.com/package/@zerodep/is.set) | A utility to determine if a value is a Set |
 | isString | [is.string](https://www.npmjs.com/package/@zerodep/is.string) | A utility to determine if a value is a string |
 | isSymbol | [is.symbol](https://www.npmjs.com/package/@zerodep/is.symbol) | A utility to determine if a value is a Symbol |
+| isTypedArray | [is.typedarray](https://www.npmjs.com/package/@zerodep/is.typedarray) | A utility to determine if a value is a Typed Array |
 | isUndefined | [is.undefined](https://www.npmjs.com/package/@zerodep/is.undefined) | A utility to determine if a value is `undefined` |
 | isWeakMap | [is.weakmap](https://www.npmjs.com/package/@zerodep/is.weakmap) | A utility to determine if a value is a WeakMap |
 | isWeakSet | [is.weakset](https://www.npmjs.com/package/@zerodep/is.weakset) | A utility to determine if a value is a WeakSet |
@@ -142,7 +143,7 @@ The above said, a security best practice is to pin your software packages to spe
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/utils/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/utils/utils/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

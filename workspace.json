@@ -36,6 +36,7 @@
     "is.set": "packages/is/is.set",
     "is.string": "packages/is/is.string",
     "is.symbol": "packages/is/is.symbol",
+    "is.typedarray": "packages/is/is.typedarray",
     "is.undefined": "packages/is/is.undefined",
     "is.weakmap": "packages/is/is.weakmap",
     "is.weakset": "packages/is/is.weakset",
@@ -43,6 +44,9 @@
     "to.errors": "packages/to/to.errors",
     "to.json": "packages/to/to.json",
     "to.string": "packages/to/to.string",
+    "types": "packages/types/types",
+    "types.locales": "packages/types/types.locales",
+    "types.timezones": "packages/types/types.timezones",
     "utils": "packages/utils"
   }
 }

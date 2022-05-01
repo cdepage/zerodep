@@ -1,1 +1,1 @@
-export * from './lib/toString';
+export * from './toString';

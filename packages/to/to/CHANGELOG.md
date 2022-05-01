@@ -13,6 +13,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Enhance the `to.string` detection and formatting algorithm
+
+### Changed
+
 - Internal error `tax` value renamed to `category` for clarity
 
 ## [0.1.4] - 2022-04-25

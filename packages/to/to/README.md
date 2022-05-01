@@ -11,9 +11,8 @@ A quick howto by examples for quick reference:
 ```typescript
 import { toString } from '@zerodep/to';
 
-// to-functions are HOFs - these examples use the default options
-toString()(42); // 42
-toString()(Symbol); // throws a ZeroDepErrorTo error
+toString(42); // 42
+toString(Symbol); // throws a ZeroDepErrorTo error
 ```
 
 Definitions:
@@ -36,7 +35,7 @@ Definitions:
 ## Install
 
 ```
-npm install @zerodep/is
+npm install @zerodep/to
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
@@ -47,22 +46,23 @@ This barrel package includes all `@zerodep/to.*` packages:
 
 | Method Name | Package | Purpose |
 | --- | --- | --- |
-| ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods |
-|  |  |
-| toJSON | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOC to convert a value to JSON |
-| toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOC to convert a value to a string |
 | ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by @zerodep/to methods, they all subclass the `ZeroDepError` class |
+| toJSON | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOF to convert a value to JSON |
+| toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOF to convert a value to a string |
 
 ## How to Use
 
 For specific details and configuration options, see the specific package.
 
 ```typescript
-import { toString } from '@zerodep/to';
+import { toString, toJSON } from '@zerodep/to';
 
-// to-functions are HOFs - these examples use the default options
-toString()(42); // 42
-toString()(Symbol); // throws ZeroDepErrorTo
+toString(42); // 42
+toString(Symbol); // throws ZeroDepErrorTo
+
+toJSON({ bigint: 8675309n }); // { bigint: "8675309" }
+toJSON(new Set(['a', 1, true])); // ["a", 1, true]
+toJSON(new WeakMap()); // throws ZeroDepErrorTo
 ```
 
 ## Advantages of @zerodep Packages
@@ -113,7 +113,7 @@ The above said, a security best practice is to pin your software packages to spe
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/is/is/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/packages/to/to/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 

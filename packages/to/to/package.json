@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/to",
-  "description": "A utility to convert a value to a string",
+  "description": "A set of utility methods to convert a value to a specific data type",
   "version": "0.1.4",
   "license": "MIT",
   "repository": {

@@ -97,8 +97,8 @@ interface ToJSONOptions {
 
 **convertInvalidToNull:**
 
-- If `true` it will convert any non-JSON-able properties to `null` instead of throwing the appropriate ZeroDepError
 - Defaults to: `false`
+- If `true` it will convert any non-JSON-able properties to `null` instead of throwing the appropriate ZeroDepError
 
 ### Examples
 

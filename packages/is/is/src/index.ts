@@ -17,6 +17,7 @@ export * from '@zerodep/is.regex';
 export * from '@zerodep/is.set';
 export * from '@zerodep/is.string';
 export * from '@zerodep/is.symbol';
+export * from '@zerodep/is.typedarray';
 export * from '@zerodep/is.undefined';
 export * from '@zerodep/is.weakmap';
 export * from '@zerodep/is.weakset';

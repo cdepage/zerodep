@@ -13,6 +13,8 @@ This is a rollup of all CHANGELOG files in the monorepo. Each package also has i
 - Introduce the `is.promise` utility
 - Introduce the `ZeroDepErrorTo` class
 - Introduce the `to.json` converter
+- Introduce the `types.locales` declaration
+- Introduce the `types.timezones` declaration
 
 ### Changed
 

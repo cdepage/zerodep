@@ -1,0 +1,52 @@
+{
+  "root": "packages/types/types.timezones",
+  "sourceRoot": "packages/types/types.timezones/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/types/types.timezones",
+          "rollup -c packages/types/types.timezones/rollup.config.ts",
+          "mv dist/packages/types/types.timezones/index.esm.d.ts dist/packages/types/types.timezones/index.d.ts",
+          "rm dist/packages/types/types.timezones/index.cjs.d.ts",
+          "cp packages/types/types.timezones/README.md dist/packages/types/types.timezones/README.md",
+          "cp packages/types/types.timezones/package.json dist/packages/types/types.timezones/package.json",
+          "rm dist/packages/types/types.timezones/index.esm.js",
+          "rm dist/packages/types/types.timezones/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/types/types.timezones/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/types/types.timezones"],
+      "options": {
+        "jestConfig": "packages/types/types.timezones/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/types/types.timezones"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/types/types.timezones"
+      }
+    }
+  },
+  "tags": []
+}

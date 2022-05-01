@@ -22,6 +22,7 @@ describe('Guards barrel package', () => {
       'isSet',
       'isString',
       'isSymbol',
+      'isTypedArray',
       'isUndefined',
       'isWeakMap',
       'isWeakSet',

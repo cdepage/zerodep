@@ -38,12 +38,14 @@ describe('Utils barrel package', () => {
       'isSet',
       'isString',
       'isSymbol',
+      'isTypedArray',
       'isUndefined',
       'isWeakMap',
       'isWeakSet',
       'toJSON',
       'toJSONHOF',
       'toString',
+      'toStringHOF',
     ]);
   });
 });
