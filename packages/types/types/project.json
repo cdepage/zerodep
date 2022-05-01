@@ -63,5 +63,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["types.locales", "types.timezones"]
 }
