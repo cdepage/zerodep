@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/guard.string",
   "description": "A higher-order function / defensive programming utility to guard against non-string arguments",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
   "repository": {
     "type": "git",

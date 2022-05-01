@@ -23,7 +23,8 @@
     "coverageAll": "nx run-many --target=test --all --coverage",
     "buildAll": "nx run-many --target=build --all",
     "------- CAUTION --------": "",
-    "publish": "nx affected --target=publish"
+    "publishAffected": "nx affected --target=publish",
+    "publishAll": "nx run-many --target=publish --all"
   },
   "devDependencies": {
     "@nrwl/cli": "14.0.2",
