@@ -1,4 +1,3 @@
-import { ZeroDepError } from '@zerodep/errors';
 import { isArray } from '@zerodep/is.array';
 import { isBigInt } from '@zerodep/is.bigint';
 import { isBoolean } from '@zerodep/is.boolean';
@@ -12,6 +11,7 @@ import { isRegex } from '@zerodep/is.regex';
 import { isSet } from '@zerodep/is.set';
 import { isString } from '@zerodep/is.string';
 import { isSymbol } from '@zerodep/is.symbol';
+import { isTypedArray } from '@zerodep/is.typedarray';
 import { isWeakMap } from '@zerodep/is.weakmap';
 import { isWeakSet } from '@zerodep/is.weakset';
 import { ZeroDepErrorTo } from '@zerodep/to.errors';
@@ -73,6 +73,7 @@ export const toJSONHOF = <T = Record<string, any> | any[]>(options: ToJSONOption
       isSymbol(value) ||
       isRegex(value) ||
       isFunction(value) ||
+      isTypedArray(value) ||
       (Object.prototype.toString.call(value) === '[object Number]' &&
         (Math.abs(value) === Infinity || Number.isNaN(value)))
     ) {

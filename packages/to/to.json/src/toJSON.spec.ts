@@ -205,32 +205,41 @@ describe('toJSON', () => {
     });
 
     // TYPED ARRAYS
-    it('should convert a testTypedArray1', () => {
-      expect(convert(testTypedArray1)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray1', () => {
+      const fn = () => convert(testTypedArray1);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray2', () => {
-      expect(convert(testTypedArray2)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray2', () => {
+      const fn = () => convert(testTypedArray2);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray3', () => {
-      expect(convert(testTypedArray3)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray3', () => {
+      const fn = () => convert(testTypedArray3);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray4', () => {
-      expect(convert(testTypedArray4)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray4', () => {
+      const fn = () => convert(testTypedArray4);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray5', () => {
-      expect(convert(testTypedArray5)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray5', () => {
+      const fn = () => convert(testTypedArray5);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray6', () => {
-      expect(convert(testTypedArray6)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray6', () => {
+      const fn = () => convert(testTypedArray6);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray7', () => {
-      expect(convert(testTypedArray7)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray7', () => {
+      const fn = () => convert(testTypedArray7);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray8', () => {
-      expect(convert(testTypedArray8)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray8', () => {
+      const fn = () => convert(testTypedArray8);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray9', () => {
-      expect(convert(testTypedArray9)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray9', () => {
+      const fn = () => convert(testTypedArray9);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // FUNCTION
@@ -440,32 +449,41 @@ describe('toJSON', () => {
     });
 
     // TYPED ARRAYS
-    it('should convert a testTypedArray1', () => {
-      expect(convert(testTypedArray1)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray1', () => {
+      const fn = () => convert(testTypedArray1);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray2', () => {
-      expect(convert(testTypedArray2)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray2', () => {
+      const fn = () => convert(testTypedArray2);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray3', () => {
-      expect(convert(testTypedArray3)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray3', () => {
+      const fn = () => convert(testTypedArray3);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray4', () => {
-      expect(convert(testTypedArray4)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray4', () => {
+      const fn = () => convert(testTypedArray4);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray5', () => {
-      expect(convert(testTypedArray5)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray5', () => {
+      const fn = () => convert(testTypedArray5);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray6', () => {
-      expect(convert(testTypedArray6)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray6', () => {
+      const fn = () => convert(testTypedArray6);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray7', () => {
-      expect(convert(testTypedArray7)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray7', () => {
+      const fn = () => convert(testTypedArray7);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray8', () => {
-      expect(convert(testTypedArray8)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray8', () => {
+      const fn = () => convert(testTypedArray8);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
-    it('should convert a testTypedArray9', () => {
-      expect(convert(testTypedArray9)).toEqual({ 0: 0, 1: 0 });
+    it('should NOT convert a testTypedArray9', () => {
+      const fn = () => convert(testTypedArray9);
+      expect(fn).toThrow('Cannot convert to JSON');
     });
 
     // FUNCTION
