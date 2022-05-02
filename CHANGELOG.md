@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 This is a rollup of all CHANGELOG files in the monorepo. Each package also has its own CHANGELOG.
 
+## [Unreleased]
+
+### Added
+
+- Introduce the `guard.function` utility
+- Introduce the `guard.json` utility
+
 ## [0.4.0] - 2022-05-01
 
 ### Added
