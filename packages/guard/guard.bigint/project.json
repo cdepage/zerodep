@@ -63,5 +63,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["errors", "guard.errors"]
 }

@@ -2,7 +2,7 @@
 
 A defensive programming utility to guard against non-array arguments.
 
-Guards do not return a value, they only throw an error if the guarded value is not of the correct type.
+Guards do not return a value, they only throw an error if the provided value is not of the guarded type.
 
 ## tl;dr
 
@@ -68,6 +68,19 @@ npm install @zerodep/guard.array
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
 ## How to Use
+
+This package exports the following:
+
+- **Functions**
+  - `guardarray` - a function/guard that uses the default configuration options (suitable for most)
+  - `guardarrayHOF` - a higher-order function that may be configured and returns a guard function based on the configurations
+- **Interface**
+  - `GuardarrayOptions` - a typescript interface of the options that may be set in the HOF
+- **Error types**
+  - `ZeroDepErrorGuardType` - thrown if guarded value is of the incorrect type
+  - `ZeroDepErrorGuardRange` - thrown if guarded value is out-of-range per configuration options
+  - `ZeroDepErrorGuard` - the parent class of the type and range errors (above)
+  - `ZeroDepError` - the error class all ZeroDep packages extend from, is an instance of the base `Error` object
 
 ### Signature
 

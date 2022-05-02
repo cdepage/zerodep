@@ -2,14 +2,14 @@
 
 A defensive programming utility to guard against non-boolean arguments.
 
-Guards do not return a value, they only throw an error if the guarded value is not of the correct type.
+Guards do not return a value, they only throw an error if the provided value is not of the guarded type.
 
 ## tl;dr
 
 A quick howto by examples for quick reference:
 
 ```typescript
-import { guardBoolean } from '@zerodep/guard.array';
+import { guardBoolean } from '@zerodep/guard.boolean';
 
 // uses the default configuration options
 guardBoolean(true); // void
@@ -54,6 +54,19 @@ npm install @zerodep/guard.boolean
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
 ## How to Use
+
+This package exports the following:
+
+- **Functions**
+  - `guardBoolean` - a function/guard that uses the default configuration options (suitable for most)
+  - `guardBooleanHOF` - a higher-order function that may be configured and returns a guard function based on the configurations
+- **Interface**
+  - `GuardBooleanOptions` - a typescript interface of the options that may be set in the HOF
+- **Error types**
+  - `ZeroDepErrorGuardType` - thrown if guarded value is of the incorrect type
+  - `ZeroDepErrorGuardRange` - thrown if guarded value is out-of-range per configuration options
+  - `ZeroDepErrorGuard` - the parent class of the type and range errors (above)
+  - `ZeroDepError` - the error class all ZeroDep packages extend from, is an instance of the base `Error` object
 
 ### Signature
 

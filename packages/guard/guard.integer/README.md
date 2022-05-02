@@ -2,14 +2,14 @@
 
 A defensive programming utility to guard against non-integer arguments.
 
-Guards do not return a value, they only throw an error if the guarded value is not of the correct type.
+Guards do not return a value, they only throw an error if the provided value is not of the guarded type.
 
 ## tl;dr
 
 A quick howto by examples for quick reference:
 
 ```typescript
-import { guardInteger } from '@zerodep/guard.array';
+import { guardInteger } from '@zerodep/guard.function';
 
 // uses the default configuration options
 guardInteger(options)(42); // 42
@@ -19,7 +19,7 @@ guardInteger(options)('a string'); // throws ZeroDepErrorGuard
 and
 
 ```typescript
-import { GuardIntegerOptions, guardIntegerHOF } from '@zerodep/guard.array';
+import { GuardIntegerOptions, guardIntegerHOF } from '@zerodep/guard.integer';
 
 // uses a custom configuration options
 const options: GuardIntegerOptions = { min: 25, max: 75 };
@@ -68,6 +68,19 @@ npm install @zerodep/guard.integer
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
 ## How to Use
+
+This package exports the following:
+
+- **Functions**
+  - `guardInteger` - a function/guard that uses the default configuration options (suitable for most)
+  - `guardIntegerHOF` - a higher-order function that may be configured and returns a guard function based on the configurations
+- **Interface**
+  - `GuardIntegerOptions` - a typescript interface of the options that may be set in the HOF
+- **Error types**
+  - `ZeroDepErrorGuardType` - thrown if guarded value is of the incorrect type
+  - `ZeroDepErrorGuardRange` - thrown if guarded value is out-of-range per configuration options
+  - `ZeroDepErrorGuard` - the parent class of the type and range errors (above)
+  - `ZeroDepError` - the error class all ZeroDep packages extend from, is an instance of the base `Error` object
 
 ### Signature
 

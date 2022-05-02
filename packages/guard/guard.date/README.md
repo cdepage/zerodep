@@ -2,14 +2,14 @@
 
 A defensive programming utility to guard against non-Date arguments.
 
-Guards do not return a value, they only throw an error if the guarded value is not of the correct type.
+Guards do not return a value, they only throw an error if the provided value is not of the guarded type.
 
 ## tl;dr
 
 A quick howto by examples for quick reference:
 
 ```typescript
-import { guardDate } from '@zerodep/guard.array';
+import { guardDate } from '@zerodep/guard.date';
 
 // uses the default configuration options
 guardDate(new Date('2022-02-24')); // void
@@ -19,7 +19,7 @@ guardDate('1999-12-31'); // throws ZeroDepErrorGuard
 and
 
 ```typescript
-import { GuardDateOptions, guardDateHOF } from '@zerodep/guard.array';
+import { GuardDateOptions, guardDateHOF } from '@zerodep/guard.date';
 
 // uses a custom configuration options
 const options: GuardDateOptions = {
@@ -71,6 +71,19 @@ npm install @zerodep/guard.date
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
 ## How to Use
+
+This package exports the following:
+
+- **Functions**
+  - `guardDate` - a function/guard that uses the default configuration options (suitable for most)
+  - `guardDateHOF` - a higher-order function that may be configured and returns a guard function based on the configurations
+- **Interface**
+  - `GuardDateOptions` - a typescript interface of the options that may be set in the HOF
+- **Error types**
+  - `ZeroDepErrorGuardType` - thrown if guarded value is of the incorrect type
+  - `ZeroDepErrorGuardRange` - thrown if guarded value is out-of-range per configuration options
+  - `ZeroDepErrorGuard` - the parent class of the type and range errors (above)
+  - `ZeroDepError` - the error class all ZeroDep packages extend from, is an instance of the base `Error` object
 
 ### Signature
 

@@ -2,14 +2,14 @@
 
 A defensive programming utility to guard against non-float arguments.
 
-Guards do not return a value, they only throw an error if the guarded value is not of the correct type.
+Guards do not return a value, they only throw an error if the provided value is not of the guarded type.
 
 ## tl;dr
 
 A quick howto by examples for quick reference:
 
 ```typescript
-import { guardFloat } from '@zerodep/guard.array';
+import { guardFloat } from '@zerodep/guard.float';
 
 // uses the default configuration options
 guardFloat(0.5); // void
@@ -19,7 +19,7 @@ guardFloat('a string'); // throws ZeroDepErrorGuard
 and
 
 ```typescript
-import { GuardFloatOptions, guardFloatHOF } from '@zerodep/guard.array';
+import { GuardFloatOptions, guardFloatHOF } from '@zerodep/guard.float';
 
 // uses a custom configuration options
 const options: GuardFloatOptions = { min: 0, max: 1 };
@@ -68,6 +68,19 @@ npm install @zerodep/guard.float
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
 ## How to Use
+
+This package exports the following:
+
+- **Functions**
+  - `guardFloat` - a function/guard that uses the default configuration options (suitable for most)
+  - `guardFloatHOF` - a higher-order function that may be configured and returns a guard function based on the configurations
+- **Interface**
+  - `GuardFloatOptions` - a typescript interface of the options that may be set in the HOF
+- **Error types**
+  - `ZeroDepErrorGuardType` - thrown if guarded value is of the incorrect type
+  - `ZeroDepErrorGuardRange` - thrown if guarded value is out-of-range per configuration options
+  - `ZeroDepErrorGuard` - the parent class of the type and range errors (above)
+  - `ZeroDepError` - the error class all ZeroDep packages extend from, is an instance of the base `Error` object
 
 ### Signature
 
