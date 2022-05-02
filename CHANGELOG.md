@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 This is a rollup of all CHANGELOG files in the monorepo. Each package also has its own CHANGELOG.
 
+## [0.6.0] - 2022-05-02
+
+### Changed
+
+- Update monorepo management and build tooling npm packages
+
 ## [0.5.0] - 2022-05-02
 
 ### Added
