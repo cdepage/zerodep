@@ -38,7 +38,9 @@ This barrel package includes all utility packages in the @zerodep ecosystem:
 | guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable HOF to guard against non-boolean arguments |
 | guardDate | [guard.date](https://www.npmjs.com/package/@zerodep/guard.date) | A configurable HOF to guard against non-Date arguments |
 | guardFloat | [guard.float](https://www.npmjs.com/package/@zerodep/guard.float) | A configurable HOF to guard against non-float arguments |
+| guardFunction | [guard.float](https://www.npmjs.com/package/@zerodep/guard.function) | A configurable HOF to guard against non-function arguments |
 | guardInteger | [guard.integer](https://www.npmjs.com/package/@zerodep/guard.integer) | A configurable HOF to guard against non-integer arguments |
+| guardJSON | [guard.json](https://www.npmjs.com/package/@zerodep/guard.json) | A configurable HOF to guard against non-JSON object arguments |
 | guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable HOF to guard against non-float/non-integer arguments |
 | guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable HOF to guard against non-object literal arguments |
 | guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable HOF to guard against non-string arguments |
