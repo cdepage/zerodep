@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/guard.json",
   "description": "A higher-order function / defensive programming utility to guard against non-json arguments",
-  "version": "0.1.5",
+  "version": "0.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",

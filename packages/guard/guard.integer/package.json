@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/guard.integer",
   "description": "A higher-order function / defensive programming utility to guard against non-integer arguments",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": {
     "type": "git",
