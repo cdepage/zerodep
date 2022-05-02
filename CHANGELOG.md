@@ -13,6 +13,10 @@ This is a rollup of all CHANGELOG files in the monorepo. Each package also has i
 - Introduce the `guard.function` utility
 - Introduce the `guard.json` utility
 
+### Changed
+
+- Export error classes thrown by `guard.*` packages
+
 ## [0.4.0] - 2022-05-01
 
 ### Added
