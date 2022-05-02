@@ -2,12 +2,16 @@
 
 This is a library of commonly used utilities, tests, and guards that help developers write better software. This is a barrel package of all `@zerodep.*` packages and higher-order functions.
 
-Assuming your build process includes tree shaking all unused packages will be removed, no bloat to your end user or production compute environment.
-
 ## Table of Contents
 
 - [Installation Instructions](#install)
 - [Included Packages](#included-packages)
+  - [Base Error](#base-error)
+  - [Can](#can)
+  - [Guard](#guard)
+  - [Is](#is)
+  - [To](#to)
+  - [Types](#types)
 - [How to Use](#how-to-use)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
@@ -25,14 +29,28 @@ Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. On
 
 ## Included Packages
 
-This barrel package includes all packages in the @zerodep ecosystem:
+The `@zerodep/app` package is a tree-shakable collection of all packages in the @zerodep ecosystem.
+
+### Base Error
 
 | Method Name | Package | Purpose |
 | --- | --- | --- |
 | ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods |
-|  |  |
+
+### Can
+
+A set of functions that test for specific language construct capabilities or features.
+
+| Method Name | Package | Purpose |
+| --- | --- | --- |
 | canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safeguards) |
-|  |  |
+
+### Guard
+
+A set of configurable higher order functions that guard for specific data types.
+
+| Method Name | Package | Purpose |
+| --- | --- | --- |
 | guardArray | [guard.array](https://www.npmjs.com/package/@zerodep/guard.array) | A configurable HOF to guard against non-array arguments |
 | guardBigInt | [guard.bigint](https://www.npmjs.com/package/@zerodep/guard.bigint) | A configurable HOF to guard against non-BigInt arguments |
 | guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable HOF to guard against non-boolean arguments |
@@ -44,8 +62,14 @@ This barrel package includes all packages in the @zerodep ecosystem:
 | guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable HOF to guard against non-float/non-integer arguments |
 | guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable HOF to guard against non-object literal arguments |
 | guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable HOF to guard against non-string arguments |
-| ZeroDepErrorGuard, <br />ZeroDepErrorGuardType, <br />ZeroDepErrorGuardRange | [guard.errors](https://www.npmjs.com/package/@zerodep/guard.errors) | The error types thrown by @zerodep/guard methods, they all subclass the `ZeroDepError` class, some with additional properties |
-|  |  |
+| ZeroDepErrorGuard, <br />ZeroDepErrorGuardType, <br />ZeroDepErrorGuardRange | [guard.errors](https://www.npmjs.com/package/@zerodep/guard.errors) | The error types thrown by `@zerodep/guard.*` methods, they all subclass the ZeroDepError object |
+
+### Is
+
+A set of utility methods to determine if a given value is of a specific type.
+
+| Method Name | Package | Purpose |
+| --- | --- | --- |
 | isArray | [is.array](https://www.npmjs.com/package/@zerodep/is.array) | A utility to determine if a value is an array |
 | isBigInt | [is.bigint](https://www.npmjs.com/package/@zerodep/is.bigint) | A utility to determine if a value is a BigInt |
 | isBoolean | [is.boolean](https://www.npmjs.com/package/@zerodep/is.boolean) | A utility to determine if a value is a boolean |
@@ -68,37 +92,35 @@ This barrel package includes all packages in the @zerodep ecosystem:
 | isUndefined | [is.undefined](https://www.npmjs.com/package/@zerodep/is.undefined) | A utility to determine if a value is `undefined` |
 | isWeakMap | [is.weakmap](https://www.npmjs.com/package/@zerodep/is.weakmap) | A utility to determine if a value is a WeakMap |
 | isWeakSet | [is.weakset](https://www.npmjs.com/package/@zerodep/is.weakset) | A utility to determine if a value is a WeakSet |
-|  |  |
-| ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by @zerodep/to methods, they all subclass the `ZeroDepError` class |
+
+### To
+
+A set of higher order functions to convert a value to a specific data type.
+
+| Method Name | Package | Purpose |
+| --- | --- | --- |
 | toJSON | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOF to convert a value to JSON |
 | toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOF to convert a value to a string |
-|  |  |
+| ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by `@zerodep/to.*` methods, they all subclass the `ZeroDepError` object |
+
+### Types
+
+Some useful typescript `type` declarations.
+
+| Method Name | Package | Purpose |
+| --- | --- | --- |
 | TypesLocales | [types.locales](https://www.npmjs.com/package/@zerodep/types.locales) | Typescript `type` declaration of locales |
 | TypesTimeZones | [types.timezones](https://www.npmjs.com/package/@zerodep/types.timezones) | Typescript `type` declaration of time zones |
 
-## How to Use
+## Related Packages
 
-For specific details and configuration options, see the specific package.
+The following @zerodep packages may be helpful or more appropriate for your specific case:
 
-```typescript
-import { canIterate, guardArray, isNumber, toString } from '@zerodep/app';
-
-// can-functions always return a boolean
-canIterate(['a', 'b', 'c']); // true
-canIterate(42); // false
-
-// guards are HOFs - these examples use the default options
-guardArray()(['a', 'b', 'c']); // ["a", "b", "c"]
-guardArray()('a string'); // throws ZeroDepErrorGuardType
-
-// is-functions always return a boolean
-isNumber(42); // true
-isNumber('a string'); // false
-
-// to-functions are HOFs - these examples use the default options
-toString()(42); // 42
-toString()(Symbol); // throws ZeroDepErrorTo
-```
+- [@zerodep/can](https://www.npmjs.com/package/@zerodep/can) - a barrel package of all `@zerodep/can.*` detectors
+- [@zerodep/guard](https://www.npmjs.com/package/@zerodep/guard) - a barrel package of all `@zerodep/guard.*` defensive guards
+- [@zerodep/is](https://www.npmjs.com/package/@zerodep/is) - a barrel package of all `@zerodep/is.*` utilities
+- [@zerodep/to](https://www.npmjs.com/package/@zerodep/to) - a barrel package of all `@zerodep/to.*` converters
+- [@zerodep/types](https://www.npmjs.com/package/@zerodep/types) - a barrel package of all `@zerodep/types.*` declarations
 
 ## Advantages of @zerodep Packages
 
