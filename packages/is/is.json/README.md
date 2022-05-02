@@ -9,12 +9,12 @@ A JSON object is an array or collection of key:value pairs where the values are 
 A quick howto by examples for quick reference:
 
 ```typescript
-import { isJson } from '@zerodep/is.json';
+import { isJSON } from '@zerodep/is.json';
 
-isJson({ a: 1 }); // true
-isJson(['a', 'b', 'c']); // true
-isJson([{ one: 1 }, { two: 2 }]); // true
-isJson(42); // false
+isJSON({ a: 1 }); // true
+isJSON(['a', 'b', 'c']); // true
+isJSON([{ one: 1 }, { two: 2 }]); // true
+isJSON(42); // false
 ```
 
 ## Table of Contents
@@ -56,60 +56,60 @@ Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. On
 
 ```typescript
 // typescript declaration
-declare const isJson: (value: any) => boolean;
+declare const isJSON: (value: any) => boolean;
 ```
 
 ### Examples
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { isJson } from '@zerodep/is.json';
+import { isJSON } from '@zerodep/is.json';
 
-isJson({}); // true
-isJson({ a: 'one', b: 2, c: true, d: null }); // true
-isJson({ obj1: { sub: 'nested' } }); // true
-isJson([]); // true
-isJson([1, 'b', true, null]); // true
-isJson(['a', ['deeply', ['nested', 'array']]]); // true
+isJSON({}); // true
+isJSON({ a: 'one', b: 2, c: true, d: null }); // true
+isJSON({ obj1: { sub: 'nested' } }); // true
+isJSON([]); // true
+isJSON([1, 'b', true, null]); // true
+isJSON(['a', ['deeply', ['nested', 'array']]]); // true
 
 // strings
-isJson(''); // false
-isJson('a string'); // false
+isJSON(''); // false
+isJSON('a string'); // false
 
 // integers
-isJson(42); // false
-isJson(3e8); // false
+isJSON(42); // false
+isJSON(3e8); // false
 
 // floats
-isJson(-273.15); // false
-isJson(Math.PI); // false
+isJSON(-273.15); // false
+isJSON(Math.PI); // false
 
 // number-ish
-isJson(Number.POSITIVE_INFINITY); // false
-isJson(NaN); // false
+isJSON(Number.POSITIVE_INFINITY); // false
+isJSON(NaN); // false
 
 // bigints
-isJson(8675309n); // false
+isJSON(8675309n); // false
 
 // booleans
-isJson(true); // false
-isJson(false); // false
+isJSON(true); // false
+isJSON(false); // false
 
 // other
-isJson(/^$\d{7}/g); // false
-isJson(new Date()); // false
-isJson(new Date('2022-02-24')); // false
-isJson(new Set()); // false
-isJson(new Set([1, 2, 3])); // false
-isJson(new Map()); // false
-isJson(new Map([['a', 1]])); // false
-isJson(Symbol()); // false
-isJson(new Error()); // false
-isJson(() => {}); // false
+isJSON(/^$\d{7}/g); // false
+isJSON(new Date()); // false
+isJSON(new Date('2022-02-24')); // false
+isJSON(new Set()); // false
+isJSON(new Set([1, 2, 3])); // false
+isJSON(new Map()); // false
+isJSON(new Map([['a', 1]])); // false
+isJSON(Symbol()); // false
+isJSON(new Error()); // false
+isJSON(() => {}); // false
 
 // nothing
-isJson(null); // false
-isJson(undefined); // false
+isJSON(null); // false
+isJSON(undefined); // false
 ```
 
 ## Related Packages

@@ -40,7 +40,7 @@ describe('Utils barrel package', () => {
       'isFloat',
       'isFunction',
       'isInteger',
-      'isJson',
+      'isJSON',
       'isMap',
       'isNil',
       'isNull',

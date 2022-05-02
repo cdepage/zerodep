@@ -23,7 +23,7 @@ import { GuardJSONOptions, guardJSONHOF } from '@zerodep/guard.json';
 
 // uses a custom configuration options
 const options: GuardJSONOptions = { min: 0, max: 1 };
-const guardJSON = guardJsonHOF(options);
+const guardJSON = guardJSONHOF(options);
 
 guardJSON({ key: 'value' }); // void
 guardJSON('a string'); // throws ZeroDepErrorGuardType
@@ -130,10 +130,10 @@ guardJSON('a string'); // throws ZeroDepErrorGuard
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
-import { GuardJSONOptions, guardJsonHOF } from '@zerodep/guard.json';
+import { GuardJSONOptions, guardJSONHOF } from '@zerodep/guard.json';
 
 const options: GuardJSONOptions = { minQuantity: 2, maxQuantity: 5 };
-const guardJSON = guardJsonHOF(options);
+const guardJSON = guardJSONHOF(options);
 
 guardJSON({ key: 'value', another: 'value' }); // void
 guardJSON('a string'); // throws ZeroDepErrorGuardType
