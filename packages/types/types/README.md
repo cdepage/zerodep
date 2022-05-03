@@ -46,8 +46,10 @@ This barrel package includes all `@zerodep/to.*` packages:
 
 | Type Name | Package | Purpose |
 | --- | --- | --- |
+| TypesCurrencies &<br>TypesCurrenciesCrypto | [types.currencies](https://www.npmjs.com/package/@zerodep/types.currencies) | Typescript `type` declaration of currencies and crypto-currencies |
 | TypesLocales | [types.locales](https://www.npmjs.com/package/@zerodep/types.locales) | Typescript `type` declaration of locales |
 | TypesTimeZones | [types.timezones](https://www.npmjs.com/package/@zerodep/types.timezones) | Typescript `type` declaration of time zones |
+| TypesUnits | [types.units](https://www.npmjs.com/package/@zerodep/types.units) | Typescript `type` declaration of supported units of measure |
 
 ## How to Use
 

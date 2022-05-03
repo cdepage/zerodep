@@ -13,7 +13,7 @@ The toString method may be optionally configured. You may specify a specific loc
 A quick howto by examples for quick reference:
 
 ```typescript
-import { toString } from '@zerodep/to.json';
+import { toString } from '@zerodep/to.string';
 
 // uses the default configuration options
 toString(42); // "42"
@@ -26,7 +26,7 @@ toString(Symbol()); // throws ZeroDepErrorTo
 and
 
 ```typescript
-import { toStringHOF, ToStringptions } from '@zerodep/to.json';
+import { toStringHOF, ToStringptions } from '@zerodep/to.string';
 
 // uses a custom configuration options
 const options: ToStringptions = { locale: 'en-GB' };

@@ -1,0 +1,52 @@
+{
+  "root": "packages/types/types.currencies",
+  "sourceRoot": "packages/types/types.currencies/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/types/types.currencies",
+          "rollup -c packages/types/types.currencies/rollup.config.ts",
+          "mv dist/packages/types/types.currencies/index.esm.d.ts dist/packages/types/types.currencies/index.d.ts",
+          "rm dist/packages/types/types.currencies/index.cjs.d.ts",
+          "cp packages/types/types.currencies/README.md dist/packages/types/types.currencies/README.md",
+          "cp packages/types/types.currencies/package.json dist/packages/types/types.currencies/package.json",
+          "rm dist/packages/types/types.currencies/index.esm.js",
+          "rm dist/packages/types/types.currencies/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/types/types.currencies/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/types/types.currencies"],
+      "options": {
+        "jestConfig": "packages/types/types.currencies/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/types/types.currencies"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/types/types.currencies"
+      }
+    }
+  },
+  "tags": []
+}

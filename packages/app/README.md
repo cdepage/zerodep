@@ -1,6 +1,8 @@
 # @zerodep/app
 
-This is a library of commonly used utilities, tests, and guards that help developers write better software. This is a barrel package of all `@zerodep.*` packages and higher-order functions.
+This is a library of commonly used utilities, formatters, tests, and guards that help developers be more productive. This is a barrel package of all `@zerodep.*` packages, higher-order functions, and types.
+
+Works in the browser and on the server. Includes typescript definitions as well as tree-shakable CJS and ESM exports. Works out-of-the-box; may be configured as required.
 
 ## Table of Contents
 
@@ -8,11 +10,13 @@ This is a library of commonly used utilities, tests, and guards that help develo
 - [Included Packages](#included-packages)
   - [Base Error](#base-error)
   - [Can](#can)
+  - [Format](#format)
   - [Guard](#guard)
   - [Is](#is)
+  - [Locale](#locale)
   - [To](#to)
   - [Types](#types)
-- [How to Use](#how-to-use)
+- [Related Packages](#related-packages)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
@@ -37,6 +41,8 @@ The `@zerodep/app` package is a tree-shakable collection of all packages in the 
 | --- | --- | --- |
 | ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods |
 
+<br />
+
 ### Can
 
 A set of functions that test for specific language construct capabilities or features.
@@ -44,6 +50,19 @@ A set of functions that test for specific language construct capabilities or fea
 | Method Name | Package | Purpose |
 | --- | --- | --- |
 | canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safeguards) |
+
+<br />
+
+### Format
+
+A set of locale-aware, configurable higher order functions that format a value for a specific use case.
+
+| Method Name | Package | Purpose |
+| --- | --- | --- |
+| formatCurrency | [format.currency](https://www.npmjs.com/package/@zerodep/format.currency) | A locale-aware, configurable HOF to format a value as a currency |
+| ZeroDepErrorFormat | [format.errors](https://www.npmjs.com/package/@zerodep/format.errors) | The error types thrown by `@zerodep/format.*` methods, they all subclass the ZeroDepError object |
+
+<br />
 
 ### Guard
 
@@ -63,6 +82,8 @@ A set of configurable higher order functions that guard for specific data types.
 | guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable HOF to guard against non-object literal arguments |
 | guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable HOF to guard against non-string arguments |
 | ZeroDepErrorGuard, <br />ZeroDepErrorGuardType, <br />ZeroDepErrorGuardRange | [guard.errors](https://www.npmjs.com/package/@zerodep/guard.errors) | The error types thrown by `@zerodep/guard.*` methods, they all subclass the ZeroDepError object |
+
+<br />
 
 ### Is
 
@@ -93,6 +114,19 @@ A set of utility methods to determine if a given value is of a specific type.
 | isWeakMap | [is.weakmap](https://www.npmjs.com/package/@zerodep/is.weakmap) | A utility to determine if a value is a WeakMap |
 | isWeakSet | [is.weakset](https://www.npmjs.com/package/@zerodep/is.weakset) | A utility to determine if a value is a WeakSet |
 
+<br />
+
+### Locale
+
+A set of helper functions to work with locales.
+
+| Method Name | Package | Purpose |
+| --- | --- | --- |
+| localeGet | [locale.get](https://www.npmjs.com/package/@zerodep/locale.get) | A helper to get the locales of the environment (server or browser) |
+| localeSettings | [locale.settings](https://www.npmjs.com/package/@zerodep/locale.settings) | The locale configuration/settings for all locale-aware packages in the @zerodep monorepo |
+
+<br />
+
 ### To
 
 A set of higher order functions to convert a value to a specific data type.
@@ -100,8 +134,11 @@ A set of higher order functions to convert a value to a specific data type.
 | Method Name | Package | Purpose |
 | --- | --- | --- |
 | toJSON | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOF to convert a value to a JSON object |
+| toNumber | [to.number](https://www.npmjs.com/package/@zerodep/to.number) | A configurable HOF to convert a value to a number |
 | toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOF to convert a value to a string |
 | ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by `@zerodep/to.*` methods, they all subclass the `ZeroDepError` object |
+
+<br />
 
 ### Types
 
@@ -109,18 +146,22 @@ Some useful typescript `type` declarations.
 
 | Type Name | Package | Purpose |
 | --- | --- | --- |
+| TypesCurrencies &<br>TypesCurrenciesCrypto | [types.currencies](https://www.npmjs.com/package/@zerodep/types.currencies) | Typescript `type` declaration of currencies and crypto-currencies |
 | TypesLocales | [types.locales](https://www.npmjs.com/package/@zerodep/types.locales) | Typescript `type` declaration of locales |
 | TypesTimeZones | [types.timezones](https://www.npmjs.com/package/@zerodep/types.timezones) | Typescript `type` declaration of time zones |
+| TypesUnits | [types.units](https://www.npmjs.com/package/@zerodep/types.units) | Typescript `type` declaration of supported units of measure |
 
 ## Related Packages
 
 The following @zerodep packages may be helpful or more appropriate for your specific case:
 
-- [@zerodep/can](https://www.npmjs.com/package/@zerodep/can) - a barrel package of all `@zerodep/can.*` detectors
-- [@zerodep/guard](https://www.npmjs.com/package/@zerodep/guard) - a barrel package of all `@zerodep/guard.*` defensive guards
-- [@zerodep/is](https://www.npmjs.com/package/@zerodep/is) - a barrel package of all `@zerodep/is.*` utilities
-- [@zerodep/to](https://www.npmjs.com/package/@zerodep/to) - a barrel package of all `@zerodep/to.*` converters
-- [@zerodep/types](https://www.npmjs.com/package/@zerodep/types) - a barrel package of all `@zerodep/types.*` declarations
+- [@zerodep/can](https://www.npmjs.com/package/@zerodep/can) - a barrel package of `@zerodep/can.*` detectors
+- [@zerodep/format](https://www.npmjs.com/package/@zerodep/format) - a barrel package of `@zerodep/format.*` formatters
+- [@zerodep/guard](https://www.npmjs.com/package/@zerodep/guard) - a barrel package of `@zerodep/guard.*` defensive guards
+- [@zerodep/is](https://www.npmjs.com/package/@zerodep/is) - a barrel package of `@zerodep/is.*` utilities
+- [@zerodep/locale](https://www.npmjs.com/package/@zerodep/locale) - a barrel package of `@zerodep/locale.*` tools
+- [@zerodep/to](https://www.npmjs.com/package/@zerodep/to) - a barrel package of `@zerodep/to.*` converters
+- [@zerodep/types](https://www.npmjs.com/package/@zerodep/types) - a barrel package of `@zerodep/types.*` declarations
 
 ## Advantages of @zerodep Packages
 

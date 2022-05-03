@@ -4,4 +4,4 @@ export type ZeroDepErrorCategory = 'type' | 'range' | 'reference' | 'syntax' | '
 
 // DEV REMINDER:
 // - update the README.md when this is changed
-export type ZeroDepErrorSource = 'guard' | 'to' | 'unknown';
+export type ZeroDepErrorSource = 'format' | 'guard' | 'to' | 'unknown';

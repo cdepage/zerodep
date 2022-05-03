@@ -4,6 +4,8 @@ A set of functions that test for specific language construct capabilities or fea
 
 This is a barrel package of all `@zerodep/can.*` utility packages within the @zerodep monorepo.
 
+Works in the browser and on the server. Includes typescript definitions as well as tree-shakable CJS and ESM exports.
+
 ## tl;dr
 
 A quick howto by examples for quick reference:

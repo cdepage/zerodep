@@ -45,6 +45,7 @@ export type TypesLocales =
   | 'en-IE'
   | 'en-IN'
   | 'en-MT'
+  | 'en-MX'
   | 'en-NZ'
   | 'en-PH'
   | 'en-SG'

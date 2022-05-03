@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 This is a rollup of all CHANGELOG files in the monorepo. Each package also has its own CHANGELOG.
 
+## [Unreleased]
+
+### Added
+
+- Introduce the `format` barrel package
+- Introduce the `format.currency` formatter
+- Introduce the `locale` barrel package
+- Introduce the `locale.get` utility
+- Introduce the `locale.settings` manager
+- Introduce the `types.currencies` type declaration
+- Introduce the `types.units` type declaration
+- Introduce the `to.number` converter
+- Introduce the `locale` barrel package
+- Introduce the `locale.get` helper
+- Introduce the `locale.settings` helper
+
 ## [0.7.0] - 2022-05-02
 
 ### Changed

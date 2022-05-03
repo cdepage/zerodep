@@ -1,0 +1,55 @@
+{
+  "root": "packages/locale/locale.get",
+  "sourceRoot": "packages/locale/locale.get/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/locale/locale.get",
+          "rollup -c packages/locale/locale.get/rollup.config.ts",
+          "mv dist/packages/locale/locale.get/index.esm.d.ts dist/packages/locale/locale.get/index.d.ts",
+          "rm dist/packages/locale/locale.get/index.cjs.d.ts",
+          "cp packages/locale/locale.get/README.md dist/packages/locale/locale.get/README.md",
+          "cp packages/locale/locale.get/package.json dist/packages/locale/locale.get/package.json",
+          "uglifyjs dist/packages/locale/locale.get/index.esm.js -o dist/packages/locale/locale.get/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/locale/locale.get/index.cjs.js -o dist/packages/locale/locale.get/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/locale/locale.get/index.esm.js",
+          "rm dist/packages/locale/locale.get/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/locale/locale.get/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/locale/locale.get"],
+      "options": {
+        "jestConfig": "packages/locale/locale.get/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/locale/locale.get"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/locale/locale.get"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["types.locales"]
+}

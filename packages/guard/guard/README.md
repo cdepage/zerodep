@@ -2,7 +2,9 @@
 
 A set of utility higher order functions that guard for specific data types
 
-This is a barrel package of all `@zerodep/can.*` utility packages within the @zerodep monorepo.
+This is a barrel package of all `@zerodep/can.*` defensive utility packages within the @zerodep monorepo.
+
+Works in the browser and on the server. Includes typescript definitions as well as tree-shakable CJS and ESM exports. Works out-of-the-box; may be configured as required.
 
 ## tl;dr
 

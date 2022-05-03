@@ -64,5 +64,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["types.locales", "types.timezones"]
+  "implicitDependencies": ["types.currencies", "types.locales", "types.timezones", "types.units"]
 }

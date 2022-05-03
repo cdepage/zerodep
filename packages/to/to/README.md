@@ -4,6 +4,8 @@ A set of utility methods to convert a value to a specific data type (or throw an
 
 This is a barrel package of all `@zerodep/to.*` utility packages within the @zerodep monorepo.
 
+Works in the browser and on the server. Includes typescript definitions as well as tree-shakable CJS and ESM exports. Works out-of-the-box; may be configured as required.
+
 ## tl;dr
 
 A quick howto by examples for quick reference:
@@ -47,6 +49,7 @@ This barrel package includes all `@zerodep/to.*` packages:
 | Method Name | Package | Purpose |
 | --- | --- | --- |
 | toJSON | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOF to convert a value to a JSON object |
+| toNumber | [to.number](https://www.npmjs.com/package/@zerodep/to.number) | A configurable HOF to convert a value to a number |
 | toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOF to convert a value to a string |
 | ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by `@zerodep/to.*` methods, they all subclass the `ZeroDepError` object |
 

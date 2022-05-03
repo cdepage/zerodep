@@ -1,0 +1,19 @@
+{
+  "name": "@zerodep/get.locale",
+  "description": "A utility to get the locale of the environment (server or browser)",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/locale/locale"
+  },
+  "homepage": "https://github.com/cdepage/zerodep",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris.depage+zerodep@gmail.com>",
+  "sideEffects": false,
+  "main": "index.cjs.min.js",
+  "module": "index.esm.min.js",
+  "types": "index.d.ts",
+  "keywords": []
+}

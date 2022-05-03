@@ -1,0 +1,18 @@
+export type TypesCurrenciesCrypto =
+  | 'ADA'
+  | 'BCH'
+  | 'BNB'
+  | 'BSV'
+  | 'BTC'
+  | 'DASH'
+  | 'DOGE'
+  | 'EOS'
+  | 'ETH'
+  | 'LTC'
+  | 'VTC'
+  | 'XLM'
+  | 'XMR'
+  | 'XNO'
+  | 'XRP'
+  | 'XTZ'
+  | 'ZEC';
