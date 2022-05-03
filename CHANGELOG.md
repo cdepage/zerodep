@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 This is a rollup of all CHANGELOG files in the monorepo. Each package also has its own CHANGELOG.
 
-## [Unreleased]
+## [0.8.0] - 2022-05-03
 
 ### Added
 
@@ -21,6 +21,10 @@ This is a rollup of all CHANGELOG files in the monorepo. Each package also has i
 - Introduce the `locale` barrel package
 - Introduce the `locale.get` helper
 - Introduce the `locale.settings` helper
+
+### Changed
+
+- README updates
 
 ## [0.7.0] - 2022-05-02
 

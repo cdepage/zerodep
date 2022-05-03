@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is.regex",
   "description": "A utility to determine if a value is a regular expression",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "repository": {
     "type": "git",

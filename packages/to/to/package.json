@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/to",
   "description": "A set of utility methods to convert a value to a specific data type",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "MIT",
   "repository": {
     "type": "git",

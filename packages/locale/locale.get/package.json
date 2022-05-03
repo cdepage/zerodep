@@ -1,5 +1,5 @@
 {
-  "name": "@zerodep/get.locale",
+  "name": "@zerodep/locale.get",
   "description": "A utility to get the locale of the environment (server or browser)",
   "version": "0.1.0",
   "license": "MIT",

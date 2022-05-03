@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/format.errors",
   "description": "A namespacing for errors thrown by @zerodep/format.* packages",
-  "version": "0.1.4",
+  "version": "0.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",

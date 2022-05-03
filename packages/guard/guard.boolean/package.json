@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/guard.boolean",
   "description": "A higher-order function / defensive programming utility to guard against non-boolean arguments",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "repository": {
     "type": "git",
