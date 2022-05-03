@@ -23,7 +23,7 @@ const numberFromLocaleString = (value: string): number | null => {
   }
 
   const qtyNumbers = (cleanedValue.match(/\d/g) || []).length;
-  const qtyCommas = (cleanedValue.match(/\,/g) || []).length;
+  const qtyCommas = (cleanedValue.match(/,/g) || []).length;
   const qtyPeriods = (cleanedValue.match(/\./g) || []).length;
 
   // if there are no numbers, commas or decimal points, this isn't a number we can parse
@@ -33,7 +33,7 @@ const numberFromLocaleString = (value: string): number | null => {
 
   // there can be multiple thousands-separators, but only one decimal separator
   if (qtyCommas > 1) {
-    const possibleNumber2 = cleanedValue.replace(/\,/g, '');
+    const possibleNumber2 = cleanedValue.replace(/,/g, '');
     const try2 = Number(possibleNumber2);
     if (isNumber(try2)) {
       return try2;

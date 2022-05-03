@@ -2,19 +2,6 @@
   "root": "packages/guard/guard.errors",
   "sourceRoot": "packages/guard/guard.errors/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "compiler": "swc",
-        "project": "packages/guard/guard.errors/package.json",
-        "entryFile": "packages/guard/guard.errors/src/index.ts",
-        "outputPath": "dist/packages/guard/guard.errors",
-        "deleteOutputPath": true,
-        "format": ["esm", "cjs"],
-        "tsConfig": "packages/guard/guard.errors/tsconfig.lib.json"
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

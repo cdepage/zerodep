@@ -2,19 +2,6 @@
   "root": "packages/is/is.weakmap",
   "sourceRoot": "packages/is/is.weakmap/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "compiler": "swc",
-        "project": "packages/is/is.weakmap/package.json",
-        "entryFile": "packages/is/is.weakmap/src/index.ts",
-        "outputPath": "dist/packages/is/is.weakmap",
-        "deleteOutputPath": true,
-        "format": ["esm", "cjs"],
-        "tsConfig": "packages/is/is.weakmap/tsconfig.lib.json"
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

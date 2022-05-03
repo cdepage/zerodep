@@ -2,19 +2,6 @@
   "root": "packages/is/is.symbol",
   "sourceRoot": "packages/is/is.symbol/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "compiler": "swc",
-        "project": "packages/is/is.symbol/package.json",
-        "entryFile": "packages/is/is.symbol/src/index.ts",
-        "outputPath": "dist/packages/is/is.symbol",
-        "deleteOutputPath": true,
-        "format": ["esm", "cjs"],
-        "tsConfig": "packages/is/is.symbol/tsconfig.lib.json"
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

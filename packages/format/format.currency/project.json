@@ -2,19 +2,6 @@
   "root": "packages/format/format.currency",
   "sourceRoot": "packages/format/format.currency/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "compiler": "swc",
-        "project": "packages/format/format.currency/package.json",
-        "entryFile": "packages/format/format.currency/src/index.ts",
-        "outputPath": "dist/packages/format/format.currency",
-        "deleteOutputPath": true,
-        "format": ["esm", "cjs"],
-        "tsConfig": "packages/format/format.currency/tsconfig.lib.json"
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

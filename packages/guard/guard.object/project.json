@@ -2,19 +2,6 @@
   "root": "packages/guard/guard.object",
   "sourceRoot": "packages/guard/guard.object/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "compiler": "swc",
-        "project": "packages/guard/guard.object/package.json",
-        "entryFile": "packages/guard/guard.object/src/index.ts",
-        "outputPath": "dist/packages/guard/guard.object",
-        "deleteOutputPath": true,
-        "format": ["esm", "cjs"],
-        "tsConfig": "packages/guard/guard.object/tsconfig.lib.json"
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

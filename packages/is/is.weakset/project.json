@@ -2,19 +2,6 @@
   "root": "packages/is/is.weakset",
   "sourceRoot": "packages/is/is.weakset/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "compiler": "swc",
-        "project": "packages/is/is.weakset/package.json",
-        "entryFile": "packages/is/is.weakset/src/index.ts",
-        "outputPath": "dist/packages/is/is.weakset",
-        "deleteOutputPath": true,
-        "format": ["esm", "cjs"],
-        "tsConfig": "packages/is/is.weakset/tsconfig.lib.json"
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

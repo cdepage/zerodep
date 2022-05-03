@@ -2,19 +2,6 @@
   "root": "packages/is/is.object",
   "sourceRoot": "packages/is/is.object/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "compiler": "swc",
-        "project": "packages/is/is.object/package.json",
-        "entryFile": "packages/is/is.object/src/index.ts",
-        "outputPath": "dist/packages/is/is.object",
-        "deleteOutputPath": true,
-        "format": ["esm", "cjs"],
-        "tsConfig": "packages/is/is.object/tsconfig.lib.json"
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

@@ -2,19 +2,6 @@
   "root": "packages/can/can.iterate",
   "sourceRoot": "packages/can/can.iterate/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "compiler": "swc",
-        "project": "packages/can/can.iterate/package.json",
-        "entryFile": "packages/can/can.iterate/src/index.ts",
-        "outputPath": "dist/packages/can/can.iterate",
-        "deleteOutputPath": true,
-        "format": ["esm", "cjs"],
-        "tsConfig": "packages/can/can.iterate/tsconfig.lib.json"
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

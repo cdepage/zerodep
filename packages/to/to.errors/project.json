@@ -2,19 +2,6 @@
   "root": "packages/to/to.errors",
   "sourceRoot": "packages/to/to.errors/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "compiler": "swc",
-        "project": "packages/to/to.errors/package.json",
-        "entryFile": "packages/to/to.errors/src/index.ts",
-        "outputPath": "dist/packages/to/to.errors",
-        "deleteOutputPath": true,
-        "format": ["esm", "cjs"],
-        "tsConfig": "packages/to/to.errors/tsconfig.lib.json"
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

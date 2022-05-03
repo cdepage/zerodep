@@ -2,19 +2,6 @@
   "root": "packages/is/is.promise",
   "sourceRoot": "packages/is/is.promise/src",
   "targets": {
-    "originalBuild": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "compiler": "swc",
-        "project": "packages/is/is.promise/package.json",
-        "entryFile": "packages/is/is.promise/src/index.ts",
-        "outputPath": "dist/packages/is/is.promise",
-        "deleteOutputPath": true,
-        "format": ["esm", "cjs"],
-        "tsConfig": "packages/is/is.promise/tsconfig.lib.json"
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
