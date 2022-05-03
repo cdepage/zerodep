@@ -1,5 +1,5 @@
 import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guard.errors';
-import { isJson } from '@zerodep/is.json';
+import { isJSON } from '@zerodep/is.json';
 
 export interface GuardJSONOptions {
   minQuantity?: number;
@@ -17,7 +17,7 @@ export const guardJSONHOF = (options: GuardJSONOptions = {}) => {
 
   return (value: any): void => {
     // we need to check for the typeof first as "undefined" will cause isFloat() to error
-    if (!isJson(value)) {
+    if (!isJSON(value)) {
       const error = new ZeroDepErrorGuardType('Value is not a JSON object');
       error.value = value;
       throw error;

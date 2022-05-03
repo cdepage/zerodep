@@ -1,0 +1,52 @@
+{
+  "root": "packages/types/types.units",
+  "sourceRoot": "packages/types/types.units/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/types/types.units",
+          "rollup -c packages/types/types.units/rollup.config.ts",
+          "mv dist/packages/types/types.units/index.esm.d.ts dist/packages/types/types.units/index.d.ts",
+          "rm dist/packages/types/types.units/index.cjs.d.ts",
+          "cp packages/types/types.units/README.md dist/packages/types/types.units/README.md",
+          "cp packages/types/types.units/package.json dist/packages/types/types.units/package.json",
+          "rm dist/packages/types/types.units/index.esm.js",
+          "rm dist/packages/types/types.units/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/types/types.units/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/types/types.units"],
+      "options": {
+        "jestConfig": "packages/types/types.units/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/types/types.units"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/types/types.units"
+      }
+    }
+  },
+  "tags": []
+}

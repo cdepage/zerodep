@@ -4,6 +4,8 @@ A set of functions that test for specific language construct capabilities or fea
 
 This is a barrel package of all `@zerodep/can.*` utility packages within the @zerodep monorepo.
 
+Works in the browser and on the server. Includes typescript definitions as well as tree-shakable CJS and ESM exports.
+
 ## tl;dr
 
 A quick howto by examples for quick reference:
@@ -42,7 +44,7 @@ This barrel package includes all `@zerodep/can.*` packages :
 
 | Method Name | Package | Purpose |
 | --- | --- | --- |
-| canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safecans) |
+| canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safeguards) |
 
 ## How to Use
 

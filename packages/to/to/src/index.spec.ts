@@ -6,6 +6,8 @@ describe('To barrel package', () => {
       'ZeroDepErrorTo',
       'toJSON',
       'toJSONHOF',
+      'toNumber',
+      'toNumberHOF',
       'toString',
       'toStringHOF',
     ]);

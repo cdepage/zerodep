@@ -1,0 +1,67 @@
+{
+  "root": "packages/format/format.currency",
+  "sourceRoot": "packages/format/format.currency/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/format/format.currency/package.json",
+        "entryFile": "packages/format/format.currency/src/index.ts",
+        "outputPath": "dist/packages/format/format.currency",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/format/format.currency/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/format/format.currency",
+          "rollup -c packages/format/format.currency/rollup.config.ts",
+          "mv dist/packages/format/format.currency/index.esm.d.ts dist/packages/format/format.currency/index.d.ts",
+          "rm dist/packages/format/format.currency/index.cjs.d.ts",
+          "cp packages/format/format.currency/README.md dist/packages/format/format.currency/README.md",
+          "cp packages/format/format.currency/package.json dist/packages/format/format.currency/package.json",
+          "uglifyjs dist/packages/format/format.currency/index.esm.js -o dist/packages/format/format.currency/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/format/format.currency/index.cjs.js -o dist/packages/format/format.currency/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/format/format.currency/index.esm.js",
+          "rm dist/packages/format/format.currency/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/format/format.currency/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/format/format.currency"],
+      "options": {
+        "jestConfig": "packages/format/format.currency/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/format/format.currency"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/format/format.currency"
+      }
+    }
+  },
+  "tags": []
+}

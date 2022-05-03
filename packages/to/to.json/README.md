@@ -84,7 +84,7 @@ declare const toJSON: (value: any | any[]) => any[] | Record<string, any> | null
 
 // customizing the configuration options
 declare const toJSONHOF: <T = any[] | Record<string, any>>(
-  options?: ToJsonOptions
+  options?: ToJSONOptions
 ) => (value: any | any[]) => T | null;
 
 // optional configuration

@@ -2,7 +2,9 @@
 
 A set of utility higher order functions that guard for specific data types
 
-This is a barrel package of all `@zerodep/can.*` utility packages within the @zerodep monorepo.
+This is a barrel package of all `@zerodep/can.*` defensive utility packages within the @zerodep monorepo.
+
+Works in the browser and on the server. Includes typescript definitions as well as tree-shakable CJS and ESM exports. Works out-of-the-box; may be configured as required.
 
 ## tl;dr
 
@@ -50,8 +52,6 @@ This barrel package includes all `@zerodep/guard.*` packages:
 
 | Method Name | Package | Purpose |
 | --- | --- | --- |
-| ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods |
-|  |  |
 | guardArray | [guard.array](https://www.npmjs.com/package/@zerodep/guard.array) | A configurable HOF to guard against non-array arguments |
 | guardBigInt | [guard.bigint](https://www.npmjs.com/package/@zerodep/guard.bigint) | A configurable HOF to guard against non-BigInt arguments |
 | guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable HOF to guard against non-boolean arguments |
@@ -63,7 +63,7 @@ This barrel package includes all `@zerodep/guard.*` packages:
 | guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable HOF to guard against non-float/non-integer arguments |
 | guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable HOF to guard against non-object literal arguments |
 | guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable HOF to guard against non-string arguments |
-| ZeroDepErrorGuard, <br />ZeroDepErrorGuardType, <br />ZeroDepErrorGuardRange | [guard.errors](https://www.npmjs.com/package/@zerodep/guard.errors) | The error types thrown by @zerodep/guard methods, they all subclass the `ZeroDepError` class, some with additional properties |
+| ZeroDepErrorGuard, <br />ZeroDepErrorGuardType, <br />ZeroDepErrorGuardRange | [guard.errors](https://www.npmjs.com/package/@zerodep/guard.errors) | The error types thrown by `@zerodep/guard.*` methods, they all subclass the ZeroDepError object |
 
 ## How to Use
 

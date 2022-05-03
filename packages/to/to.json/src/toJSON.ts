@@ -87,23 +87,23 @@ export const toJSONHOF = <T = Record<string, any> | any[]>(options: ToJSONOption
       return value.toJSON();
     }
 
-    let maybeJson: any;
+    let maybeJSON: any;
 
     // maps can be converted to object literals
     if (isMap(value)) {
-      maybeJson = Object.fromEntries(value);
+      maybeJSON = Object.fromEntries(value);
     }
 
     // sets can be converted to arrays
     if (isSet(value)) {
-      maybeJson = [...value];
+      maybeJSON = [...value];
     }
 
     try {
       // dev reminders:
       // - undefined is converted to null by stringify()
       // - the replacer converts nested values recursively
-      const json = JSON.parse(JSON.stringify(maybeJson ?? value, replacer));
+      const json = JSON.parse(JSON.stringify(maybeJSON ?? value, replacer));
 
       // final paranoid check
       if (isObject(json) || isArray(json)) {

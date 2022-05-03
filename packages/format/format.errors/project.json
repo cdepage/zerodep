@@ -1,0 +1,67 @@
+{
+  "root": "packages/format/format.errors",
+  "sourceRoot": "packages/format/format.errors/src",
+  "targets": {
+    "originalBuild": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "swc",
+        "project": "packages/format/format.errors/package.json",
+        "entryFile": "packages/format/format.errors/src/index.ts",
+        "outputPath": "dist/packages/format/format.errors",
+        "deleteOutputPath": true,
+        "format": ["esm", "cjs"],
+        "tsConfig": "packages/format/format.errors/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/format/format.errors",
+          "rollup -c packages/format/format.errors/rollup.config.ts",
+          "mv dist/packages/format/format.errors/index.esm.d.ts dist/packages/format/format.errors/index.d.ts",
+          "rm dist/packages/format/format.errors/index.cjs.d.ts",
+          "cp packages/format/format.errors/README.md dist/packages/format/format.errors/README.md",
+          "cp packages/format/format.errors/package.json dist/packages/format/format.errors/package.json",
+          "uglifyjs dist/packages/format/format.errors/index.esm.js -o dist/packages/format/format.errors/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/format/format.errors/index.cjs.js -o dist/packages/format/format.errors/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/format/format.errors/index.esm.js",
+          "rm dist/packages/format/format.errors/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/format/format.errors/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/format/format.errors"],
+      "options": {
+        "jestConfig": "packages/format/format.errors/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/format/format.errors"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/format/format.errors"
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,55 @@
+{
+  "root": "packages/locale/locale.settings",
+  "sourceRoot": "packages/locale/locale.settings/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/locale/locale.settings",
+          "rollup -c packages/locale/locale.settings/rollup.config.ts",
+          "mv dist/packages/locale/locale.settings/index.esm.d.ts dist/packages/locale/locale.settings/index.d.ts",
+          "rm dist/packages/locale/locale.settings/index.cjs.d.ts",
+          "cp packages/locale/locale.settings/README.md dist/packages/locale/locale.settings/README.md",
+          "cp packages/locale/locale.settings/package.json dist/packages/locale/locale.settings/package.json",
+          "uglifyjs dist/packages/locale/locale.settings/index.esm.js -o dist/packages/locale/locale.settings/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/locale/locale.settings/index.cjs.js -o dist/packages/locale/locale.settings/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/locale/locale.settings/index.esm.js",
+          "rm dist/packages/locale/locale.settings/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/locale/locale.settings/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/locale/locale.settings"],
+      "options": {
+        "jestConfig": "packages/locale/locale.settings/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/locale/locale.settings"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/locale/locale.settings"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["types.locales"]
+}

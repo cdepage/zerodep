@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Introduce the `format` barrel package
+- Introduce the `format.currency` formatter
+- Introduce the `locale` barrel package
+- Introduce the `locale.get` utility
+- Introduce the `locale.settings` manager
+- Introduce the `types.currencies` type declaration
+- Introduce the `types.units` type declaration
+- Introduce the `to.number` converter
+- Introduce the `locale` barrel package
+- Introduce the `locale.get` helper
+- Introduce the `locale.settings` helper
+
+## [0.4.0] - 2022-05-02
+
+### Changed
+
+- Fix casing of the exported `isJSON` and `toJSON` utilities, included associated documentation
+
+## [0.3.1] - 2022-05-02
+
+### Changed
+
+- Updated README to be more comprehensive
+
 ## [0.3.0] - 2022-05-02
 
 ### Added

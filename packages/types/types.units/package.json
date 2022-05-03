@@ -1,0 +1,17 @@
+{
+  "name": "@zerodep/types.units",
+  "description": "A typescript type declaration of support units of measure",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/types/types.locale"
+  },
+  "homepage": "https://github.com/cdepage/zerodep",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris.depage+zerodep@gmail.com>",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "keywords": []
+}
