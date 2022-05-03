@@ -1,4 +1,4 @@
-import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guard.errors';
+import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/errors';
 import { isJSON } from '@zerodep/is.json';
 
 export interface GuardJSONOptions {

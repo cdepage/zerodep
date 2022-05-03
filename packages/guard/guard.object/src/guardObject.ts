@@ -1,4 +1,4 @@
-import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guard.errors';
+import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/errors';
 import { isObject } from '@zerodep/is.object';
 
 export interface GuardObjectOptions {

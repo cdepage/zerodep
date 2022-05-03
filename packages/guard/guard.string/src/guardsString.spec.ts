@@ -1,4 +1,4 @@
-import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/guard.errors';
+import { ZeroDepErrorGuardRange, ZeroDepErrorGuardType } from '@zerodep/errors';
 import { testData } from '../../../testValues';
 import { guardString, guardStringHOF, GuardStringOptions } from './guardString';
 

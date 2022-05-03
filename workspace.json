@@ -7,13 +7,11 @@
     "errors": "packages/errors",
     "format": "packages/format/format",
     "format.currency": "packages/format/format.currency",
-    "format.errors": "packages/format/format.errors",
     "guard": "packages/guard/guard",
     "guard.array": "packages/guard/guard.array",
     "guard.bigint": "packages/guard/guard.bigint",
     "guard.boolean": "packages/guard/guard.boolean",
     "guard.date": "packages/guard/guard.date",
-    "guard.errors": "packages/guard/guard.errors",
     "guard.float": "packages/guard/guard.float",
     "guard.function": "packages/guard/guard.function",
     "guard.integer": "packages/guard/guard.integer",
@@ -49,7 +47,6 @@
     "locale.get": "packages/locale/locale.get",
     "locale.settings": "packages/locale/locale.settings",
     "to": "packages/to/to",
-    "to.errors": "packages/to/to.errors",
     "to.json": "packages/to/to.json",
     "to.number": "packages/to/to.number",
     "to.string": "packages/to/to.string",
@@ -58,6 +55,6 @@
     "types.locales": "packages/types/types.locales",
     "types.timezones": "packages/types/types.timezones",
     "types.units": "packages/types/types.units",
-    "utils": "packages/utils"
+    "utils": "packages/barrels/utils"
   }
 }

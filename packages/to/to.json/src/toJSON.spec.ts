@@ -1,4 +1,4 @@
-import { ZeroDepErrorTo } from '@zerodep/to.errors';
+import { ZeroDepErrorTo } from '@zerodep/errors';
 import {
   TestClass1,
   TestClass2,

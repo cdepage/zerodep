@@ -9,7 +9,7 @@ import { isString } from '@zerodep/is.string';
 import { isTypedArray } from '@zerodep/is.typedarray';
 import { isWeakMap } from '@zerodep/is.weakmap';
 import { isWeakSet } from '@zerodep/is.weakset';
-import { ZeroDepErrorTo } from '@zerodep/to.errors';
+import { ZeroDepErrorTo } from '@zerodep/errors';
 import { toJSON } from '@zerodep/to.json';
 import { TypesLocales } from '@zerodep/types.locales';
 import { TypesTimeZones } from '@zerodep/types.timezones';

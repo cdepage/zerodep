@@ -1,7 +1,7 @@
 import { isNil } from '@zerodep/is.nil';
 import { isNumber } from '@zerodep/is.number';
 import { isString } from '@zerodep/is.string';
-import { ZeroDepErrorTo } from '@zerodep/to.errors';
+import { ZeroDepErrorTo } from '@zerodep/errors';
 
 // used if we need to figure out what characters are used for grouping or fractional separation
 // TODO: disabled as there is no need for this now

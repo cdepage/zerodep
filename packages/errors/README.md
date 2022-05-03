@@ -56,41 +56,55 @@ Most @zerodep packages will further subclass the `ZeroDepError` to provide even 
 
 ## Install
 
-This package is available from two differently sized and tree shakeable, npm packages:
+This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app) and [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) .
 
 ```
-// entire zerodep utils suite
+// all @zerodep features, capabilities and utilities
+npm install @zerodep/app
+
+// entire set of @zerodep utilities
 npm install @zerodep/utils
 
-// all @zerodep errors
+// only the errors package
 npm install @zerodep/errors
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
-For completeness, links to the @zerodep repositories with this function:
-
-- [@zerodep/utils](https://github.com/cdepage/zerodep/tree/main/packages/utils)
-- [@zerodep/errors](https://github.com/cdepage/zerodep/tree/main/packages/errors)
-
 ## How to Use
+
+This package exports the following error classes:
+
+- **ZeroDepError** - base namespace of all ZeroDep error objects
+- **ZeroDepErrorFormat**
+- **ZeroDepErrorGuard** - further subclassed by:
+  - **ZeroDepErrorGuardType**
+  - **ZeroDepErrorGuardRange**
+- **ZeroDepErrorTo**
 
 ### Signature
 
-```typescript
-// default values are shown, if they exist
-new ZeroDepError(
-  message: string = 'An unknown error has occurred',
-  category: ZeroDepErrorType = 'unknown',
-  source: ZeroDepErrorSource = 'unknown',
-  value?: any
-);
+Typescript declarations:
 
-// types, maps to native Error types
-type ZeroDepErrorTax = 'type' | 'range' | 'reference' | 'syntax' | 'uri' | 'unknown';
+```typescript
+declare class ZeroDepError extends Error {
+  category: ZeroDepErrorCategory;
+  source: ZeroDepErrorSource;
+  value: any;
+
+  constructor(
+    message?: string,
+    category?: ZeroDepErrorCategory,
+    source?: ZeroDepErrorSource,
+    value?: any
+  );
+}
+
+// types (intent is to have this field map to native Error types)
+type ZeroDepErrorCategory = 'type' | 'range' | 'reference' | 'syntax' | 'uri' | 'unknown';
 
 // sources (new values will be added as capabilities are added)
-type ZeroDepErrorSource = 'guard' | 'unknown';
+type ZeroDepErrorSource = 'format' | 'guard' | 'to' | 'unknown';
 ```
 
 ### Examples
@@ -98,8 +112,7 @@ type ZeroDepErrorSource = 'guard' | 'unknown';
 **Throwing**
 
 ```typescript
-import { ZeroDepError } from '@zerodep/utils';
-// or
+// import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
 import { ZeroDepError } from '@zerodep/errors';
 
 // all arguments are optional

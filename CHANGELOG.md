@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 This is a rollup of all CHANGELOG files in the monorepo. Each package also has its own CHANGELOG.
 
+## [Unreleased]
+
+### Changed
+
+- Refactor ZeroDepError classes
+
 ## [0.8.0] - 2022-05-03
 
 ### Added

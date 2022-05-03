@@ -14,7 +14,7 @@ import { isSymbol } from '@zerodep/is.symbol';
 import { isTypedArray } from '@zerodep/is.typedarray';
 import { isWeakMap } from '@zerodep/is.weakmap';
 import { isWeakSet } from '@zerodep/is.weakset';
-import { ZeroDepErrorTo } from '@zerodep/to.errors';
+import { ZeroDepErrorTo } from '@zerodep/errors';
 
 export interface ToJSONOptions {
   convertInvalidToNull?: boolean;

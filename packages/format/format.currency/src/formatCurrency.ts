@@ -1,4 +1,4 @@
-import { ZeroDepErrorFormat } from '@zerodep/format.errors';
+import { ZeroDepErrorFormat } from '@zerodep/errors';
 import { CurrencyOptions, localeSettings } from '@zerodep/locale.settings';
 import { toNumber } from '@zerodep/to.number';
 import { countryCurrencyMap } from './lib/countryCurrencyMap';

@@ -1,4 +1,4 @@
-import { ZeroDepErrorGuardType } from '@zerodep/guard.errors';
+import { ZeroDepErrorGuardType } from '@zerodep/errors';
 import { isBoolean } from '@zerodep/is.boolean';
 
 export interface GuardBooleanOptions {}

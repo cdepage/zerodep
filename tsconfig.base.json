@@ -21,13 +21,11 @@
       "@zerodep/errors": ["packages/errors/src/index.ts"],
       "@zerodep/format": ["packages/format/format/src/index.ts"],
       "@zerodep/format.currency": ["packages/format/format.currency/src/index.ts"],
-      "@zerodep/format.errors": ["packages/format/format.errors/src/index.ts"],
       "@zerodep/guard": ["packages/guard/guard/src/index.ts"],
       "@zerodep/guard.array": ["packages/guard/guard.array/src/index.ts"],
       "@zerodep/guard.bigint": ["packages/guard/guard.bigint/src/index.ts"],
       "@zerodep/guard.boolean": ["packages/guard/guard.boolean/src/index.ts"],
       "@zerodep/guard.date": ["packages/guard/guard.date/src/index.ts"],
-      "@zerodep/guard.errors": ["packages/guard/guard.errors/src/index.ts"],
       "@zerodep/guard.float": ["packages/guard/guard.float/src/index.ts"],
       "@zerodep/guard.function": ["packages/guard/guard.function/src/index.ts"],
       "@zerodep/guard.integer": ["packages/guard/guard.integer/src/index.ts"],
@@ -63,7 +61,6 @@
       "@zerodep/locale.get": ["packages/locale/locale.get/src/index.ts"],
       "@zerodep/locale.settings": ["packages/locale/locale.settings/src/index.ts"],
       "@zerodep/to": ["packages/to/to/src/index.ts"],
-      "@zerodep/to.errors": ["packages/to/to.errors/src/index.ts"],
       "@zerodep/to.json": ["packages/to/to.json/src/index.ts"],
       "@zerodep/to.number": ["packages/to/to.number/src/index.ts"],
       "@zerodep/to.string": ["packages/to/to.string/src/index.ts"],
@@ -72,7 +69,7 @@
       "@zerodep/types.locales": ["packages/types/types.locales/src/index.ts"],
       "@zerodep/types.timezones": ["packages/types/types.timezones/src/index.ts"],
       "@zerodep/types.units": ["packages/types/types.units/src/index.ts"],
-      "@zerodep/utils": ["packages/utils/src/index.ts"]
+      "@zerodep/utils": ["packages/barrels/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,11 +1,3 @@
-export type { ZeroDepError } from '@zerodep/errors';
-export type {
-  ZeroDepErrorGuard,
-  ZeroDepErrorGuardType,
-  ZeroDepErrorGuardRange,
-} from '@zerodep/guard.errors';
-
-export * from '@zerodep/guard.errors';
 export * from '@zerodep/guard.array';
 export * from '@zerodep/guard.bigint';
 export * from '@zerodep/guard.boolean';

@@ -3,9 +3,6 @@ import * as guards from './index';
 describe('Guards barrel package', () => {
   it('should export specific packages and interfaces', () => {
     expect(Object.keys(guards).sort()).toStrictEqual([
-      'ZeroDepErrorGuard',
-      'ZeroDepErrorGuardRange',
-      'ZeroDepErrorGuardType',
       'guardArray',
       'guardArrayHOF',
       'guardBigInt',

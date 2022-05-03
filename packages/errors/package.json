@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/errors",
-  "description": "The ZeroDepError class all @zerodep packages use/extend",
+  "description": "The ZeroDepError classes used by all @zerodep packages",
   "version": "0.1.5",
   "license": "MIT",
   "repository": {

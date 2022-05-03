@@ -1,8 +1,8 @@
-export type { ZeroDepError } from '@zerodep/errors';
 export type {
+  ZeroDepError,
   ZeroDepErrorGuard,
   ZeroDepErrorGuardType,
   ZeroDepErrorGuardRange,
-} from '@zerodep/guard.errors';
+} from '@zerodep/errors';
 
 export * from './guardFloat';
