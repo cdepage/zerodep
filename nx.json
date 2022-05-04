@@ -20,6 +20,14 @@
       {
         "target": "build",
         "projects": "dependencies"
+      },
+      {
+        "target": "lint",
+        "projects": "self"
+      },
+      {
+        "target": "test",
+        "projects": "self"
       }
     ],
     "publish": [
