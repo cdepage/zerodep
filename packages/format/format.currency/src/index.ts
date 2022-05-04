@@ -1,2 +1,2 @@
-export type { ZeroDepError, ZeroDepErrorFormat } from '@zerodep/errors';
+export { ZeroDepError, ZeroDepErrorFormat } from '@zerodep/errors';
 export * from './formatCurrency';

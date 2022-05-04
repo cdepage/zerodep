@@ -1,9 +1,20 @@
-import * as utils from './index';
+import * as packages from './index';
 
-describe('Utils barrel package', () => {
+const keys = Object.keys(packages).sort();
+describe('"App" barrel package', () => {
   it('should export specific packages and interfaces', () => {
-    // console.log(Object.keys(utils))
-    expect(Object.keys(utils).sort()).toStrictEqual([
+    expect(keys).toStrictEqual([
+      'GuardArrayOptions',
+      'GuardBigIntOptions',
+      'GuardBooleanOptions',
+      'GuardDateOptions',
+      'GuardFloatOptions',
+      'GuardFunctionOptions',
+      'GuardIntegerOptions',
+      'GuardJSONOptions',
+      'GuardNumberOptions',
+      'GuardObjectOptions',
+      'GuardStringOptions',
       'ZeroDepError',
       'ZeroDepErrorFormat',
       'ZeroDepErrorGuard',
@@ -73,5 +84,11 @@ describe('Utils barrel package', () => {
       'toString',
       'toStringHOF',
     ]);
+  });
+
+  // contrived test for barrel-file
+  test.each(keys)('should have %s', (name) => {
+    // @ts-ignore
+    expect(['function', 'object', 'undefined']).toContain(typeof packages[name]);
   });
 });

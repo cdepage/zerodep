@@ -1,8 +1,11 @@
-import * as formatters from './index';
+import * as packages from './index';
 
-describe('Formats barrel package', () => {
+const keys = Object.keys(packages).sort();
+describe('"App" barrel package', () => {
   it('should export specific packages and interfaces', () => {
-    expect(Object.keys(formatters).sort()).toStrictEqual([
+    expect(keys).toStrictEqual([
+      'ZeroDepError',
+      'ZeroDepErrorFormat',
       'formatCurrency',
       'formatCurrencyCADen',
       'formatCurrencyCADfr',
@@ -12,5 +15,11 @@ describe('Formats barrel package', () => {
       'formatCurrencyHOF',
       'formatCurrencyUSD',
     ]);
+  });
+
+  // contrived test for barrel-file
+  test.each(keys)('should have %s', (name) => {
+    // @ts-ignore
+    expect(['function', 'object', 'undefined']).toContain(typeof packages[name]);
   });
 });

@@ -1,8 +1,9 @@
-import * as guards from './index';
+import * as packages from './index';
 
-describe('Guards barrel package', () => {
+const keys = Object.keys(packages).sort();
+describe('"App" barrel package', () => {
   it('should export specific packages and interfaces', () => {
-    expect(Object.keys(guards)).toEqual([
+    expect(keys).toEqual([
       'isArray',
       'isBigInt',
       'isBoolean',
@@ -27,5 +28,11 @@ describe('Guards barrel package', () => {
       'isWeakMap',
       'isWeakSet',
     ]);
+  });
+
+  // contrived test for barrel-file
+  test.each(keys)('should have %s', (name) => {
+    // @ts-ignore
+    expect(['function', 'object', 'undefined']).toContain(typeof packages[name]);
   });
 });
