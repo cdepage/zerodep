@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/is",
-  "description": "A set of utility methods to determine if a given value is of a specific type of has a specific capability.",
+  "description": "A set of utility methods to determine if a given value is of a specific type",
   "version": "0.5.1",
   "license": "MIT",
   "repository": {

@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/format",
-  "description": "A set of formatting higher order functions to format a value in specific ways",
+  "description": "A set of locale-aware, configurable higher order functions that format a value for a specific use case",
   "version": "0.1.0",
   "license": "MIT",
   "repository": {

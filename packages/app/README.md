@@ -129,7 +129,7 @@ A set of helper functions to work with locales.
 
 ### To
 
-A set of higher order functions to convert a value to a specific data type.
+A set of configurable higher order functions to convert a value to a specific data type.
 
 | Method Name | Package | Purpose |
 | --- | --- | --- |

@@ -1,6 +1,6 @@
 {
   "name": "@zerodep/to",
-  "description": "A set of utility methods to convert a value to a specific data type",
+  "description": "A set of configurable higher order functions to convert a value to a specific data type",
   "version": "0.4.0",
   "license": "MIT",
   "repository": {
