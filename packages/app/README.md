@@ -1,5 +1,11 @@
 # @zerodep/app
 
+[![min](https://img.shields.io/bundlephobia/min/@zerodep/app?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/app) [![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/app?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/app) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/app) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/app?style=flat-square)
+
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/app?style=flat-square)
+
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/app?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/app)
+
 This is a library of commonly used utilities, formatters, tests, and guards that help developers be more productive. This is a barrel package of all `@zerodep.*` packages, higher-order functions, and types.
 
 Works in the browser and on the server. Includes typescript definitions as well as tree-shakable CJS and ESM exports. Works out-of-the-box; may be configured as required.
@@ -37,9 +43,9 @@ The `@zerodep/app` package is a tree-shakable collection of all packages in the 
 
 ### Base Error
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods |
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| ZeroDepError | [errors](https://www.npmjs.com/package/@zerodep/errors) | A namespaced subclass of the `Error` object with additional properties, used by all @zerodep methods | ![min](https://img.shields.io/bundlephobia/min/@zerodep/errors?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/errors?style=flat-square&color=blue&label=gzip) |
 
 <br />
 
@@ -47,96 +53,94 @@ The `@zerodep/app` package is a tree-shakable collection of all packages in the 
 
 A set of functions that test for specific language construct capabilities or features.
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safeguards) |
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safeguards) | ![min](https://img.shields.io/bundlephobia/min/@zerodep/can.iterate?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/can.iterate?style=flat-square&color=blue&label=gzip) |
 
 <br />
 
 ### Format
 
-A set of locale-aware, configurable higher order functions that format a value for a specific use case.
+A set of locale-aware, configurable functions that format a value for a specific use case.
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| formatCurrency | [format.currency](https://www.npmjs.com/package/@zerodep/format.currency) | A locale-aware, configurable HOF to format a value as a currency |
-| ZeroDepErrorFormat | [format.errors](https://www.npmjs.com/package/@zerodep/format.errors) | The error types thrown by `@zerodep/format.*` methods, they all subclass the ZeroDepError object |
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| formatCurrency | [format.currency](https://www.npmjs.com/package/@zerodep/format.currency) | A configurable, locale-aware utility to format a value to a currency | ![min](https://img.shields.io/bundlephobia/min/@zerodep/format.currency?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/format.currency?style=flat-square&color=blue&label=gzip) |
 
 <br />
 
 ### Guard
 
-A set of configurable higher order functions that guard for specific data types.
+A collection of configurable defensive programming utilities that guard for specific data types.
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| guardArray | [guard.array](https://www.npmjs.com/package/@zerodep/guard.array) | A configurable HOF to guard against non-array arguments |
-| guardBigInt | [guard.bigint](https://www.npmjs.com/package/@zerodep/guard.bigint) | A configurable HOF to guard against non-BigInt arguments |
-| guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable HOF to guard against non-boolean arguments |
-| guardDate | [guard.date](https://www.npmjs.com/package/@zerodep/guard.date) | A configurable HOF to guard against non-Date arguments |
-| guardFloat | [guard.float](https://www.npmjs.com/package/@zerodep/guard.float) | A configurable HOF to guard against non-float arguments |
-| guardFunction | [guard.float](https://www.npmjs.com/package/@zerodep/guard.function) | A configurable HOF to guard against non-function arguments |
-| guardInteger | [guard.integer](https://www.npmjs.com/package/@zerodep/guard.integer) | A configurable HOF to guard against non-integer arguments |
-| guardJSON | [guard.json](https://www.npmjs.com/package/@zerodep/guard.json) | A configurable HOF to guard against non-JSON object arguments |
-| guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable HOF to guard against non-float/non-integer arguments |
-| guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable HOF to guard against non-object literal arguments |
-| guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable HOF to guard against non-string arguments |
-| ZeroDepErrorGuard, <br />ZeroDepErrorGuardType, <br />ZeroDepErrorGuardRange | [guard.errors](https://www.npmjs.com/package/@zerodep/guard.errors) | The error types thrown by `@zerodep/guard.*` methods, they all subclass the ZeroDepError object |
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| guardArray | [guard.array](https://www.npmjs.com/package/@zerodep/guard.array) | A configurable defensive programming utility to guard against non-array values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.array?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.array?style=flat-square&color=blue&label=gzip) |
+| guardBigInt | [guard.bigint](https://www.npmjs.com/package/@zerodep/guard.bigint) | A configurable defensive programming utility to guard against non-BigInt values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.bigint?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.bigint?style=flat-square&color=blue&label=gzip) |
+| guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable defensive programming utility to guard against non-boolean values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.boolean?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.boolean?style=flat-square&color=blue&label=gzip) |
+| guardDate | [guard.date](https://www.npmjs.com/package/@zerodep/guard.date) | A configurable defensive programming utility to guard against non-Date values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.date?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.date?style=flat-square&color=blue&label=gzip) |
+| guardFloat | [guard.float](https://www.npmjs.com/package/@zerodep/guard.float) | A configurable defensive programming utility to guard against non-float values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.float?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.float?style=flat-square&color=blue&label=gzip) |
+| guardFunction | [guard.function](https://www.npmjs.com/package/@zerodep/guard.function) | A configurable defensive programming utility to guard against non-function values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.function?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.function?style=flat-square&color=blue&label=gzip) |
+| guardInteger | [guard.integer](https://www.npmjs.com/package/@zerodep/guard.integer) | A configurable defensive programming utility to guard against non-integer values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.integer?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.integer?style=flat-square&color=blue&label=gzip) |
+| guardJSON | [guard.json](https://www.npmjs.com/package/@zerodep/guard.json) | A configurable defensive programming utility to guard against non-JSON object values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.json?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.json?style=flat-square&color=blue&label=gzip) |
+| guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable defensive programming utility to guard against non-float/non-integer values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.number?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.number?style=flat-square&color=blue&label=gzip) |
+| guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable defensive programming utility to guard against non-plain JavaScript object values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.object?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.object?style=flat-square&color=blue&label=gzip) |
+| guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable defensive programming utility to guard against non-string values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.string?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.string?style=flat-square&color=blue&label=gzip) |
 
 <br />
 
 ### Is
 
-A set of utility methods to determine if a given value is of a specific type.
+A collection of utility methods to determine the classification or equality of a value.
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| isArray | [is.array](https://www.npmjs.com/package/@zerodep/is.array) | A utility to determine if a value is an array |
-| isBigInt | [is.bigint](https://www.npmjs.com/package/@zerodep/is.bigint) | A utility to determine if a value is a BigInt |
-| isBoolean | [is.boolean](https://www.npmjs.com/package/@zerodep/is.boolean) | A utility to determine if a value is a boolean |
-| isDate | [is.date](https://www.npmjs.com/package/@zerodep/is.date) | A utility to determine if a value is a Date |
-| isFloat | [is.float](https://www.npmjs.com/package/@zerodep/is.float) | A utility to determine if a value is a non-infinite float |
-| isFunction | [is.function](https://www.npmjs.com/package/@zerodep/is.function) | A utility to determine if a value is a function |
-| isInteger | [is.integer](https://www.npmjs.com/package/@zerodep/is.integer) | A utility to determine if a value is a non-infinite integer |
-| isJSON | [is.json](https://www.npmjs.com/package/@zerodep/is.json) | A utility to determine if a value is a serializable JSON object |
-| isMap | [is.map](https://www.npmjs.com/package/@zerodep/is.map) | A utility to determine if a value is a Map |
-| isNil | [is.nil](https://www.npmjs.com/package/@zerodep/is.nil) | A utility to determine if a value is `null` or `undefined` |
-| isNull | [is.null](https://www.npmjs.com/package/@zerodep/is.null) | A utility to determine if a value is `null` |
-| isNumber | [is.number](https://www.npmjs.com/package/@zerodep/is.number) | A utility to determine if a value is a non-infinite float or integer |
-| isObject | [is.object](https://www.npmjs.com/package/@zerodep/is.object) | A utility to determine if a value is an object |
-| isPromise | [is.promise](https://www.npmjs.com/package/@zerodep/is.promise) | A utility to determine if a value is a Promise |
-| isRegex | [is.regex](https://www.npmjs.com/package/@zerodep/is.regex) | A utility to determine if a value is a regular expression |
-| isSet | [is.set](https://www.npmjs.com/package/@zerodep/is.set) | A utility to determine if a value is a Set |
-| isString | [is.string](https://www.npmjs.com/package/@zerodep/is.string) | A utility to determine if a value is a string |
-| isSymbol | [is.symbol](https://www.npmjs.com/package/@zerodep/is.symbol) | A utility to determine if a value is a Symbol |
-| isTypedArray | [is.typedarray](https://www.npmjs.com/package/@zerodep/is.typedarray) | A utility to determine if a value is a Typed Array |
-| isUndefined | [is.undefined](https://www.npmjs.com/package/@zerodep/is.undefined) | A utility to determine if a value is `undefined` |
-| isWeakMap | [is.weakmap](https://www.npmjs.com/package/@zerodep/is.weakmap) | A utility to determine if a value is a WeakMap |
-| isWeakSet | [is.weakset](https://www.npmjs.com/package/@zerodep/is.weakset) | A utility to determine if a value is a WeakSet |
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| isArray | [is.array](https://www.npmjs.com/package/@zerodep/is.array) | A utility to determine if a value is an array | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.array?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.array?style=flat-square&color=blue&label=gzip) |
+| isBigInt | [is.bigint](https://www.npmjs.com/package/@zerodep/is.bigint) | A utility to determine if a value is a BigInt | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.bigint?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.bigint?style=flat-square&color=blue&label=gzip) |
+| isBoolean | [is.boolean](https://www.npmjs.com/package/@zerodep/is.boolean) | A utility to determine if a value is a boolean | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.boolean?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.boolean?style=flat-square&color=blue&label=gzip) |
+| isDate | [is.date](https://www.npmjs.com/package/@zerodep/is.date) | A utility to determine if a value is a Date | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.date?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.date?style=flat-square&color=blue&label=gzip) |
+| isEqual | [is.equal](https://www.npmjs.com/package/@zerodep/is.equal) | A utility to deeply compare two values of any type for equality | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.equal?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.equal?style=flat-square&color=blue&label=gzip) |
+| isFloat | [is.float](https://www.npmjs.com/package/@zerodep/is.float) | A utility to determine if a value is a non-infinite float | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.float?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.float?style=flat-square&color=blue&label=gzip) |
+| isFunction | [is.function](https://www.npmjs.com/package/@zerodep/is.function) | A utility to determine if a value is a function | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.function?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.function?style=flat-square&color=blue&label=gzip) |
+| isInteger | [is.integer](https://www.npmjs.com/package/@zerodep/is.integer) | A utility to determine if a value is a non-infinite integer | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.integer?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.integer?style=flat-square&color=blue&label=gzip) |
+| isJSON | [is.json](https://www.npmjs.com/package/@zerodep/is.json) | A utility to determine if a value is a serializable JSON object | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.json?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.json?style=flat-square&color=blue&label=gzip) |
+| isMap | [is.map](https://www.npmjs.com/package/@zerodep/is.map) | A utility to determine if a value is a Map | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.map?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.map?style=flat-square&color=blue&label=gzip) |
+| isNil | [is.nil](https://www.npmjs.com/package/@zerodep/is.nil) | A utility to determine if a value is `null` or `undefined` | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.nil?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.nil?style=flat-square&color=blue&label=gzip) |
+| isNull | [is.null](https://www.npmjs.com/package/@zerodep/is.null) | A utility to determine if a value is `null` | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.null?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.null?style=flat-square&color=blue&label=gzip) |
+| isNumber | [is.number](https://www.npmjs.com/package/@zerodep/is.number) | A utility to determine if a value is a non-infinite float or integer | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.number?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.number?style=flat-square&color=blue&label=gzip) |
+| isObject | [is.object](https://www.npmjs.com/package/@zerodep/is.object) | A utility to determine if a value is a plain JavaScript object | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.object?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.object?style=flat-square&color=blue&label=gzip) |
+| isPromise | [is.promise](https://www.npmjs.com/package/@zerodep/is.promise) | A utility to determine if a value is a Promise | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.promise?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.promise?style=flat-square&color=blue&label=gzip) |
+| isRegex | [is.regex](https://www.npmjs.com/package/@zerodep/is.regex) | A utility to determine if a value is a regular expression | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.regex?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.regex?style=flat-square&color=blue&label=gzip) |
+| isSet | [is.set](https://www.npmjs.com/package/@zerodep/is.set) | A utility to determine if a value is a Set | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.set?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.set?style=flat-square&color=blue&label=gzip) |
+| isString | [is.string](https://www.npmjs.com/package/@zerodep/is.string) | A utility to determine if a value is a string | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.string?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.string?style=flat-square&color=blue&label=gzip) |
+| isSymbol | [is.symbol](https://www.npmjs.com/package/@zerodep/is.symbol) | A utility to determine if a value is a Symbol | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.symbol?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.symbol?style=flat-square&color=blue&label=gzip) |
+| isTypedArray | [is.typedarray](https://www.npmjs.com/package/@zerodep/is.typedarray) | A utility to determine if a value is a Typed Array | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.typedarray?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.typedarray?style=flat-square&color=blue&label=gzip) |
+| isUndefined | [is.undefined](https://www.npmjs.com/package/@zerodep/is.undefined) | A utility to determine if a value is `undefined` | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.undefined?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.undefined?style=flat-square&color=blue&label=gzip) |
+| isWeakMap | [is.weakmap](https://www.npmjs.com/package/@zerodep/is.weakmap) | A utility to determine if a value is a WeakMap | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.weakmap?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.weakmap?style=flat-square&color=blue&label=gzip) |
+| isWeakSet | [is.weakset](https://www.npmjs.com/package/@zerodep/is.weakset) | A utility to determine if a value is a WeakSet | ![min](https://img.shields.io/bundlephobia/min/@zerodep/is.weakset?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/is.weakset?style=flat-square&color=blue&label=gzip) |
 
 <br />
 
 ### Locale
 
-A set of helper functions to work with locales.
+A collection of helpers to appropriately work with locales.
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| localeGet | [locale.get](https://www.npmjs.com/package/@zerodep/locale.get) | A helper to get the locales of the environment (server or browser) |
-| localeSettings | [locale.settings](https://www.npmjs.com/package/@zerodep/locale.settings) | The locale configuration/settings for all locale-aware packages in the @zerodep monorepo |
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| localeGet | [locale.get](https://www.npmjs.com/package/@zerodep/locale.get) | A helper to get the locales of the environment (server or browser) | ![min](https://img.shields.io/bundlephobia/min/@zerodep/locale.get?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/locale.get?style=flat-square&color=blue&label=gzip) |
+| localeSettings | [locale.settings](https://www.npmjs.com/package/@zerodep/locale.settings) | The locale configuration getter and setter | ![min](https://img.shields.io/bundlephobia/min/@zerodep/locale.settings?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/locale.settings?style=flat-square&color=blue&label=gzip) |
 
 <br />
 
 ### To
 
-A set of configurable higher order functions to convert a value to a specific data type.
+A collection of utility methods to convert a value to a specific data type.
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| toJSON | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable HOF to convert a value to a JSON object |
-| toNumber | [to.number](https://www.npmjs.com/package/@zerodep/to.number) | A configurable HOF to convert a value to a number |
-| toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable HOF to convert a value to a string |
-| ZeroDepErrorTo | [to.errors](https://www.npmjs.com/package/@zerodep/to.errors) | The error type thrown by `@zerodep/to.*` methods, they all subclass the `ZeroDepError` object |
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| toJSON | [to.json](https://www.npmjs.com/package/@zerodep/to.json) | A configurable function that converts a value to a JSON object | ![min](https://img.shields.io/bundlephobia/min/@zerodep/to.json?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/to.json?style=flat-square&color=blue&label=gzip) |
+| toNumber | [to.number](https://www.npmjs.com/package/@zerodep/to.number) | A configurable utility to convert a value (string, boolean, date, or BigInt) to a number | ![min](https://img.shields.io/bundlephobia/min/@zerodep/to.number?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/to.number?style=flat-square&color=blue&label=gzip) |
+| toString | [to.string](https://www.npmjs.com/package/@zerodep/to.string) | A configurable utility to convert a value (number, boolean, array, object, more...) to a locale-appropriate string | ![min](https://img.shields.io/bundlephobia/min/@zerodep/to.string?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/to.string?style=flat-square&color=blue&label=gzip) |
 
 <br />
 
@@ -144,12 +148,12 @@ A set of configurable higher order functions to convert a value to a specific da
 
 Some useful typescript `type` declarations.
 
-| Type Name | Package | Purpose |
-| --- | --- | --- |
-| TypesCurrencies &<br>TypesCurrenciesCrypto | [types.currencies](https://www.npmjs.com/package/@zerodep/types.currencies) | Typescript `type` declaration of currencies and crypto-currencies |
-| TypesLocales | [types.locales](https://www.npmjs.com/package/@zerodep/types.locales) | Typescript `type` declaration of locales |
-| TypesTimeZones | [types.timezones](https://www.npmjs.com/package/@zerodep/types.timezones) | Typescript `type` declaration of time zones |
-| TypesUnits | [types.units](https://www.npmjs.com/package/@zerodep/types.units) | Typescript `type` declaration of supported units of measure |
+| Type Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| TypesCurrencies &<br>TypesCurrenciesCrypto | [types.currencies](https://www.npmjs.com/package/@zerodep/types.currencies) | Typescript `type` declaration of currencies and crypto-currencies | N/A |
+| TypesLocales | [types.locales](https://www.npmjs.com/package/@zerodep/types.locales) | Typescript `type` declaration of locales | N/A |
+| TypesTimeZones | [types.timezones](https://www.npmjs.com/package/@zerodep/types.timezones) | Typescript `type` declaration of time zones | N/A |
+| TypesUnits | [types.units](https://www.npmjs.com/package/@zerodep/types.units) | Typescript `type` declaration of supported units of measure | N/A |
 
 ## Related Packages
 
@@ -174,6 +178,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability

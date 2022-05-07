@@ -4,7 +4,6 @@ const dir = 'barrels/utils';
 
 const banner = `/**
  * @source the https://github.com/cdepage/zerodep/tree/main/packages/${dir}
- * @copyright Chris dePage
  */`;
 
 export default [

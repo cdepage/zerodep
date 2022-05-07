@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Introduce the `is.equal` utility
+- UMD file export for CDNs
+- Add a few badges to the README
+
 ### Changed
 
 - Refactor ZeroDepError classes

@@ -51,6 +51,7 @@ export {
   isBigInt,
   isBoolean,
   isDate,
+  isEqual,
   isError,
   isFloat,
   isFunction,

@@ -1,5 +1,7 @@
 # @zerodep
 
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) ![license](https://img.shields.io/github/license/cdepage/zerodep?style=flat-square) ![repo size](https://img.shields.io/github/repo-size/cdepage/zerodep?style=flat-square) ![total lines](https://img.shields.io/tokei/lines/github/cdepage/zerodep?style=flat-square) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/cdepage/zerodep?style=flat-square)
+
 A monorepo of zero-dependency, utility-focused capabilities for both Node and browser environments.
 
 ## Table of Contents

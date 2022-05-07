@@ -15,6 +15,7 @@
     "type",
     "engines",
     "workspaces",
+    "browser",
     "main",
     "module",
     "types",
@@ -25,9 +26,10 @@
     "peerDependencies",
     "dependencies",
     "resolutions",
-    "browserslist"
+    "browserslist",
+    "keywords"
   ],
-  "required": ["name", "description", "version", "license", "homepage", "bugs", "author", "repository", "main", "module", "types"],
+  "required": ["name", "description", "version", "license", "homepage", "bugs", "author", "repository", "types"],
   "warn": [],
   "requiredOnPrivate": ["name", "version"],
   "warnOnPrivate": [],
