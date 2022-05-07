@@ -1,12 +1,18 @@
 # @zerodep/locale
 
-A set of helpers to appropriately work with locales.
+[![min](https://img.shields.io/bundlephobia/min/@zerodep/locale?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/locale) [![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/locale?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/locale) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/locale) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/locale?style=flat-square)
+
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/locale?style=flat-square)
+
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/locale?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/locale)
+
+**A collection of helpers to appropriately work with locales.**
 
 This is a barrel package of all `@zerodep/locale.*` packages within the @zerodep monorepo.
 
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { getLocale } from '@zerodep/locale';
@@ -14,17 +20,10 @@ import { getLocale } from '@zerodep/locale';
 getLocale(); // ["en-US", "us"]
 ```
 
-Definitions:
-
-**Barrel Package:** "barrel" is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.
-
-**HOF:** a Higher Order Function, a function-that-returns-a-function.
-
 ## Table of Contents
 
 - [Installation Instructions](#install)
 - [Included Packages](#included-packages)
-- [How to Use](#how-to-use)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
@@ -33,19 +32,47 @@ Definitions:
 
 ## Install
 
+### For Server & Build Tooling
+
+For Node, or when compiling via babel, rollup, swc, tsc, webpack, etc... these are the instructions for you.
+
 ```
 npm install @zerodep/locale
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
+### Browser Direct
+
+If you are using the script directly in a browser via a `<script>` tag or importing it into your own scripts, these are the instructions for you. We support both ESM and UMD formats.
+
+```html
+<!-- for ES Modules (ESM) -->
+<script type="module">
+  import { localeGet, localeSettings } from 'https://cdn.jsdelivr.net/npm/@zerodep/locale/esm.js';
+  // ...your code here
+</script>
+
+<!--  OR  -->
+
+<!--  for Universal Modules (UMD) - all @zerodep functions are in the global "zd" namespace -->
+<script src="https://cdn.jsdelivr.net/npm/@zerodep/locale/umd.js"></script>
+<script>
+  // example of "zd" prefix
+  const result = zd.localeGet();
+</script>
+```
+
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/is.equal/umd.js) and [unpkg](https://unpkg.com/@zerodep/is.equal/umd.js) in UMD, ESM and CJS formats.
+
 ## Included Packages
 
 This barrel package includes all `@zerodep/locale.*` packages:
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| localeGet | [locale.get](https://www.npmjs.com/package/@zerodep/locale.json) | A helper to get the locales of the environment (server or browser) |
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| localeGet | [locale.get](https://www.npmjs.com/package/@zerodep/locale.get) | A helper to get the locales of the environment (server or browser) | ![min](https://img.shields.io/bundlephobia/min/@zerodep/locale.get?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/locale.get?style=flat-square&color=blue&label=gzip) |
+| localeSettings | [locale.settings](https://www.npmjs.com/package/@zerodep/locale.settings) | The locale configuration getter and setter | ![min](https://img.shields.io/bundlephobia/min/@zerodep/locale.settings?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/locale.settings?style=flat-square&color=blue&label=gzip) |
 
 ## Advantages of @zerodep Packages
 
@@ -58,6 +85,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability

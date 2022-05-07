@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/locale/locale",
+          "rm -f dist/packages/locale/locale/*",
           "rollup -c packages/locale/locale/rollup.config.ts",
-          "mv dist/packages/locale/locale/index.esm.d.ts dist/packages/locale/locale/index.d.ts",
-          "rm dist/packages/locale/locale/index.cjs.d.ts",
+          "mv dist/packages/locale/locale/esm.d.ts dist/packages/locale/locale/index.d.ts",
           "cp packages/locale/locale/README.md dist/packages/locale/locale/README.md",
           "cp packages/locale/locale/package.json dist/packages/locale/locale/package.json",
-          "uglifyjs dist/packages/locale/locale/index.esm.js -o dist/packages/locale/locale/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/locale/locale/index.cjs.js -o dist/packages/locale/locale/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/locale/locale/index.esm.js",
-          "rm dist/packages/locale/locale/index.cjs.js"
+          "uglifyjs dist/packages/locale/locale/esm.js -o dist/packages/locale/locale/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/locale/locale/cjs.js -o dist/packages/locale/locale/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/locale/locale/umd.js -o dist/packages/locale/locale/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/locale/locale/cjs.d.ts",
+          "rm dist/packages/locale/locale/umd.d.ts"
         ],
         "parallel": false
       }

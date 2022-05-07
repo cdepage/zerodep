@@ -1,6 +1,12 @@
 # @zerodep/locale.settings
 
-A utility to get the locales of the browser or Node environment.
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/locale.settings?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/locale.settings) [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/locale.settings?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/locale.settings) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/locale.settings) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/locale.settings?style=flat-square)
+
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/locale.settings?style=flat-square)
+
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/locale.settings?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/locale.settings)
+
+**A utility to get the locales of the browser or Node environment.**
 
 Useful features:
 
@@ -14,7 +20,7 @@ Useful features:
 
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { localeGet } from '@zerodep/locale.settings';
@@ -44,6 +50,10 @@ localeGet('de-DE'); // ["en-CA", "en-GB", "en", "de-DE"]
 
 This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/is).
 
+### For Server & Build Tooling
+
+For Node, or when compiling via babel, rollup, swc, tsc, webpack, etc... these are the instructions for you.
+
 ```
 // all @zerodep features, capabilities and utilities
 npm install @zerodep/app
@@ -57,29 +67,160 @@ npm install @zerodep/locale.settings
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
+Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
+
+### Browser Direct
+
+If you are using the script directly in a browser via a `<script>` tag or importing it into your own scripts, these are the instructions for you. We support both ESM and UMD formats.
+
+```html
+<!-- for ES Modules (ESM) -->
+<script type="module">
+  import { isBigInt } from 'https://cdn.jsdelivr.net/npm/@zerodep/locale.settings/esm.js';
+  // ...your code here
+</script>
+
+<!--  OR  -->
+
+<!--  for Universal Modules (UMD) - all @zerodep functions are in the global "zd" namespace -->
+<script src="https://cdn.jsdelivr.net/npm/@zerodep/locale.settings/umd.js"></script>
+<script>
+  // example of "zd" prefix
+  const result = zd.isBigInt(8675309n);
+</script>
+```
+
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/locale.settings/umd.js) and [unpkg](https://unpkg.com/@zerodep/locale.settings/umd.js) in UMD, ESM and CJS formats.
+
 ## How to Use
+
+This package exports the following:
+
+- **Functions**
+  - `set` - allows setting one, some or all configurations
+  - `getOne` - returns one specific configuration
+  - `getCurrencyDefaults` - returns all of the currency settings
+  - `getAll` - returns all settings
+- ** Interfaces**
+  - `LocaleSettings` - The various locale-specific options that may be set
 
 ### Signature
 
 Typescript declarations:
 
 ```typescript
-declare const localeGet: (fallback?: string) => string[];
+declare const localeSettings: {
+  set: (settings?: LocaleSettings | undefined) => void;
+  getOne: (
+    setting: Setting
+  ) =>
+    | number
+    | boolean
+    | 'symbol'
+    | TypesLocales
+    | TypesCurrencies
+    | TypesTimeZones
+    | 'narrowSymbol'
+    | 'code'
+    | 'name'
+    | 'standard'
+    | 'accounting'
+    | 'full'
+    | 'long'
+    | 'medium'
+    | 'short'
+    | 'numeric'
+    | '2-digit'
+    | 'narrow'
+    | 'shortOffset'
+    | 'longOffset'
+    | 'shortGeneric'
+    | 'longGeneric'
+    | 'always'
+    | 'auto'
+    | 'false'
+    | 'min2'
+    | 'halfExpand'
+    | 'ceil'
+    | 'floor'
+    | 'expand'
+    | 'trunc'
+    | 'halfCeil'
+    | 'halfFloor'
+    | 'halfTrunc'
+    | 'halfEven'
+    | undefined;
+  getCurrencyDefaults: () => CurrencyOptions;
+  getAll: () => LocaleSettings;
+};
+
+// configuration interface
+interface LocaleSettings {
+  locale?: TypesLocales;
+  currency?: TypesCurrencies;
+  currencyDisplay?: 'symbol' | 'narrowSymbol' | 'code' | 'name';
+  currencySign?: 'standard' | 'accounting';
+  dateStyle?: 'full' | 'long' | 'medium' | 'short';
+  timeStyle?: 'full' | 'long' | 'medium' | 'short';
+  timeZone?: TypesTimeZones;
+  hour12?: boolean;
+  year?: 'numeric' | '2-digit';
+  month?: 'numeric' | '2-digit' | 'long' | 'short' | 'narrow';
+  day?: 'numeric' | '2-digit';
+  hour?: 'numeric' | '2-digit';
+  minute?: 'numeric' | '2-digit';
+  second?: 'numeric' | '2-digit';
+  fractionalSecondDigits?: 0 | 1 | 2 | 3;
+  timeZoneName?: 'long' | 'short' | 'shortOffset' | 'longOffset' | 'shortGeneric' | 'longGeneric';
+  unitDisplay?: 'long' | 'short' | 'narrow';
+  useGrouping?: 'always' | 'auto' | 'false' | 'min2';
+  roundingMode?:
+    | 'halfExpand'
+    | 'ceil'
+    | 'floor'
+    | 'expand'
+    | 'trunc'
+    | 'halfCeil'
+    | 'halfFloor'
+    | 'halfTrunc'
+    | 'halfEven';
+  minimumFractionDigits?: undefined | number;
+  maximumFractionDigits?: undefined | number;
+}
 ```
 
 ### Examples
 
+All examples assume ESM or CJS packages. If using a UMD package remember to prefix with the **zd** namespace, e.g. `zd.getAll(...)`.
+
 ```typescript
-import { localeGet } from '@zerodep/locale.settings';
+import { getOne, getAll } from '@zerodep/locale.settings';
 
 // probable results for an American
-localeGet(); // ["en-US", "en"] <-- no fallback as it's part of the result set
+getOne('currency'); // "USD"
 
-// probable results for a bilingual Canadian
-localeGet(); // ["en-CA", "fr-CA", "en", "fr", "en-US"] <-- includes the default fallback last
-
-// possible results for a German with a custom fallback language
-localeGet('pt-PT'); // ["de-DE", "de", "pt-PT"] <-- includes the custom fallback last
+// probable results for an American
+getAll();
+// {
+//   locale: 'en-US',
+//   currency: undefined,
+//   currencyDisplay: 'narrowSymbol',
+//   currencySign: 'standard',
+//   dateStyle: 'medium',
+//   timeStyle: 'medium',
+//   hour12: false,
+//   year: 'numeric',
+//   month: '2-digit',
+//   day: '2-digit',
+//   hour: '2-digit',
+//   minute: '2-digit',
+//   second: '2-digit',
+//   fractionalSecondDigits: 0,
+//   timeZoneName: 'short',
+//   unitDisplay: 'short',
+//   useGrouping: 'auto',
+//   roundingMode: 'halfExpand',
+// }
 ```
 
 ## Related Packages
@@ -99,6 +240,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
