@@ -4,7 +4,6 @@ const dir = 'can/can';
 
 const banner = `/**
  * @source the https://github.com/cdepage/zerodep/tree/main/packages/${dir}
- * @copyright Chris dePage
  */`;
 
 export default [
@@ -12,13 +11,20 @@ export default [
     input: `packages/${dir}/src/index.ts`,
     output: [
       {
-        file: `dist/packages/${dir}/index.esm.js`,
+        file: `dist/packages/${dir}/esm.js`,
         format: 'esm',
         banner,
       },
       {
-        file: `dist/packages/${dir}/index.cjs.js`,
+        file: `dist/packages/${dir}/cjs.js`,
         format: 'cjs',
+        banner,
+        interop: 'auto',
+      },
+      {
+        file: `dist/packages/${dir}/umd.js`,
+        name: 'zd',
+        format: 'iife',
         banner,
         interop: 'auto',
       },

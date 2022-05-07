@@ -1,14 +1,18 @@
 # @zerodep/can
 
-A set of functions that test for specific language construct capabilities or features.
+[![min](https://img.shields.io/bundlephobia/min/@zerodep/can?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/can) [![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/can?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/can) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/can) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/can?style=flat-square)
+
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/can?style=flat-square)
+
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/can?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/can)
+
+**A collection of functions that test for specific language construct capabilities or features.**
 
 This is a barrel package of all `@zerodep/can.*` utility packages within the @zerodep monorepo.
 
-Works in the browser and on the server. Includes typescript definitions as well as tree-shakable CJS and ESM exports.
-
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { canIterate } from '@zerodep/can';
@@ -23,7 +27,6 @@ canIterate(42); // false
 
 - [Installation Instructions](#install)
 - [Included Packages](#included-packages)
-- [How to Use](#how-to-use)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
@@ -32,31 +35,46 @@ canIterate(42); // false
 
 ## Install
 
+### For Server & Build Tooling
+
+For Node, or when compiling via babel, rollup, swc, tsc, webpack, etc... these are the instructions for you.
+
 ```
 npm install @zerodep/can
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
+### Browser Direct
+
+If you are using the script directly in a browser via a `<script>` tag or importing it into your own scripts, these are the instructions for you. We support both ESM and UMD formats.
+
+```html
+<!-- for ES Modules (ESM) -->
+<script type="module">
+  import { canIterate } from 'https://cdn.jsdelivr.net/npm/@zerodep/can/esm.js';
+  // ...your code here
+</script>
+
+<!--  OR  -->
+
+<!--  for Universal Modules (UMD) - all @zerodep functions are in the global "zd" namespace -->
+<script src="https://cdn.jsdelivr.net/npm/@zerodep/can/umd.js"></script>
+<script>
+  // example of "zd" prefix
+  const result = zd.canIterate([1, 2, 3]);
+</script>
+```
+
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/can.equal/umd.js) and [unpkg](https://unpkg.com/@zerodep/can.equal/umd.js) in UMD, ESM and CJS formats.
+
 ## Included Packages
 
 This barrel package includes all `@zerodep/can.*` packages :
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safeguards) |
-
-## How to Use
-
-For specific details and configuration options, see the specific package.
-
-```typescript
-import { canIterate } from '@zerodep/can';
-
-// can-functions always return a boolean
-canIterate(['a', 'b', 'c']); // true
-canIterate(42); // false
-```
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| canIterate | [can.iterate](https://www.npmjs.com/package/@zerodep/can.iterate) | Determine if a value is iterable in a `for...of` loop (with opinionated safeguards) | ![min](https://img.shields.io/bundlephobia/min/@zerodep/can.iterate?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/can.iterate?style=flat-square&color=blue&label=gzip) |
 
 ## Advantages of @zerodep Packages
 
@@ -69,6 +87,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability

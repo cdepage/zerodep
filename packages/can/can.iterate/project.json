@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/can/can.iterate",
+          "rm dist/packages/can/can.iterate/*",
           "rollup -c packages/can/can.iterate/rollup.config.ts",
-          "mv dist/packages/can/can.iterate/index.esm.d.ts dist/packages/can/can.iterate/index.d.ts",
-          "rm dist/packages/can/can.iterate/index.cjs.d.ts",
+          "mv dist/packages/can/can.iterate/esm.d.ts dist/packages/can/can.iterate/index.d.ts",
           "cp packages/can/can.iterate/README.md dist/packages/can/can.iterate/README.md",
           "cp packages/can/can.iterate/package.json dist/packages/can/can.iterate/package.json",
-          "uglifyjs dist/packages/can/can.iterate/index.esm.js -o dist/packages/can/can.iterate/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/can/can.iterate/index.cjs.js -o dist/packages/can/can.iterate/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/can/can.iterate/index.esm.js",
-          "rm dist/packages/can/can.iterate/index.cjs.js"
+          "uglifyjs dist/packages/can/can.iterate/esm.js -o dist/packages/can/can.iterate/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/can/can.iterate/cjs.js -o dist/packages/can/can.iterate/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/can/can.iterate/umd.js -o dist/packages/can/can.iterate/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/can/can.iterate/cjs.d.ts",
+          "rm dist/packages/can/can.iterate/umd.d.ts"
         ],
         "parallel": false
       }

@@ -6,7 +6,7 @@
 
 [![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/is?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/is)
 
-A collection of utility methods to determine the classification or equality of a value.
+**A collection of utility methods to determine the classification or equality of a value.**
 
 This is a barrel package of all `@zerodep/is.*` utility packages within the @zerodep monorepo.
 

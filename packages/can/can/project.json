@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/can/can",
+          "rm dist/packages/can/can/*",
           "rollup -c packages/can/can/rollup.config.ts",
-          "mv dist/packages/can/can/index.esm.d.ts dist/packages/can/can/index.d.ts",
-          "rm dist/packages/can/can/index.cjs.d.ts",
+          "mv dist/packages/can/can/esm.d.ts dist/packages/can/can/index.d.ts",
           "cp packages/can/can/README.md dist/packages/can/can/README.md",
           "cp packages/can/can/package.json dist/packages/can/can/package.json",
-          "uglifyjs dist/packages/can/can/index.esm.js -o dist/packages/can/can/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/can/can/index.cjs.js -o dist/packages/can/can/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/can/can/index.esm.js",
-          "rm dist/packages/can/can/index.cjs.js"
+          "uglifyjs dist/packages/can/can/esm.js -o dist/packages/can/can/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/can/can/cjs.js -o dist/packages/can/can/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/can/can/umd.js -o dist/packages/can/can/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/can/can/cjs.d.ts",
+          "rm dist/packages/can/can/umd.d.ts"
         ],
         "parallel": false
       }
