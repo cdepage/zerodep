@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/guard/guard.boolean",
+          "rm dist/packages/guard/guard.boolean/*",
           "rollup -c packages/guard/guard.boolean/rollup.config.ts",
-          "mv dist/packages/guard/guard.boolean/index.esm.d.ts dist/packages/guard/guard.boolean/index.d.ts",
-          "rm dist/packages/guard/guard.boolean/index.cjs.d.ts",
+          "mv dist/packages/guard/guard.boolean/esm.d.ts dist/packages/guard/guard.boolean/index.d.ts",
           "cp packages/guard/guard.boolean/README.md dist/packages/guard/guard.boolean/README.md",
           "cp packages/guard/guard.boolean/package.json dist/packages/guard/guard.boolean/package.json",
-          "uglifyjs dist/packages/guard/guard.boolean/index.esm.js -o dist/packages/guard/guard.boolean/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/guard/guard.boolean/index.cjs.js -o dist/packages/guard/guard.boolean/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/guard/guard.boolean/index.esm.js",
-          "rm dist/packages/guard/guard.boolean/index.cjs.js"
+          "uglifyjs dist/packages/guard/guard.boolean/esm.js -o dist/packages/guard/guard.boolean/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guard/guard.boolean/cjs.js -o dist/packages/guard/guard.boolean/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guard/guard.boolean/umd.js -o dist/packages/guard/guard.boolean/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/guard/guard.boolean/cjs.d.ts",
+          "rm dist/packages/guard/guard.boolean/umd.d.ts"
         ],
         "parallel": false
       }

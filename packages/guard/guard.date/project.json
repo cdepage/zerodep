@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/guard/guard.date",
+          "rm dist/packages/guard/guard.date/*",
           "rollup -c packages/guard/guard.date/rollup.config.ts",
-          "mv dist/packages/guard/guard.date/index.esm.d.ts dist/packages/guard/guard.date/index.d.ts",
-          "rm dist/packages/guard/guard.date/index.cjs.d.ts",
+          "mv dist/packages/guard/guard.date/esm.d.ts dist/packages/guard/guard.date/index.d.ts",
           "cp packages/guard/guard.date/README.md dist/packages/guard/guard.date/README.md",
           "cp packages/guard/guard.date/package.json dist/packages/guard/guard.date/package.json",
-          "uglifyjs dist/packages/guard/guard.date/index.esm.js -o dist/packages/guard/guard.date/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/guard/guard.date/index.cjs.js -o dist/packages/guard/guard.date/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/guard/guard.date/index.esm.js",
-          "rm dist/packages/guard/guard.date/index.cjs.js"
+          "uglifyjs dist/packages/guard/guard.date/esm.js -o dist/packages/guard/guard.date/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guard/guard.date/cjs.js -o dist/packages/guard/guard.date/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guard/guard.date/umd.js -o dist/packages/guard/guard.date/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/guard/guard.date/cjs.d.ts",
+          "rm dist/packages/guard/guard.date/umd.d.ts"
         ],
         "parallel": false
       }

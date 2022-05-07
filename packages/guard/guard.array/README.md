@@ -1,12 +1,18 @@
 # @zerodep/guard.array
 
-A defensive programming utility to guard against non-array arguments.
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/guard.array?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/guard.array) [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.array?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/guard.array) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/guard.array) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/guard.array?style=flat-square)
+
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/guard.array?style=flat-square)
+
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/guard.array?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/guard.array)
+
+**A configurable defensive programming utility to guard against non-array values.**
 
 Guards do not return a value, they only throw an error if the provided value is not of the guarded type.
 
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { guardArray } from '@zerodep/guard.array';
@@ -51,6 +57,10 @@ guardArray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]); // throws ZeroDepErrorGuardRange
 
 This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/guards](https://www.npmjs.com/package/@zerodep/guards).
 
+### For Server & Build Tooling
+
+For Node, or when compiling via babel, rollup, swc, tsc, webpack, etc... these are the instructions for you.
+
 ```
 // all @zerodep features, capabilities and utilities
 npm install @zerodep/app
@@ -67,15 +77,38 @@ npm install @zerodep/guard.array
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
+### Browser Direct
+
+If you are using the script directly in a browser via a `<script>` tag or importing it into your own scripts, these are the instructions for you. We support both ESM and UMD formats.
+
+```html
+<!-- for ES Modules (ESM) -->
+<script type="module">
+  import { guardArray } from 'https://cdn.jsdelivr.net/npm/@zerodep/guard.array/esm.js';
+  // ...your code here
+</script>
+
+<!--  OR  -->
+
+<!--  for Universal Modules (UMD) - all @zerodep functions are in the global "zd" namespace -->
+<script src="https://cdn.jsdelivr.net/npm/@zerodep/guard.array/umd.js"></script>
+<script>
+  // example of "zd" prefix
+  const result = zd.guardArray([1, 2, 'a', 'b', true, false]);
+</script>
+```
+
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/guard.array/umd.js) and [unpkg](https://unpkg.com/@zerodep/guard.array/umd.js) in UMD, ESM and CJS formats.
+
 ## How to Use
 
 This package exports the following:
 
 - **Functions**
-  - `guardarray` - a function/guard that uses the default configuration options (suitable for most)
-  - `guardarrayHOF` - a higher-order function that may be configured and returns a guard function based on the configurations
+  - `guardArray` - a function/guard that uses the default configuration options (suitable for most)
+  - `guardArrayHOF` - a higher-order function that may be configured and returns a guard function based on the configurations
 - **Interface**
-  - `GuardarrayOptions` - a typescript interface of the options that may be set in the HOF
+  - `GuardArrayOptions` - a typescript interface of the options that may be set in the HOF
 - **Error types**
   - `ZeroDepErrorGuardType` - thrown if guarded value is of the incorrect type
   - `ZeroDepErrorGuardRange` - thrown if guarded value is out-of-range per configuration options
@@ -115,6 +148,8 @@ interface GuardArrayOptions {
 ### Examples
 
 **Using Default Configuration Options**
+
+All examples assume ESM or CJS packages. If using a UMD package remember to prefix with the **zd** namespace, e.g. `zd.guardArray(...)`.
 
 ```typescript
 // import from the most appropriate @zerodep package for your needs / specific use case (see the Install section above)
@@ -197,6 +232,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability

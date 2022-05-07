@@ -53,6 +53,8 @@ For Node, or when compiling via babel, rollup, swc, tsc, webpack, etc... these a
 npm install @zerodep/is
 ```
 
+Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
+
 ### Browser Direct
 
 If you are using the script directly in a browser via a `<script>` tag or importing it into your own scripts, these are the instructions for you. We support both ESM and UMD formats.
@@ -77,8 +79,6 @@ If you are using the script directly in a browser via a `<script>` tag or import
 ```
 
 This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/is.equal/umd.js) and [unpkg](https://unpkg.com/@zerodep/is.equal/umd.js) in UMD, ESM and CJS formats.
-
-Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
 ## Included Packages
 

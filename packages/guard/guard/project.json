@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/guard/guard",
+          "rm dist/packages/guard/guard/*",
           "rollup -c packages/guard/guard/rollup.config.ts",
-          "mv dist/packages/guard/guard/index.esm.d.ts dist/packages/guard/guard/index.d.ts",
-          "rm dist/packages/guard/guard/index.cjs.d.ts",
+          "mv dist/packages/guard/guard/esm.d.ts dist/packages/guard/guard/index.d.ts",
           "cp packages/guard/guard/README.md dist/packages/guard/guard/README.md",
           "cp packages/guard/guard/package.json dist/packages/guard/guard/package.json",
-          "uglifyjs dist/packages/guard/guard/index.esm.js -o dist/packages/guard/guard/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/guard/guard/index.cjs.js -o dist/packages/guard/guard/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/guard/guard/index.esm.js",
-          "rm dist/packages/guard/guard/index.cjs.js"
+          "uglifyjs dist/packages/guard/guard/esm.js -o dist/packages/guard/guard/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guard/guard/cjs.js -o dist/packages/guard/guard/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/guard/guard/umd.js -o dist/packages/guard/guard/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/guard/guard/cjs.d.ts",
+          "rm dist/packages/guard/guard/umd.d.ts"
         ],
         "parallel": false
       }

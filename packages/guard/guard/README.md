@@ -1,14 +1,18 @@
 # @zerodep/guard
 
-A set of utility higher order functions that guard for specific data types
+[![min](https://img.shields.io/bundlephobia/min/@zerodep/guard?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/guard) [![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/guard) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/guard) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/guard?style=flat-square)
 
-This is a barrel package of all `@zerodep/can.*` defensive utility packages within the @zerodep monorepo.
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/guard?style=flat-square)
 
-Works in the browser and on the server. Includes typescript definitions as well as tree-shakable CJS and ESM exports. Works out-of-the-box; may be configured as required.
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/guard?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/guard)
+
+**A collection of configurable defensive programming utilities that guard for specific data types.**
+
+This is a barrel package of all `@zerodep/guard.*` utility packages within the @zerodep monorepo.
 
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { guardString, guardInteger } from '@zerodep/guard';
@@ -20,17 +24,10 @@ guardInteger(42); // true
 guardInteger(3.14); // false
 ```
 
-Definitions:
-
-**Barrel Package:** "barrel" is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.
-
-**HOF:** a Higher Order Function, a function-that-returns-a-function.
-
 ## Table of Contents
 
 - [Installation Instructions](#install)
 - [Included Packages](#included-packages)
-- [How to Use](#how-to-use)
 - [Guards & Defensive Programming](#guards--defensive-programming)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
@@ -40,42 +37,62 @@ Definitions:
 
 ## Install
 
+### For Server & Build Tooling
+
+For Node, or when compiling via babel, rollup, swc, tsc, webpack, etc... these are the instructions for you.
+
 ```
 npm install @zerodep/guard
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
+### Browser Direct
+
+If you are using the script directly in a browser via a `<script>` tag or importing it into your own scripts, these are the instructions for you. We support both ESM and UMD formats.
+
+```html
+<!-- for ES Modules (ESM) -->
+<script type="module">
+  import {
+    guardArray,
+    guardFunction,
+    guardString,
+  } from 'https://cdn.jsdelivr.net/npm/@zerodep/guard/esm.js';
+  // ...your code here
+</script>
+
+<!--  OR  -->
+
+<!--  for Universal Modules (UMD) - all @zerodep functions are in the global "zd" namespace -->
+<script src="https://cdn.jsdelivr.net/npm/@zerodep/guard/umd.js"></script>
+<script>
+  // example of "zd" prefix
+  const result1 = zd.guardArray(['a', 1, true, { an: 'object' }]);
+  const result2 = zd.guardFunction(() => {});
+  const result3 = zd.guardString('a string');
+</script>
+```
+
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/guard/umd.js) and [unpkg](https://unpkg.com/@zerodep/guard/umd.js) in UMD, ESM and CJS formats.
+
 ## Included Packages
 
 This barrel package includes all `@zerodep/guard.*` packages:
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| guardArray | [guard.array](https://www.npmjs.com/package/@zerodep/guard.array) | A configurable HOF to guard against non-array arguments |
-| guardBigInt | [guard.bigint](https://www.npmjs.com/package/@zerodep/guard.bigint) | A configurable HOF to guard against non-BigInt arguments |
-| guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable HOF to guard against non-boolean arguments |
-| guardDate | [guard.date](https://www.npmjs.com/package/@zerodep/guard.date) | A configurable HOF to guard against non-Date arguments |
-| guardFloat | [guard.float](https://www.npmjs.com/package/@zerodep/guard.float) | A configurable HOF to guard against non-float arguments |
-| guardFunction | [guard.float](https://www.npmjs.com/package/@zerodep/guard.function) | A configurable HOF to guard against non-function arguments |
-| guardInteger | [guard.integer](https://www.npmjs.com/package/@zerodep/guard.integer) | A configurable HOF to guard against non-integer arguments |
-| guardJSON | [guard.json](https://www.npmjs.com/package/@zerodep/guard.json) | A configurable HOF to guard against non-JSON object arguments |
-| guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable HOF to guard against non-float/non-integer arguments |
-| guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable HOF to guard against non-object literal arguments |
-| guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable HOF to guard against non-string arguments |
-| ZeroDepErrorGuard, <br />ZeroDepErrorGuardType, <br />ZeroDepErrorGuardRange | [guard.errors](https://www.npmjs.com/package/@zerodep/guard.errors) | The error types thrown by `@zerodep/guard.*` methods, they all subclass the ZeroDepError object |
-
-## How to Use
-
-For specific details and configuration options, see the specific package.
-
-```typescript
-import { guardArray } from '@zerodep/guard';
-
-// guards are HOFs - these examples use the default options
-guardArray()(['a', 'b', 'c']); // ["a", "b", "c"]
-guardArray()('a string'); // throws ZeroDepErrorGuardType
-```
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| guardArray | [guard.array](https://www.npmjs.com/package/@zerodep/guard.array) | A configurable defensive programming utility to guard against non-array values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.array?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.array?style=flat-square&color=blue&label=gzip) |
+| guardBigInt | [guard.bigint](https://www.npmjs.com/package/@zerodep/guard.bigint) | A configurable defensive programming utility to guard against non-BigInt values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.bigint?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.bigint?style=flat-square&color=blue&label=gzip) |
+| guardBoolean | [guard.boolean](https://www.npmjs.com/package/@zerodep/guard.boolean) | A configurable defensive programming utility to guard against non-boolean values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.boolean?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.boolean?style=flat-square&color=blue&label=gzip) |
+| guardDate | [guard.date](https://www.npmjs.com/package/@zerodep/guard.date) | A configurable defensive programming utility to guard against non-Date values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.date?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.date?style=flat-square&color=blue&label=gzip) |
+| guardFloat | [guard.float](https://www.npmjs.com/package/@zerodep/guard.float) | A configurable defensive programming utility to guard against non-float values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.float?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.float?style=flat-square&color=blue&label=gzip) |
+| guardFunction | [guard.function](https://www.npmjs.com/package/@zerodep/guard.function) | A configurable defensive programming utility to guard against non-function values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.function?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.function?style=flat-square&color=blue&label=gzip) |
+| guardInteger | [guard.integer](https://www.npmjs.com/package/@zerodep/guard.integer) | A configurable defensive programming utility to guard against non-integer values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.integer?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.integer?style=flat-square&color=blue&label=gzip) |
+| guardJSON | [guard.json](https://www.npmjs.com/package/@zerodep/guard.json) | A configurable defensive programming utility to guard against non-JSON object values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.json?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.json?style=flat-square&color=blue&label=gzip) |
+| guardNumber | [guard.number](https://www.npmjs.com/package/@zerodep/guard.number) | A configurable defensive programming utility to guard against non-float/non-integer values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.number?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.number?style=flat-square&color=blue&label=gzip) |
+| guardObject | [guard.object](https://www.npmjs.com/package/@zerodep/guard.object) | A configurable defensive programming utility to guard against non-plain JavaScript object values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.object?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.object?style=flat-square&color=blue&label=gzip) |
+| guardString | [guard.string](https://www.npmjs.com/package/@zerodep/guard.string) | A configurable defensive programming utility to guard against non-string values | ![min](https://img.shields.io/bundlephobia/min/@zerodep/guard.string?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.string?style=flat-square&color=blue&label=gzip) |
 
 ## Guards & Defensive Programming
 
@@ -94,6 +111,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability

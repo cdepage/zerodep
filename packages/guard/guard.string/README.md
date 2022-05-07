@@ -1,12 +1,18 @@
 # @zerodep/guard.string
 
-A defensive programming utility to guard against non-string arguments.
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/guard.string?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/guard.string) [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/guard.string?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/guard.string) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/guard.string) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/guard.string?style=flat-square)
+
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/guard.string?style=flat-square)
+
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/guard.string?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/guard.string)
+
+**A configurable defensive programming utility to guard against non-string values.**
 
 Guards do not return a value, they only throw an error if the provided value is not of the guarded type.
 
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { guardString } from '@zerodep/guard.string';
@@ -49,6 +55,10 @@ guardString(42); // throws ZeroDepErrorGuard
 
 This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/guards](https://www.npmjs.com/package/@zerodep/guards).
 
+### For Server & Build Tooling
+
+For Node, or when compiling via babel, rollup, swc, tsc, webpack, etc... these are the instructions for you.
+
 ```
 // all @zerodep features, capabilities and utilities
 npm install @zerodep/app
@@ -64,6 +74,29 @@ npm install @zerodep/guard.string
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
+
+### Browser Direct
+
+If you are using the script directly in a browser via a `<script>` tag or importing it into your own scripts, these are the instructions for you. We support both ESM and UMD formats.
+
+```html
+<!-- for ES Modules (ESM) -->
+<script type="module">
+  import { guardString } from 'https://cdn.jsdelivr.net/npm/@zerodep/guard.string/esm.js';
+  // ...your code here
+</script>
+
+<!--  OR  -->
+
+<!--  for Universal Modules (UMD) - all @zerodep functions are in the global "zd" namespace -->
+<script src="https://cdn.jsdelivr.net/npm/@zerodep/guard.string/umd.js"></script>
+<script>
+  // example of "zd" prefix
+  const result = zd.guardString('a string');
+</script>
+```
+
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/guard.string/umd.js) and [unpkg](https://unpkg.com/@zerodep/guard.string/umd.js) in UMD, ESM and CJS formats.
 
 ## How to Use
 
@@ -97,6 +130,8 @@ interface GuardStringOptions {
 ```
 
 ### Examples
+
+All examples assume ESM or CJS packages. If using a UMD package remember to prefix with the **zd** namespace, e.g. `zd.guardString(...)`.
 
 **Using Default Configuration Options**
 
@@ -186,6 +221,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
