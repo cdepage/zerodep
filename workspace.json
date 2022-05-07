@@ -24,6 +24,7 @@
     "is.bigint": "packages/is/is.bigint",
     "is.boolean": "packages/is/is.boolean",
     "is.date": "packages/is/is.date",
+    "is.equal": "packages/is/is.equal",
     "is.error": "packages/is/is.error",
     "is.float": "packages/is/is.float",
     "is.function": "packages/is/is.function",
