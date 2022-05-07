@@ -105,6 +105,8 @@ declare const toNumber: (value: any) => number;
 
 ### Examples
 
+All examples assume ESM or CJS packages. If using a UMD package remember to prefix with the **zd** namespace, e.g. `zd.toNumber(...)`.
+
 **Using Default Configuration Options**
 
 ```typescript

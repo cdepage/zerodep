@@ -1,26 +1,24 @@
 # @zerodep/format
 
-A set of formatting higher order functions to format a value in specific ways,
+[![min](https://img.shields.io/bundlephobia/min/@zerodep/format?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/format) [![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/format?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/format) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/format) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/format?style=flat-square)
 
-This is a barrel package of all `@zerodep/format.*` presentation packages within the @zerodep monorepo.
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/format?style=flat-square)
 
-Works in the browser and on the server. Includes typescript definitions as well as tree-shakable CJS and ESM exports. Works out-of-the-box; may be configured as required.
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/format?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/format)
+
+**A collection of configurable formatting functions to format a value in specific ways.**
+
+This is a barrel package of all `@zerodep/format.*` utility packages within the @zerodep monorepo.
 
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { formatCurrency } from '@zerodep/format';
 
 formatCurrency(42); // "$42.00"
 ```
-
-Definitions:
-
-**Barrel Package:** "barrel" is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.
-
-**HOF:** a Higher Order Function, a function-that-returns-a-function.
 
 ## Table of Contents
 
@@ -34,20 +32,46 @@ Definitions:
 
 ## Install
 
+### For Server & Build Tooling
+
+For Node, or when compiling via babel, rollup, swc, tsc, webpack, etc... these are the instructions for you.
+
 ```
 npm install @zerodep/format
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
+### Browser Direct
+
+If you are using the script directly in a browser via a `<script>` tag or importing it into your own scripts, these are the instructions for you. We support both ESM and UMD formats.
+
+```html
+<!-- for ES Modules (ESM) -->
+<script type="module">
+  import { formatCurrency } from 'https://cdn.jsdelivr.net/npm/@zerodep/format/esm.js';
+  // ...your code here
+</script>
+
+<!--  OR  -->
+
+<!--  for Universal Modules (UMD) - all @zerodep functions are in the global "zd" namespace -->
+<script src="https://cdn.jsdelivr.net/npm/@zerodep/format/umd.js"></script>
+<script>
+  // example of "zd" prefix
+  const result = zd.formatCurrency(100);
+</script>
+```
+
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/format.equal/umd.js) and [unpkg](https://unpkg.com/@zerodep/format.equal/umd.js) in UMD, ESM and CJS formats.
+
 ## Included Packages
 
 This barrel package includes all `@zerodep/format.*` packages:
 
-| Method Name | Package | Purpose |
-| --- | --- | --- |
-| formatCurrency | [format.currency](https://www.npmjs.com/package/@zerodep/format.currency) | A locale-aware, configurable HOF to format a value as a currency |
-| ZeroDepErrorFormat | [format.errors](https://www.npmjs.com/package/@zerodep/format.errors) | The error types thrown by `@zerodep/format.*` methods, they all subclass the ZeroDepError object |
+| Method Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| formatCurrency | [format.currency](https://www.npmjs.com/package/@zerodep/format.currency) | A configurable, locale-aware utility to format a value to a currency | ![min](https://img.shields.io/bundlephobia/min/@zerodep/format.currency?style=flat-square&color=blue&label=minified)<br />&nbsp;&nbsp;&nbsp;&nbsp;![gzip](https://img.shields.io/bundlephobia/minzip/@zerodep/format.currency?style=flat-square&color=blue&label=gzip) |
 
 ## Advantages of @zerodep Packages
 
@@ -60,6 +84,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability

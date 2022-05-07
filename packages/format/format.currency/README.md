@@ -1,6 +1,14 @@
 # @zerodep/format.currency
 
-A locale-aware capability to format a value to a currency, optionally without decimal values; it automatically adds the appropriate currency symbols/prefixes/suffixes and formats the amount appropriately. Works in the browser and on the server.
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/format.currency?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/format.currency) [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/format.currency?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/format.currency) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/format.currency) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/format.currency?style=flat-square)
+
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/format.currency?style=flat-square)
+
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/format.currency?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/format.currency)
+
+**A configurable, locale-aware utility to format a value to a currency.**
+
+It automatically adds the appropriate currency symbols/prefixes/suffixes and formats the amount appropriately. Display of decimal values is optional.
 
 To properly display a currency you need an amount, and language and a currency. Depending on the country the decimal point may be a comma or a period, the currency symbol is before or after the amount, and the thousands grouping separator may be a [nbsp] space, a comma or a period. Depending on the currency there are zero, two or more fractional digits.
 
@@ -8,7 +16,7 @@ This formatter pulls its default locale settings from the [locale.settings](http
 
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { currencyFormatter } from '@zerodep/format.currency';
@@ -58,6 +66,10 @@ formatCurrency(1234567.89); // "1 234 568 EUR" <-- CAUTION: notice the roun
 
 This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/is).
 
+### For Server & Build Tooling
+
+For Node, or when compiling via babel, rollup, swc, tsc, webpack, etc... these are the instructions for you.
+
 ```
 // all @zerodep features, capabilities and utilities
 npm install @zerodep/app
@@ -70,6 +82,29 @@ npm install @zerodep/format.currency
 ```
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
+
+### Browser Direct
+
+If you are using the script directly in a browser via a `<script>` tag or importing it into your own scripts, these are the instructions for you. We support both ESM and UMD formats.
+
+```html
+<!-- for ES Modules (ESM) -->
+<script type="module">
+  import { formatCurrency } from 'https://cdn.jsdelivr.net/npm/@zerodep/format.currency/esm.js';
+  // ...your code here
+</script>
+
+<!--  OR  -->
+
+<!--  for Universal Modules (UMD) - all @zerodep functions are in the global "zd" namespace -->
+<script src="https://cdn.jsdelivr.net/npm/@zerodep/format.currency/umd.js"></script>
+<script>
+  // example of "zd" prefix
+  const result = zd.formatCurrency(50);
+</script>
+```
+
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/format.currency/umd.js) and [unpkg](https://unpkg.com/@zerodep/format.currency/umd.js) in UMD, ESM and CJS formats.
 
 ## How to Use
 
@@ -159,6 +194,8 @@ declare interface FormatCurrencyOptions {
 - See the [ICU Rounding Modes](https://unicode-org.github.io/icu/userguide/format_parse/numbers/rounding-modes.html) page for a full explanation of the other settings
 
 ### Examples
+
+All examples assume ESM or CJS packages. If using a UMD package remember to prefix with the **zd** namespace, e.g. `zd.formatCurrency(...)`.
 
 **Using Default Configuration Options**
 
@@ -296,6 +333,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability

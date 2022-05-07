@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/format/format",
+          "rm dist/packages/format/format/*",
           "rollup -c packages/format/format/rollup.config.ts",
-          "mv dist/packages/format/format/index.esm.d.ts dist/packages/format/format/index.d.ts",
-          "rm dist/packages/format/format/index.cjs.d.ts",
+          "mv dist/packages/format/format/esm.d.ts dist/packages/format/format/index.d.ts",
           "cp packages/format/format/README.md dist/packages/format/format/README.md",
           "cp packages/format/format/package.json dist/packages/format/format/package.json",
-          "uglifyjs dist/packages/format/format/index.esm.js -o dist/packages/format/format/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/format/format/index.cjs.js -o dist/packages/format/format/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/format/format/index.esm.js",
-          "rm dist/packages/format/format/index.cjs.js"
+          "uglifyjs dist/packages/format/format/esm.js -o dist/packages/format/format/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/format/format/cjs.js -o dist/packages/format/format/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/format/format/umd.js -o dist/packages/format/format/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/format/format/cjs.d.ts",
+          "rm dist/packages/format/format/umd.d.ts"
         ],
         "parallel": false
       }

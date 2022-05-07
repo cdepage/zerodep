@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/format/format.currency",
+          "rm dist/packages/format/format.currency/*",
           "rollup -c packages/format/format.currency/rollup.config.ts",
-          "mv dist/packages/format/format.currency/index.esm.d.ts dist/packages/format/format.currency/index.d.ts",
-          "rm dist/packages/format/format.currency/index.cjs.d.ts",
+          "mv dist/packages/format/format.currency/esm.d.ts dist/packages/format/format.currency/index.d.ts",
           "cp packages/format/format.currency/README.md dist/packages/format/format.currency/README.md",
           "cp packages/format/format.currency/package.json dist/packages/format/format.currency/package.json",
-          "uglifyjs dist/packages/format/format.currency/index.esm.js -o dist/packages/format/format.currency/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/format/format.currency/index.cjs.js -o dist/packages/format/format.currency/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/format/format.currency/index.esm.js",
-          "rm dist/packages/format/format.currency/index.cjs.js"
+          "uglifyjs dist/packages/format/format.currency/esm.js -o dist/packages/format/format.currency/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/format/format.currency/cjs.js -o dist/packages/format/format.currency/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/format/format.currency/umd.js -o dist/packages/format/format.currency/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/format/format.currency/cjs.d.ts",
+          "rm dist/packages/format/format.currency/umd.d.ts"
         ],
         "parallel": false
       }

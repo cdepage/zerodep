@@ -148,6 +148,8 @@ interface ToJSONOptions {
 
 ### Examples
 
+All examples assume ESM or CJS packages. If using a UMD package remember to prefix with the **zd** namespace, e.g. `zd.toJSON(...)`.
+
 **Using Default Configuration Options**
 
 ```typescript

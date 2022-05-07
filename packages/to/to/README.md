@@ -21,17 +21,10 @@ toString(42); // 42
 toString(Symbol); // throws a ZeroDepErrorTo error
 ```
 
-Definitions:
-
-**Barrel Package:** "barrel" is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.
-
-**HOF:** a Higher Order Function, a function-that-returns-a-function.
-
 ## Table of Contents
 
 - [Installation Instructions](#install)
 - [Included Packages](#included-packages)
-- [How to Use](#how-to-use)
 - [ZeroDep Advantages](#advantages-of-zerodep-packages)
 - [Support](#support)
 - [Semver](#semver)
