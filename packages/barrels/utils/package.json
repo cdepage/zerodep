@@ -1,11 +1,11 @@
 {
   "name": "@zerodep/utils",
   "description": "A set of modular JavaScript utilities",
-  "version": "0.8.0",
+  "version": "0.9.2",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cdepage/utils.git",
+    "url": "https://github.com/cdepage/zerodep.git",
     "directory": "packages/barrels/utils"
   },
   "homepage": "https://github.com/cdepage/zerodep",

@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/locale.settings",
   "description": "The locale configuration getter and setter for all locale-aware packages in the @zerodep monorepo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": {
     "type": "git",

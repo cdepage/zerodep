@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/can",
   "description": "A set of functions that test for specific language construct capabilities or features",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "license": "MIT",
   "repository": {
     "type": "git",

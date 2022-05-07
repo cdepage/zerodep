@@ -11,7 +11,7 @@ export default [
     input: `packages/${dir}/src/index.ts`,
     output: [
       {
-        file: `dist/packages/${dir}/esm.js`,
+        file: `dist/packages/${dir}/index.js`,
         format: 'esm',
         banner,
       },

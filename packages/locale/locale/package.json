@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/locale",
   "description": "A set of helper functions to work with locales",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/guard.array",
   "description": "A configurable defensive programming utility to guard against non-array values",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "license": "MIT",
   "repository": {
     "type": "git",

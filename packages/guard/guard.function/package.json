@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/guard.function",
   "description": "A configurable defensive programming utility to guard against non-function values",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/types",
   "description": "A set of typescript type declarations",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "repository": {
     "type": "git",

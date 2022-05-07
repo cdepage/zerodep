@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/barrels/utils",
+          "rm -f dist/packages/barrels/utils/*",
           "rollup -c packages/barrels/utils/rollup.config.ts",
-          "mv dist/packages/barrels/utils/index.esm.d.ts dist/packages/barrels/utils/index.d.ts",
-          "rm dist/packages/barrels/utils/index.cjs.d.ts",
+          "mv dist/packages/barrels/utils/esm.d.ts dist/packages/barrels/utils/index.d.ts",
           "cp packages/barrels/utils/README.md dist/packages/barrels/utils/README.md",
           "cp packages/barrels/utils/package.json dist/packages/barrels/utils/package.json",
-          "uglifyjs dist/packages/barrels/utils/index.esm.js -o dist/packages/barrels/utils/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/barrels/utils/index.cjs.js -o dist/packages/barrels/utils/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/barrels/utils/index.esm.js",
-          "rm dist/packages/barrels/utils/index.cjs.js"
+          "uglifyjs dist/packages/barrels/utils/esm.js -o dist/packages/barrels/utils/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/barrels/utils/cjs.js -o dist/packages/barrels/utils/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/barrels/utils/umd.js -o dist/packages/barrels/utils/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/barrels/utils/cjs.d.ts",
+          "rm dist/packages/barrels/utils/umd.d.ts"
         ],
         "parallel": false
       }

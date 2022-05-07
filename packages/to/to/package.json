@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/to",
   "description": "A set of configurable higher order functions to convert a value to a specific data type",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "license": "MIT",
   "repository": {
     "type": "git",

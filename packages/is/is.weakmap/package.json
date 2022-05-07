@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is.weakmap",
   "description": "A utility to determine if a value is a WeakMap",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": {
     "type": "git",

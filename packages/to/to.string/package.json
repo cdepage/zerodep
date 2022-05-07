@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/to.string",
   "description": "A utility to convert a value to a locale-appropriate string",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": {
     "type": "git",

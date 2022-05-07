@@ -8,10 +8,9 @@
         "commands": [
           "rm -f dist/packages/types/types.timezones/*",
           "rollup -c packages/types/types.timezones/rollup.config.ts",
-          "mv dist/packages/types/types.timezones/esm.d.ts dist/packages/types/types/index.d.ts",
-          "cp packages/types/types.timezones/README.md dist/packages/types/types/README.md",
-          "cp packages/types/types.timezones/package.json dist/packages/types/types/package.json",
-          "rm dist/packages/types/types.timezones/esm.js"
+          "cp packages/types/types.timezones/README.md dist/packages/types/types.timezones/README.md",
+          "cp packages/types/types.timezones/package.json dist/packages/types/types.timezones/package.json",
+          "rm dist/packages/types/types.timezones/index.js"
         ],
         "parallel": false
       }

@@ -8,10 +8,9 @@
         "commands": [
           "rm -f dist/packages/types/types.units/*",
           "rollup -c packages/types/types.units/rollup.config.ts",
-          "mv dist/packages/types/types.units/esm.d.ts dist/packages/types/types/index.d.ts",
-          "cp packages/types/types.units/README.md dist/packages/types/types/README.md",
-          "cp packages/types/types.units/package.json dist/packages/types/types/package.json",
-          "rm dist/packages/types/types.units/esm.js"
+          "cp packages/types/types.units/README.md dist/packages/types/types.units/README.md",
+          "cp packages/types/types.units/package.json dist/packages/types/types.units/package.json",
+          "rm dist/packages/types/types.units/index.js"
         ],
         "parallel": false
       }
