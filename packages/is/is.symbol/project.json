@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/is/is.symbol",
+          "rm dist/packages/is/is.symbol/*",
           "rollup -c packages/is/is.symbol/rollup.config.ts",
-          "mv dist/packages/is/is.symbol/index.esm.d.ts dist/packages/is/is.symbol/index.d.ts",
-          "rm dist/packages/is/is.symbol/index.cjs.d.ts",
+          "mv dist/packages/is/is.symbol/esm.d.ts dist/packages/is/is.symbol/index.d.ts",
           "cp packages/is/is.symbol/README.md dist/packages/is/is.symbol/README.md",
           "cp packages/is/is.symbol/package.json dist/packages/is/is.symbol/package.json",
-          "uglifyjs dist/packages/is/is.symbol/index.esm.js -o dist/packages/is/is.symbol/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/is/is.symbol/index.cjs.js -o dist/packages/is/is.symbol/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/is/is.symbol/index.esm.js",
-          "rm dist/packages/is/is.symbol/index.cjs.js"
+          "uglifyjs dist/packages/is/is.symbol/esm.js -o dist/packages/is/is.symbol/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.symbol/cjs.js -o dist/packages/is/is.symbol/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.symbol/umd.js -o dist/packages/is/is.symbol/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is.symbol/cjs.d.ts",
+          "rm dist/packages/is/is.symbol/umd.d.ts"
         ],
         "parallel": false
       }

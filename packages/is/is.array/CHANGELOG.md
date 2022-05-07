@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- UMD file export for CDNs
+
+### Changed
+
+- Add a few badges to the README
+
 ## [0.1.5] - 2022-05-03
 
 - Internal updates and refactorings

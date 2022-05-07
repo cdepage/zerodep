@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/is/is.promise",
+          "rm dist/packages/is/is.promise/*",
           "rollup -c packages/is/is.promise/rollup.config.ts",
-          "mv dist/packages/is/is.promise/index.esm.d.ts dist/packages/is/is.promise/index.d.ts",
-          "rm dist/packages/is/is.promise/index.cjs.d.ts",
+          "mv dist/packages/is/is.promise/esm.d.ts dist/packages/is/is.promise/index.d.ts",
           "cp packages/is/is.promise/README.md dist/packages/is/is.promise/README.md",
           "cp packages/is/is.promise/package.json dist/packages/is/is.promise/package.json",
-          "uglifyjs dist/packages/is/is.promise/index.esm.js -o dist/packages/is/is.promise/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/is/is.promise/index.cjs.js -o dist/packages/is/is.promise/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/is/is.promise/index.esm.js",
-          "rm dist/packages/is/is.promise/index.cjs.js"
+          "uglifyjs dist/packages/is/is.promise/esm.js -o dist/packages/is/is.promise/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.promise/cjs.js -o dist/packages/is/is.promise/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.promise/umd.js -o dist/packages/is/is.promise/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is.promise/cjs.d.ts",
+          "rm dist/packages/is/is.promise/umd.d.ts"
         ],
         "parallel": false
       }

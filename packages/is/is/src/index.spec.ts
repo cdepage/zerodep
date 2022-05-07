@@ -8,6 +8,7 @@ describe('"App" barrel package', () => {
       'isBigInt',
       'isBoolean',
       'isDate',
+      'isEqual',
       'isError',
       'isFloat',
       'isFunction',

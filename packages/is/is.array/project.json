@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/is/is.array",
-          "rollup -c packages/is/is.array/rollup.config.ts",
-          "mv dist/packages/is/is.array/index.esm.d.ts dist/packages/is/is.array/index.d.ts",
-          "rm dist/packages/is/is.array/index.cjs.d.ts",
-          "cp packages/is/is.array/README.md dist/packages/is/is.array/README.md",
-          "cp packages/is/is.array/package.json dist/packages/is/is.array/package.json",
-          "uglifyjs dist/packages/is/is.array/index.esm.js -o dist/packages/is/is.array/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/is/is.array/index.cjs.js -o dist/packages/is/is.array/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/is/is.array/index.esm.js",
-          "rm dist/packages/is/is.array/index.cjs.js"
+          "rm dist/packages/is/is.equal/*",
+          "rollup -c packages/is/is.equal/rollup.config.ts",
+          "mv dist/packages/is/is.equal/esm.d.ts dist/packages/is/is.equal/index.d.ts",
+          "cp packages/is/is.equal/README.md dist/packages/is/is.equal/README.md",
+          "cp packages/is/is.equal/package.json dist/packages/is/is.equal/package.json",
+          "uglifyjs dist/packages/is/is.equal/esm.js -o dist/packages/is/is.equal/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.equal/cjs.js -o dist/packages/is/is.equal/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.equal/umd.js -o dist/packages/is/is.equal/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is.equal/cjs.d.ts",
+          "rm dist/packages/is/is.equal/umd.d.ts"
         ],
         "parallel": false
       }

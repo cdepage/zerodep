@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/is/is.map",
+          "rm dist/packages/is/is.map/*",
           "rollup -c packages/is/is.map/rollup.config.ts",
-          "mv dist/packages/is/is.map/index.esm.d.ts dist/packages/is/is.map/index.d.ts",
-          "rm dist/packages/is/is.map/index.cjs.d.ts",
+          "mv dist/packages/is/is.map/esm.d.ts dist/packages/is/is.map/index.d.ts",
           "cp packages/is/is.map/README.md dist/packages/is/is.map/README.md",
           "cp packages/is/is.map/package.json dist/packages/is/is.map/package.json",
-          "uglifyjs dist/packages/is/is.map/index.esm.js -o dist/packages/is/is.map/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/is/is.map/index.cjs.js -o dist/packages/is/is.map/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/is/is.map/index.esm.js",
-          "rm dist/packages/is/is.map/index.cjs.js"
+          "uglifyjs dist/packages/is/is.map/esm.js -o dist/packages/is/is.map/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.map/cjs.js -o dist/packages/is/is.map/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.map/umd.js -o dist/packages/is/is.map/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is.map/cjs.d.ts",
+          "rm dist/packages/is/is.map/umd.d.ts"
         ],
         "parallel": false
       }

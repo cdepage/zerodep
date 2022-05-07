@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/is/is",
+          "rm dist/packages/is/is/*",
           "rollup -c packages/is/is/rollup.config.ts",
-          "mv dist/packages/is/is/index.esm.d.ts dist/packages/is/is/index.d.ts",
-          "rm dist/packages/is/is/index.cjs.d.ts",
+          "mv dist/packages/is/is/esm.d.ts dist/packages/is/is/index.d.ts",
           "cp packages/is/is/README.md dist/packages/is/is/README.md",
           "cp packages/is/is/package.json dist/packages/is/is/package.json",
-          "uglifyjs dist/packages/is/is/index.esm.js -o dist/packages/is/is/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/is/is/index.cjs.js -o dist/packages/is/is/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/is/is/index.esm.js",
-          "rm dist/packages/is/is/index.cjs.js"
+          "uglifyjs dist/packages/is/is/esm.js -o dist/packages/is/is/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is/cjs.js -o dist/packages/is/is/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is/umd.js -o dist/packages/is/is/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is/cjs.d.ts",
+          "rm dist/packages/is/is/umd.d.ts"
         ],
         "parallel": false
       }

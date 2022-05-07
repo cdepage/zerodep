@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/is/is.undefined",
+          "rm dist/packages/is/is.undefined/*",
           "rollup -c packages/is/is.undefined/rollup.config.ts",
-          "mv dist/packages/is/is.undefined/index.esm.d.ts dist/packages/is/is.undefined/index.d.ts",
-          "rm dist/packages/is/is.undefined/index.cjs.d.ts",
+          "mv dist/packages/is/is.undefined/esm.d.ts dist/packages/is/is.undefined/index.d.ts",
           "cp packages/is/is.undefined/README.md dist/packages/is/is.undefined/README.md",
           "cp packages/is/is.undefined/package.json dist/packages/is/is.undefined/package.json",
-          "uglifyjs dist/packages/is/is.undefined/index.esm.js -o dist/packages/is/is.undefined/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/is/is.undefined/index.cjs.js -o dist/packages/is/is.undefined/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/is/is.undefined/index.esm.js",
-          "rm dist/packages/is/is.undefined/index.cjs.js"
+          "uglifyjs dist/packages/is/is.undefined/esm.js -o dist/packages/is/is.undefined/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.undefined/cjs.js -o dist/packages/is/is.undefined/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.undefined/umd.js -o dist/packages/is/is.undefined/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is.undefined/cjs.d.ts",
+          "rm dist/packages/is/is.undefined/umd.d.ts"
         ],
         "parallel": false
       }
