@@ -8,4 +8,6 @@ export * from './guard/ZeroDepErrorGuard';
 export * from './guard/ZeroDepErrorGuardRange';
 export * from './guard/ZeroDepErrorGuardType';
 
+export * from './is/ZeroDepErrorIs';
+
 export * from './to/ZeroDepErrorTo';

@@ -6,8 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- UMD file export for CDNs
+- Introduce the `ZeroDepErrorIs` subclass
+
 ### Changed
 
+- Add a few badges to the README
 - Refactor ZeroDepError classes
 
 ## [0.1.5] - 2022-05-03

@@ -66,7 +66,7 @@ If you are using the script directly in a browser via a `<script>` tag or import
 </script>
 ```
 
-This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/can.equal/umd.js) and [unpkg](https://unpkg.com/@zerodep/can.equal/umd.js) in UMD, ESM and CJS formats.
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/can/umd.js) and [unpkg](https://unpkg.com/@zerodep/can/umd.js) in UMD, ESM and CJS formats.
 
 ## Included Packages
 

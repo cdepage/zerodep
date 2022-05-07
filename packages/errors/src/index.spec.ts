@@ -8,6 +8,7 @@ describe('Errors barrel package', () => {
       'ZeroDepErrorGuard',
       'ZeroDepErrorGuardRange',
       'ZeroDepErrorGuardType',
+      'ZeroDepErrorIs',
       'ZeroDepErrorTo',
     ]);
   });

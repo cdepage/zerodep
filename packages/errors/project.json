@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/errors",
+          "rm -f dist/packages/errors/*",
           "rollup -c packages/errors/rollup.config.ts",
-          "mv dist/packages/errors/index.esm.d.ts dist/packages/errors/index.d.ts",
-          "rm dist/packages/errors/index.cjs.d.ts",
+          "mv dist/packages/errors/esm.d.ts dist/packages/errors/index.d.ts",
           "cp packages/errors/README.md dist/packages/errors/README.md",
           "cp packages/errors/package.json dist/packages/errors/package.json",
-          "uglifyjs dist/packages/errors/index.esm.js -o dist/packages/errors/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/errors/index.cjs.js -o dist/packages/errors/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/errors/index.esm.js",
-          "rm dist/packages/errors/index.cjs.js"
+          "uglifyjs dist/packages/errors/esm.js -o dist/packages/errors/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/errors/cjs.js -o dist/packages/errors/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/errors/umd.js -o dist/packages/errors/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/errors/cjs.d.ts",
+          "rm dist/packages/errors/umd.d.ts"
         ],
         "parallel": false
       }

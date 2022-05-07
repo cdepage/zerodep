@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -f dist/packages/is/is.equal/*",
-          "rollup -c packages/is/is.equal/rollup.config.ts",
-          "mv dist/packages/is/is.equal/esm.d.ts dist/packages/is/is.equal/index.d.ts",
-          "cp packages/is/is.equal/README.md dist/packages/is/is.equal/README.md",
-          "cp packages/is/is.equal/package.json dist/packages/is/is.equal/package.json",
-          "uglifyjs dist/packages/is/is.equal/esm.js -o dist/packages/is/is.equal/esm.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/is/is.equal/cjs.js -o dist/packages/is/is.equal/cjs.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/is/is.equal/umd.js -o dist/packages/is/is.equal/umd.js -c --annotations --comments /@source/",
-          "rm dist/packages/is/is.equal/cjs.d.ts",
-          "rm dist/packages/is/is.equal/umd.d.ts"
+          "rm -f dist/packages/is/is.array/*",
+          "rollup -c packages/is/is.array/rollup.config.ts",
+          "mv dist/packages/is/is.array/esm.d.ts dist/packages/is/is.array/index.d.ts",
+          "cp packages/is/is.array/README.md dist/packages/is/is.array/README.md",
+          "cp packages/is/is.array/package.json dist/packages/is/is.array/package.json",
+          "uglifyjs dist/packages/is/is.array/esm.js -o dist/packages/is/is.array/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.array/cjs.js -o dist/packages/is/is.array/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/is/is.array/umd.js -o dist/packages/is/is.array/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/is/is.array/cjs.d.ts",
+          "rm dist/packages/is/is.array/umd.d.ts"
         ],
         "parallel": false
       }

@@ -70,14 +70,14 @@ If you are using the script directly in a browser via a `<script>` tag or import
 <!--  OR  -->
 
 <!--  for Universal Modules (UMD) - all @zerodep functions are in the global "zd" namespace -->
-<script src="https://cdn.jsdelivr.net/npm/@zerodep/is.equal/umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@zerodep/is.array/umd.js"></script>
 <script>
   // example of "zd" prefix
   const result = zd.isArray([1, 2, 3, 'a', 'b', 'c', true, false]);
 </script>
 ```
 
-This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/is.equal/umd.js) and [unpkg](https://unpkg.com/@zerodep/is.equal/umd.js) in UMD, ESM and CJS formats.
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/is.array/umd.js) and [unpkg](https://unpkg.com/@zerodep/is.array/umd.js) in UMD, ESM and CJS formats.
 
 ## How to Use
 
