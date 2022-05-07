@@ -1,6 +1,12 @@
 # @zerodep/to.string
 
-A configurable utility to convert a value (number, boolean, array, object, more...) to a locale-appropriate string.
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/to.string?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/to.string) [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/to.string?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/to.string) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/to.string) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/to.string?style=flat-square)
+
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/to.string?style=flat-square)
+
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/to.string?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/to.string)
+
+**A configurable utility to convert a value (number, boolean, array, object, more...) to a locale-appropriate string.**
 
 Numbers and dates are always written down (stringified) from the perspective of a locale. Most people take it for granted that where they are is how it will work. Software developers need to be aware of this bias.
 
@@ -10,7 +16,7 @@ The toString method may be optionally configured. You may specify a specific loc
 
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { toString } from '@zerodep/to.string';
@@ -53,6 +59,10 @@ toString(Date('2022-02-24')); // "29/04/2022"
 
 This utility is available from multiple @zerodep packages, enabling developers to select the most appropriately sized package (for both kb and capability) for different use cases. We believe one size does not fit all or most. See [@zerodep/app](https://www.npmjs.com/package/@zerodep/app), [@zerodep/utils](https://www.npmjs.com/package/@zerodep/utils) and [@zerodep/is](https://www.npmjs.com/package/@zerodep/is).
 
+### For Server & Build Tooling
+
+For Node, or when compiling via babel, rollup, swc, tsc, webpack, etc... these are the instructions for you.
+
 ```
 // all @zerodep features, capabilities and utilities
 npm install @zerodep/app
@@ -69,7 +79,41 @@ npm install @zerodep/to.string
 
 Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. Only `npm` examples are shown for brevity.
 
+### Browser Direct
+
+If you are using the script directly in a browser via a `<script>` tag or importing it into your own scripts, these are the instructions for you. We support both ESM and UMD formats.
+
+```html
+<!-- for ES Modules (ESM) -->
+<script type="module">
+  import { toString } from 'https://cdn.jsdelivr.net/npm/@zerodep/to.string/esm.js';
+  // ...your code here
+</script>
+
+<!--  OR  -->
+
+<!--  for Universal Modules (UMD) - all @zerodep functions are in the global "zd" namespace -->
+<script src="https://cdn.jsdelivr.net/npm/@zerodep/to.string/umd.js"></script>
+<script>
+  // example of "zd" prefix
+  const result = zd.toString(Date());
+</script>
+```
+
+This package may be found on both [jsDelivr](https://cdn.jsdelivr.net/npm/@zerodep/to.string/umd.js) and [unpkg](https://unpkg.com/@zerodep/to.string/umd.js) in UMD, ESM and CJS formats.
+
 ## How to Use
+
+This package exports the following:
+
+- **Functions**
+  - `toString` - a converter that uses the default configuration options (suitable for most)
+  - `toStringHOF` - a higher-order function that may be configured and returns a converter function based on the configurations
+- **Interface**
+  - `ToStringOptions` - a typescript interface of the options that may be set in the HOF
+- **Error types**
+  - `ZeroDepErrorTo` - the subclass of error thrown by all `@zerodep/to.*` packages
+  - `ZeroDepError` - the error class all ZeroDep packages extend from, is an instance of the base `Error` object
 
 ### Signature
 
@@ -412,6 +456,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability

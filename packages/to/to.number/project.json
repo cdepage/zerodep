@@ -6,16 +6,16 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/to/to.number",
+          "rm dist/packages/to/to.number/*",
           "rollup -c packages/to/to.number/rollup.config.ts",
-          "mv dist/packages/to/to.number/index.esm.d.ts dist/packages/to/to.number/index.d.ts",
-          "rm dist/packages/to/to.number/index.cjs.d.ts",
+          "mv dist/packages/to/to.number/esm.d.ts dist/packages/to/to.number/index.d.ts",
           "cp packages/to/to.number/README.md dist/packages/to/to.number/README.md",
           "cp packages/to/to.number/package.json dist/packages/to/to.number/package.json",
-          "uglifyjs dist/packages/to/to.number/index.esm.js -o dist/packages/to/to.number/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/to/to.number/index.cjs.js -o dist/packages/to/to.number/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/to/to.number/index.esm.js",
-          "rm dist/packages/to/to.number/index.cjs.js"
+          "uglifyjs dist/packages/to/to.number/esm.js -o dist/packages/to/to.number/esm.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/to/to.number/cjs.js -o dist/packages/to/to.number/cjs.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/to/to.number/umd.js -o dist/packages/to/to.number/umd.js -c --annotations --comments /@source/",
+          "rm dist/packages/to/to.number/cjs.d.ts",
+          "rm dist/packages/to/to.number/umd.d.ts"
         ],
         "parallel": false
       }
