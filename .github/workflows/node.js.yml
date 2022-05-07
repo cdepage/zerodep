@@ -26,4 +26,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: nx run-many --target=test --all --coverage
+    - run: npm run testAll
