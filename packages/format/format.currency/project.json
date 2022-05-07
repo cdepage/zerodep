@@ -6,7 +6,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm dist/packages/format/format.currency/*",
+          "rm -f dist/packages/format/format.currency/*",
           "rollup -c packages/format/format.currency/rollup.config.ts",
           "mv dist/packages/format/format.currency/esm.d.ts dist/packages/format/format.currency/index.d.ts",
           "cp packages/format/format.currency/README.md dist/packages/format/format.currency/README.md",

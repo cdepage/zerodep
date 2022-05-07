@@ -6,7 +6,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm dist/packages/to/to.number/*",
+          "rm -f dist/packages/to/to.number/*",
           "rollup -c packages/to/to.number/rollup.config.ts",
           "mv dist/packages/to/to.number/esm.d.ts dist/packages/to/to.number/index.d.ts",
           "cp packages/to/to.number/README.md dist/packages/to/to.number/README.md",

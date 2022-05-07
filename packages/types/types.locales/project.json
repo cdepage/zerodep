@@ -6,14 +6,12 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/types/types.locales",
+          "rm -f dist/packages/types/types.locales/*",
           "rollup -c packages/types/types.locales/rollup.config.ts",
-          "mv dist/packages/types/types.locales/index.esm.d.ts dist/packages/types/types.locales/index.d.ts",
-          "rm dist/packages/types/types.locales/index.cjs.d.ts",
-          "cp packages/types/types.locales/README.md dist/packages/types/types.locales/README.md",
-          "cp packages/types/types.locales/package.json dist/packages/types/types.locales/package.json",
-          "rm dist/packages/types/types.locales/index.esm.js",
-          "rm dist/packages/types/types.locales/index.cjs.js"
+          "mv dist/packages/types/types.locales/esm.d.ts dist/packages/types/types/index.d.ts",
+          "cp packages/types/types.locales/README.md dist/packages/types/types/README.md",
+          "cp packages/types/types.locales/package.json dist/packages/types/types/package.json",
+          "rm dist/packages/types/types.locales/esm.js"
         ],
         "parallel": false
       }

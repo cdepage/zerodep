@@ -1,12 +1,18 @@
 # @zerodep/types.timezones
 
-A typescript `type` declaration of time zones.
+![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/types.timezones?style=flat-square)
+
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/types.timezones?style=flat-square)
+
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/types.timezones?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/types.timezones)
+
+**A typescript `type` declaration of time zones.**
 
 Type declarations are ideal for improving the developer experience (DX) yet do not add bloat to deployed code as the Typescript compiler (and other build tools) removes them.
 
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { TypesTimeZones } from '@zerodep/types.timezones';
@@ -76,6 +82,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability

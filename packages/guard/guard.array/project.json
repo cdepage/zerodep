@@ -6,7 +6,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm dist/packages/guard/guard.array/*",
+          "rm -f dist/packages/guard/guard.array/*",
           "rollup -c packages/guard/guard.array/rollup.config.ts",
           "mv dist/packages/guard/guard.array/esm.d.ts dist/packages/guard/guard.array/index.d.ts",
           "cp packages/guard/guard.array/README.md dist/packages/guard/guard.array/README.md",

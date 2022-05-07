@@ -6,7 +6,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm dist/packages/guard/guard.boolean/*",
+          "rm -f dist/packages/guard/guard.boolean/*",
           "rollup -c packages/guard/guard.boolean/rollup.config.ts",
           "mv dist/packages/guard/guard.boolean/esm.d.ts dist/packages/guard/guard.boolean/index.d.ts",
           "cp packages/guard/guard.boolean/README.md dist/packages/guard/guard.boolean/README.md",

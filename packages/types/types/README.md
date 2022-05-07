@@ -1,12 +1,18 @@
 # @zerodep/to
 
-A useful set of typescript type declarations.
+![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/types?style=flat-square)
+
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/types?style=flat-square)
+
+[![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/types?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/types)
+
+**A useful set of typescript type declarations.**
 
 This is a barrel package of all `@zerodep/types.*` typescript type declarations within the @zerodep monorepo.
 
 ## tl;dr
 
-A quick howto by examples for quick reference:
+A short explanation / quick reference:
 
 ```typescript
 import { TypesLocales, TypesTimeZones } from '@zerodep/types';
@@ -16,10 +22,6 @@ interface MyInterface {
   timezone: TypesTimeZones;
 }
 ```
-
-Definitions:
-
-**Barrel Package:** "barrel" is a way to rollup exports from several modules into a single convenient module. The barrel itself is a module file that re-exports selected exports of other modules.
 
 ## Table of Contents
 
@@ -44,12 +46,12 @@ Of course, you may use `yarn`, `pnpm`, or the package manager of your choice. On
 
 This barrel package includes all `@zerodep/to.*` packages:
 
-| Type Name | Package | Purpose |
-| --- | --- | --- |
-| TypesCurrencies &<br>TypesCurrenciesCrypto | [types.currencies](https://www.npmjs.com/package/@zerodep/types.currencies) | Typescript `type` declaration of currencies and crypto-currencies |
-| TypesLocales | [types.locales](https://www.npmjs.com/package/@zerodep/types.locales) | Typescript `type` declaration of locales |
-| TypesTimeZones | [types.timezones](https://www.npmjs.com/package/@zerodep/types.timezones) | Typescript `type` declaration of time zones |
-| TypesUnits | [types.units](https://www.npmjs.com/package/@zerodep/types.units) | Typescript `type` declaration of supported units of measure |
+| Type Name | Package | Purpose | Size |
+| --- | --- | --- | --- |
+| TypesCurrencies &<br>TypesCurrenciesCrypto | [types.currencies](https://www.npmjs.com/package/@zerodep/types.currencies) | Typescript `type` declaration of currencies and crypto-currencies | N/A |
+| TypesLocales | [types.locales](https://www.npmjs.com/package/@zerodep/types.locales) | Typescript `type` declaration of locales | N/A |
+| TypesTimeZones | [types.timezones](https://www.npmjs.com/package/@zerodep/types.timezones) | Typescript `type` declaration of time zones | N/A |
+| TypesUnits | [types.units](https://www.npmjs.com/package/@zerodep/types.units) | Typescript `type` declaration of supported units of measure | N/A |
 
 ## How to Use
 
@@ -75,6 +77,7 @@ We help make source code more readable, more secure, faster to craft, less likel
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **ESM & CJS** - has both ecmascript modules and common javascript exports, both are fully tree-shakable
+- **CDN Available** - available on fast content delivery networks in UMD, CJS and ESM formats
 - **FP Inspired** - gently opinionated to encourage functional programming style for cleaner and more maintainable software
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability

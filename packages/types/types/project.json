@@ -6,16 +6,12 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/types/types",
+          "rm -f dist/packages/types/types/*",
           "rollup -c packages/types/types/rollup.config.ts",
-          "mv dist/packages/types/types/index.esm.d.ts dist/packages/types/types/index.d.ts",
-          "rm dist/packages/types/types/index.cjs.d.ts",
+          "mv dist/packages/types/types/esm.d.ts dist/packages/types/types/index.d.ts",
           "cp packages/types/types/README.md dist/packages/types/types/README.md",
           "cp packages/types/types/package.json dist/packages/types/types/package.json",
-          "uglifyjs dist/packages/types/types/index.esm.js -o dist/packages/types/types/index.esm.min.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/types/types/index.cjs.js -o dist/packages/types/types/index.cjs.min.js -c --annotations --comments /@source/",
-          "rm dist/packages/types/types/index.esm.js",
-          "rm dist/packages/types/types/index.cjs.js"
+          "rm dist/packages/types/types/esm.js"
         ],
         "parallel": false
       }

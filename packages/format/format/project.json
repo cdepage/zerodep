@@ -6,7 +6,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm dist/packages/format/format/*",
+          "rm -f dist/packages/format/format/*",
           "rollup -c packages/format/format/rollup.config.ts",
           "mv dist/packages/format/format/esm.d.ts dist/packages/format/format/index.d.ts",
           "cp packages/format/format/README.md dist/packages/format/format/README.md",

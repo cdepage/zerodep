@@ -6,7 +6,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm dist/packages/is/is.typedarray/*",
+          "rm -f dist/packages/is/is.typedarray/*",
           "rollup -c packages/is/is.typedarray/rollup.config.ts",
           "mv dist/packages/is/is.typedarray/esm.d.ts dist/packages/is/is.typedarray/index.d.ts",
           "cp packages/is/is.typedarray/README.md dist/packages/is/is.typedarray/README.md",

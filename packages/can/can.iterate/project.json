@@ -6,7 +6,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm dist/packages/can/can.iterate/*",
+          "rm -f dist/packages/can/can.iterate/*",
           "rollup -c packages/can/can.iterate/rollup.config.ts",
           "mv dist/packages/can/can.iterate/esm.d.ts dist/packages/can/can.iterate/index.d.ts",
           "cp packages/can/can.iterate/README.md dist/packages/can/can.iterate/README.md",

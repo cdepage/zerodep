@@ -6,7 +6,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm dist/packages/is/is.weakmap/*",
+          "rm -f dist/packages/is/is.weakmap/*",
           "rollup -c packages/is/is.weakmap/rollup.config.ts",
           "mv dist/packages/is/is.weakmap/esm.d.ts dist/packages/is/is.weakmap/index.d.ts",
           "cp packages/is/is.weakmap/README.md dist/packages/is/is.weakmap/README.md",

@@ -6,14 +6,12 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/types/types.currencies",
+          "rm -f dist/packages/types/types.currencies/*",
           "rollup -c packages/types/types.currencies/rollup.config.ts",
-          "mv dist/packages/types/types.currencies/index.esm.d.ts dist/packages/types/types.currencies/index.d.ts",
-          "rm dist/packages/types/types.currencies/index.cjs.d.ts",
-          "cp packages/types/types.currencies/README.md dist/packages/types/types.currencies/README.md",
-          "cp packages/types/types.currencies/package.json dist/packages/types/types.currencies/package.json",
-          "rm dist/packages/types/types.currencies/index.esm.js",
-          "rm dist/packages/types/types.currencies/index.cjs.js"
+          "mv dist/packages/types/types.currencies/esm.d.ts dist/packages/types/types/index.d.ts",
+          "cp packages/types/types.currencies/README.md dist/packages/types/types/README.md",
+          "cp packages/types/types.currencies/package.json dist/packages/types/types/package.json",
+          "rm dist/packages/types/types.currencies/esm.js"
         ],
         "parallel": false
       }

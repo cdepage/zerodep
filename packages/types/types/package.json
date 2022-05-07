@@ -12,8 +12,6 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris.depage+zerodep@gmail.com>",
   "sideEffects": false,
-  "main": "index.cjs.min.js",
-  "module": "index.esm.min.js",
   "types": "index.d.ts",
   "keywords": []
 }
