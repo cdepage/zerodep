@@ -16,6 +16,7 @@ This is a rollup of all CHANGELOG files in the monorepo. Each package also has i
 
 - Add a few badges to the README files
 - Refactor ZeroDepError classes
+- Quashed a couple of typo-related bugs
 
 ## [0.8.0] - 2022-05-03
 
