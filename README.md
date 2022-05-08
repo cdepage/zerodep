@@ -121,5 +121,3 @@ The above said, a security best practice is to pin your software packages to spe
 ## License
 
 [MIT](https://github.com/cdepage/zerodep/blob/main/LICENSE)
-
-[![Featured on Openbase](https://badges.openbase.com/js/featured/@zerodep/app.svg?token=QSW0lJRrUeHfHxmJXb8KRVIgJeTWw4fr0qGFktUpTgY=)](https://openbase.com/js/@zerodep/app?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
