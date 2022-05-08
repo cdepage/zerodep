@@ -1,0 +1,20 @@
+{
+  "name": "@zerodep/fn.eventemitter",
+  "description": "A factory function to add event emitting capabilities to any object factory",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/fn/fn.eventemitter"
+  },
+  "homepage": "https://github.com/cdepage/zerodep",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris.depage+zerodep@gmail.com>",
+  "sideEffects": false,
+  "browser": "umd.js",
+  "main": "cjs.js",
+  "module": "esm.js",
+  "types": "index.d.ts",
+  "keywords": []
+}

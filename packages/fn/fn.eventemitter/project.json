@@ -1,0 +1,54 @@
+{
+  "root": "packages/fn/fn.eventemitter",
+  "sourceRoot": "packages/fn/fn.eventemitter/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/fn/fn.eventemitter",
+          "rollup -c packages/fn/fn.eventemitter/rollup.config.ts",
+          "mv dist/packages/fn/fn.eventemitter/index.esm.d.ts dist/packages/fn/fn.eventemitter/index.d.ts",
+          "rm dist/packages/fn/fn.eventemitter/index.cjs.d.ts",
+          "cp packages/fn/fn.eventemitter/README.md dist/packages/fn/fn.eventemitter/README.md",
+          "cp packages/fn/fn.eventemitter/package.json dist/packages/fn/fn.eventemitter/package.json",
+          "uglifyjs dist/packages/fn/fn.eventemitter/index.esm.js -o dist/packages/fn/fn.eventemitter/index.esm.min.js -c --annotations --comments /@source/",
+          "uglifyjs dist/packages/fn/fn.eventemitter/index.cjs.js -o dist/packages/fn/fn.eventemitter/index.cjs.min.js -c --annotations --comments /@source/",
+          "rm dist/packages/fn/fn.eventemitter/index.esm.js",
+          "rm dist/packages/fn/fn.eventemitter/index.cjs.js"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/fn/fn.eventemitter/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/fn/fn.eventemitter"],
+      "options": {
+        "jestConfig": "packages/fn/fn.eventemitter/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "packageFix": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/fn/fn.eventemitter"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/fn/fn.eventemitter"
+      }
+    }
+  },
+  "tags": []
+}
