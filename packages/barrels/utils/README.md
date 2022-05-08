@@ -1,12 +1,14 @@
 # @zerodep/utils
 
-
 [![min](https://img.shields.io/badge/dynamic/json?color=blue&label=minified%20size&query=%24.utils_min&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcdepage%2Fzerodep%2Fmain%2Fdocs%2Fsizes.json)](https://bundlephobia.com/package/@zerodep/utils) 
-[![gzip](https://img.shields.io/badge/dynamic/json?color=blue&label=minified%20size&query=%24.utils_gzip&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcdepage%2Fzerodep%2Fmain%2Fdocs%2Fsizes.json)](https://bundlephobia.com/package/@zerodep/utils)
+[![gzip](https://img.shields.io/badge/dynamic/json?color=blue&label=minified%20size&query=%24.utils_gzip&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcdepage%2Fzerodep%2Fmain%2Fdocs%2Fsizes.json)](https://bundlephobia.com/package/@zerodep/utils) 
+[![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/utils) 
+![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
+![types](https://badgen.net/npm/types/@zerodep/utils?style=flat-square)
 
-[![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/utils) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/utils?style=flat-square)
-
-![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/utils?style=flat-square)
+![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) 
+![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) 
+![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/utils?style=flat-square)
 
 [![app](https://img.shields.io/badge/app-%40zerodep-orange?style=flat-square)](https://www.npmjs.com/package/@zerodep/app) [![version](https://img.shields.io/npm/v/@zerodep/app?style=flat-square&color=orange)](https://www.npmjs.com/package/@zerodep/app)
 
