@@ -1,4 +1,4 @@
-import { ZeroDepErrorSource, ZeroDepErrorCategory } from './types';
+import { ZeroDepErrorCategory, ZeroDepErrorSource } from './types';
 
 export class ZeroDepError extends Error {
   public category: ZeroDepErrorCategory;

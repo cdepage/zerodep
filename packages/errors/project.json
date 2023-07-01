@@ -1,52 +1,58 @@
 {
-  "root": "packages/errors",
+  "name": "errors",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/errors/src",
+  "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "rm -f dist/packages/errors/*",
-          "rollup -c packages/errors/rollup.config.ts",
+          "rm -rf dist/packages/errors/*",
+          "rollup -c packages/errors/rollup.config.mjs",
           "mv dist/packages/errors/esm.d.ts dist/packages/errors/index.d.ts",
           "cp packages/errors/README.md dist/packages/errors/README.md",
           "cp packages/errors/package.json dist/packages/errors/package.json",
-          "uglifyjs dist/packages/errors/esm.js -o dist/packages/errors/esm.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/errors/cjs.js -o dist/packages/errors/cjs.js -c --annotations --comments /@source/",
-          "uglifyjs dist/packages/errors/umd.js -o dist/packages/errors/umd.js -c --annotations --comments /@source/",
-          "rm dist/packages/errors/cjs.d.ts",
-          "rm dist/packages/errors/umd.d.ts"
+          "uglifyjs dist/packages/errors/esm.js -o dist/packages/errors/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/errors/cjs.js -o dist/packages/errors/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/errors/cjs.d.ts"
         ],
         "parallel": false
       }
     },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs errors {args.ver} {args.tag}"
+      },
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/errors"
+      }
+    },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["packages/errors/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/errors"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "packages/errors/jest.config.ts",
         "passWithNoTests": true
-      }
-    },
-    "packageFix": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "command": "npm-sort && fixpack",
-        "cwd": "packages/errors"
-      }
-    },
-    "publish": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "command": "npm publish --access public",
-        "cwd": "dist/packages/errors"
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     }
   },

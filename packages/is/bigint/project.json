@@ -1,0 +1,60 @@
+{
+  "name": "is-bigint",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/is/bigint/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is/bigint/*",
+          "rollup -c packages/is/bigint/rollup.config.mjs",
+          "mv dist/packages/is/bigint/esm.d.ts dist/packages/is/bigint/index.d.ts",
+          "cp packages/is/bigint/README.md dist/packages/is/bigint/README.md",
+          "cp packages/is/bigint/package.json dist/packages/is/bigint/package.json",
+          "uglifyjs dist/packages/is/bigint/esm.js -o dist/packages/is/bigint/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/is/bigint/cjs.js -o dist/packages/is/bigint/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/is/bigint/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs is-bigint {args.ver} {args.tag}"
+      },
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is/bigint"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is/bigint/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/is/bigint/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

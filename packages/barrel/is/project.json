@@ -1,0 +1,60 @@
+{
+  "name": "barrel-is",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/barrel/is/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/barrel/is/*",
+          "rollup -c packages/barrel/is/rollup.config.mjs",
+          "mv dist/packages/barrel/is/esm.d.ts dist/packages/barrel/is/index.d.ts",
+          "cp packages/barrel/is/README.md dist/packages/barrel/is/README.md",
+          "cp packages/barrel/is/package.json dist/packages/barrel/is/package.json",
+          "uglifyjs dist/packages/barrel/is/esm.js -o dist/packages/barrel/is/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/barrel/is/cjs.js -o dist/packages/barrel/is/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/barrel/is/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs barrel-is {args.ver} {args.tag}"
+      },
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/barrel/is"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/barrel/is/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/barrel/is/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

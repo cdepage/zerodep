@@ -1,0 +1,60 @@
+{
+  "name": "is-object",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/is/object/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is/object/*",
+          "rollup -c packages/is/object/rollup.config.mjs",
+          "mv dist/packages/is/object/esm.d.ts dist/packages/is/object/index.d.ts",
+          "cp packages/is/object/README.md dist/packages/is/object/README.md",
+          "cp packages/is/object/package.json dist/packages/is/object/package.json",
+          "uglifyjs dist/packages/is/object/esm.js -o dist/packages/is/object/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/is/object/cjs.js -o dist/packages/is/object/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/is/object/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs is-object {args.ver} {args.tag}"
+      },
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is/array"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is/object/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/is/object/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

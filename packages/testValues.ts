@@ -13,7 +13,10 @@ export const testPromiseResolved2 = Promise.resolve(2);
 const p1 = new Promise(() => {});
 const p2 = new Promise(() => {});
 const testPromiseAllUnresolved = Promise.all([p1, p2]);
-const testPromiseAllResolved = Promise.all([testPromiseResolved1, testPromiseResolved2]);
+const testPromiseAllResolved = Promise.all([
+  testPromiseResolved1,
+  testPromiseResolved2,
+]);
 
 export class TestClass1 {
   public a: any;
@@ -173,6 +176,7 @@ export const testData = {
     ['array of promises', [testPromise1, testPromise2]],
     ['array of classes', [TestClass1, TestClass2]],
     ['array of instantiated classes', [testClassInstance1, testClassInstance2]],
+    ['array from new Array()', new Array(1)],
   ],
 
   // arrayFroms: [],
@@ -209,7 +213,10 @@ export const testData = {
       ]),
     ],
     ['set of classes', new Set([TestClass1, TestClass2])],
-    ['set of instantiated classes', new Set([testClassInstance1, testClassInstance2])],
+    [
+      'set of instantiated classes',
+      new Set([testClassInstance1, testClassInstance2]),
+    ],
     ['set of promises', new Set([testPromise1, testPromise2])],
     ['set of symbols', new Set([testSymbol1, testSymbol2])],
   ],

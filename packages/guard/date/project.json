@@ -1,0 +1,60 @@
+{
+  "name": "guard-date",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/guard/date/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/guard/date/*",
+          "rollup -c packages/guard/date/rollup.config.mjs",
+          "mv dist/packages/guard/date/esm.d.ts dist/packages/guard/date/index.d.ts",
+          "cp packages/guard/date/README.md dist/packages/guard/date/README.md",
+          "cp packages/guard/date/package.json dist/packages/guard/date/package.json",
+          "uglifyjs dist/packages/guard/date/esm.js -o dist/packages/guard/date/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/guard/date/cjs.js -o dist/packages/guard/date/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/guard/date/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs guard-date {args.ver} {args.tag}"
+      },
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/guard/date"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/guard/date/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/guard/date/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

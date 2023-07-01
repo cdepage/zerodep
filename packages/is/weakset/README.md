@@ -1,0 +1,61 @@
+# @zerodep/is-weakset
+
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/is-weakset?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-weakset)
+[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/is-weakset?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-weakset)
+[![version](https://img.shields.io/npm/v/@zerodep/is-weakset?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-weakset)
+![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
+![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+
+A simple, performant utility to determine if a value is a Weak Set.
+
+Full documentation is available at the [zerodep.app](http://zerodep.app/is/weakset) page.
+
+## Examples
+
+All @zerodep packages support both ESM and CJS.
+
+```javascript
+import { isWeakSet } from '@zerodep/is-weakset';
+// or
+const { isWeakSet } = require('@zerodep/is-weakset');
+```
+
+### Positive Response
+
+```javascript
+// prepare a weak map
+const ws = new WeakSet();
+const obj = {};
+ws.add(obj);
+
+isWeakSet(ws); // true
+```
+
+### Negative Response
+
+```javascript
+isWeakSet(['a', 'b', 'c']); // false
+isWeakSet(1000n); // false
+isWeakSet(true); // false
+isWeakSet(new Date()); // false
+isWeakSet(''); // false
+isWeakSet(new Error('message')); // false
+isWeakSet(3.14); // false
+isWeakSet(() => 'function'); // false
+isWeakSet(42); // false
+isWeakSet(
+  new Map([
+    ['a', 1],
+    ['b', 2],
+  ])
+); // false
+isWeakSet(null); // false
+isWeakSet({ an: 'object' }); // false
+isWeakSet(new Promise(() => {})); // false
+isWeakSet(/[regex]+/gi); // false
+isWeakSet(new Set([1, 2, 3])); // false
+isWeakSet('a string'); // false
+isWeakSet(Symbol()); // false
+isWeakSet(new Int32Array(2)); // false
+isWeakSet(undefined); // false
+```

@@ -1,0 +1,60 @@
+{
+  "name": "string-titlecase",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/string/titlecase/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/string/titlecase/*",
+          "rollup -c packages/string/titlecase/rollup.config.mjs",
+          "mv dist/packages/string/titlecase/esm.d.ts dist/packages/string/titlecase/index.d.ts",
+          "cp packages/string/titlecase/README.md dist/packages/string/titlecase/README.md",
+          "cp packages/string/titlecase/package.json dist/packages/string/titlecase/package.json",
+          "uglifyjs dist/packages/string/titlecase/esm.js -o dist/packages/string/titlecase/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/string/titlecase/cjs.js -o dist/packages/string/titlecase/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/string/titlecase/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs string-titlecase {args.ver} {args.tag}"
+      },
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/string/titlecase"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/string/titlecase/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/string/titlecase/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

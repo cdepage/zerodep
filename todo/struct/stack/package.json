@@ -1,0 +1,20 @@
+{
+  "name": "@zerodep/struct_stack",
+  "description": "A Stack data structure",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/struct/stack"
+  },
+  "homepage": "https://github.com/cdepage/zerodep",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris@zerodep.app>",
+  "sideEffects": false,
+  "browser": "umd.js",
+  "main": "cjs.js",
+  "module": "esm.js",
+  "types": "index.d.ts",
+  "keywords": []
+}

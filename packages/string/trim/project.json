@@ -1,0 +1,57 @@
+{
+  "name": "string-trim",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/string/trim/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/string/trim/*",
+          "rollup -c packages/string/trim/rollup.config.mjs",
+          "mv dist/packages/string/trim/esm.d.ts dist/packages/string/trim/index.d.ts",
+          "cp packages/string/trim/README.md dist/packages/string/trim/README.md",
+          "cp packages/string/trim/package.json dist/packages/string/trim/package.json",
+          "uglifyjs dist/packages/string/trim/esm.js -o dist/packages/string/trim/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/string/trim/cjs.js -o dist/packages/string/trim/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/string/trim/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs string-trim {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/string/trim"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/string/trim/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/string/trim/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

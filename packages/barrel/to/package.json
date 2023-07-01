@@ -1,0 +1,27 @@
+{
+  "name": "@zerodep/to",
+  "description": "A set of functions to convert between data types",
+  "version": "2.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/barrel/to"
+  },
+  "homepage": "https://zerodep.app",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris@zerodep.app>",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "main": "cjs.js",
+  "module": "esm.js",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./esm.js",
+    "default": "./cjs.js"
+  },
+  "keywords": [
+    "to",
+    "convert"
+  ]
+}

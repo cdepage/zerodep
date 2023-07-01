@@ -1,0 +1,28 @@
+{
+  "name": "@zerodep/string-trimright",
+  "description": "A utility to trim whitespace or specific values from the end of a string",
+  "version": "2.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/string/trim"
+  },
+  "homepage": "https://zerodep.app",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris@zerodep.app>",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "main": "cjs.js",
+  "module": "esm.js",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./esm.js",
+    "default": "./cjs.js"
+  },
+  "keywords": [
+    "string",
+    "trim",
+    "right"
+  ]
+}

@@ -1,15 +1,17 @@
-import * as errors from './index';
+import * as packages from './index';
+
+const keys = Object.keys(packages).sort();
 
 describe('Errors barrel package', () => {
   it('should export specific packages and interfaces', () => {
-    expect(Object.keys(errors).sort()).toStrictEqual([
-      'ZeroDepError',
-      'ZeroDepErrorFormat',
-      'ZeroDepErrorGuard',
-      'ZeroDepErrorGuardRange',
-      'ZeroDepErrorGuardType',
-      'ZeroDepErrorIs',
-      'ZeroDepErrorTo',
-    ]);
+    expect(keys).toStrictEqual(['ZeroDepError']);
+  });
+
+  // contrived test for barrel-file
+  test.each(keys)('should have %s', (name) => {
+    expect(['function', 'object', 'undefined']).toContain(
+      // @ts-ignore
+      typeof packages[name]
+    );
   });
 });

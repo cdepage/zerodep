@@ -1,0 +1,32 @@
+{
+  "name": "@zerodep/address-state",
+  "description": "Get address-related information about a state/province by its name or abbreviation.",
+  "version": "2.0.5",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/address/state"
+  },
+  "homepage": "https://zerodep.app",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris@zerodep.app>",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "main": "cjs.js",
+  "module": "esm.js",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./esm.js",
+    "require": "./cjs.js"
+  },
+  "keywords": [
+    "us",
+    "states",
+    "ca",
+    "provinces",
+    "normalize",
+    "name",
+    "abbreviation"
+  ]
+}

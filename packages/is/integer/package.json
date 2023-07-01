@@ -1,0 +1,28 @@
+{
+  "name": "@zerodep/is-integer",
+  "description": "A utility to determine if a value is a finite integer",
+  "version": "2.0.2",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/is/integer"
+  },
+  "homepage": "https://zerodep.app",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris@zerodep.app>",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "main": "cjs.js",
+  "module": "esm.js",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./esm.js",
+    "default": "./cjs.js"
+  },
+  "keywords": [
+    "is",
+    "integer",
+    "type"
+  ]
+}

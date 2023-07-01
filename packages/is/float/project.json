@@ -1,0 +1,60 @@
+{
+  "name": "is-float",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/is/float/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is/float/*",
+          "rollup -c packages/is/float/rollup.config.mjs",
+          "mv dist/packages/is/float/esm.d.ts dist/packages/is/float/index.d.ts",
+          "cp packages/is/float/README.md dist/packages/is/float/README.md",
+          "cp packages/is/float/package.json dist/packages/is/float/package.json",
+          "uglifyjs dist/packages/is/float/esm.js -o dist/packages/is/float/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/is/float/cjs.js -o dist/packages/is/float/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/is/float/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs is-float {args.ver} {args.tag}"
+      },
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is/array"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/is/float/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/is/float/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

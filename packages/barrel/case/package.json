@@ -1,0 +1,31 @@
+{
+  "name": "@zerodep/case",
+  "description": "A set of utilities to convert the case of strings",
+  "version": "2.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/barrel/case"
+  },
+  "homepage": "https://zerodep.app",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris@zerodep.app>",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "main": "cjs.js",
+  "module": "esm.js",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./esm.js",
+    "default": "./cjs.js"
+  },
+  "keywords": [
+    "case",
+    "camel",
+    "kebab",
+    "pascal",
+    "sentence",
+    "snake"
+  ]
+}

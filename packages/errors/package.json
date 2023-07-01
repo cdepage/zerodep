@@ -1,20 +1,24 @@
 {
   "name": "@zerodep/errors",
-  "description": "The ZeroDepError classes used by all @zerodep packages",
-  "version": "0.2.0",
+  "description": "The ZeroDep error wrapper",
+  "version": "2.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdepage/zerodep.git",
     "directory": "packages/errors"
   },
-  "homepage": "https://github.com/cdepage/zerodep",
+  "homepage": "https://zerodep.app",
   "bugs": "https://github.com/cdepage/zerodep/issues",
-  "author": "Chris dePage <chris.depage+zerodep@gmail.com>",
+  "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
-  "browser": "umd.js",
+  "types": "index.d.ts",
   "main": "cjs.js",
   "module": "esm.js",
-  "types": "index.d.ts",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./esm.js",
+    "default": "./cjs.js"
+  },
   "keywords": []
 }

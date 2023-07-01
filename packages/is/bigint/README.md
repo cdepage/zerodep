@@ -1,0 +1,56 @@
+# @zerodep/is-bigint
+
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/is-bigint?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-bigint)
+[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/is-bigint?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-bigint)
+[![version](https://img.shields.io/npm/v/@zerodep/is-bigint?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-bigint)
+![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
+![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+
+A simple, performant utility to determine if a value is a BigInt.
+
+Full documentation is available at the [zerodep.app](http://zerodep.app/is/bigint) page.
+
+## Examples
+
+All @zerodep packages support both ESM and CJS.
+
+```javascript
+import { isBigInt } from '@zerodep/is-bigint';
+// or
+const { isBigInt } = require('@zerodep/is-bigint');
+```
+
+### Positive Response
+
+```javascript
+isBigInt(1000n); // true
+isBigInt(BigInt(Number.MAX_VALUE + 1)); // true
+```
+
+### Negative Response
+
+```javascript
+isBigInt(['a', 'b', 'c']); // false
+isBigInt(true); // false
+isBigInt(new Date()); // false
+isBigInt(''); // false
+isBigInt(new Error('message')); // false
+isBigInt(3.14); // false
+isBigInt(() => 'function'); // false
+isBigInt(42); // false
+isBigInt(
+  new Map([
+    ['a', 1],
+    ['b', 2],
+  ])
+); // false
+isBigInt(null); // false
+isBigInt({ an: 'object' }); // false
+isBigInt(new Promise(() => {})); // false
+isBigInt(/[regex]+/gi); // false
+isBigInt(new Set([1, 2, 3])); // false
+isBigInt('a string'); // false
+isBigInt(Symbol()); // false
+isBigInt(new Int32Array(2)); // false
+isBigInt(undefined); // false
+```
