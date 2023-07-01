@@ -1,8 +1,10 @@
 # Address Barrel Package
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/address?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/address) [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/address?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/address) [![tree shaking](https://img.shields.io/badge/tree%20shaking-supported-blue?style=flat-square)](https://bundlephobia.com/package/@zerodep/address) ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square) ![types](https://badgen.net/npm/types/@zerodep/address?style=flat-square)
-
-![coverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square) ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@zerodep/address?style=flat-square) [![version](https://img.shields.io/npm/v/@zerodep/address?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/address)
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/address?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/address)
+[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/address?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/address)
+[![version](https://img.shields.io/npm/v/@zerodep/address?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/address)
+![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
+![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
 The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application. This one is a package of all `address` functions.
 

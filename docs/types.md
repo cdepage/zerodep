@@ -11,7 +11,11 @@ A collection of Typescript literal union types.
 The names of all nation-states in the world. 
 
 ```typescript
+// definition
 type Country = "Afghanistan" | "Albania" | ... | "United States" | ... | "Zimbabwe";
+
+// example import
+import { Country } from '@zerodep/types'
 ```
 
 ### Country ISO2 Codes
@@ -19,7 +23,11 @@ type Country = "Afghanistan" | "Albania" | ... | "United States" | ... | "Zimbab
 The ISO2 codes of all nation-states in the world.
 
 ```typescript
+// definition
 type CountryIso2 = "AF" | "AL" | ... | "US" | ... | "ZQ";
+
+// example import
+import { CountryIso2 } from '@zerodep/types'
 ```
 
 ### Currencies
@@ -27,7 +35,11 @@ type CountryIso2 = "AF" | "AL" | ... | "US" | ... | "ZQ";
 The currency abbreviations for all known currencies.
 
 ```typescript
+// definition
 type Currency = "AED" | "AFN" | ... | "USD" | ... | "ZWL";
+
+// example import
+import { Currency } from '@zerodep/types';
 ```
 
 ### Crypto Currencies
@@ -36,7 +48,11 @@ type Currency = "AED" | "AFN" | ... | "USD" | ... | "ZWL";
 The currency abbreviations for popular crypto currencies.
 
 ```typescript
+// definition
 type CurrencyCrypto = "ADA" | ... | "BTC" | ... | "ZEC";
+
+// example import
+import { CurrencyCrypto } from '@zerodep/types';
 ```
 
 ### Locales
@@ -44,7 +60,11 @@ type CurrencyCrypto = "ADA" | ... | "BTC" | ... | "ZEC";
 The locale values for all common country:language tuples.
 
 ```typescript
+// definition
 type Locale = "ar" | ...  | "en-US" | ... | "zh-TW";
+
+// example import
+import { Locale } from '@zerodep/types';
 ```
 
 ### Time Zones
@@ -52,7 +72,11 @@ type Locale = "ar" | ...  | "en-US" | ... | "zh-TW";
 The timezone values that can be used for Intl options.
 
 ```typescript
+// definition
 type TimeZone = "Africa/Abidjan" | ... | "America/New_York" |  ...  | "Pacific/Wallis";
+
+// example import
+import { TimeZone } from '@zerodep/types';
 ```
 
 ## Installation Sources
@@ -69,8 +93,8 @@ npm i @zerodep/parsers
 # all @zerodep utility functions - medium file size
 npm i @zerodep/utility
 
-# only this @zerodep function
-import { isInteger } from '@zerodep/is-integer';
+# only this @zerodep package
+npm i @zerodep/types
 ```
 
 ## Changelog

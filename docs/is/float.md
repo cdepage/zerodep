@@ -1,8 +1,8 @@
 # isFloat()
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/is-floiat?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-floiat)
-[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/is-floiat?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-floiat)
-[![version](https://img.shields.io/npm/v/@zerodep/is-floiat?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-floiat)
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/is-float?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-float)
+[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/is-float?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-float)
+[![version](https://img.shields.io/npm/v/@zerodep/is-float?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-float)
 ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
 ![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
 

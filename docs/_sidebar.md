@@ -10,7 +10,7 @@
   - [All Parsers Barrel Package](parsers.md)
   - [All Utilities Barrel Package](utilities.md)
   - >
-  - [Address Barrel Package](address/package.md)
+  - [Address Barrel Package](address.md)
   - [Cases Barrel Package](case.md)
   - [Guards Barrel Package](guard.md)
   - [Is Barrel Package](is.md)
