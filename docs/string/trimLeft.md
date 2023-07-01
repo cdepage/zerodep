@@ -51,19 +51,31 @@ stringTrimLeft({ not: 'a string' }); // throws ZeroDepError: Value is not a stri
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep string functions - small file size
+# all @zerodep "string" functions
+npm i @zerodep/string
+
+# only this @zerodep package
+npm i @zerodep/string-trimleft
+```
+
+then
+
+```javascript
+import { stringTrimLeft } from '@zerodep/app';
+// or
+import { stringTrimLeft } from '@zerodep/utilities';
+// or
 import { stringTrimLeft } from '@zerodep/string';
-
-# only this @zerodep function - tiny file size
+// or
 import { stringTrimLeft } from '@zerodep/string-trimleft';
 ```
 

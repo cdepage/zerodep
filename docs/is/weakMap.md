@@ -11,23 +11,23 @@ A simple, performant utility to determine if a value is a Weak Map.
 ## Signature
 
 ```typescript
-const isWeakmap(value: any) => boolean;
+const isWeakMap(value: any) => boolean;
 ```
 
 ### Function Parameters
 
-The `isWeakmap` function has the following parameters:
+The `isWeakMap` function has the following parameters:
 
 - **value** - the value to check
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```javascript
-import { isWeakmap } from '@zerodep/is-weakmap';
+import { isWeakMap } from '@zerodep/is-weakmap';
 // or
-const { isWeakmap } = require('@zerodep/is-weakmap');
+const { isWeakMap } = require('@zerodep/is-weakmap');
 ```
 
 ### Positive Response
@@ -44,31 +44,30 @@ is-weakmap(wm); // true
 ### Negative Response
 
 ```javascript
-is - weakmap(['a', 'b', 'c']); // false
-is - weakmap(1000n); // false
-is - weakmap(true); // false
-is - weakmap(new Date()); // false
-is - weakmap(''); // false
-is - weakmap(new Error('message')); // false
-is - weakmap(3.14); // false
-is - weakmap(() => 'function'); // false
-is - weakmap(42); // false
-is -
-  weakmap(
+isWeakMap(['a', 'b', 'c']); // false
+isWeakMap(1000n); // false
+isWeakMap(true); // false
+isWeakMap(new Date()); // false
+isWeakMap(''); // false
+isWeakMap(new Error('message')); // false
+isWeakMap(3.14); // false
+isWeakMap(() => 'function'); // false
+isWeakMap(42); // false
+isWeakMap(
     new Map([
       ['a', 1],
       ['b', 2],
     ])
   ); // false
-is - weakmap(null); // false
-is - weakmap({ an: 'object' }); // false
-is - weakmap(new Promise(() => {})); // false
-is - weakmap(/[regex]+/gi); // false
-is - weakmap(new Set([1, 2, 3])); // false
-is - weakmap('a string'); // false
-is - weakmap(Symbol()); // false
-is - weakmap(new Int32Array(2)); // false
-is - weakmap(undefined); // false
+isWeakMap(null); // false
+isWeakMap({ an: 'object' }); // false
+isWeakMap(new Promise(() => {})); // false
+isWeakMap(/[regex]+/gi); // false
+isWeakMap(new Set([1, 2, 3])); // false
+isWeakMap('a string'); // false
+isWeakMap(Symbol()); // false
+isWeakMap(new Int32Array(2)); // false
+isWeakMap(undefined); // false
 ```
 
 ## Installation Sources
@@ -76,17 +75,29 @@ is - weakmap(undefined); // false
 This function is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep is functions
-import { is-weakmap } from '@zerodep/is';
+# all @zerodep "is" functions
+@zerodep/is
 
-# only this @zerodep function
-import { is-weakmap } from '@zerodep/is-weakmap';
+# only this @zerodep package
+npm i @zerodep/is-weakmap
+```
+
+then
+
+```javascript
+import { isWeakMap } from '@zerodep/app';
+// or
+import { isWeakMap } from '@zerodep/utilities';
+// or
+import { isWeakMap } from '@zerodep/is';
+// or
+import { isWeakMap } from '@zerodep/is-weakmap';
 ```
 
 ## Changelog

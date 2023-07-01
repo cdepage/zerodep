@@ -22,16 +22,6 @@ The `casePascal` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { casePascal } from '@zerodep/case-pascal';
-// or
-const { casePascal } = require('@zerodep/case-pascal');
-```
-
-### Use Cases
-
 ```javascript
 casePascal('From sentence case'); // "FromSentenceCase"
 casePascal('from-kebab-case'); // "FromKebabCase"
@@ -57,20 +47,32 @@ casePascal({ not: 'a string' }); // throws ZeroDepError: Value is not a string
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-# all @zerodep case functions - small file size
+# all @zerodep "case" functions
 npm i @zerodep/case
 
-# only this @zerodep function - tiny file size
+# only this @zerodep package
 npm i @zerodep/case-pascal
+```
+
+then
+
+```javascript
+import { casePascal } from '@zerodep/app';
+// or
+import { casePascal } from '@zerodep/utilities';
+// or
+import { casePascal } from '@zerodep/case';
+// or
+import { casePascal } from '@zerodep/case-pascal';
 ```
 
 ## Changelog

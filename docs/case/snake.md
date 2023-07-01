@@ -22,15 +22,6 @@ The `caseSnake` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { caseSnake } from '@zerodep/case-snake';
-// or
-const { caseSnake } = require('@zerodep/case-snake');
-```
-
-### Use Cases
 
 ```javascript
 caseSnake('From sentence case'); // "from_sentence_case"
@@ -57,20 +48,32 @@ caseSnake({ not: 'a string' }); // throws ZeroDepError: Value is not a string
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-# all @zerodep case functions - small file size
+# all @zerodep "case" functions
 npm i @zerodep/case
 
-# only this @zerodep function - tiny file size
+# only this @zerodep package
 npm i @zerodep/case-snake
+```
+
+then
+
+```javascript
+import { caseSnake } from '@zerodep/app';
+// or
+import { caseSnake } from '@zerodep/utilities';
+// or
+import { caseSnake } from '@zerodep/case';
+// or
+import { caseSnake } from '@zerodep/case-snake';
 ```
 
 ## Changelog

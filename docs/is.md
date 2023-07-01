@@ -1,4 +1,4 @@
-# Is Barrel Package
+# "Is" Barrel Package
 
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/is?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/is?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is)
@@ -6,11 +6,15 @@
 ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
-The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application. This one is a package of all `is` functions.
+The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application.
 
-## About Is Functions
+This is the _is_ package: it includes all tree-shakeable functions that return a boolean response based on what it is checking for. Check out the [module matrix](/) for a full overview of what function/capability is in which packages.
 
-Is functions are single arity functions that indicate if a value is of a specific type, with the exception of the `isEqual()` function.
+**To Install**
+
+```bash
+npm i @zerodep/is
+```
 
 ## Available Functions
 

@@ -20,14 +20,6 @@ The `guardBoolean` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { guardBoolean } from '@zerodep/guard-boolean';
-// or
-const { guardBoolean } = require('@zerodep/guard-boolean');
-```
-
 ### Successful Cases
 
 ```javascript
@@ -66,19 +58,31 @@ guardBoolean(undefined); // throws ZeroDepError: Value is not a boolean
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
 # all @zerodep packages- largest file size
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep guard functions - small file size
-import { guardBoolean } from '@zerodep/guards';
+# all @zerodep "guard" functions
+npm i @zerodep/guards
 
-# only this @zerodep function - tiny file size
+# only this @zerodep package
+npm i @zerodep/guard-boolean
+```
+
+then
+
+```javascript
+import { guardBoolean } from '@zerodep/app';
+// or
+import { guardBoolean } from '@zerodep/utilities';
+// or
+import { guardBoolean } from '@zerodep/guard';
+// or
 import { guardBoolean } from '@zerodep/guard-boolean';
 ```
 

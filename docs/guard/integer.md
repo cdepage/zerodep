@@ -20,14 +20,6 @@ The `guardInteger` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { guardInteger } from '@zerodep/guard-integer';
-// or
-const { guardInteger } = require('@zerodep/guard-integer');
-```
-
 ### Successful Cases
 
 ```javascript
@@ -106,19 +98,31 @@ customIntegerGuard(101); // throws ZeroDepError: Integer is greater than 100
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
 # all @zerodep packages- largest file size
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep guard functions - small file size
-import { guardInteger } from '@zerodep/guards';
+# all @zerodep "guard" functions
+npm i @zerodep/guards
 
-# only this @zerodep function - tiny file size
+# only this @zerodep package
+npm i @zerodep/guard-integer
+```
+
+then
+
+```javascript
+import { guardInteger } from '@zerodep/app';
+// or
+import { guardInteger } from '@zerodep/utilities';
+// or
+import { guardInteger } from '@zerodep/guard';
+// or
 import { guardInteger } from '@zerodep/guard-integer';
 ```
 

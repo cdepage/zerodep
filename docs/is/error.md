@@ -22,14 +22,6 @@ The `isArray` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { isError } from '@zerodep/is-error';
-// or
-const { isError } = require('@zerodep/is-error');
-```
-
 ### Positive Response
 
 ```javascript
@@ -66,19 +58,31 @@ isError(undefined); // false
 
 ## Installation Sources
 
-This function is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep is functions
+# all @zerodep "is" functions
+npm i @zerodep/is
+
+# only this @zerodep package
+npm i @zerodep/is-error
+```
+
+then
+
+```javascript
+import { isError } from '@zerodep/app';
+// or
+import { isError } from '@zerodep/utilities';
+// or
 import { isError } from '@zerodep/is';
-
-# only this @zerodep function
+// or
 import { isError } from '@zerodep/is-error';
 ```
 

@@ -20,14 +20,6 @@ The `guardArray` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { guardArray } from '@zerodep/guard-array';
-// or
-const { guardArray } = require('@zerodep/guard-array');
-```
-
 ### Successful Cases
 
 ```javascript
@@ -129,19 +121,31 @@ customArrayGuard(sampleArray5); // void
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
 # all @zerodep packages- largest file size
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep guard functions - small file size
-import { guardArray } from '@zerodep/guards';
+# all @zerodep "guard" functions
+npm i @zerodep/guards
 
-# only this @zerodep function - tiny file size
+# only this @zerodep package
+npm i @zerodep/guard-array
+```
+
+then
+
+```javascript
+import { guardArray } from '@zerodep/app';
+// or
+import { guardArray } from '@zerodep/utilities';
+// or
+import { guardArray } from '@zerodep/guard';
+// or
 import { guardArray } from '@zerodep/guard-array';
 ```
 

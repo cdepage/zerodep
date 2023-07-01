@@ -23,14 +23,6 @@ The `stringWords` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { stringWords } from '@zerodep/string-words';
-// or
-const { stringWords } = require('@zerodep/string-words');
-```
-
 ### Using Default Space Separator
 
 ```javascript
@@ -54,19 +46,31 @@ stringWords({ not: 'a string' }); // throws ZeroDepError: Value is not a string
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep string functions - small file size
+# all @zerodep "string" functions
+npm i @zerodep/string
+
+# only this @zerodep package
+npm i @zerodep/string-words
+```
+
+then
+
+```javascript
+import { stringWords } from '@zerodep/app';
+// or
+import { stringWords } from '@zerodep/utilities';
+// or
 import { stringWords } from '@zerodep/string';
-
-# only this @zerodep function - tiny file size
+// or
 import { stringWords } from '@zerodep/string-words';
 ```
 

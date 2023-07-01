@@ -50,14 +50,6 @@ The `addressState` function will throw an `Error` if the state cannot be found.
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { addressState } from '@zerodep/address-state';
-// or
-const { addressState } = require('@zerodep/address-state');
-```
-
 **Successful Case - US**
 
 ```javascript
@@ -129,14 +121,26 @@ addressState('NY', 'CA');
 This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking, all packages are available in ESM or CJS formats.
 
 ```bash
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep address functions - medium file size
+# all @zerodep address functions
 npm i @zerodep/address
 
-# only this @zerodep function - smallest file size
+# only this @zerodep package - smallest file size
 npm i @zerodep/address-state
+```
+
+then
+
+```javascript
+import { addressState } from '@zerodep/app';
+// or
+import { addressState } from '@zerodep/utilities';
+// or
+import { addressState } from '@zerodep/address';
+// or
+import { addressState } from '@zerodep/address-state';
 ```
 
 ## Changelog

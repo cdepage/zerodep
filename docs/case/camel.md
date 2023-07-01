@@ -22,16 +22,6 @@ The `caseCamel` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { caseCamel } from '@zerodep/case-camel';
-// or
-const { caseCamel } = require('@zerodep/case-camel');
-```
-
-### Use Cases
-
 ```javascript
 caseCamel('From sentence case'); // "fromSentenceCase"
 caseCamel('from-kebab-case'); // "fromKebabCase"
@@ -57,20 +47,32 @@ caseCamel({ not: 'a string' }); // throws ZeroDepError: Value is not a string
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-# all @zerodep case functions - small file size
+# all @zerodep "case" functions
 npm i @zerodep/case
 
-# only this @zerodep function - tiny file size
+# only this @zerodep package
 npm i @zerodep/case-camel
+```
+
+then
+
+```javascript
+import { caseCamel } from '@zerodep/app';
+// or
+import { caseCamel } from '@zerodep/utilities';
+// or
+import { caseCamel } from '@zerodep/case';
+// or
+import { caseCamel } from '@zerodep/case-camel';
 ```
 
 ## Changelog

@@ -22,14 +22,6 @@ The `toNumber` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { toNumber } from '@zerodep/to-integer';
-// or
-const { toNumber } = require('@zerodep/to-integer');
-```
-
 ### Use Cases
 
 ```javascript
@@ -65,19 +57,31 @@ toInteger({ not: 'a number' }); // throws ZeroDepError: Cannot convert to number
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep to functions - small file size
+# all @zerodep "to" functions
+npm i @zerodep/to
+
+# only this @zerodep package
+npm i @zerodep/to-integer
+```
+
+then
+
+```javascript
+import { toInteger } from '@zerodep/app';
+// or
+import { toInteger } from '@zerodep/utilities';
+// or
 import { toInteger } from '@zerodep/to';
-
-# only this @zerodep function - tiny file size
+// or
 import { toInteger } from '@zerodep/to-integer';
 ```
 

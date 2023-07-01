@@ -20,14 +20,6 @@ The `guardNumber` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { guardNumber } from '@zerodep/guard-number';
-// or
-const { guardNumber } = require('@zerodep/guard-number');
-```
-
 ### Successful Cases
 
 ```javascript
@@ -106,19 +98,31 @@ customNumberGuard(11); // throws ZeroDepError: Number is greater than 5
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
 # all @zerodep packages- largest file size
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep guard functions - small file size
-import { guardNumber } from '@zerodep/guards';
+# all @zerodep "guard" functions
+npm i @zerodep/guards
 
-# only this @zerodep function - tiny file size
+# only this @zerodep package
+npm i @zerodep/guard-number
+```
+
+then
+
+```javascript
+import { guardNumber } from '@zerodep/app';
+// or
+import { guardNumber } from '@zerodep/utilities';
+// or
+import { guardNumber } from '@zerodep/guard';
+// or
 import { guardNumber } from '@zerodep/guard-number';
 ```
 

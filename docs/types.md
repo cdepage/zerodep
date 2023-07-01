@@ -6,7 +6,7 @@
 
 A collection of Typescript literal union types.
 
-### Country Names
+#### Country Names
 
 The names of all nation-states in the world. 
 
@@ -15,10 +15,12 @@ The names of all nation-states in the world.
 type Country = "Afghanistan" | "Albania" | ... | "United States" | ... | "Zimbabwe";
 
 // example import
+import { Country } from '@zerodep/app'
+// or
 import { Country } from '@zerodep/types'
 ```
 
-### Country ISO2 Codes
+#### Country ISO2 Codes
 
 The ISO2 codes of all nation-states in the world.
 
@@ -27,10 +29,12 @@ The ISO2 codes of all nation-states in the world.
 type CountryIso2 = "AF" | "AL" | ... | "US" | ... | "ZQ";
 
 // example import
+import { CountryIso2 } from '@zerodep/app'
+// or
 import { CountryIso2 } from '@zerodep/types'
 ```
 
-### Currencies
+#### Currencies
 
 The currency abbreviations for all known currencies.
 
@@ -39,11 +43,12 @@ The currency abbreviations for all known currencies.
 type Currency = "AED" | "AFN" | ... | "USD" | ... | "ZWL";
 
 // example import
+import { Currency } from '@zerodep/app';
+// or
 import { Currency } from '@zerodep/types';
 ```
 
-### Crypto Currencies
-
+#### Crypto Currencies
 
 The currency abbreviations for popular crypto currencies.
 
@@ -52,10 +57,12 @@ The currency abbreviations for popular crypto currencies.
 type CurrencyCrypto = "ADA" | ... | "BTC" | ... | "ZEC";
 
 // example import
+import { CurrencyCrypto } from '@zerodep/app';
+// or
 import { CurrencyCrypto } from '@zerodep/types';
 ```
 
-### Locales
+#### Locales
 
 The locale values for all common country:language tuples.
 
@@ -64,10 +71,12 @@ The locale values for all common country:language tuples.
 type Locale = "ar" | ...  | "en-US" | ... | "zh-TW";
 
 // example import
+import { Locale } from '@zerodep/app';
+// or
 import { Locale } from '@zerodep/types';
 ```
 
-### Time Zones
+#### Time Zones
 
 The timezone values that can be used for Intl options.
 
@@ -76,6 +85,8 @@ The timezone values that can be used for Intl options.
 type TimeZone = "Africa/Abidjan" | ... | "America/New_York" |  ...  | "Pacific/Wallis";
 
 // example import
+import { TimeZone } from '@zerodep/app';
+// or
 import { TimeZone } from '@zerodep/types';
 ```
 
@@ -84,14 +95,14 @@ import { TimeZone } from '@zerodep/types';
 These types are available from any of the following packages to best match the needs of your project. All packages support tree shaking.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep parsers functions - medium file size
+# all @zerodep parsers functions
 npm i @zerodep/parsers
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
 # only this @zerodep package
 npm i @zerodep/types

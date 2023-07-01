@@ -1,4 +1,4 @@
-# Guards Barrel Package
+# "Guard" Barrel Package
 
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/guard?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/guard)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/guard?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/guard)
@@ -6,13 +6,17 @@
 ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
-The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application. This one is a package of all `guard` functions.
+The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application.
 
-## About Guards
+This is the _guard_ package: it includes all tree-shakeable guards.
 
-Guards are functions designed for _run-time_ use. They require a provided value to be of a specific type. Guards are intended for use by the paranoid programmer for internal application functions.
+Guards are functions designed for _run-time_ use. They require a provided value to be of a specific type. Guards are intended for use by the paranoid programmer for internal application functions. Check out the [module matrix](/) for a full overview of what function/capability is in which packages.
 
-Most guards in the @zerodep ecosystem are optionally configurable for additional peace-of-mind.
+**To Install**
+
+```bash
+npm i @zerodep/guard
+```
 
 ## Available Functions
 

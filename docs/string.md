@@ -1,4 +1,4 @@
-# String Barrel Package
+# "String" Barrel Package
 
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/string?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/string)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/string?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/string)
@@ -6,11 +6,15 @@
 ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
-The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application. This one is a package of all `string` functions.
+The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application.
 
-## About String Functions
+This is the _string_ package: it includes all tree-shakeable functions that manipulate strings. Check out the [module matrix](/) for a full overview of what function/capability is in which packages.
 
-String functions are designed to manipulate and format strings.
+**To Install**
+
+```bash
+npm i @zerodep/string
+```
 
 ## Available Functions
 

@@ -22,15 +22,6 @@ The `caseSentence` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { caseSentence } from '@zerodep/case-sentence';
-// or
-const { caseSentence } = require('@zerodep/case-sentence');
-```
-
-### Use Cases
 
 ```javascript
 caseSentence('From sentence case'); // "from sentence case"
@@ -57,20 +48,32 @@ caseSentence({ not: 'a string' }); // throws ZeroDepError: Value is not a string
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-# all @zerodep case functions - small file size
+# all @zerodep "case" functions
 npm i @zerodep/case
 
-# only this @zerodep function - tiny file size
+# only this @zerodep package
 npm i @zerodep/case-sentence
+```
+
+then
+
+```javascript
+import { caseSentence } from '@zerodep/app';
+// or
+import { caseSentence } from '@zerodep/utilities';
+// or
+import { caseSentence } from '@zerodep/case';
+// or
+import { caseSentence } from '@zerodep/case-sentence';
 ```
 
 ## Changelog

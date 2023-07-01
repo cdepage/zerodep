@@ -243,10 +243,10 @@ addressNormalize('highway contract route 68 box 23a', { city: 'vale', state: 'co
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
 // all @zerodep parsers functions
@@ -255,6 +255,6 @@ import { addressNormalize } from '@zerodep/parsers';
 // all @zerodep address functions
 import { addressNormalize } from '@zerodep/address';
 
-# only this @zerodep function
+# only this @zerodep package
 import { addressNormalize } from '@zerodep/address-normalize';
 ```

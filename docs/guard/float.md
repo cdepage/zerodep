@@ -20,14 +20,6 @@ The `guardFloat` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { guardFloat } from '@zerodep/guard-float';
-// or
-const { guardFloat } = require('@zerodep/guard-float');
-```
-
 ### Successful Cases
 
 ```javascript
@@ -106,19 +98,31 @@ customFloatGuard(103.8); // throws ZeroDepError: Float is greater than 98.6
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
 # all @zerodep packages- largest file size
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep guard functions - small file size
-import { guardFloat } from '@zerodep/guards';
+# all @zerodep "guard" functions
+npm i @zerodep/guards
 
-# only this @zerodep function - tiny file size
+# only this @zerodep package
+npm i @zerodep/guard-float
+```
+
+then
+
+```javascript
+import { guardFloat } from '@zerodep/app';
+// or
+import { guardFloat } from '@zerodep/utilities';
+// or
+import { guardFloat } from '@zerodep/guard';
+// or
 import { guardFloat } from '@zerodep/guard-float';
 ```
 

@@ -1,4 +1,4 @@
-# Address Barrel Package
+# "Address" Barrel Package
 
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/address?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/address)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/address?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/address)
@@ -6,13 +6,17 @@
 ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
-The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application. This one is a package of all `address` functions.
+The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application.
 
-## About Address Methods
+This is the _address_ package: it includes all tree-shakeable parsing functionality ,data normalization capabilities and types related to addresses.  Check out the [module matrix](/) for a full overview of what function/capability is in which packages.
 
-Address methods provide information about address components (cities, counties, states, countries) and capabilities to normalize a mailing address or component of an an address.
+**To Install**
 
-## Available Functions
+```bash
+npm i @zerodep/address
+```
+
+## Package Includes
 
 All of the following functions are available in this package:
 
@@ -20,17 +24,6 @@ All of the following functions are available in this package:
 - [addressParse()](address/parse.md)
 - [addressState()](address/state.md) - A utility to get information about a state from a state name or abbreviation.
 
-## Installation Sources
-
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking, all packages are available in ESM or CJS formats.
-
-```shell
-# all @zerodep packages - largest file size
-npm i @zerodep/app
-
-# all @zerodep address functions - medium file size
-npm i @zerodep/address
-```
 
 ## Changelog
 

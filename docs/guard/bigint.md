@@ -20,14 +20,6 @@ The `guardBigInt` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { guardBigInt } from '@zerodep/guard-bigint';
-// or
-const { guardBigInt } = require('@zerodep/guard-bigint');
-```
-
 ### Successful Cases
 
 ```javascript
@@ -85,15 +77,7 @@ The `GuardBigIntOptions` has the following configuration options, all are option
 - **min** - the minimum number value allowed
 - **max** - the maximum number value allowed
 
-**Examples**
-
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { guardBigIntHOF, GuardBigIntOptions } from '@zerodep/guard-bigint';
-// or
-const { guardBigIntHOF, GuardBigIntOptions } = require('@zerodep/guard-bigint');
-```
+### Advanced Examples
 
 **Min & Max Values**
 
@@ -112,19 +96,31 @@ customBigIntGuard1(250000n); // throws ZeroDepError: BigInt is greater than 9999
 
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
 # all @zerodep packages- largest file size
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep guard functions - small file size
-import { guardBigInt } from '@zerodep/guards';
+# all @zerodep "guard" functions
+npm i @zerodep/guards
 
-# only this @zerodep function - tiny file size
+# only this @zerodep package
+npm i @zerodep/guard-bigint
+```
+
+then
+
+```javascript
+import { guardBigInt } from '@zerodep/app';
+// or
+import { guardBigInt } from '@zerodep/utilities';
+// or
+import { guardBigInt } from '@zerodep/guard';
+// or
 import { guardBigInt } from '@zerodep/guard-bigint';
 ```
 

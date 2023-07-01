@@ -22,14 +22,6 @@ The `isArray` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
-```javascript
-import { isEqual } from '@zerodep/is-equal';
-// or
-const { isEqual } = require('@zerodep/is-equal');
-```
-
 ### Multiple Cases
 
 ```javascript
@@ -114,19 +106,31 @@ isEqual(Symbol(), Symbol()); // throws ZeroDepError: Cannot compare Symbol value
 
 ## Installation Sources
 
-This function is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages - largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep utility functions - medium file size
-npm i @zerodep/utility
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
 
-// all @zerodep is functions
+# all @zerodep "is" functions
+npm i @zerodep/is
+
+# only this @zerodep package
+npm i @zerodep/is-equal
+```
+
+then
+
+```javascript
+import { isEqual } from '@zerodep/app';
+// or
+import { isEqual } from '@zerodep/utilities';
+// or
 import { isEqual } from '@zerodep/is';
-
-# only this @zerodep function
+// or
 import { isEqual } from '@zerodep/is-equal';
 ```
 

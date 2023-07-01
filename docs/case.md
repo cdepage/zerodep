@@ -1,4 +1,4 @@
-# Cases Barrel Package
+# "Case" Barrel Package
 
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/case?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/case)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/case?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/case)
@@ -6,11 +6,15 @@
 ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
-The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application. This one is a package of all `case` functions.
+The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application.
 
-## About Case Converters
+This is the _case_ package: it includes all tree-shakeable utilities to convert a string to different case formats.  Check out the [module matrix](/) for a full overview of what function/capability is in which packages.
 
-Cases are converters designed for changing the case of a value from one format to another.
+**To Install**
+
+```bash
+npm i @zerodep/case
+```
 
 ## Available Functions
 

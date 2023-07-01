@@ -1,5 +1,4 @@
 - [**Home**](/)
-- [**Module Methodology**](modle_methodology.md)
 
 > ---
 
@@ -11,10 +10,10 @@
   - [All Utilities Barrel Package](utilities.md)
   - >
   - [Address Barrel Package](address.md)
-  - [Cases Barrel Package](case.md)
-  - [Guards Barrel Package](guard.md)
+  - [Case Barrel Package](case.md)
+  - [Guard Barrel Package](guard.md)
   - [Is Barrel Package](is.md)
-  - [Strings Barrel Package](string.md)
+  - [String Barrel Package](string.md)
   - [To Barrel Package](to.md)
 
 > ---
