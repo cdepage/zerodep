@@ -9,6 +9,8 @@
 ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?olor=emerald&style=flat-square)
 ![coverage](https://img.shields.io/badge/coverage-100%25-emerald?style=flat-square)
 
+[![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
+
 A monorepo library of zero-dependency, functions, parsers, capabilities types and data for both Node and browser environments. 
 
 All packages are published to `npm` both individually and logically grouped in barrel packages.
@@ -50,7 +52,7 @@ The above said, a security best practice is to pin your software packages to spe
 ## Resources
 
 - [Security Policy](https://github.com/cdepage/zerodep/blob/main/SECURITY.md)
-- [Changelog](https://github.com/cdepage/zerodep/blob/main/CHANGELOG.md)
+- [Changelog](https://github.com/cdepage/zerodep/blob/main/docs/CHANGELOG.md)
 - [Contributing Guide](https://github.com/cdepage/zerodep/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/cdepage/zerodep/blob/main/CODE_OF_CONDUCT.md)
 
