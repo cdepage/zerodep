@@ -6,18 +6,19 @@
 
   - [App Barrel Package](app.md)
   - >
-  - [All Parsers Barrel Package](parsers.md)
-  - [All Utilities Barrel Package](utilities.md)
+  - [Parsers Barrel Package](parsers.md)
+  - [Utilities Barrel Package](utilities.md)
   - >
   - [Address Barrel Package](address.md)
   - [Case Barrel Package](case.md)
   - [Guard Barrel Package](guard.md)
   - [Is Barrel Package](is.md)
   - [String Barrel Package](string.md)
+  - [Struct Barrel Package](struct.md)
   - [To Barrel Package](to.md)
 
 > ---
- 
+
 - Address Functions
 
   - [addressNormalize()](address/normalize.md)
@@ -87,6 +88,11 @@
   - [stringTrimRight()](string/trimRight.md)
   - [stringUpperFirst()](string/upperFirst.md)
   - [stringWords()](string/words.md)
+
+- Struct Factories
+
+  - [structCollectionFactory()](struct/collection.md)
+  - [structStackFactory()](struct/stack.md)
 
 - To Converters
 

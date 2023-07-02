@@ -21,7 +21,13 @@
       }
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs string-trimright {args.ver} {args.tag}",
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cd dist/packages/string/trimright",
+          "npm publish --access=public"
+        ]
+      },
       "dependsOn": ["build"]
     },
     "packageFix": {

@@ -23,7 +23,10 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs is-weakset {args.ver} {args.tag}"
+        "commands": [
+          "cd dist/packages/is/weakset",
+          "npm publish --access=public"
+        ]
       },
       "dependsOn": ["build"]
     },

@@ -3,8 +3,8 @@
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/string-words?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/string-words)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/string-words?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/string-words)
 [![version](https://img.shields.io/npm/v/@zerodep/string-words?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/string-words)
-![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
-![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
+![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
 A utility to split a sentence of words into an array of those words and remove punctuation. Non-string values will cause a `ZeroDepError` to be thrown.
 

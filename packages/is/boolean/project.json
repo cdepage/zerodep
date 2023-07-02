@@ -23,7 +23,10 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs is-boolean {args.ver} {args.tag}"
+        "commands": [
+          "cd dist/packages/is/boolean",
+          "npm publish --access=public"
+        ]
       },
       "dependsOn": ["build"]
     },

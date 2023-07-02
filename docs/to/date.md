@@ -3,8 +3,8 @@
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/to-integer?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/to-integer)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/to-integer?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/to-integer)
 [![version](https://img.shields.io/npm/v/@zerodep/to-integer?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/to-integer)
-![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
-![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
+![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
 A utility to convert a string, number, BigInt or Date to a Date. Invalid values will cause a `ZeroDepError` to be thrown.
 

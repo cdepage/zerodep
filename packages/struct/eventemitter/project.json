@@ -1,0 +1,56 @@
+{
+  "name": "struct-eventemitter",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/struct/eventemitter/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/struct/eventemitter/*",
+          "rollup -c packages/struct/eventemitter/rollup.config.mjs",
+          "mv dist/packages/struct/eventemitter/esm.d.ts dist/packages/struct/eventemitter/index.d.ts",
+          "cp packages/struct/eventemitter/README.md dist/packages/struct/eventemitter/README.md",
+          "cp packages/struct/eventemitter/package.json dist/packages/struct/eventemitter/package.json",
+          "uglifyjs dist/packages/struct/eventemitter/esm.js -o dist/packages/struct/eventemitter/esm.js -c --no-annotations",
+          "rm dist/packages/struct/eventemitter/esm.js"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cd dist/packages/struct/collection",
+          "npm publish --access=public"
+        ]
+      },
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/struct/eventemitter"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/struct/eventemitter/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/struct/eventemitter/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

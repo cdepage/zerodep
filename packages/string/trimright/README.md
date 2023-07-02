@@ -3,8 +3,8 @@
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/string-trimright?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/string-trimright)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/string-trimright?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/string-trimright)
 [![version](https://img.shields.io/npm/v/@zerodep/string-trimright?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/string-trimright)
-![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
-![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
+![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
 A utility to remove a specific character from the start and end of a string. Non-string values will cause a `ZeroDepError` to be thrown.
 

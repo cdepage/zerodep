@@ -23,7 +23,10 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs is-promise {args.ver} {args.tag}"
+        "commands": [
+          "cd dist/packages/is/promise",
+          "npm publish --access=public"
+        ]
       },
       "dependsOn": ["build"]
     },

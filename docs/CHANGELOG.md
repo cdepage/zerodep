@@ -4,21 +4,35 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2023-07-02
+
+### Added
+
+- Added the `@zerodep/struct` data structures barrel package
+- Added the `@zerodep/struct-collection` data structure package
+- Added the `@zerodep/struct-stack` data structure package
+
+### Updated
+
+- Added the `@zerodep/struct-collection` data structure to the `@zerodep/app` barrel package
+- Added the `@zerodep/struct-stack` data structure to the `@zerodep/app` barrel package
+
 ## [2.0.0] - 2023-05-21
 
 ### Breaking
 
+- Discontinued support and testing for Node v14.x
 - Renamed all individual-function packages to use dashes instead of dot or underscore separators, e.g. `@zerodep/xx.xxxx` or `@zerodep/xx_xxxx` to `@zerodep/xx-xxxx`
 - Renamed `guardJSON()` to `guardPojo()` for greater semantic naming clarity
 - Renamed `isJSON()` to `isPojo()` for greater semantic naming clarity
 - Renamed `toJSON()` to `toPojo()` for greater semantic naming clarity
-- Pluralized barrel package names (where grammatically and semantically possible), e.g. `@zerodep/utility` becomes `@zerodep/utilities`
+- Pluralized large barrel package names (where grammatically and semantically possible), e.g. `@zerodep/utility` becomes `@zerodep/utilities`
 - Removed UMD packages in favor of ES modules
 
 ### Added
 
-- Launched [zerodep.app](https://zerodep.app) website
 - Added support and testing for Node 18.x
+- Launched [zerodep.app](https://zerodep.app) website
 - Added run-time type checking to `guardArray()` function
 - Added the `case` package with the `caseCamel()`, `caseKebab()`, `casePascal()`, `caseSentence()` and `caseSnake()` conversion functions
 - Added `stringTrim()`, `stringTrimLeft()`, and `stringTrimRight()` manipulation functions
@@ -33,6 +47,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 
 - Removed all localization-specific functions
+
+## [1.x.x] - 2022-00-00
+
+### Unknown
+
+- The entire 1.x.x changeset has disappeared
 
 ## [0.11.0] - 2022-12-21
 
@@ -119,7 +139,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Added the `is-iterable()` utility
+- Added the `is_iterable()` utility
 - Added the `can.iterate()` utility
 - Added the `app` barrel package
 - Added the `can` barrel package
@@ -142,44 +162,44 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Added the `utils` barrel packages
 - Added the `guard` barrel packages
-- Added the `is-array()` utility
-- Added the `is-bigint()` utility
-- Added the `is-boolean()` utility
-- Added the `is-date()` utility
-- Added the `is-float()` utility
-- Added the `is-function()` utility
-- Added the `is-integer()` utility
-- Added the `is-iterable()` utility
-- Added the `is-map()` utility
-- Added the `is-nil()` utility
-- Added the `is-null()` utility
-- Added the `is-number()` utility
-- Added the `is-object()` utility
-- Added the `is-regex()` utility
-- Added the `is-set()` utility
-- Added the `is-string()` utility
-- Added the `is-symbol()` utility
-- Added the `is-undefined()` utility
-- Added the `is-weakmap()` utility
-- Added the `is-weakset()` utility
+- Added the `is.array()` utility
+- Added the `is.bigint()` utility
+- Added the `is.boolean()` utility
+- Added the `is.date()` utility
+- Added the `is.float()` utility
+- Added the `is.function()` utility
+- Added the `is.integer()` utility
+- Added the `is.iterable()` utility
+- Added the `is.map()` utility
+- Added the `is.nil()` utility
+- Added the `is.null()` utility
+- Added the `is.number()` utility
+- Added the `is.object()` utility
+- Added the `is.regex()` utility
+- Added the `is.set()` utility
+- Added the `is.string()` utility
+- Added the `is.symbol()` utility
+- Added the `is.undefined()` utility
+- Added the `is.weakmap()` utility
+- Added the `is.weakset()` utility
 
 ## [0.2.0] - 2022-04-25
 
 ### Added
 
 - Added the `guard` barrel packages
-- Added the `guard-array()` utility
-- Added the `guard-bigint()` utility
-- Added the `guard-boolean()` utility
-- Added the `guard-date()` utility
-- Added the `guard-object()` utility
+- Added the `guard.array()` utility
+- Added the `guard.bigint()` utility
+- Added the `guard.boolean()` utility
+- Added the `guard.date()` utility
+- Added the `guard.object()` utility
 
 ## [0.1.0] - 2022-04-25
 
 ### Added
 
 - Added the `ZeroDepError` base error class
-- Added the `guard-strings()` utility
-- Added the `guard-float()` utility
-- Added the `guard-integer()` utility
-- Added the `guard-number()` utility
+- Added the `guard.strings()` utility
+- Added the `guard.float()` utility
+- Added the `guard.integer()` utility
+- Added the `guard.number()` utility

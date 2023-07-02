@@ -3,8 +3,8 @@
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/case-camel?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/case-camel)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/case-camel?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/case-camel)
 [![version](https://img.shields.io/npm/v/@zerodep/case-camel?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/case-camel)
-![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
-![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
+![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
 A utility to convert a string to camelCase that also strips out non-alphanumeric characters and any leading numeric characters.
 

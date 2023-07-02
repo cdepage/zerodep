@@ -3,8 +3,8 @@
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/is-weakmap?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-weakmap)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/is-weakmap?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-weakmap)
 [![version](https://img.shields.io/npm/v/@zerodep/is-weakmap?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-weakmap)
-![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
-![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
+![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
 A simple, performant utility to determine if a value is a Weak Map.
 
@@ -54,11 +54,11 @@ isWeakMap(3.14); // false
 isWeakMap(() => 'function'); // false
 isWeakMap(42); // false
 isWeakMap(
-    new Map([
-      ['a', 1],
-      ['b', 2],
-    ])
-  ); // false
+  new Map([
+    ['a', 1],
+    ['b', 2],
+  ])
+); // false
 isWeakMap(null); // false
 isWeakMap({ an: 'object' }); // false
 isWeakMap(new Promise(() => {})); // false

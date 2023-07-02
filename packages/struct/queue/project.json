@@ -1,0 +1,56 @@
+{
+  "name": "struct-queue",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/struct/queue/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/struct/queue/*",
+          "rollup -c packages/struct/queue/rollup.config.mjs",
+          "mv dist/packages/struct/queue/esm.d.ts dist/packages/struct/queue/index.d.ts",
+          "cp packages/struct/queue/README.md dist/packages/struct/queue/README.md",
+          "cp packages/struct/queue/package.json dist/packages/struct/queue/package.json",
+          "uglifyjs dist/packages/struct/queue/esm.js -o dist/packages/struct/queue/esm.js -c --no-annotations",
+          "rm dist/packages/struct/queue/esm.js"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cd dist/packages/struct/collection",
+          "npm publish --access=public"
+        ]
+      },
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/struct/queue"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/struct/queue/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/struct/queue/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

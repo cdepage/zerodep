@@ -18,11 +18,16 @@
           "rm -rf dist/packages/address/state/cjs.d.ts"
         ],
         "parallel": false
-      },
-      "dependsOn": ["build"]
+      }
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs address-state {args.ver} {args.tag}",
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cd dist/packages/barrel/state",
+          "npm publish --access=public"
+        ]
+      },
       "dependsOn": ["build"]
     },
     "packageFix": {

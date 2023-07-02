@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/case-pascal",
   "description": "A utility to convert a string to PascalCase",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -23,7 +23,10 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs string-padleft {args.ver} {args.tag}"
+        "commands": [
+          "cd dist/packages/string/padleft",
+          "npm publish --access=public"
+        ]
       },
       "dependsOn": ["build"]
     },

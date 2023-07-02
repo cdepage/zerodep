@@ -23,7 +23,7 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs is-null {args.ver} {args.tag}"
+        "commands": ["cd dist/packages/is/null", "npm publish --access=public"]
       },
       "dependsOn": ["build"]
     },

@@ -23,7 +23,7 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs is-equal {args.ver} {args.tag}"
+        "commands": ["cd dist/packages/is/equal", "npm publish --access=public"]
       },
       "dependsOn": ["build"]
     },

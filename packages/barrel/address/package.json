@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address",
   "description": "A collection of address utilities and parsers",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "repository": {
     "type": "git",

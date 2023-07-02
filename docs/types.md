@@ -1,14 +1,14 @@
 # Types
 
 [![version](https://img.shields.io/npm/v/@zerodep/types?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/types)
-![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
-![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
+![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
 A collection of Typescript literal union types.
 
 #### Country Names
 
-The names of all nation-states in the world. 
+The names of all nation-states in the world.
 
 ```typescript
 // definition

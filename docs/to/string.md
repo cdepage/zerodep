@@ -3,8 +3,8 @@
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/to-string?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/to-string)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/to-string?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/to-string)
 [![version](https://img.shields.io/npm/v/@zerodep/to-string?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/to-string)
-![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
-![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
+![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
 A utility to convert stringifiable values to a string; this will use native `toString()` capabilities, if available. Invalid values will cause a `ZeroDepError` to be thrown.
 
@@ -23,7 +23,6 @@ The `toString` function has the following parameters:
 - **value** - the value to convert
 
 ## Examples
-
 
 ### Use Cases
 
@@ -81,7 +80,6 @@ toString(new Promise()); // throws ZeroDepError: Cannot convert to JSON
 
 This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
-
 ```shell
 # all @zerodep packages
 npm i @zerodep/app
@@ -95,6 +93,7 @@ npm i @zerodep/to
 # only this @zerodep package
 npm i @zerodep/to-string
 ```
+
 then
 
 ```javascript

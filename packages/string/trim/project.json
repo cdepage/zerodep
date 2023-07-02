@@ -21,7 +21,13 @@
       }
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs string-trim {args.ver} {args.tag}",
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cd dist/packages/string/trim",
+          "npm publish --access=public"
+        ]
+      },
       "dependsOn": ["build"]
     },
     "packageFix": {

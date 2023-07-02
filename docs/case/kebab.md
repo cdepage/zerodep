@@ -3,8 +3,8 @@
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/case-kebab?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/case-kebab)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/case-kebab?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/case-kebab)
 [![version](https://img.shields.io/npm/v/@zerodep/case-kebab?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/case-kebab)
-![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
-![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
+![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
 A utility to convert a string to kebab-case that also strips out non-alphanumeric characters and any leading numeric characters. Non-string values will cause a `ZeroDepError` to be thrown.
 
