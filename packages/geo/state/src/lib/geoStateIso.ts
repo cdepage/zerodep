@@ -1,20 +1,17 @@
-import {
-  CountryIso,
-  StateIso,
-  stateNamesCA,
-  stateNamesUS,
-} from '@zerodep/address-data';
 import { stringDeburr } from '@zerodep/string-deburr';
+import { CountryIso2, StateCaAbbr, StateUsAbbr } from '@zerodep/types';
+import { stateNamesCA } from '../data/stateNamesCA';
+import { stateNamesUS } from '../data/stateNamesUS';
 
-export const addressStateIso = (
+export const geoStateIso = (
   state: string,
-  country?: CountryIso
-): [StateIso, CountryIso] => {
+  country?: 'US' | 'CA' | 'us' | 'ca'
+): [StateUsAbbr | StateCaAbbr, CountryIso2] => {
   // convert params to expected uppercase values
-  const ucCountry = country?.toUpperCase() as CountryIso;
+  const ucCountry = country?.toUpperCase() as CountryIso2;
   const ucState = stringDeburr(state)
     .toUpperCase()
-    .replace(/[^A-Z]/g, '') as StateIso;
+    .replace(/[^A-Z]/g, '') as StateUsAbbr | StateCaAbbr;
 
   // US states
   if (ucCountry === 'US' || !ucCountry) {

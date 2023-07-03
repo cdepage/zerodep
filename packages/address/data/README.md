@@ -12,7 +12,7 @@ export interface AddressCountyInfo {
   fips: string;
 }
 
-export interface AddressState {
+export interface GeoState {
   stateName: string;
   stateAbbr: string;
   countryName: string;
@@ -21,5 +21,5 @@ export interface AddressState {
   counties: AddressCountyInfo[];
 }
 
-export declare const addressState: (state: string, country?: string) => AddressState;
+export declare const addressState: (state: string, country?: string) => GeoState;
 ```

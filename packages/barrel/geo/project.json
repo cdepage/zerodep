@@ -1,0 +1,63 @@
+{
+  "name": "barrel-geo",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/barrel/geo/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/barrel/geo/*",
+          "rollup -c packages/barrel/geo/rollup.config.mjs",
+          "mv dist/packages/barrel/geo/esm.d.ts dist/packages/barrel/geo/index.d.ts",
+          "cp packages/barrel/geo/README.md dist/packages/barrel/geo/README.md",
+          "cp packages/barrel/geo/package.json dist/packages/barrel/geo/package.json",
+          "uglifyjs dist/packages/barrel/geo/esm.js -o dist/packages/barrel/geo/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/barrel/geo/cjs.js -o dist/packages/barrel/geo/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/barrel/geo/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cd dist/packages/barrel/geo",
+          "npm publish --access=public"
+        ]
+      },
+      "dependsOn": ["build"]
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/barrel/geo"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/barrel/geo/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/barrel/geo/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

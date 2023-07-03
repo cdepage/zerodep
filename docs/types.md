@@ -76,6 +76,36 @@ import { Locale } from '@zerodep/app';
 import { Locale } from '@zerodep/types';
 ```
 
+#### State Names & Abbreviations for Canada
+
+The province names and abbreviations for Canada. (Prevised with "State" for consistency.)
+
+```typescript
+// definition
+type StateCa = "Alberta" | ...  | "Yukon"
+type StateCaAbbr = "AB" | ...  | "YT"
+
+// example import
+import { StateCa, StateCaAbbr } from '@zerodep/app';
+// or
+import { StateCa, StateCaAbbr } from '@zerodep/types';
+```
+
+#### State Names & Abbreviations for the United States
+
+The province names and abbreviations for Canada. (Prefixed with "State" for consistency.)
+
+```typescript
+// definition
+type StateUs = "Alabama" | ...  | "U.S. Virgin Islands" | ... | "Wyoming";
+type StateUsAbbr = "AK" | ...  | "VI" | ...  | "WY";
+
+// example import
+import { StateUs, StateUsAbbr } from '@zerodep/app';
+// or
+import { StateUs, StateUsAbbr } from '@zerodep/types';
+```
+
 #### Time Zones
 
 The timezone values that can be used for Intl options.
@@ -111,6 +141,12 @@ npm i @zerodep/types
 ## Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+#### [2.1.0] - 2023-07-02
+
+**Added**
+
+- added the `StateCa`, `StateCaAbbr`, `StateUs` and `StateUsAbbr` type definitions
 
 #### [2.0.0] - 2023-05-23
 

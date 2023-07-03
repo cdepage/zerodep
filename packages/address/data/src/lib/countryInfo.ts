@@ -1,6 +1,6 @@
 import { CountryInfoMap } from './types';
 
-export const countryInfo: CountryInfoMap = {
+export const countryInfo: Pick<CountryInfoMap, 'CA' | 'US'> = {
   CA: { countryName: 'Canada' },
-  US: { countryName: 'United States of America' },
+  US: { countryName: 'United States' },
 };

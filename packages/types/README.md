@@ -26,6 +26,18 @@ type CurrencyCrypto = "ADA" | ... | "BTC" | ... | "ZEC";
 // Locales
 type Locale = "ar" | ...  | "en-US" | ... | "zh-TW";
 
+// StateCa
+type StateCa = "Alberta" | ...  | "Yukon"
+
+// StateCaAbbr
+type StateCaAbbr = "AB" | ...  | "YT"
+
+// StateUs
+type StateUs = "Alabama" | ...  | "U.S. Virgin Islands" | ... | "Wyoming";
+
+// StateUsAbbr
+type StateUsAbbr = "AK" | ...  | "VI" | ...  | "WY";
+
 // Timezones
 type TimeZone = "Africa/Abidjan" | ... | "America/New_York" |  ...  | "Pacific/Wallis";
 ```
@@ -33,7 +45,7 @@ type TimeZone = "Africa/Abidjan" | ... | "America/New_York" |  ...  | "Pacific/W
 ## Examples
 
 ```typescript
-import { Country, CountryIso2, Currency, CurrencyCrypto, Locale, TimeZone } from '@zerodep/types';
+import { Country, CountryIso2, Currency, CurrencyCrypto, Locale, StateCa, StateCaAbbr, StateUs, StateUsAbbr, TimeZone } from '@zerodep/types';
 
 // use types as required
 ```

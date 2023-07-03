@@ -21,4 +21,5 @@ npm i @zerodep/parsers
 All of the following are available in this package:
 
 - [Every Address Function](address.md)
+- [Every Geo Function](geo.md)
 - [Every Type Literal Union](types.md)

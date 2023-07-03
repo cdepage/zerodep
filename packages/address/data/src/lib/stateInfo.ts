@@ -368,8 +368,8 @@ export const stateInfo: StateInfoMap = {
   MB: { stateName: 'Manitoba', stateFips: '00' },
   SK: { stateName: 'Saskatchewan', stateFips: '00' },
   NS: { stateName: 'Nova Scotia', stateFips: '00' },
-  NB: { stateName: 'New Brunwsick', stateFips: '00' },
-  NL: { stateName: 'Newfoundland', stateFips: '00' },
+  NB: { stateName: 'New Brunswick', stateFips: '00' },
+  NL: { stateName: 'Newfoundland and Labrador', stateFips: '00' },
   PE: { stateName: 'Prince Edward Island', stateFips: '00' },
   NT: { stateName: 'Northwest Territories', stateFips: '00' },
   YT: { stateName: 'Yukon', stateFips: '00' },
@@ -383,8 +383,8 @@ export const stateInfo: StateInfoMap = {
   MP: { stateName: 'Northern Mariana Islands', stateFips: '00' },
   PR: { stateName: 'Puerto Rico', stateFips: '00' },
   PW: { stateName: 'Palau', stateFips: '00' },
-  UM: { stateName: 'Outlying Islands', stateFips: '00' },
-  VI: { stateName: 'Virgin Islands', stateFips: '00' },
+  UM: { stateName: 'US Minor Outlying Islands', stateFips: '00' },
+  VI: { stateName: 'US Virgin Islands', stateFips: '00' },
 
   // American Armed Forces
   AA: { stateName: 'Armed Forces Americas', stateFips: '00' },

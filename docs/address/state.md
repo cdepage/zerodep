@@ -11,9 +11,9 @@ A utility to get information about a state from a state name or abbreviation.
 ## Signature
 
 ```typescript
-const addressState: (state: string, country?: 'US' | 'CA') => AddressState;
+const addressState: (state: string, country?: 'US' | 'CA') => GeoState;
 
-interface AddressState {
+interface GeoState {
   stateName: string;
   stateAbbr: string;
   stateFips: string;

@@ -66,7 +66,7 @@ export const stateNamesUS: StateNameMap = new Map([
   ['MP', ['northern mariana islands', 'mariana islands']],
   ['PR', ['puerto rico', 'pur']],
   ['PW', ['palau']],
-  ['UM', ['outlying islands']],
+  ['UM', ['us minor outlying islands', 'outlying islands']],
   ['VI', ['virgin islands']],
 
   // American Armed Forces

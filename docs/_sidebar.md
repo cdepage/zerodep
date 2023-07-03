@@ -11,6 +11,7 @@
   - >
   - [Address Barrel Package](address.md)
   - [Case Barrel Package](case.md)
+  - [Geo Barrel Package](geo.md)
   - [Guard Barrel Package](guard.md)
   - [Is Barrel Package](is.md)
   - [String Barrel Package](string.md)
@@ -32,6 +33,14 @@
   - [casePascal()](case/pascal.md)
   - [caseSentence()](case/sentence.md)
   - [caseSnake()](case/snake.md)
+
+- Geo Functions
+
+  - [geoCountry()](geo/country.md)
+  - [geoCountryIso()](geo/country.md)
+  - [geoState()](geo/state.md)
+  - [geoStateIso()](geo/state.md)
+  -
 
 - Guard Functions
 
