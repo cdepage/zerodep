@@ -4,10 +4,11 @@ const keys = Object.keys(packages).sort();
 describe('"Geo" barrel package', () => {
   it('should export specific packages and interfaces', () => {
     expect(keys).toStrictEqual([
-      "ZeroDepError",
-      "geoCountry",
-      "geoCountryIso",
-      "geoState"
+      'ZeroDepError',
+      'geoCountry',
+      'geoCountryIso',
+      'geoState',
+      'geoStateIso',
     ]);
   });
 

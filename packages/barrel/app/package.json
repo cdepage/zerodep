@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/app",
   "description": "A collection of guards, utilities to gate against specific variable types at run-time",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "license": "MIT",
   "repository": {
     "type": "git",
