@@ -1,0 +1,50 @@
+{
+  "name": "address-normalize",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/address/normalize/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/address/normalize/*",
+          "rollup -c packages/address/normalize/rollup.config.mjs",
+          "mv dist/packages/address/normalize/esm.d.ts dist/packages/address/normalize/index.d.ts",
+          "cp packages/address/normalize/README.md dist/packages/address/normalize/README.md",
+          "cp packages/address/normalize/package.json dist/packages/address/normalize/package.json",
+          "uglifyjs dist/packages/address/normalize/esm.js -o dist/packages/address/normalize/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/address/normalize/cjs.js -o dist/packages/address/normalize/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/address/normalize/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs address-normalize {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/address/normalize/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/address/normalize/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

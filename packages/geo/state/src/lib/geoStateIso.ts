@@ -1,7 +1,6 @@
+import { geoStateNameMapCA, geoStateNameMapUS } from '@zerodep/geo-data';
 import { stringDeburr } from '@zerodep/string-deburr';
 import { CountryIso2, StateCaAbbr, StateUsAbbr } from '@zerodep/types';
-import { stateNamesCA } from '../data/stateNamesCA';
-import { stateNamesUS } from '../data/stateNamesUS';
 
 export const geoStateIso = (
   state: string,
@@ -15,11 +14,11 @@ export const geoStateIso = (
 
   // US states
   if (ucCountry === 'US' || !ucCountry) {
-    if (stateNamesUS.has(ucState)) {
+    if (geoStateNameMapUS.has(ucState)) {
       return [ucState, 'US'];
     }
     const lcState = ucState.toLowerCase();
-    for (const [stateIso, names] of stateNamesUS.entries()) {
+    for (const [stateIso, names] of geoStateNameMapUS.entries()) {
       if (names.includes(lcState)) {
         return [stateIso, 'US'];
       }
@@ -28,11 +27,11 @@ export const geoStateIso = (
 
   // Canadian provinces
   if (ucCountry === 'CA' || !ucCountry) {
-    if (stateNamesCA.has(ucState)) {
+    if (geoStateNameMapCA.has(ucState)) {
       return [ucState, 'CA'];
     }
     const lcState = ucState.toLowerCase();
-    for (const [stateIso, names] of stateNamesCA.entries()) {
+    for (const [stateIso, names] of geoStateNameMapCA.entries()) {
       if (names.includes(lcState)) {
         return [stateIso, 'CA'];
       }

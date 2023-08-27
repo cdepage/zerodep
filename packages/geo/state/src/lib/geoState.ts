@@ -1,9 +1,9 @@
 import { geoCountry } from '@zerodep/geo-country';
+import { GeoStateInfoMap, stateInfoMap } from '@zerodep/geo-data';
 import { Country, CountryIso2, StateCaAbbr, StateUsAbbr } from '@zerodep/types';
-import { StateInfo, stateInfoMap } from '../data/stateInfo';
 import { geoStateIso } from './geoStateIso';
 
-export interface GeoState extends StateInfo {
+export interface GeoState extends GeoStateInfoMap {
   stateAbbr: StateCaAbbr | StateUsAbbr;
   countryName: Country;
   countryIso2: CountryIso2;

@@ -249,7 +249,7 @@ This functionality is available from any of the following packages to best match
 # all @zerodep packages
 npm i @zerodep/app
 
-// all @zerodep parsers functions
+# all @zerodep "parsers" packages
 import { addressNormalize } from '@zerodep/parsers';
 
 // all @zerodep address functions

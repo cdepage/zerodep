@@ -8,21 +8,18 @@
 
 A utility to get information about a state from a state name or abbreviation.
 
+This function will return an array of results, with the most likely result being first. If a state is not found an empty array will be returned.
+
 ## Signature
 
 ```typescript
-const addressState: (state: string, country?: 'US' | 'CA') => GeoState;
+const addressState: (address: string, countryIso2?: CountryIso2) => AddressState[];
 
-interface GeoState {
-  stateName: string;
-  stateAbbr: string;
-  stateFips: string;
-  countryName: string;
-  countryAbbr: string;
-  counties: {
-    countyName: string;
-    countyFips: string;
-  }[];
+interface AddressState {
+  stateAbbr: StateUsAbbr | StateCaAbbr;
+  source: string;
+  ndx: number;
+  length: number;
 }
 ```
 
@@ -30,19 +27,17 @@ interface GeoState {
 
 The `addressState` function has the following parameters:
 
-- **state** - any state or province name or common abbreviation, may be uppercase or lowercase
-- **country** - optional 2-letter country abbreviation, may be uppercase or lowercase
+- **address** - an address string
+- **countryIso2** - optional 2-letter country code
 
 ### Successful Response
 
 The `addressState` function will return the following:
 
-- **stateName** - the full name of the state
 - **stateAbbr** - the 2-letter abbreviation of the state
-- **stateFips** - the 2-digit FIPS code for the state (only for US states)
-- **countryName** - the full name of the country the state belongs to
-- **countryAbbr** - the 2-letter ISO code of the country the state belongs to
-- **counties** - an array of county names & 5-digit FIPS codes (only for US states)
+- **source** - the string that matched to identify the state
+- **ndx** - the position in the string where the source match starts
+- **length** - the length of the matched string
 
 ### Unsuccessful Response
 
@@ -53,81 +48,78 @@ The `addressState` function will throw an `Error` if the state cannot be found.
 **Successful Case - US**
 
 ```javascript
-addressState('vermont');
+addressState('1234 Main Street, Los Angeles California, 90210');
 // or
-addressState('VERMONT', 'US');
-// or
-addressState('vt');
+addressState('1234 Main Street, Los Angeles California, 90210', 'US');
 
-// {
-//   stateName: "Vermont",
-//   stateAbbr: "VT"
-//   stateFips: '50',
-//   countryName: "United States of America",
-//   countryAbbr: "US",
-//   counties: [
-//     { countyName: "Addison County", countyFips: "50001" },
-//     { countyName: "Bennington County", countyFips: "50003" },
-//     { countyName: "Caledonia County", countyFips: "50005" },
-//     { countyName: "Chittenden County", countyFips: "50007" },
-//     { countyName: "Essex County", countyFips: "50009" },
-//     { countyName: "Franklin County", countyFips: "50011" },
-//     { countyName: "Grand Isle County", countyFips: "50013" },
-//     { countyName: "Lamoille County", countyFips: "50015" },
-//     { countyName: "Orange County", countyFips: "50017" },
-//     { countyName: "Orleans County", countyFips: "50019" },
-//     { countyName: "Rutland County", countyFips: "50021" },
-//     { countyName: "Washington County", countyFips: "50023" },
-//     { countyName: "Windham County", countyFips: "50025" },
-//     { countyName: "Windsor County", countyFips: "50027" },
-//   ]
-// }
+//  [
+//    {
+//      stateAbbr: 'CA',
+//      source: 'California',
+//      ndx: 30,
+//      length: 10,
+//    },
+//  ]
 ```
 
 **Successful Case - CA**
 
 ```javascript
-addressState('alberta');
+addressState('13375 rue rita pierrefonds quebec h8z1j3');
 // or
-addressState('ALTA', 'CA');
-// or
-addressState('ab');
+addressState('13375 rue rita pierrefonds quebec h8z1j3', 'CA');
+// [
+//   {
+//     "stateAbbr": "QC",
+//     "source": "qc",
+//     "ndx": 27,
+//     "length": 6,
+//   }
+// ]
+```
 
-// {
-//   stateName: "Alberta",
-//   stateAbbr: "AB"
-//   stateFips: '00',
-//   countryName: "Canada",
-//   countryAbbr: "CA",
-//   counties: []
-// }
+**Successful Case - Mixed Countries**
+
+```javascript
+addressState('1234 oregon street, toronto on');
+// [
+//   {
+//     "stateAbbr": "ON",
+//     "source": "on",
+//     "ndx": 28,
+//     "length": 2
+//   },
+//   {
+//     "stateAbbr": "OR",
+//     "source": "oregon",
+//     "ndx": 5,
+//     "length": 6
+//   }
+// ]
 ```
 
 **Unsuccessful Cases**
 
 ```javascript
 addressState('unknown');
-// throws Error('Could not find a state or province for "UNKNOWN"')
-
-addressState('AB', 'US');
-// throws Error('Could not find a state or province for "AB"')  <-- The US parameter limits scope to only US states
-
-addressState('NY', 'CA');
-// throws Error('Could not find a state or province for "NY"')  <-- The CA parameter limits scope to only Canadian provinces
+// []
 ```
 
 ## Installation Sources
 
 This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking, all packages are available in ESM or CJS formats.
 
-```bash
+```shell
 # all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep address functions
+# all @zerodep "parsers" packages
+npm i @zerodep/parsers
+
+# all @zerodep "address" packages
 npm i @zerodep/address
 
-# only this @zerodep package - smallest file size
+# only this @zerodep package
 npm i @zerodep/address-state
 ```
 

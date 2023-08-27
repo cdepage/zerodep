@@ -101,7 +101,7 @@ customFloatGuard(103.8); // throws ZeroDepError: Float is greater than 98.6
 This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
 
 ```shell
-# all @zerodep packages- largest file size
+# all @zerodep packages
 npm i @zerodep/app
 
 # all @zerodep "utilities" functions

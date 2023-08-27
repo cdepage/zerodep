@@ -128,7 +128,7 @@ These types are available from any of the following packages to best match the n
 # all @zerodep packages
 npm i @zerodep/app
 
-# all @zerodep parsers functions
+# all @zerodep "parsers" packages
 npm i @zerodep/parsers
 
 # all @zerodep "utilities" functions

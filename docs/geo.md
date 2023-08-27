@@ -22,6 +22,7 @@ npm i @zerodep/guard
 
 All of the following functions are available in this package:
 
+- [geo Data Maps](geo/data.md)
 - [geoState()](geo/state.md)
 - [geoStateIso()](geo/state.md)
 - [geoCountry()](geo/country.md)

@@ -1,5 +1,5 @@
+import { CountryInfo, geoCountryInfoMap } from '@zerodep/geo-data';
 import { CountryIso2 } from '@zerodep/types';
-import { countryInfo, CountryInfo } from '../data/countryInfo';
 import { geoCountryIso } from './geoCountryIso';
 
 export interface GeoCountry extends CountryInfo {
@@ -10,9 +10,9 @@ export const geoCountry = (country: string): GeoCountry => {
   // find the country & country iso codes for the provided country (and optional country)
   const countryIso2 = geoCountryIso(country);
 
-  if (countryInfo.has(countryIso2)) {
+  if (geoCountryInfoMap.has(countryIso2)) {
     const { countryName, countryIso3, countryCode } =
-      countryInfo.get(countryIso2)!;
+      geoCountryInfoMap.get(countryIso2)!;
 
     return {
       countryIso2,

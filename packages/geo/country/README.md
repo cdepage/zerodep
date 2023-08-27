@@ -6,17 +6,21 @@
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
-A run-time geo to require a value to be a COUNTRY (plain old javascript object); it will throw a `ZeroDepError` if the geo fails.
+A parser to get country ISO codes and information from a country name or abbreviation; it will throw a `ZeroDepError` on failure.
 
 Full documentation is available at the [zerodep.app](http://zerodep.app/geo/country) page.
 
-### Successful Cases
+### geoCountryIso Examples
 
 ```javascript
 geoCountryIso('usa'); // 'US'
 geoCountryIso('canada'); // 'CA'
 geoCountryIso('great britain'); // 'GB'
+```
 
+### geoCountry Examples
+
+```javascript
 geoCountry(['es']);
 // {
 //   countryName: 'Spain',

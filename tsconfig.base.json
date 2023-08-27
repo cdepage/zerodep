@@ -16,8 +16,17 @@
     "baseUrl": ".",
     "paths": {
       "@zerodep/address": ["packages/barrel/address/src/index.ts"],
+      "@zerodep/address-country": ["packages/address/country/src/index.ts"],
       "@zerodep/address-data": ["packages/address/data/src/index.ts"],
+      "@zerodep/address-directional": [
+        "packages/address/directional/src/index.ts"
+      ],
+      "@zerodep/address-normalize": ["packages/address/normalize/src/index.ts"],
+      "@zerodep/address-parse": ["packages/address/parse/src/index.ts"],
+      "@zerodep/address-secondary": ["packages/address/secondary/src/index.ts"],
       "@zerodep/address-state": ["packages/address/state/src/index.ts"],
+      "@zerodep/address-street": ["packages/address/street/src/index.ts"],
+      "@zerodep/address-zip": ["packages/address/zip/src/index.ts"],
       "@zerodep/app": ["packages/barrel/app/src/index.ts"],
       "@zerodep/case": ["packages/barrel/case/src/index.ts"],
       "@zerodep/case-camel": ["packages/case/camel/src/index.ts"],
@@ -28,6 +37,7 @@
       "@zerodep/errors": ["packages/errors/src/index.ts"],
       "@zerodep/geo": ["packages/barrel/geo/src/index.ts"],
       "@zerodep/geo-country": ["packages/geo/country/src/index.ts"],
+      "@zerodep/geo-data": ["packages/geo/data/src/index.ts"],
       "@zerodep/geo-state": ["packages/geo/state/src/index.ts"],
       "@zerodep/guard": ["packages/barrel/guard/src/index.ts"],
       "@zerodep/guard-array": ["packages/guard/array/src/index.ts"],

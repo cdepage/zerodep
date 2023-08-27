@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [2.3.0] - 2023-07-03
+
+**Added**
+
+- added the `@zerodep/geo-data` package, included it in the `@zerodep/app`, `@zerodep/parsers` and `@zerodep/geo` barrel packages
+- added the `@zerodep/address` barrel package
+- added the `@zerodep/address-zip` parser, included it in the `@zerodep/app`, `@zerodep/parsers` and `@zerodep/address` barrel packages
+- added the `@zerodep/address-country` parser, included it in the `@zerodep/app`, `@zerodep/parsers` and `@zerodep/address` barrel packages
+- added the `@zerodep/address-state` parser, included it in the `@zerodep/app`, `@zerodep/parsers` and `@zerodep/address` barrel packages
+- added the `@zerodep/address-directional` parser, included it in the `@zerodep/app`, `@zerodep/parsers` and `@zerodep/address` barrel packages
+- added the `@zerodep/address-secondary` parser, included it in the `@zerodep/app`, `@zerodep/parsers` and `@zerodep/address` barrel packages
+- added the `@zerodep/address-normalize` parser, included it in the `@zerodep/app`, `@zerodep/parsers` and `@zerodep/address` barrel packages
+
+**Updated**
+
+- refactor the `@zerodep/geo-country` and `@zerodep/geo-state` packages to use the new `@zerodep/geo-data` package
+
 ### [2.2.0] - 2023-07-03
 
 **Added**

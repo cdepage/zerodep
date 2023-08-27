@@ -22,9 +22,14 @@
 
 - Address Functions
 
+  - [addressCountry()](address/country.md)
+  - [addressDirectional()](address/directional.md)
   - [addressNormalize()](address/normalize.md)
   - [addressParse()](address/parse.md)
+  - [addressSecondary()](address/secondary.md)
   - [addressState()](address/state.md)
+  - [addressStreet()](address/street.md)
+  - [addressZip()](address/zip.md)
 
 - Case Converters
 
@@ -36,6 +41,7 @@
 
 - Geo Functions
 
+  - [geo Data Maps](geo/data.md)
   - [geoCountry()](geo/country.md)
   - [geoCountryIso()](geo/country.md)
   - [geoState()](geo/state.md)

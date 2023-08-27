@@ -1,0 +1,123 @@
+# addressStreet()
+
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/address-street?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/address-street)
+[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/address-street?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/address-street)
+[![version](https://img.shields.io/npm/v/@zerodep/address-street?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/address-street)
+![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
+![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
+
+A parser to find where a street name or abbreviation is in a string.
+
+This function will return an array of results in the order of the provided address. If a street is not found an empty array will be returned.
+
+## Signature
+
+```typescript
+const addressstreet: (address: string) => Addressstreet[];
+
+interface Addressstreet {
+  streetType: string;
+  source: string;
+  ndx: number;
+  length: number;
+  sourceIsAbbr: boolean;
+}
+```
+
+The `addressstreet` function has the following parameters:
+
+- **address** - an address string
+
+The `addressstreet` result has the following properties:
+
+- **streetType** - the abbreviation for the street
+- **source** - the string that matched to identify the street
+- **ndx** - the position in the string where the source match starts
+- **length** - the length of the matched string
+- **sourceIsAbbr** - flag indicating if the street type was abbreviated
+
+## Examples
+
+### Well Formatted Case
+
+```javascript
+addressStreet('1234 Main Street, Los Angeles CA, United States 90210');
+//  [
+//    {
+//      streetType: 'ST',
+//      source: 'Street',
+//      ndx: 10,
+//      length: 6,
+//      sourceIsAbbr: false,
+//    }
+//  ]
+```
+
+### With Multiple Street Names/Abbreviations
+
+```javascript
+addressStreet('36 trail street, edmonton ab');
+// [
+//   {
+//     streetType: 'TR',
+//     source: 'trail',
+//     ndx: 3,
+//     length: 5,
+//     sourceIsAbbr: false,
+//   },
+//   {
+//     streetType: 'ST',
+//     source: 'street',
+//     ndx: 9,
+//     length: 6,
+//     sourceIsAbbr: false,
+//   },
+// ]
+```
+
+### Unsuccessful Case
+
+```javascript
+addressstreet('unknown');
+// []
+```
+
+## Installation Sources
+
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
+
+```shell
+# all @zerodep packages
+npm i @zerodep/app
+
+# all @zerodep "parsers" packages
+npm i @zerodep/parsers
+
+# all @zerodep "address" packages
+npm i @zerodep/address
+
+# only this @zerodep package
+npm i @zerodep/address-street
+```
+
+then
+
+```javascript
+import { addressstreet } from '@zerodep/add';
+// or
+import { addressstreet } from '@zerodep/parsers';
+// or
+import { addressstreet } from '@zerodep/address';
+// or
+import { addressstreet } from '@zerodep/address-street';
+```
+
+## Changelog
+
+All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+#### [2.0.0] - 2023-07-03
+
+**Added**
+
+- added the `addressstreet()` function

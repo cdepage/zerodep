@@ -1,0 +1,53 @@
+{
+  "name": "address-state",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/address/state/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/address/state/*",
+          "rollup -c packages/address/state/rollup.config.mjs",
+          "mv dist/packages/address/state/esm.d.ts dist/packages/address/state/index.d.ts",
+          "cp packages/address/state/README.md dist/packages/address/state/README.md",
+          "cp packages/address/state/package.json dist/packages/address/state/package.json",
+          "uglifyjs dist/packages/address/state/esm.js -o dist/packages/address/state/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/address/state/cjs.js -o dist/packages/address/state/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/address/state/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs address-state {args.ver} {args.tag}"
+      },
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/address/state/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/address/state/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

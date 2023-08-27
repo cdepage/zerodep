@@ -6,9 +6,14 @@ describe('"Geo" barrel package', () => {
     expect(keys).toStrictEqual([
       'ZeroDepError',
       'geoCountry',
+      'geoCountryInfoMap',
       'geoCountryIso',
+      'geoCountryNameMap',
       'geoState',
       'geoStateIso',
+      'geoStateNameMapCA',
+      'geoStateNameMapUS',
+      'stateInfoMap',
     ]);
   });
 

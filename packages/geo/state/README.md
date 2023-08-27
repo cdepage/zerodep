@@ -6,19 +6,23 @@
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
-A run-time geo to require a value to be a STATE (plain old javascript object); it will throw a `ZeroDepError` if the geo fails.
+A parser to get state abbreviation and information from a state name or abbreviation; it will throw a `ZeroDepError` if the guard fails.
 
 Full documentation is available at the [zerodep.app](http://zerodep.app/geo/state) page.
 
 ## Examples
 
-### Successful Cases
+### geoStateIso Examples
 
 ```javascript
 geoStateIso('n.y.'); // ['NY', 'US']
 geoStateIso('oreg'); // ['OR', 'US']
 geoStateIso('alberta'); // ['AB', 'CA']
+```
 
+### geoState Examples
+
+```javascript
 geoState(['utah']);
 // {
 //   stateName: 'Utah',
