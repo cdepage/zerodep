@@ -1,4 +1,4 @@
-# "Guard" Barrel Package
+# "Geo" Barrel Package
 
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/geo?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/geo)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/geo?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/geo)
@@ -8,14 +8,12 @@
 
 The @zerodep ecosystem has a variety of packages of different sizes and capabilities to allow the right-sizing of package selection for your application.
 
-This is the _guard_ package: it includes all tree-shakeable guards.
-
-Guards are functions designed for _run-time_ use. They require a provided value to be of a specific type. Guards are intended for use by the paranoid programmer for internal application functions. Check out the [module matrix](/) for a full overview of what function/capability is in which packages.
+This is the _geo_ package: it includes all tree-shakeable geo utilities.
 
 **To Install**
 
 ```bash
-npm i @zerodep/guard
+npm i @zerodep/geo
 ```
 
 ## Available Functions
