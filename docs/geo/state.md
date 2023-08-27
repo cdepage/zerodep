@@ -1,8 +1,8 @@
 # geoState() & geoStateIso()
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/geo-country?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/geo-country)
-[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/geo-country?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/geo-country)
-[![version](https://img.shields.io/npm/v/@zerodep/geo-country?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/geo-country)
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/geo-state?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/geo-state)
+[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/geo-state?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/geo-state)
+[![version](https://img.shields.io/npm/v/@zerodep/geo-state?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/geo-state)
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
