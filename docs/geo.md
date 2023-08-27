@@ -1,8 +1,8 @@
 # "Guard" Barrel Package
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/guard?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/guard)
-[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/guard?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/guard)
-[![version](https://img.shields.io/npm/v/@zerodep/guard?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/guard)
+[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/geo?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/geo)
+[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/geo?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/geo)
+[![version](https://img.shields.io/npm/v/@zerodep/geo?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/geo)
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
