@@ -256,3 +256,13 @@ import { addressNormalize } from '@zerodep/address';
 # only this @zerodep package
 import { addressNormalize } from '@zerodep/address-normalize';
 ```
+
+## Changelog
+
+All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+#### [2.3.0] - 2023-07-03
+
+**Added**
+
+- added the `addressParse()` function

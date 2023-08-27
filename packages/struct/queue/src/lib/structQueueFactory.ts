@@ -24,7 +24,7 @@ export interface StructQueue<T>
   clear: () => void; // same syntax as Map() and Set()
 }
 
-export const queueFactory = <T = any>(
+export const structQueueFactory = <T = any>(
   name: string,
   data: T[] = []
 ): StructQueue<T> => {

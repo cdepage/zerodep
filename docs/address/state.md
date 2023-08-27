@@ -139,7 +139,7 @@ import { addressState } from '@zerodep/address-state';
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-06-29
+#### [2.3.0] - 2023-06-29
 
 **Added**
 

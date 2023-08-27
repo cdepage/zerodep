@@ -107,6 +107,7 @@
 - Struct Factories
 
   - [structCollectionFactory()](struct/collection.md)
+  - [structQueueFactory()](struct/queue.md)
   - [structStackFactory()](struct/stack.md)
 
 - To Converters

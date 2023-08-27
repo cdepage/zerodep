@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/geo-country",
   "description": "Get info about a country by its name or common abbreviation",
-  "version": "2.0.1",
+  "version": "2.3.0",
   "license": "MIT",
   "repository": {
     "type": "git",

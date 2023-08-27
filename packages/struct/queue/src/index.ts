@@ -1,1 +1,1 @@
-export * from './lib/queueFactory';
+export * from './lib/structQueueFactory';

@@ -1,10 +1,10 @@
-import { queueFactory } from './queueFactory';
+import { structQueueFactory } from './structQueueFactory';
 
 jest.useFakeTimers();
 
-describe('queueFactory', () => {
+describe('structQueueFactory', () => {
   it('should create a queue with expected interface methods', () => {
-    const queue = queueFactory('Some Queue');
+    const queue = structQueueFactory('Some Queue');
     expect(queue).toHaveProperty('fromArray');
     expect(queue).toHaveProperty('toArray');
     expect(queue).toHaveProperty('enqueue');
@@ -16,7 +16,7 @@ describe('queueFactory', () => {
   });
 
   describe('instance', () => {
-    const queue = queueFactory<Record<string, number>>('My Queue');
+    const queue = structQueueFactory<Record<string, number>>('My Queue');
 
     it('should add items to the queue and have the correct size', () => {
       expect(queue.size()).toEqual(0);
@@ -74,10 +74,10 @@ describe('queueFactory', () => {
   });
 
   describe('multiple instances', () => {
-    const queue1 = queueFactory('queue #1');
+    const queue1 = structQueueFactory('queue #1');
     queue1.fromArray(['a', 'b', 'c']);
 
-    const queue2 = queueFactory('queue #2');
+    const queue2 = structQueueFactory('queue #2');
     queue2.fromArray([1, 2, 3, 4, 5]);
 
     it('should support multiple queues', () => {
@@ -90,7 +90,7 @@ describe('queueFactory', () => {
   });
 
   describe('event emitting', () => {
-    const queue = queueFactory('my queue');
+    const queue = structQueueFactory('my queue');
     const enqueueFn = jest.fn();
     const dequeueFn = jest.fn();
     const emptiedFn = jest.fn();

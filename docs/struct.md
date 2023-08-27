@@ -21,4 +21,5 @@ npm i @zerodep/struct
 All of the following converters are available in this package:
 
 - [structCollectionFactory()](struct/collection.md)
+- [structQueueFactory()](struct/queue.md)
 - [structStackFactory()](struct/stack.md)

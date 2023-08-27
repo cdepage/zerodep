@@ -5,6 +5,7 @@ describe('"Struct" barrel package', () => {
   it('should export specific packages and interfaces', () => {
     expect(keys).toStrictEqual([
       'structCollectionFactory',
+      'structQueueFactory',
       'structStackFactory',
     ]);
   });

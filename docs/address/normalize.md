@@ -71,7 +71,7 @@ import { addressNormalize } from '@zerodep/address-normalize';
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-07-03
+#### [2.3.0] - 2023-07-03
 
 **Added**
 
