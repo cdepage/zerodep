@@ -84,6 +84,7 @@ describe('"App" barrel package', () => {
       'stringUpperFirst',
       'stringWords',
       'structCollectionFactory',
+      'structLinkedListFactory',
       'structQueueFactory',
       'structStackFactory',
       'toDate',

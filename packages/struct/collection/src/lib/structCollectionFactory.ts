@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Stringifiables, toString } from '@zerodep/to-string';
 import { hash } from './hash';
 
-export interface Collection<T> extends IterableIterator<T> {
+export interface Collection<T> {
   fromArray: (data: T[]) => void;
   toArray: () => T[];
   add: (item: T) => void;
@@ -15,6 +14,8 @@ export interface Collection<T> extends IterableIterator<T> {
   intersection: (otherCollection: Collection<T>) => Collection<T>;
   difference: (otherCollection: Collection<T>) => Collection<T>;
   isSubsetOf: (otherCollection: Collection<T>) => boolean;
+
+  [Symbol.iterator](): Iterator<T | null>;
 }
 
 export const structCollectionFactory = <T = any>(
@@ -109,7 +110,6 @@ export const structCollectionFactory = <T = any>(
       [...collection.values()].every((item) => otherCollection.has(item)),
 
     // time complexity: linear - O(n)
-    // @ts-ignore
     [Symbol.iterator]() {
       const items = [...collection.values()];
       let ndx = 0;

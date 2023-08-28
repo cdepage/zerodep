@@ -95,6 +95,7 @@
       "@zerodep/struct-eventemitter": [
         "packages/struct/eventemitter/src/index.ts"
       ],
+      "@zerodep/struct-linkedlist": ["packages/struct/linkedlist/src/index.ts"],
       "@zerodep/struct-queue": ["packages/struct/queue/src/index.ts"],
       "@zerodep/struct-stack": ["packages/struct/stack/src/index.ts"],
       "@zerodep/to": ["packages/barrel/to/src/index.ts"],

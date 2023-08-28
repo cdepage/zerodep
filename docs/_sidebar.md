@@ -107,6 +107,7 @@
 - Struct Factories
 
   - [structCollectionFactory()](struct/collection.md)
+  - [structLinkedListFactory()](struct/linkedlist.md)
   - [structQueueFactory()](struct/queue.md)
   - [structStackFactory()](struct/stack.md)
 
