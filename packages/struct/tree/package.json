@@ -1,12 +1,11 @@
 {
-  "name": "@zerodep/struct-linkedlist",
-  "description": "A factory function that returns an optionally-typed, iterable Linked List data structure.",
-  "version": "2.5.1",
+  "name": "@zerodep/struct-tree",
+  "version": "2.6.0",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdepage/zerodep.git",
-    "directory": "packages/struct/linkedlist"
+    "directory": "packages/struct/tree"
   },
   "homepage": "https://zerodep.app",
   "bugs": "https://github.com/cdepage/zerodep/issues",
@@ -20,15 +19,17 @@
     "import": "./esm.js",
     "default": "./cjs.js"
   },
-  "dependencies": {
-    "@rollup/plugin-strip": "3.0.2",
-    "rollup-plugin-ts": "3.4.4"
-  },
   "keywords": [
     "data",
-    "structure",
-    "linked",
-    "list",
-    "iterable"
-  ]
+    "structrue",
+    "tree",
+    "breadth",
+    "depth"
+  ],
+  "dependencies": {
+    "@rollup/plugin-strip": "3.0.2",
+    "rollup-plugin-ts": "3.4.4",
+    "@zerodep/errors": "*",
+    "@zerodep/is-equal": "*"
+  }
 }

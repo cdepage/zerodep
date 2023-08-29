@@ -110,6 +110,7 @@
   - [structLinkedListFactory()](struct/linkedlist.md)
   - [structQueueFactory()](struct/queue.md)
   - [structStackFactory()](struct/stack.md)
+  - [structTreeFactory()](struct/tree.md)
 
 - To Converters
 

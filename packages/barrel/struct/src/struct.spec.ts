@@ -8,6 +8,7 @@ describe('"Struct" barrel package', () => {
       'structLinkedListFactory',
       'structQueueFactory',
       'structStackFactory',
+      'structTreeFactory',
     ]);
   });
 

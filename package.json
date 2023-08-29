@@ -1,6 +1,6 @@
 {
   "name": "zerodep",
-  "version": "2.4.0",
+  "version": "2.6.0",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -20,8 +20,9 @@
     "format:check": "nx format:check",
     "----- LINTING --------": "",
     "lint:affected": "nx affected --target=lint --parallel 4",
+    "lint:affected:fix": "nx affected --target=lint --parallel 4 --fix",
     "lint:all": "nx run-many --target=lint --all --parallel 4",
-    "lint:fix": "nx run-many --target=lint --all --fix",
+    "lint:all:fix": "nx run-many --target=lint --all --parallel 4 --fix",
     "----- TEST --------------": "",
     "test:affected": "nx affected --target=test --parallel 4 -- --runInBand",
     "test:all": "nx run-many --target=test --all --parallel 4 -- --runInBand",

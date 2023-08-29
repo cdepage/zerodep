@@ -1,20 +1,20 @@
 {
-  "name": "struct-linkedlist",
+  "name": "struct-tree",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/struct/linkedlist/src",
+  "sourceRoot": "packages/struct/tree/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/packages/struct/linkedlist/*",
-          "rollup -c packages/struct/linkedlist/rollup.config.mjs",
-          "mv dist/packages/struct/linkedlist/esm.d.ts dist/packages/struct/linkedlist/index.d.ts",
-          "cp packages/struct/linkedlist/README.md dist/packages/struct/linkedlist/README.md",
-          "cp packages/struct/linkedlist/package.json dist/packages/struct/linkedlist/package.json",
-          "uglifyjs dist/packages/struct/linkedlist/esm.js -o dist/packages/struct/linkedlist/esm.js -c --no-annotations",
-          "rm dist/packages/struct/linkedlist/esm.js"
+          "rm -rf dist/packages/struct/tree/*",
+          "rollup -c packages/struct/tree/rollup.config.mjs",
+          "mv dist/packages/struct/tree/esm.d.ts dist/packages/struct/tree/index.d.ts",
+          "cp packages/struct/tree/README.md dist/packages/struct/tree/README.md",
+          "cp packages/struct/tree/package.json dist/packages/struct/tree/package.json",
+          "uglifyjs dist/packages/struct/tree/esm.js -o dist/packages/struct/tree/esm.js -c --no-annotations",
+          "rm dist/packages/struct/tree/esm.js"
         ],
         "parallel": false
       }
@@ -23,7 +23,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "cd dist/packages/struct/linkedlist",
+          "cd dist/packages/struct/collection",
           "npm publish --access=public"
         ]
       },
@@ -33,7 +33,7 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "npm-sort && fixpack",
-        "cwd": "packages/struct/linkedlist"
+        "cwd": "packages/struct/tree"
       }
     },
     "lint": {
@@ -41,8 +41,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "packages/struct/linkedlist/**/*.ts",
-          "packages/struct/linkedlist/package.json"
+          "packages/struct/tree/**/*.ts",
+          "packages/struct/tree/package.json"
         ]
       }
     },
@@ -50,7 +50,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/struct/linkedlist/jest.config.ts",
+        "jestConfig": "packages/struct/tree/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
