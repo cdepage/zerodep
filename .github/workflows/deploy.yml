@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    name: Deploy
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: install deps
+        run: npm ci
+
+      - name: deploy affected
+        run: npm run deploy:affected

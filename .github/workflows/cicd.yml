@@ -31,7 +31,7 @@ jobs:
           npm run format:check
           npm run lint:affected
 
-  test:
+  unit_tests:
     needs: lint
     runs-on: ubuntu-latest
     strategy:
