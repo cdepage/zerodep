@@ -22,8 +22,7 @@
       "dependsOn": ["build"]
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs address-data {args.ver} {args.tag}",
-      "dependsOn": ["build"]
+      "command": "cd dist/packages/address/data && npm publish --access public"
     },
     "packageFix": {
       "executor": "nx:run-commands",

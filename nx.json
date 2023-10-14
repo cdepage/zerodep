@@ -9,6 +9,9 @@
     }
   },
   "targetDefaults": {
+    "publish": {
+      "dependsOn": ["^build"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]

@@ -20,11 +20,7 @@
       }
     },
     "publish": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": ["cd dist/packages/types", "npm publish --access=public"]
-      },
-      "dependsOn": ["build"]
+      "command": "cd dist/packages/to/types && npm publish --access public"
     },
     "packageFix": {
       "executor": "nx:run-commands",

@@ -21,8 +21,7 @@
       }
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs address-normalize {args.ver} {args.tag}",
-      "dependsOn": ["build"]
+      "command": "cd dist/packages/address/normalize && npm publish --access public"
     },
     "lint": {
       "executor": "@nx/linter:eslint",

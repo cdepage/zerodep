@@ -21,14 +21,7 @@
       }
     },
     "publish": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "cd dist/packages/string/trimleft",
-          "npm publish --access=public"
-        ]
-      },
-      "dependsOn": ["build"]
+      "command": "cd dist/packages/string/trimleft && npm publish --access public"
     },
     "lint": {
       "executor": "@nx/linter:eslint",

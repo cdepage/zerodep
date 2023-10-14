@@ -21,14 +21,7 @@
       }
     },
     "publish": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "cd dist/packages/guard/boolean",
-          "npm publish --access=public"
-        ]
-      },
-      "dependsOn": ["build"]
+      "command": "cd dist/packages/guard/boolean && npm publish --access public"
     },
     "packageFix": {
       "executor": "nx:run-commands",

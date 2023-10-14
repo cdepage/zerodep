@@ -21,12 +21,7 @@
       }
     },
     "publish": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npm publish --access=public",
-        "cwd": "dist/packages/struct/collection"
-      },
-      "dependsOn": ["build"]
+      "command": "cd dist/packages/struct/collection && npm publish --access public"
     },
     "packageFix": {
       "executor": "nx:run-commands",
