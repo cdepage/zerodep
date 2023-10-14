@@ -1,8 +1,17 @@
+import { ZeroDepError } from '@zerodep/errors';
 import { stringDeburr } from '@zerodep/string-deburr';
 
 export const addressNormalize = (address: string): string => {
   if (!address) {
     return '';
+  }
+
+  // Ensure addresses have a reasonable length to prevent ReDoS (regular expression denial of service)
+  // - @see https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS
+  if (address.length > 200) {
+    const error = new ZeroDepError('Address is too long');
+    error.value = `${address.substring(0, 200)}...`;
+    throw error;
   }
 
   // USPS does not like: commas, periods, parens, quotes, apostrophes, most special characters

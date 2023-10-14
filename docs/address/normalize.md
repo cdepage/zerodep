@@ -15,6 +15,7 @@ This will:
 - normalize incorrect abbreviations & misspellings (e.g. pob => PO BOX)
 - convert unabbreviated values to preferred values (e.g. department => DEPT)
 - strip unnecessary characters and punctuation
+- throws an error if the address is longer than 200 characters
 
 Normalization is done in accordance with USPS and Canada Post addressing standards.
 
@@ -47,6 +48,9 @@ addressNormalize('hiway contract 68 box 23-a');
 
 addressNormalize('priv mailbox 234');
 // "PMB 234"
+
+addressNormalize('Attention: Mr. John Smith, Care Of: Ms. Jane Doe, 6789 Oak Avenue, Apartment 1617181920, Building C, Suite 2122232425, Floor 28, Lakeview, Texas 54321-6789, United States of America');
+// thorws ZeroDepError('Address is too long')
 ```
 
 ## Installation Sources
@@ -70,6 +74,12 @@ import { addressNormalize } from '@zerodep/address-normalize';
 ## Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+#### [2.4.0] - 2023-10-14
+
+**Changed**
+
+- added a max length check the address normalizer and parser to prevent ReDoS attacks
 
 #### [2.3.0] - 2023-07-03
 

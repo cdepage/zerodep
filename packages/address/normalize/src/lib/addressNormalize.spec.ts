@@ -160,4 +160,16 @@ describe('addressNormalize', () => {
     expect(addressNormalize(addy1)).toEqual('PO BOX 1234');
     expect(addressNormalize(addy2)).toEqual('PO BOX 1234');
   });
+
+  it('should throw when the address is longer than 200 characters', () => {
+    const longAddress = `
+      Attention: Mr. John Smith
+      Care Of: Ms. Jane Doe
+      6789 Oak Avenue, Apartment 1617181920, Building C, Suite 2122232425, Floor 28
+      Lakeview, Texas 54321-6789
+      United States of America
+    `;
+    const fn = () => addressNormalize(longAddress);
+    expect(fn).toThrow('Address is too long');
+  });
 });
