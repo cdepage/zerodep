@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [2.6.1] - 2023-10-14
+
+**Changed**
+
+- zerodep.app website url routing to hash-based schema
+- internal tooling updates
+- add support for Node v20 (Iron LTS)
+- update build to ES2022 spec (previously E2020)
+
 ### [2.6.0] - 2023-08-29
 
 **Added**

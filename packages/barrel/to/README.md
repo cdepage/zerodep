@@ -10,7 +10,7 @@ The @zerodep ecosystem has a variety of packages of different sizes and capabili
 
 This package includes all `to` converters.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/to) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/to) page.
 
 ## Install
 

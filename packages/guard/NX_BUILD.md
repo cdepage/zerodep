@@ -78,5 +78,5 @@ Add the following to each `.swcrc` file:
         "comments": false
       }
     },
-    "target": "es2020",
+    "target": "es2022",
 ```

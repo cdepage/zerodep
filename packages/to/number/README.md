@@ -8,7 +8,7 @@
 
 A utility to convert values to a number. Invalid values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/to/number) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/to/number) page.
 
 ## Examples
 

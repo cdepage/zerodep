@@ -8,7 +8,7 @@
 
 A utility to convert a string, number, BigInt or Date to a Date. Invalid values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/to/date) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/to/date) page.
 
 ## Examples
 

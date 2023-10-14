@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is `null` or `undefined`.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/nil) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/nil) page.
 
 ## Examples
 

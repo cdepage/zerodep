@@ -8,7 +8,7 @@
 
 A performant utility to compare two values for equality by value (not by reference). This means JSON objects with the same key:value pairs will be deemed equal as will arrays with identical items even if in different order.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/equal) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/equal) page.
 
 ## Examples
 

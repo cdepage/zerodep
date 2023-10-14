@@ -10,7 +10,7 @@ A factory function that returns an optionally-typed, iterable, Collection data s
 
 A `Collection` is like a JavaScript `Set` with better object comparison (for uniqueness of its members) and a few new methods for comparison and operations between `Collections`.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/to/string) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/struct/collection) page.
 
 ## Examples
 

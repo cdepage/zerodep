@@ -8,7 +8,7 @@
 
 A utility to convert serializable objects or arrays of serializable values or objects to a Plain Old Javascript Object (POJO); this will use native `toJSON()` capabilities, if available. Invalid values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/to/pojo) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/to/pojo) page.
 
 ## Examples
 

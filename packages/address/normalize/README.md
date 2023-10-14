@@ -12,7 +12,7 @@ A utility that normalizes an address string for ease of parsing.
 
 This is a standalone package export from the `@zerodep` ecosystem.
 
-Full documentation for this method may be found at the [zerodep.app](https://zerodep.app/address/normalize) website.
+Full documentation for this method may be found at the [zerodep.app](https://zerodep.app/#/address/normalize) website.
 
 ## Examples
 

@@ -8,7 +8,7 @@
 
 A run-time guard to require a value to be a string; it will throw a `ZeroDepError` if the guard fails.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/guard/string) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/guard/string) page.
 
 ## Examples
 

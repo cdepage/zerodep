@@ -8,7 +8,7 @@
 
 A utility to remove a specific character from the start of a string. Non-string values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/string/trimleft) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/string/trimleft) page.
 
 ## Examples
 

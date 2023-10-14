@@ -8,7 +8,7 @@
 
 A parser to find where a directional name or abbreviation is in a string.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/address/directional) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/address/directional) page.
 
 ## Examples
 

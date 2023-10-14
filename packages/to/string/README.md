@@ -8,7 +8,7 @@
 
 A utility to convert stringifiable values to a string; this will use native `toString()` capabilities, if available. Invalid values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/to/string) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/to/string) page.
 
 ## Examples
 

@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is a Plain Old Javascript Object (POJO) that is serializable.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/pojo) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/pojo) page.
 
 ## Examples
 

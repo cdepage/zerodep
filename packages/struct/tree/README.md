@@ -8,7 +8,7 @@
 
 A factory function that returns an optionally-typed Tree data structure instance
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/to/string) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/struct/tree) page.
 
 ## Examples
 

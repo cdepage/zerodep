@@ -8,4 +8,4 @@
 
 This package contains `Map` objects of data for countries and states
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/geo/data) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/geo/data) page.

@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is a Typed Array.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/typedarray) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/typedarray) page.
 
 ## Examples
 

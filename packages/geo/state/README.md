@@ -8,7 +8,7 @@
 
 A parser to get state abbreviation and information from a state name or abbreviation; it will throw a `ZeroDepError` if the guard fails.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/geo/state) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/geo/state) page.
 
 ## Examples
 

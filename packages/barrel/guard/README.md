@@ -10,7 +10,7 @@ The @zerodep ecosystem has a variety of packages of different sizes and capabili
 
 This package includes all `guard` functions.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/guard) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/guard) page.
 
 ## Install
 

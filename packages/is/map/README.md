@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is a Map.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/map) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/map) page.
 
 ## Examples
 

@@ -4,7 +4,7 @@
 
 This site provides full documentation for each method, structure, algorithm and capability.
 
-For all functionality offered by @zerodep:
+For all functionality offered by @zerodep go with the fully tree-shakable package:
 
 ```
 npm i @zerodep/app
@@ -120,7 +120,7 @@ This table shows which functions are in what barrel package.
 
 ## Support
 
-All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you may need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
+All @zerodep packages are built for the ES2022 specification. Should you need to support older environments you may need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 ### Browsers
 
@@ -137,6 +137,7 @@ All functionality is tested on:
 
 All functionality is tested on:
 
+- v20.x - Iron LTS
 - v18.x - Hydrogen LTS
 - v16.x - Gallium LTS
 

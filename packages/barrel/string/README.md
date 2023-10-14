@@ -10,7 +10,7 @@ The @zerodep ecosystem has a variety of packages of different sizes and capabili
 
 This package includes all `string` converters.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/string) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/string) page.
 
 ## Install
 

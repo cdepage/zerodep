@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is a BigInt.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/bigint) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/bigint) page.
 
 ## Examples
 

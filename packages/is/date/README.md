@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is a Date object.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/date) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/date) page.
 
 ## Examples
 

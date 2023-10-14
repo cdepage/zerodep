@@ -8,7 +8,7 @@
 
 A parser to find where a state name or abbreviation is in a string.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/address/state) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/address/state) page.
 
 ## Examples
 

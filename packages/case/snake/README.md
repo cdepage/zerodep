@@ -8,7 +8,7 @@
 
 A utility to convert a string to snake_case that also strips out non-alphanumeric characters and any leading numeric characters. Non-string values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/case/snake) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/case/snake) page.
 
 ## Examples
 

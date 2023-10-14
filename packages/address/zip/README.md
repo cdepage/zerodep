@@ -8,7 +8,7 @@
 
 A parser to find where zip/postal codes (and US 5-digit extensions) are in a string.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/address/zip) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/address/zip) page.
 
 NOTE: currently supports US and CA zip/postal codes
 

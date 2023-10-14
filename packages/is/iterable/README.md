@@ -8,4 +8,4 @@
 
 ## Documentation
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/iterable) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/iterable) page.

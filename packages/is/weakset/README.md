@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is a Weak Set.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/weakset) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/weakset) page.
 
 ## Examples
 

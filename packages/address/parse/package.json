@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-parse",
   "description": "An address parser for American and Canadian addresses that breaks down the provided address into its component parts",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "license": "MIT",
   "repository": {
     "type": "git",

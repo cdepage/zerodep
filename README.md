@@ -1,7 +1,7 @@
 # @zerodep
- 
-![repo size](https://img.shields.io/github/repo-size/cdepage/zerodep?style=flat-square) 
-![total lines](https://img.shields.io/tokei/lines/github/cdepage/zerodep?style=flat-square) 
+
+![repo size](https://img.shields.io/github/repo-size/cdepage/zerodep?style=flat-square)
+![total lines](https://img.shields.io/tokei/lines/github/cdepage/zerodep?style=flat-square)
 ![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
 ![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
@@ -11,7 +11,7 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 
-A monorepo library of zero-dependency, functions, parsers, capabilities types and data for both Node and browser environments. 
+A monorepo library of zero-dependency, functions, parsers, capabilities types and data for both Node and browser environments.
 
 All packages are published to `npm` both individually and logically grouped in barrel packages.
 
@@ -21,7 +21,7 @@ Full documentation is available at [https://zerodep.app](https://zerodep.app) or
 
 ## Support
 
-All @zerodep packages are built for the ES2020 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
+All @zerodep packages are built for the ES2022 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Browsers**
 

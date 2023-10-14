@@ -8,7 +8,7 @@
 
 **A factory function to add fully typed event emitter functionality to any object literal factory.**
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/to/string) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/to/string) page.
 
 ## Examples
 

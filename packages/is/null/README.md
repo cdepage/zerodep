@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is `null`.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/null) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/null) page.
 
 ## Examples
 

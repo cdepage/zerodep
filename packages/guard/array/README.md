@@ -8,7 +8,7 @@
 
 A run-time guard to require a value to be an array; it will throw a `ZeroDepError` if the guard fails.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/guard/array) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/guard/array) page.
 
 ## Examples
 

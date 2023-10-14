@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is a pending, resolved or rejected Promise.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/[rp,ose]) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/[rp,ose]) page.
 
 ## Examples
 

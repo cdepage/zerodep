@@ -10,7 +10,7 @@ The @zerodep ecosystem has a variety of packages of different sizes and capabili
 
 This package includes all `is-` functions.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is) page.
 
 ## Install
 

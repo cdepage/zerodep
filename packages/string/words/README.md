@@ -8,7 +8,7 @@
 
 A utility to split a sentence of words into an array of those words and remove punctuation. Non-string values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/string/words) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/string/words) page.
 
 ## Examples
 

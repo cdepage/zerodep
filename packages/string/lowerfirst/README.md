@@ -8,7 +8,7 @@
 
 A utility to convert the first letter of a provided string to a lowercase value. Non-string values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/string/lowerfirst) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/string/lowerfirst) page.
 
 ## Examples
 

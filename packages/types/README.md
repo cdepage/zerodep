@@ -6,7 +6,7 @@
 
 A collection of Typescript literal union types.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/types) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/types) page.
 
 ## Definitions
 

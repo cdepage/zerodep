@@ -8,7 +8,7 @@
 
 A queue data structure implementation with event emitting.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app) site.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/struct/queue) site.
 
 ## Examples
 

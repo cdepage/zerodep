@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is a string.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/string) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/string) page.
 
 ## Examples
 

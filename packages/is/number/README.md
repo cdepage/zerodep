@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is a finite number.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/number) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/number) page.
 
 ## Examples
 

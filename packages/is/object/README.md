@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is a non-null object.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/object) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/object) page.
 
 ## Examples
 

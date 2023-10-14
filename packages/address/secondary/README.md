@@ -8,7 +8,7 @@
 
 A parser to find where a secondary name or abbreviation is in a string.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/address/secondary) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/address/secondary) page.
 
 ## Examples
 

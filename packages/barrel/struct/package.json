@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct",
-  "description": "A collection of structs, utilities to gate against specific variable types at run-time",
-  "version": "2.6.0",
+  "description": "A collection of factories to create various data structures",
+  "version": "2.6.1",
   "license": "MIT",
   "repository": {
     "type": "git",

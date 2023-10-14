@@ -10,7 +10,7 @@ The @zerodep ecosystem has a variety of packages of different sizes and capabili
 
 This is the _kitchen sink_ package: it includes all tree-shakeable functions and capabilities from the @zerodep ecosystem.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/app) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/app) page.
 
 ## Install
 

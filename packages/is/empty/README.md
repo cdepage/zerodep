@@ -8,7 +8,7 @@
 
 A simple, performant utility to determine if a value is `null`, `undefined` or an empty array, string, object, Map, Set, WeakMap or WeakSet.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/is/empty) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/empty) page.
 
 ## Examples
 

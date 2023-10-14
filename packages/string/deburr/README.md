@@ -8,7 +8,7 @@
 
 A utility to convert accented characters to their equivalent ASCII values. Non-string values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/string/deburr) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/string/deburr) page.
 
 ## Examples
 

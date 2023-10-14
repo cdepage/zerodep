@@ -8,7 +8,7 @@
 
 A parser to get country ISO codes and information from a country name or abbreviation; it will throw a `ZeroDepError` on failure.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/geo/country) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/geo/country) page.
 
 ### geoCountryIso Examples
 

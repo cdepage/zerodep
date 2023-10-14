@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-undefined",
   "description": "A utility to determine if a value is undefined",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "license": "MIT",
   "repository": {
     "type": "git",

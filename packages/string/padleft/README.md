@@ -8,7 +8,7 @@
 
 A utility to prefix a value with a specified character to create a string of a specific length. Non-string values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/string/padleft) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/string/padleft) page.
 
 ## Examples
 

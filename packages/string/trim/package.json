@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/string-trim",
   "description": "A utility to trim whitespace or specific values from the start and end of a string",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "license": "MIT",
   "repository": {
     "type": "git",

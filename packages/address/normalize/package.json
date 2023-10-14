@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-normalize",
   "description": "A utility that normalizes an address string for ease of parsing",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "license": "MIT",
   "repository": {
     "type": "git",

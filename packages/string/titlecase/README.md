@@ -8,7 +8,7 @@
 
 A utility to convert the first letter of each word to an uppercase value, with special exceptions for English contractions and possessives. Non-string values will cause a `ZeroDepError` to be thrown.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/string/titlecase) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/string/titlecase) page.
 
 ## Examples
 

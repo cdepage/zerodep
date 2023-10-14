@@ -8,7 +8,7 @@
 
 A utility to convert a string to PascalCase that also strips out non-alphanumeric characters and any leading numeric characters.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app/case/pascal) page.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/case/pascal) page.
 
 ## Examples
 

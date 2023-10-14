@@ -8,7 +8,7 @@
 
 A factory function that returns an optionally-typed, iterable Doubly Linked List data structure instance.
 
-Full documentation is available at the [zerodep.app](http://zerodep.app) site.
+Full documentation is available at the [zerodep.app](http://zerodep.app/#/struct/linkedlist) site.
 
 ## Examples
 
