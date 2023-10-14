@@ -1,4 +1,4 @@
-name: Deploy
+name: Publish to NPM
 
 on:
   release:
@@ -24,3 +24,5 @@ jobs:
 
       - name: deploy affected
         run: npm run deploy:affected
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
