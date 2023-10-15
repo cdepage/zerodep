@@ -6,6 +6,14 @@ describe('caseKebab', () => {
     expect(caseKebab('From sentence case')).toEqual('from-sentence-case');
   });
 
+  it('should convert a camel case', () => {
+    expect(caseKebab('fromCamelCase')).toEqual('from-camel-case');
+  });
+
+  it('should convert a dot case', () => {
+    expect(caseKebab('from.dot.case')).toEqual('from-dot-case');
+  });
+
   it('should convert a kebab case', () => {
     expect(caseKebab('from-kebab-case')).toEqual('from-kebab-case');
   });

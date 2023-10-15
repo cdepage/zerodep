@@ -1,12 +1,12 @@
 {
-  "name": "@zerodep/parsers",
-  "description": "A collection of all parsers within the @zerodep ecosystem",
-  "version": "2.4.1",
+  "name": "@zerodep/case-dot",
+  "description": "A utility to convert a string to dot.case",
+  "version": "2.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdepage/zerodep.git",
-    "directory": "packages/barrel/parsers"
+    "directory": "packages/case/dot"
   },
   "homepage": "https://zerodep.app",
   "bugs": "https://github.com/cdepage/zerodep/issues",
@@ -21,6 +21,9 @@
     "default": "./cjs.js"
   },
   "keywords": [
-    "parsers"
+    "case",
+    "dot",
+    "dotcase",
+    "convert"
   ]
 }

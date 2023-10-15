@@ -6,7 +6,7 @@
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
-A utility to convert a string to kebab-case that also strips out non-alphanumeric characters and any leading numeric characters. Non-string values will cause a `ZeroDepError` to be thrown.
+A utility to convert a string to kebab-case, intended for converting variable names, that also strips out non-alphanumeric characters and any leading numeric characters. Non-string values will cause a `ZeroDepError` to be thrown.
 
 ## Signature
 

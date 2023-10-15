@@ -31,6 +31,7 @@ const { caseKebab } = require('@zerodep/case-kebab');
 ```javascript
 caseKebab('From sentence case'); // "from-sentence-case"
 caseKebab('fromCamelCase'); // "from-camel-case"
+caseKebab('from.dot.case'); // "from-dot-case"
 caseKebab('from_snake_case'); // "from-snake-case"
 caseKebab('FromPascalCase'); // "from-pascal-case"
 caseKebab(''); // ""

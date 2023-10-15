@@ -1,9 +1,18 @@
+import { caseSentence } from '@zerodep/case-sentence';
 import { ZeroDepError } from '@zerodep/errors';
 import { caseSnake } from './caseSnake';
 
 describe('caseSnake', () => {
   it('should convert a sentence case', () => {
     expect(caseSnake('From sentence case')).toEqual('from_sentence_case');
+  });
+
+  it('should convert a camel case', () => {
+    expect(caseSnake('fromCamelCase')).toEqual('from_camel_case');
+  });
+
+  it('should convert a dog case', () => {
+    expect(caseSnake('from.dot.case')).toEqual('from_dot_case');
   });
 
   it('should convert a kebab case', () => {

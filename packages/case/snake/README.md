@@ -25,6 +25,7 @@ const { caseSnake } = require('@zerodep/case-snake');
 ```javascript
 caseSnake('From sentence case'); // "from_sentence_case"
 caseSnake('fromCamelCase'); // "from_camel_case"
+caseSnake('from.dot.case'); // "from_dot_case"
 caseSnake('from_snake_case'); // "from_snake_case"
 caseSnake('FromPascalCase'); // "from_pascal_case"
 caseSnake(''); // ""

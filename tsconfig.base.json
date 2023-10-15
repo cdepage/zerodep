@@ -30,6 +30,7 @@
       "@zerodep/app": ["packages/barrel/app/src/index.ts"],
       "@zerodep/case": ["packages/barrel/case/src/index.ts"],
       "@zerodep/case-camel": ["packages/case/camel/src/index.ts"],
+      "@zerodep/case-dot": ["packages/case/dot/src/index.ts"],
       "@zerodep/case-kebab": ["packages/case/kebab/src/index.ts"],
       "@zerodep/case-pascal": ["packages/case/pascal/src/index.ts"],
       "@zerodep/case-sentence": ["packages/case/sentence/src/index.ts"],

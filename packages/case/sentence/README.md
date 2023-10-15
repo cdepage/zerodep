@@ -25,6 +25,7 @@ const { caseSentence } = require('@zerodep/case-sentence');
 ```javascript
 caseSentence('From sentence case'); // "from sentence case"
 caseSentence('fromCamelCase'); // "from camel case"
+caseSentence('from.dot.case'); // "from dot case"
 caseSentence('from_snake_case'); // "from snake case"
 caseSentence('FromPascalCase'); // "from pascal case"
 caseSentence(''); // ""

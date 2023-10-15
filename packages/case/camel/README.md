@@ -24,6 +24,7 @@ const { caseCamel } = require('@zerodep/case-camel');
 
 ```javascript
 caseCamel('From sentence case'); // "fromSentenceCase"
+caseCamel('from.dot.case'); // "fromDotCase"
 caseCamel('from-kebab-case'); // "fromKebabCase"
 caseCamel('from_snake_case'); // "fromSnakeCase"
 caseCamel('FromPascalCase'); // "fromPascalCase"

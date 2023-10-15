@@ -25,6 +25,7 @@ const { casePascal } = require('@zerodep/case-pascal');
 ```javascript
 casePascal('From sentence case'); // "FromSentenceCase"
 casePascal('from-kebab-case'); // "FromKebabCase"
+casePascal('from.dot.case'); // "FromDotCase"
 casePascal('from_snake_case'); // "FromSnakeCase"
 casePascal('FromPascalCase'); // "FromPascalCase"
 casePascal(''); // ""

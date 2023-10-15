@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/case-sentence",
   "description": "A utility to convert a string to sentence case",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   },
   "keywords": [
     "case",
-    "sentence"
+    "sentence",
+    "convert"
   ]
 }

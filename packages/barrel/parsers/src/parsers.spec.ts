@@ -12,6 +12,7 @@ describe('"Parsers" barrel package', () => {
       'addressState',
       'addressZip',
       'caseCamel',
+      'caseDot',
       'caseKebab',
       'casePascal',
       'caseSentence',

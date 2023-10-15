@@ -34,6 +34,7 @@
 - Case Converters
 
   - [caseCamel()](case/camel.md)
+  - [caseDot()](case/dot.md)
   - [caseKebab()](case/kebab.md)
   - [casePascal()](case/pascal.md)
   - [caseSentence()](case/sentence.md)

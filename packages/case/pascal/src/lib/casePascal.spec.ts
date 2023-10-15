@@ -1,9 +1,18 @@
+import { caseKebab } from '@zerodep/case-kebab';
 import { ZeroDepError } from '@zerodep/errors';
 import { casePascal } from './casePascal';
 
 describe('casePascal', () => {
   it('should convert a sentence case', () => {
     expect(casePascal('From sentence case')).toEqual('FromSentenceCase');
+  });
+
+  it('should convert a camel case', () => {
+    expect(casePascal('fromCamelCase')).toEqual('FromCamelCase');
+  });
+
+  it('should convert a dot case', () => {
+    expect(casePascal('from.dot.case')).toEqual('FromDotCase');
   });
 
   it('should convert a kebab case', () => {

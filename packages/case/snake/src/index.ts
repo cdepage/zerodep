@@ -1,1 +1,1 @@
-export * from './lib/case-snake';
+export * from './lib/caseSnake';

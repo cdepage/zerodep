@@ -6,6 +6,7 @@ describe('"case" barrel package', () => {
     expect(keys).toStrictEqual([
       'ZeroDepError',
       'caseCamel',
+      'caseDot',
       'caseKebab',
       'casePascal',
       'caseSentence',
