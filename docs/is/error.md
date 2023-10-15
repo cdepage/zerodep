@@ -6,26 +6,73 @@
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
-A simple, performant utility to determine if a value is an Error.
+A utility to determine if a value is an Error or specific instance/subclass of an Error type.
 
 ## Signature
 
 ```typescript
-const isError(value: any) => boolean;
+const isError(maybeError: unknown, errorType?: any) => boolean;
 ```
 
 ### Function Parameters
 
-The `isArray` function has the following parameters:
+The `isError` function has the following parameters:
 
-- **value** - the value to check
+- **maybeError** - the value to check
+- **errorType** - [optional] error type/instance
 
 ## Examples
 
-### Positive Response
+### Positive Simple Cases
 
 ```javascript
 isError(new Error('message')); // true
+
+isError(new Error()); // true
+```
+
+### Positive Cases with Error Type Checking
+
+```javascript
+// using native error types
+isError(new Error('message'), Error); // true
+isError(new SyntaxError('message'), Error); // true
+
+// using custom error subclasses
+class MyError extends Error {}
+isError(new MyError('message'), Error); // true
+isError(new MyError('message'), MyError); // true
+```
+
+### Negative Cases with Error Type Checking
+
+```javascript
+// using native error types
+isError(new RangeError('message'), SyntaxError); // false
+
+// using custom error subclasses
+class ErrorA extends Error {}
+class ErrorB extends Error {}
+isError(new ErrorA('message'), ErrorB); // false
+```
+
+### Negative Special Cases
+
+```javascript
+// force error message to be a number (or any non-string value)
+const err1 = new Error();
+err1.message = 123;
+isError(err1); // false
+
+// force error message to be null
+const err2 = new Error();
+err2.message = null;
+isError(err2); // false
+
+// force error message to be undefined
+const err3 = new Error();
+err3.message = undefined;
+isError(err3); // false
 ```
 
 ### Negative Response
@@ -89,6 +136,13 @@ import { isError } from '@zerodep/is-error';
 ## Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+#### [2.1.0] - 2023-10-15
+
+**Changed**
+
+- added an optional error subclass/type check
+- added a check to ensure the error's `message` property is a string (if it exists)
 
 #### [2.0.0] - 2023-05-23
 

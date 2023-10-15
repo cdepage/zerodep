@@ -1,4 +1,4 @@
-# @zerodep/is-eError
+# @zerodep/is-Error
 
 [![minified size](https://img.shields.io/bundlephobia/min/@zerodep/is-error?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-error)
 [![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/is-error?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-error)
@@ -6,7 +6,7 @@
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
 
-A simple, performant utility to determine if a value is an Error.
+A utility to determine if a value is an Error or specific instance/subclass of an Error type.
 
 Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/error) page.
 
@@ -24,6 +24,40 @@ const { isError } = require('@zerodep/is-error');
 
 ```javascript
 isError(new Error('message')); // true
+
+isError(new Error()); // true
+
+// using custom error subclasses
+class MyError extends Error {}
+isError(new MyError('message'), Error); // true
+isError(new MyError('message'), MyError); // true
+```
+
+### Negative Special Cases
+
+```javascript
+// force error message to be a number (or any non-string value)
+const err1 = new Error();
+err1.message = 123;
+isError(err1); // false
+
+// force error message to be null
+const err2 = new Error();
+err2.message = null; // force error message to be null
+isError(err2); // false
+
+// force error message to be undefined
+const err3 = new Error();
+err23message = undefined;
+isError(err3); // false
+
+// using error subclasses
+isError(new SyntaxError('message'), RangeError); // false
+
+// using custom error subclasses
+class ErrorA extends Error {}
+class ErrorB extends Error {}
+isError(new ErrorA('message'), ErrorB); // false
 ```
 
 ### Negative Response

@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-error",
-  "description": "A utility to determine if a value is an Error (or instance/subclass of an Error)",
-  "version": "2.0.4",
+  "description": "A utility to determine if a value is an Error or specific instance/subclass of an Error type.",
+  "version": "2.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,6 +23,9 @@
   "keywords": [
     "is",
     "error",
-    "type"
+    "type",
+    "instance",
+    "check",
+    "validate"
   ]
 }

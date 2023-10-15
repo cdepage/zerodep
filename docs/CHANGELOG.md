@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+#### [2.7.0] - 2023-10-15
+
+**Changed**
+
+- added an optional error subclass/type check to the `isError()` method
+- added a check to the `isError()` method to ensure the error's `message` property is a string (if it exists)
+
 ### [2.6.2] - 2023-10-14
 
 **Changed**
