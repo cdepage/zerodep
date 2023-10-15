@@ -13,6 +13,32 @@
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
     />
     <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/favicon/safari-pinned-tab.svg"
+      color="#42b983"
+    />
+    <meta name="msapplication-TileColor" content="#42b983" />
+    <meta name="theme-color" content="#42b983" />
+
+    <link
       rel="stylesheet"
       href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
     />
@@ -40,35 +66,41 @@
     </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <p>
+        @zerodep is a library of modern, fully typed utilities, parsers, data
+        structures and other capabilities to help with creating application
+        functionality with no third-party dependencies.
+      </p>
+
+      <p>Loading site, this will only take a moment.</p>
+    </div>
     <script>
       window.$docsify = {
         auto2top: true,
         basePath: '/',
-        ga: 'G-KKX6DXRZPY',
         homepage: 'home.md',
         loadSidebar: true,
         name: '@zerodep',
         nameLink: 'https://zerodep.app',
         repo: 'https://github.com/cdepage/zerodep',
         routerMode: 'hash',
-        search: {
-          paths: 'auto',
-          depth: 2,
-          placeholder: 'Search',
-          noData: 'No Results!',
-          hideOtherSidebarContent: false,
-        },
+        // search: {
+        //   paths: 'auto',
+        //   depth: 2,
+        //   placeholder: 'Search',
+        //   noData: 'No Results!',
+        //   hideOtherSidebarContent: false,
+        // },
         sidebarDisplayLevel: 1,
         subMaxLevel: 1,
       };
     </script>
     <!-- Docsify v4 -->
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+    <!--    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>-->
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/ga.min.js"></script>
   </body>
 </html>
