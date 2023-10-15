@@ -1,19 +1,20 @@
 # @zerodep
 
-![repo size](https://img.shields.io/github/repo-size/cdepage/zerodep?style=flat-square)
-![total lines](https://img.shields.io/tokei/lines/github/cdepage/zerodep?style=flat-square)
-![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
-![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
-
 ![license](https://img.shields.io/github/license/cdepage/zerodep?color=emerald&style=flat-square)
 ![last commit](https://img.shields.io/github/last-commit/cdepage/zerodep?olor=emerald&style=flat-square)
 ![coverage](https://img.shields.io/badge/coverage-100%25-emerald?style=flat-square)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/cdepage/zerodep/ci.yml?style=flat-square&label=build%20status)
+
+![language](https://img.shields.io/github/languages/top/cdepage/zerodep?style=flat-square)
+![language](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/cdepage/zerodep/main?style=flat-square&label=version&color=blue)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
+[![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
-A monorepo library of zero-dependency, functions, parsers, capabilities types and data for both Node and browser environments.
+A modern library/monorepo of high-quality, zero-dependency, fully typed, fully tested, tree-shakeable utilities, parsers, data structure factories, converters and other capabilities to help you create quality Node.js and JavaScript/TypeScript applications quickly.
 
-All packages are published to `npm` both individually and logically grouped in barrel packages.
+All packages are published to `npm` both individually and logically/semantically grouped in barrel packages.
 
 ## Documentation
 
@@ -21,7 +22,13 @@ Full documentation is available at [https://zerodep.app](https://zerodep.app) or
 
 ## Support
 
-All @zerodep packages are built for the ES2022 specification. Should you need to support older environments you will need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
+All @zerodep packages are built for the ES2022 specification. Should you need to support older environments you may need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
+
+**Node**
+
+- v20.x - Iron LTS
+- v18.x - Hydrogen LTS
+- v16.x - Gallium LTS
 
 **Browsers**
 
@@ -31,11 +38,6 @@ All @zerodep packages are built for the ES2022 specification. Should you need to
 - Edge - last 2 major versions
 - Android - last 2 major versions
 - iOS - last 2 major versions
-
-**Node**
-
-- v18.x - Helium LTS
-- v16.x - Gallium LTS
 
 It is likely the package will work on other technologies and version, however development and testing effort is only spent on the above.
 
