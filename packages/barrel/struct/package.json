@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct",
-  "description": "A collection of factories to create various data structures",
-  "version": "2.6.1",
+  "description": "A collection of factories to create various optionally-typed data structures",
+  "version": "2.6.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,6 +22,14 @@
   },
   "keywords": [
     "data",
-    "struct"
+    "structure",
+    "collection",
+    "doubly",
+    "linked",
+    "list",
+    "linkedlist",
+    "queue",
+    "stack",
+    "tree"
   ]
 }

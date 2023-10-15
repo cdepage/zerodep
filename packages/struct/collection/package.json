@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-collection",
-  "description": "A factory function that returns an optionally-typed, iterable, Collection data structure instance",
-  "version": "2.0.2",
+  "description": "A factory that returns an optionally-typed, iterable, Collection data structure instance",
+  "version": "2.0.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,6 +22,8 @@
   },
   "keywords": [
     "collection",
-    "structure"
+    "data",
+    "structure",
+    "factory"
   ]
 }

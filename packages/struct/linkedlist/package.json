@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-linkedlist",
-  "description": "A factory function that returns an optionally-typed, iterable Linked List data structure.",
-  "version": "2.5.2",
+  "description": "A factory that returns an optionally-typed, iterable Linked List data structure.",
+  "version": "2.5.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -25,10 +25,12 @@
     "rollup-plugin-ts": "3.4.4"
   },
   "keywords": [
-    "data",
-    "structure",
+    "doubly",
     "linked",
     "list",
+    "data",
+    "structure",
+    "factory",
     "iterable"
   ]
 }

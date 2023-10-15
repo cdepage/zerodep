@@ -1,6 +1,7 @@
 {
   "name": "@zerodep/struct-tree",
-  "version": "2.6.1",
+  "description": "A factory that returns an optionally-typed, Tree data structure instance with breadth- and depth-first searching capabilities.",
+  "version": "2.6.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -20,16 +21,12 @@
     "default": "./cjs.js"
   },
   "keywords": [
-    "data",
-    "structrue",
     "tree",
     "breadth",
-    "depth"
-  ],
-  "dependencies": {
-    "@rollup/plugin-strip": "3.0.2",
-    "rollup-plugin-ts": "3.4.4",
-    "@zerodep/errors": "*",
-    "@zerodep/is-equal": "*"
-  }
+    "depth",
+    "first",
+    "data",
+    "structure",
+    "factory"
+  ]
 }

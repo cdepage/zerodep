@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-stack",
-  "description": "A factory function that returns an optionally-typed Stack data structure instance.",
-  "version": "2.0.1",
+  "description": "A factory that returns an optionally-typed Stack data structure instance.",
+  "version": "2.0.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -21,7 +21,9 @@
     "default": "./cjs.js"
   },
   "keywords": [
-    "collection",
-    "stack"
+    "stack",
+    "data",
+    "structure",
+    "factory"
   ]
 }

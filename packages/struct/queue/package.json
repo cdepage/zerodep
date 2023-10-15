@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-queue",
-  "description": "A Queue data structure with EventEmitter",
-  "version": "2.4.2",
+  "description": "A factory that returns an optionally-typed, Queue data structure.",
+  "version": "2.4.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -21,7 +21,11 @@
     "default": "./cjs.js"
   },
   "keywords": [
-    "collection",
-    "queue"
+    "queue",
+    "data",
+    "structure",
+    "factory",
+    "event",
+    "emitter"
   ]
 }
