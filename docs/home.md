@@ -6,7 +6,7 @@ This site provides full documentation for each method, structure, algorithm and 
 
 For all functionality offered by @zerodep go with the fully tree-shakable package:
 
-```
+```shell
 npm i @zerodep/app
 ```
 

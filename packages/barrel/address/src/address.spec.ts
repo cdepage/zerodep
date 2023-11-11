@@ -8,9 +8,11 @@ describe('"address" barrel package', () => {
       'addressCountry',
       'addressDirectional',
       'addressNormalize',
+      'addressParse',
       'addressSecondary',
       'addressState',
       'addressZip',
+      'getZipCountryState',
     ]);
   });
 

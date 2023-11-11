@@ -5,3 +5,4 @@ export * from '@zerodep/address-normalize';
 export * from '@zerodep/address-secondary';
 export * from '@zerodep/address-state';
 export * from '@zerodep/address-zip';
+export * from '@zerodep/address-parse';

@@ -1,10 +1,3 @@
-export interface AddressPieces {
-  city?: string;
-  state?: string;
-  country?: string;
-  zip?: string | number;
-}
-
 export interface Address {
   attn?: string;
   careOf?: string;
@@ -36,12 +29,4 @@ export interface Address {
   streetNamePost?: string;
   directionalPost?: string;
   street?: string;
-}
-
-export interface IAddressWip extends Address {
-  source: string; // what the user provided
-  normalized: string; // what the user provided
-  remaining: string; // unparsed parts of the address
-  remainingPreStreet?: string; // unparsed parts of the address before the street type
-  remainingPostStreet?: string; // unparsed parts of the address after the street type
 }
