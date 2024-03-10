@@ -24,28 +24,24 @@
         "parallel": false
       }
     },
-    "publish": {
-      "command": "cd dist/packages/address/country && npm publish --access public"
+    "patch": {
+      "command": "cd dist/packages/address/country && npm version patch"
+    },
+    "minor": {
+      "command": "cd dist/packages/address/country && npm version minor"
+    },
+    "major": {
+      "command": "cd dist/packages/address/country && npm version major"
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/address/country/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/address/country/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "packages/address/country/jest.config.ts"
       }
     }
   },

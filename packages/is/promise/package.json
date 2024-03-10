@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-promise",
   "description": "A utility to determine if a value is a Promise",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "license": "MIT",
   "repository": {
     "type": "git",

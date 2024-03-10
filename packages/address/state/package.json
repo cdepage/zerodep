@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-state",
   "description": "A parser to find where a state name or abbreviation is in a string",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "license": "MIT",
   "repository": {
     "type": "git",

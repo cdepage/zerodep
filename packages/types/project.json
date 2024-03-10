@@ -22,8 +22,14 @@
         "parallel": false
       }
     },
-    "publish": {
-      "command": "cd dist/packages/to/types && npm publish --access public"
+    "patch": {
+      "command": "cd dist/packages/to/types && npm version patch"
+    },
+    "minor": {
+      "command": "cd dist/packages/to/types && npm version minor"
+    },
+    "major": {
+      "command": "cd dist/packages/to/types && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",
@@ -33,24 +39,14 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/types/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/types/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "packages/types/jest.config.ts"
       }
     }
   },

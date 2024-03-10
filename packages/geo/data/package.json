@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/geo-data",
   "description": "This package contains Map objects of data for countries and states.",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "license": "MIT",
   "repository": {
     "type": "git",

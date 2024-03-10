@@ -25,7 +25,7 @@
       }
     },
     "XXXXpublish": {
-      "command": "cd dist/packages/color/hex2hsl && npm publish --access public"
+      "command": "cd dist/packages/color/hex2hsl && npm version patch"
     },
     "packageFix": {
       "executor": "nx:run-commands",
@@ -35,24 +35,14 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/color/hex2hsl/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/color/hex2hsl/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "packages/color/hex2hsl/jest.config.ts"
       }
     }
   },

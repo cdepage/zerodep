@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/case",
   "description": "A set of utilities to convert the case of strings",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "license": "MIT",
   "repository": {
     "type": "git",

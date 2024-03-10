@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/geo-state",
   "description": "Get info about a state by its name or common abbreviation",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "license": "MIT",
   "repository": {
     "type": "git",

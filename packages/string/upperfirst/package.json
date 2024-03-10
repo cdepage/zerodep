@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/string-upperfirst",
   "description": "A utility to convert the first letter of a string to uppercase",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "license": "MIT",
   "repository": {
     "type": "git",

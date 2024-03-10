@@ -11,8 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 **Changed**
 
 - updated @zerodep/types timezones
+- internal tooling and dependency updates
 - removed support for Node v16 as it is beyond end of life
-- internal package updates
 
 ---
 

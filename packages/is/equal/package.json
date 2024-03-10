@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-equal",
   "description": "A utility to compare two values of any type for equality by value",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "license": "MIT",
   "repository": {
     "type": "git",
