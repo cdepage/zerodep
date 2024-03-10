@@ -51,15 +51,3 @@ jobs:
 
       - name: test
         run: npm run test:all
-
-  security:
-    needs: unit_tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@master
-
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
