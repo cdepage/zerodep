@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/guard-array",
   "description": "A configurable defensive programming utility to guard against non-array values",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,12 +12,15 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "type": "module",
   "types": "index.d.ts",
-  "main": "cjs.js",
-  "module": "esm.js",
+  "main": "cjs.cjs",
+  "module": "esm.mjs",
   "exports": {
-    "import": "./esm.js",
-    "require": "./cjs.js"
+    ".": {
+      "import": "./esm.mjs",
+      "require": "./cjs.cjs"
+    }
   },
   "keywords": [
     "guard",

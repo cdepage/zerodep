@@ -13,11 +13,11 @@ export default [
     input: `${dir}/src/index.ts`,
     output: [
       {
-        file: `dist/${dir}/esm.js`,
+        file: `dist/${dir}/esm.mjs`,
         format: 'esm',
       },
       {
-        file: `dist/${dir}/cjs.js`,
+        file: `dist/${dir}/cjs.cjs`,
         format: 'cjs',
         interop: 'auto',
       },

@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+### [2.7.2] - 2024-03-10
+
+**Fixed**
+
+- fixed a bug where importing into ESM projects did not work
+
+---
+
 ### [2.7.1] - 2024-03-09
 
 **Fixed**

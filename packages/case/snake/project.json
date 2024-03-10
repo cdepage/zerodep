@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/case/snake/*",
           "rollup -c packages/case/snake/rollup.config.mjs",
-          "mv dist/packages/case/snake/esm.d.ts dist/packages/case/snake/index.d.ts",
+          "mv dist/packages/case/snake/esm.d.mts dist/packages/case/snake/index.d.ts",
           "cp packages/case/snake/README.md dist/packages/case/snake/README.md",
           "cp LICENSE.md dist/packages/case/snake/LICENSE.md",
           "cp SECURITY.md dist/packages/case/snake/SECURITY.md",
           "cp packages/case/snake/package.json dist/packages/case/snake/package.json",
-          "uglifyjs dist/packages/case/snake/esm.js -o dist/packages/case/snake/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/case/snake/cjs.js -o dist/packages/case/snake/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/case/snake/cjs.d.ts"
+          "uglifyjs dist/packages/case/snake/esm.mjs -o dist/packages/case/snake/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/case/snake/cjs.cjs -o dist/packages/case/snake/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/case/snake/cjs.d.cts"
         ],
         "parallel": false
       }

@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/color/hex2hsl/*",
           "rollup -c packages/color/hex2hsl/rollup.config.mjs",
-          "mv dist/packages/color/hex2hsl/esm.d.ts dist/packages/color/hex2hsl/index.d.ts",
+          "mv dist/packages/color/hex2hsl/esm.d.mts dist/packages/color/hex2hsl/index.d.ts",
           "cp packages/color/hex2hsl/README.md dist/packages/color/hex2hsl/README.md",
           "cp LICENSE.md dist/packages/color/hex2hsl/LICENSE.md",
           "cp SECURITY.md dist/packages/color/hex2hsl/SECURITY.md",
           "cp packages/color/hex2hsl/package.json dist/packages/color/hex2hsl/package.json",
-          "uglifyjs dist/packages/color/hex2hsl/esm.js -o dist/packages/color/hex2hsl/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/color/hex2hsl/cjs.js -o dist/packages/color/hex2hsl/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/color/hex2hsl/cjs.d.ts"
+          "uglifyjs dist/packages/color/hex2hsl/esm.mjs -o dist/packages/color/hex2hsl/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/color/hex2hsl/cjs.cjs -o dist/packages/color/hex2hsl/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/color/hex2hsl/cjs.d.cts"
         ],
         "parallel": false
       }

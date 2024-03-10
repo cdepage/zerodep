@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/is/integer/*",
           "rollup -c packages/is/integer/rollup.config.mjs",
-          "mv dist/packages/is/integer/esm.d.ts dist/packages/is/integer/index.d.ts",
+          "mv dist/packages/is/integer/esm.d.mts dist/packages/is/integer/index.d.ts",
           "cp packages/is/integer/README.md dist/packages/is/integer/README.md",
           "cp LICENSE.md dist/packages/is/integer/LICENSE.md",
           "cp SECURITY.md dist/packages/is/integer/SECURITY.md",
           "cp packages/is/integer/package.json dist/packages/is/integer/package.json",
-          "uglifyjs dist/packages/is/integer/esm.js -o dist/packages/is/integer/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/is/integer/cjs.js -o dist/packages/is/integer/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/is/integer/cjs.d.ts"
+          "uglifyjs dist/packages/is/integer/esm.mjs -o dist/packages/is/integer/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/is/integer/cjs.cjs -o dist/packages/is/integer/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/is/integer/cjs.d.cts"
         ],
         "parallel": false
       }

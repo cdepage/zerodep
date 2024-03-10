@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/case/dot/*",
           "rollup -c packages/case/dot/rollup.config.mjs",
-          "mv dist/packages/case/dot/esm.d.ts dist/packages/case/dot/index.d.ts",
+          "mv dist/packages/case/dot/esm.d.mts dist/packages/case/dot/index.d.ts",
           "cp packages/case/dot/README.md dist/packages/case/dot/README.md",
           "cp LICENSE.md dist/packages/case/dot/LICENSE.md",
           "cp SECURITY.md dist/packages/case/dot/SECURITY.md",
           "cp packages/case/dot/package.json dist/packages/case/dot/package.json",
-          "uglifyjs dist/packages/case/dot/esm.js -o dist/packages/case/dot/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/case/dot/cjs.js -o dist/packages/case/dot/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/case/dot/cjs.d.ts"
+          "uglifyjs dist/packages/case/dot/esm.mjs -o dist/packages/case/dot/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/case/dot/cjs.cjs -o dist/packages/case/dot/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/case/dot/cjs.d.cts"
         ],
         "parallel": false
       }

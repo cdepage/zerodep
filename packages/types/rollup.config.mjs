@@ -13,7 +13,7 @@ export default [
     input: `${dir}/src/index.ts`,
     output: [
       {
-        file: `dist/${dir}/esm.js`,
+        file: `dist/${dir}/esm.mjs`,
         format: 'esm',
       },
     ],

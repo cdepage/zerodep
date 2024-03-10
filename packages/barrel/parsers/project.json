@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/barrel/parsers/*",
           "rollup -c packages/barrel/parsers/rollup.config.mjs",
-          "mv dist/packages/barrel/parsers/esm.d.ts dist/packages/barrel/parsers/index.d.ts",
+          "mv dist/packages/barrel/parsers/esm.d.mts dist/packages/barrel/parsers/index.d.ts",
           "cp packages/barrel/parsers/README.md dist/packages/barrel/parsers/README.md",
           "cp LICENSE.md dist/packages/barrel/parsers/LICENSE.md",
           "cp SECURITY.md dist/packages/barrel/parsers/SECURITY.md",
           "cp packages/barrel/parsers/package.json dist/packages/barrel/parsers/package.json",
-          "uglifyjs dist/packages/barrel/parsers/esm.js -o dist/packages/barrel/parsers/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/barrel/parsers/cjs.js -o dist/packages/barrel/parsers/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/barrel/parsers/cjs.d.ts"
+          "uglifyjs dist/packages/barrel/parsers/esm.mjs -o dist/packages/barrel/parsers/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/barrel/parsers/cjs.cjs -o dist/packages/barrel/parsers/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/barrel/parsers/cjs.d.cts"
         ],
         "parallel": false
       }

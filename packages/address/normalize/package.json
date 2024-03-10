@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-normalize",
   "description": "A utility that normalizes an address string for ease of parsing",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,11 +13,14 @@
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
   "types": "index.d.ts",
-  "main": "cjs.js",
-  "module": "esm.js",
+  "main": "cjs.cjs",
+  "module": "esm.mjs",
+  "type": "module",
   "exports": {
-    "import": "./esm.js",
-    "require": "./cjs.js"
+    ".": {
+      "import": "./esm.mjs",
+      "require": "./cjs.cjs"
+    }
   },
   "keywords": [
     "address",

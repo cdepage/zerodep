@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/object/merge/*",
           "rollup -c packages/object/merge/rollup.config.mjs",
-          "mv dist/packages/object/merge/esm.d.ts dist/packages/object/merge/index.d.ts",
+          "mv dist/packages/object/merge/esm.d.mts dist/packages/object/merge/index.d.ts",
           "cp packages/object/merge/README.md dist/packages/object/merge/README.md",
           "cp LICENSE.md dist/packages/object/merge/LICENSE.md",
           "cp SECURITY.md dist/packages/object/merge/SECURITY.md",
           "cp packages/object/merge/package.json dist/packages/object/merge/package.json",
-          "uglifyjs dist/packages/object/merge/esm.js -o dist/packages/object/merge/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/object/merge/cjs.js -o dist/packages/object/merge/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/object/merge/cjs.d.ts"
+          "uglifyjs dist/packages/object/merge/esm.mjs -o dist/packages/object/merge/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/object/merge/cjs.cjs -o dist/packages/object/merge/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/object/merge/cjs.d.cts"
         ],
         "parallel": false
       }

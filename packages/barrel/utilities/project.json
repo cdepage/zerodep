@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/barrel/utilities/*",
           "rollup -c packages/barrel/utilities/rollup.config.mjs",
-          "mv dist/packages/barrel/utilities/esm.d.ts dist/packages/barrel/utilities/index.d.ts",
+          "mv dist/packages/barrel/utilities/esm.d.mts dist/packages/barrel/utilities/index.d.ts",
           "cp packages/barrel/utilities/README.md dist/packages/barrel/utilities/README.md",
           "cp LICENSE.md dist/packages/barrel/utilities/LICENSE.md",
           "cp SECURITY.md dist/packages/barrel/utilities/SECURITY.md",
           "cp packages/barrel/utilities/package.json dist/packages/barrel/utilities/package.json",
-          "uglifyjs dist/packages/barrel/utilities/esm.js -o dist/packages/barrel/utilities/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/barrel/utilities/cjs.js -o dist/packages/barrel/utilities/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/barrel/utilities/cjs.d.ts"
+          "uglifyjs dist/packages/barrel/utilities/esm.mjs -o dist/packages/barrel/utilities/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/barrel/utilities/cjs.cjs -o dist/packages/barrel/utilities/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/barrel/utilities/cjs.d.cts"
         ],
         "parallel": false
       }

@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/is/bigint/*",
           "rollup -c packages/is/bigint/rollup.config.mjs",
-          "mv dist/packages/is/bigint/esm.d.ts dist/packages/is/bigint/index.d.ts",
+          "mv dist/packages/is/bigint/esm.d.mts dist/packages/is/bigint/index.d.ts",
           "cp packages/is/bigint/README.md dist/packages/is/bigint/README.md",
           "cp LICENSE.md dist/packages/is/bigint/LICENSE.md",
           "cp SECURITY.md dist/packages/is/bigint/SECURITY.md",
           "cp packages/is/bigint/package.json dist/packages/is/bigint/package.json",
-          "uglifyjs dist/packages/is/bigint/esm.js -o dist/packages/is/bigint/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/is/bigint/cjs.js -o dist/packages/is/bigint/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/is/bigint/cjs.d.ts"
+          "uglifyjs dist/packages/is/bigint/esm.mjs -o dist/packages/is/bigint/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/is/bigint/cjs.cjs -o dist/packages/is/bigint/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/is/bigint/cjs.d.cts"
         ],
         "parallel": false
       }

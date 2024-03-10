@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/guard/date/*",
           "rollup -c packages/guard/date/rollup.config.mjs",
-          "mv dist/packages/guard/date/esm.d.ts dist/packages/guard/date/index.d.ts",
+          "mv dist/packages/guard/date/esm.d.mts dist/packages/guard/date/index.d.ts",
           "cp packages/guard/date/README.md dist/packages/guard/date/README.md",
           "cp LICENSE.md dist/packages/guard/date/LICENSE.md",
           "cp SECURITY.md dist/packages/guard/date/SECURITY.md",
           "cp packages/guard/date/package.json dist/packages/guard/date/package.json",
-          "uglifyjs dist/packages/guard/date/esm.js -o dist/packages/guard/date/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/guard/date/cjs.js -o dist/packages/guard/date/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/guard/date/cjs.d.ts"
+          "uglifyjs dist/packages/guard/date/esm.mjs -o dist/packages/guard/date/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/guard/date/cjs.cjs -o dist/packages/guard/date/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/guard/date/cjs.d.cts"
         ],
         "parallel": false
       }

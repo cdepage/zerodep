@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/address/data/*",
           "rollup -c packages/address/data/rollup.config.mjs",
-          "mv dist/packages/address/data/esm.d.ts dist/packages/address/data/index.d.ts",
+          "mv dist/packages/address/data/esm.d.mts dist/packages/address/data/index.d.ts",
           "cp packages/address/data/README.md dist/packages/address/data/README.md",
           "cp LICENSE.md dist/packages/address/data/LICENSE.md",
           "cp SECURITY.md dist/packages/address/data/SECURITY.md",
           "cp packages/address/data/package.json dist/packages/address/data/package.json",
-          "uglifyjs dist/packages/address/data/esm.js -o dist/packages/address/data/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/address/data/cjs.js -o dist/packages/address/data/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/address/data/cjs.d.ts"
+          "uglifyjs dist/packages/address/data/esm.mjs -o dist/packages/address/data/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/address/data/cjs.cjs -o dist/packages/address/data/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/address/data/cjs.d.cts"
         ],
         "parallel": false
       },

@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-promise",
   "description": "A utility to determine if a value is a Promise",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,11 +13,14 @@
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
   "types": "index.d.ts",
-  "main": "cjs.js",
-  "module": "esm.js",
+  "main": "cjs.cjs",
+  "module": "esm.mjs",
+  "type": "module",
   "exports": {
-    "import": "./esm.js",
-    "require": "./cjs.js"
+    ".": {
+      "import": "./esm.mjs",
+      "require": "./cjs.cjs"
+    }
   },
   "keywords": [
     "is",

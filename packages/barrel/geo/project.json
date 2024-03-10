@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/barrel/geo/*",
           "rollup -c packages/barrel/geo/rollup.config.mjs",
-          "mv dist/packages/barrel/geo/esm.d.ts dist/packages/barrel/geo/index.d.ts",
+          "mv dist/packages/barrel/geo/esm.d.mts dist/packages/barrel/geo/index.d.ts",
           "cp packages/barrel/geo/README.md dist/packages/barrel/geo/README.md",
           "cp LICENSE.md dist/packages/barrel/geo/LICENSE.md",
           "cp SECURITY.md dist/packages/barrel/geo/SECURITY.md",
           "cp packages/barrel/geo/package.json dist/packages/barrel/geo/package.json",
-          "uglifyjs dist/packages/barrel/geo/esm.js -o dist/packages/barrel/geo/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/barrel/geo/cjs.js -o dist/packages/barrel/geo/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/barrel/geo/cjs.d.ts"
+          "uglifyjs dist/packages/barrel/geo/esm.mjs -o dist/packages/barrel/geo/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/barrel/geo/cjs.cjs -o dist/packages/barrel/geo/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/barrel/geo/cjs.d.cts"
         ],
         "parallel": false
       }

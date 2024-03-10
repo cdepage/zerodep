@@ -119,7 +119,6 @@ This table shows which functions are in what barrel package.
 - **Documented** - actually useful documentation with examples
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
-- **CDN Available** - available on fast content delivery networks in CJS and ESM formats
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
 - **MIT Licensed** - permissively licensed for maximum usability
 

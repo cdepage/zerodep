@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/geo/state/*",
           "rollup -c packages/geo/state/rollup.config.mjs",
-          "mv dist/packages/geo/state/esm.d.ts dist/packages/geo/state/index.d.ts",
+          "mv dist/packages/geo/state/esm.d.mts dist/packages/geo/state/index.d.ts",
           "cp packages/geo/state/README.md dist/packages/geo/state/README.md",
           "cp LICENSE.md dist/packages/geo/state/LICENSE.md",
           "cp SECURITY.md dist/packages/geo/state/SECURITY.md",
           "cp packages/geo/state/package.json dist/packages/geo/state/package.json",
-          "uglifyjs dist/packages/geo/state/esm.js -o dist/packages/geo/state/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/geo/state/cjs.js -o dist/packages/geo/state/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/geo/state/cjs.d.ts"
+          "uglifyjs dist/packages/geo/state/esm.mjs -o dist/packages/geo/state/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/geo/state/cjs.cjs -o dist/packages/geo/state/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/geo/state/cjs.d.cts"
         ],
         "parallel": false
       }

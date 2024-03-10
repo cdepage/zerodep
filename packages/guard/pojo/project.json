@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/guard/pojo/*",
           "rollup -c packages/guard/pojo/rollup.config.mjs",
-          "mv dist/packages/guard/pojo/esm.d.ts dist/packages/guard/pojo/index.d.ts",
+          "mv dist/packages/guard/pojo/esm.d.mts dist/packages/guard/pojo/index.d.ts",
           "cp packages/guard/pojo/README.md dist/packages/guard/pojo/README.md",
           "cp LICENSE.md dist/packages/guard/pojo/LICENSE.md",
           "cp SECURITY.md dist/packages/guard/pojo/SECURITY.md",
           "cp packages/guard/pojo/package.json dist/packages/guard/pojo/package.json",
-          "uglifyjs dist/packages/guard/pojo/esm.js -o dist/packages/guard/pojo/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/guard/pojo/cjs.js -o dist/packages/guard/pojo/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/guard/pojo/cjs.d.ts"
+          "uglifyjs dist/packages/guard/pojo/esm.mjs -o dist/packages/guard/pojo/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/guard/pojo/cjs.cjs -o dist/packages/guard/pojo/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/guard/pojo/cjs.d.cts"
         ],
         "parallel": false
       }

@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-state",
   "description": "A parser to find where a state name or abbreviation is in a string",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,11 +13,14 @@
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
   "types": "index.d.ts",
-  "main": "cjs.js",
-  "module": "esm.js",
+  "main": "cjs.cjs",
+  "module": "esm.mjs",
+  "type": "module",
   "exports": {
-    "import": "./esm.js",
-    "require": "./cjs.js"
+    ".": {
+      "import": "./esm.mjs",
+      "require": "./cjs.cjs"
+    }
   },
   "keywords": [
     "to",

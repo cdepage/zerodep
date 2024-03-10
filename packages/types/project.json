@@ -10,12 +10,12 @@
         "commands": [
           "rm -rf dist/packages/types/*",
           "rollup -c packages/types/rollup.config.mjs",
-          "mv dist/packages/types/esm.d.ts dist/packages/types/index.d.ts",
+          "mv dist/packages/types/esm.d.mts dist/packages/types/index.d.ts",
           "cp packages/types/README.md dist/packages/types/README.md",
           "cp LICENSE.md dist/packages/types/LICENSE.md",
           "cp SECURITY.md dist/packages/types/SECURITY.md",
           "cp packages/types/package.json dist/packages/types/package.json",
-          "uglifyjs dist/packages/types/esm.js -o dist/packages/types/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/types/esm.mjs -o dist/packages/types/esm.mjs -c --no-annotations",
           "rm dist/packages/types/esm.js"
         ],
         "parallel": false

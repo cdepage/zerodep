@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/string/deburr/*",
           "rollup -c packages/string/deburr/rollup.config.mjs",
-          "mv dist/packages/string/deburr/esm.d.ts dist/packages/string/deburr/index.d.ts",
+          "mv dist/packages/string/deburr/esm.d.mts dist/packages/string/deburr/index.d.ts",
           "cp packages/string/deburr/README.md dist/packages/string/deburr/README.md",
           "cp LICENSE.md dist/packages/string/deburr/LICENSE.md",
           "cp SECURITY.md dist/packages/string/deburr/SECURITY.md",
           "cp packages/string/deburr/package.json dist/packages/string/deburr/package.json",
-          "uglifyjs dist/packages/string/deburr/esm.js -o dist/packages/string/deburr/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/string/deburr/cjs.js -o dist/packages/string/deburr/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/string/deburr/cjs.d.ts"
+          "uglifyjs dist/packages/string/deburr/esm.mjs -o dist/packages/string/deburr/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/string/deburr/cjs.cjs -o dist/packages/string/deburr/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/string/deburr/cjs.d.cts"
         ],
         "parallel": false
       }

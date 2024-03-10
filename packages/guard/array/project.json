@@ -10,14 +10,14 @@
         "commands": [
           "rm -rf dist/packages/guard/array/*",
           "rollup -c packages/guard/array/rollup.config.mjs",
-          "mv dist/packages/guard/array/esm.d.ts dist/packages/guard/array/index.d.ts",
+          "mv dist/packages/guard/array/esm.d.mts dist/packages/guard/array/index.d.ts",
           "cp packages/guard/array/README.md dist/packages/guard/array/README.md",
           "cp LICENSE.md dist/packages/guard/array/LICENSE.md",
           "cp SECURITY.md dist/packages/guard/array/SECURITY.md",
           "cp packages/guard/array/package.json dist/packages/guard/array/package.json",
-          "uglifyjs dist/packages/guard/array/esm.js -o dist/packages/guard/array/esm.js -c --no-annotations",
-          "uglifyjs dist/packages/guard/array/cjs.js -o dist/packages/guard/array/cjs.js -c --no-annotations",
-          "rm -rf dist/packages/guard/array/cjs.d.ts"
+          "uglifyjs dist/packages/guard/array/esm.mjs -o dist/packages/guard/array/esm.mjs -c --no-annotations",
+          "uglifyjs dist/packages/guard/array/cjs.cjs -o dist/packages/guard/array/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/guard/array/cjs.d.cts"
         ],
         "parallel": false
       }
