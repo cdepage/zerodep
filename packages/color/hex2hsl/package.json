@@ -1,0 +1,27 @@
+{
+  "name": "@zerodep/color-hex2hsl",
+  "description": "A color converter from hex to HSL, optionally with alpha channel support",
+  "version": "2.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hex2hsl/zerodep.git",
+    "directory": "packages/color/hex2hsl"
+  },
+  "homepage": "https://zerodep.app",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris@zerodep.app>",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "main": "cjs.js",
+  "module": "esm.js",
+  "exports": {
+    "import": "./esm.js",
+    "require": "./cjs.js"
+  },
+  "keywords": [
+    "color",
+    "hex2hsl",
+    "type"
+  ]
+}

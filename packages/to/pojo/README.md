@@ -1,10 +1,12 @@
 # @zerodep/to-pojo
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/to-pojo?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/to-pojo)
-[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/to-pojo?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/to-pojo)
 [![version](https://img.shields.io/npm/v/@zerodep/to-pojo?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/to-pojo)
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+
+[![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
+[![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
 A utility to convert serializable objects or arrays of serializable values or objects to a Plain Old Javascript Object (POJO); this will use native `toJSON()` capabilities, if available. Invalid values will cause a `ZeroDepError` to be thrown.
 

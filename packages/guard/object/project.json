@@ -12,6 +12,8 @@
           "rollup -c packages/guard/object/rollup.config.mjs",
           "mv dist/packages/guard/object/esm.d.ts dist/packages/guard/object/index.d.ts",
           "cp packages/guard/object/README.md dist/packages/guard/object/README.md",
+          "cp LICENSE.md dist/packages/guard/object/LICENSE.md",
+          "cp SECURITY.md dist/packages/guard/object/SECURITY.md",
           "cp packages/guard/object/package.json dist/packages/guard/object/package.json",
           "uglifyjs dist/packages/guard/object/esm.js -o dist/packages/guard/object/esm.js -c --no-annotations",
           "uglifyjs dist/packages/guard/object/cjs.js -o dist/packages/guard/object/cjs.js -c --no-annotations",

@@ -12,6 +12,8 @@
           "rollup -c packages/case/pascal/rollup.config.mjs",
           "mv dist/packages/case/pascal/esm.d.ts dist/packages/case/pascal/index.d.ts",
           "cp packages/case/pascal/README.md dist/packages/case/pascal/README.md",
+          "cp LICENSE.md dist/packages/case/pascal/LICENSE.md",
+          "cp SECURITY.md dist/packages/case/pascal/SECURITY.md",
           "cp packages/case/pascal/package.json dist/packages/case/pascal/package.json",
           "uglifyjs dist/packages/case/pascal/esm.js -o dist/packages/case/pascal/esm.js -c --no-annotations",
           "uglifyjs dist/packages/case/pascal/cjs.js -o dist/packages/case/pascal/cjs.js -c --no-annotations",

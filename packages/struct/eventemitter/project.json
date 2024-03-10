@@ -12,6 +12,8 @@
           "rollup -c packages/struct/eventemitter/rollup.config.mjs",
           "mv dist/packages/struct/eventemitter/esm.d.ts dist/packages/struct/eventemitter/index.d.ts",
           "cp packages/struct/eventemitter/README.md dist/packages/struct/eventemitter/README.md",
+          "cp LICENSE.md dist/packages/struct/eventemitter/LICENSE.md",
+          "cp SECURITY.md dist/packages/struct/eventemitter/SECURITY.md",
           "cp packages/struct/eventemitter/package.json dist/packages/struct/eventemitter/package.json",
           "uglifyjs dist/packages/struct/eventemitter/esm.js -o dist/packages/struct/eventemitter/esm.js -c --no-annotations",
           "rm dist/packages/struct/eventemitter/esm.js"

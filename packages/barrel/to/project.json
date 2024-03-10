@@ -12,6 +12,8 @@
           "rollup -c packages/barrel/to/rollup.config.mjs",
           "mv dist/packages/barrel/to/esm.d.ts dist/packages/barrel/to/index.d.ts",
           "cp packages/barrel/to/README.md dist/packages/barrel/to/README.md",
+          "cp LICENSE.md dist/packages/barrel/to/LICENSE.md",
+          "cp SECURITY.md dist/packages/barrel/to/SECURITY.md",
           "cp packages/barrel/to/package.json dist/packages/barrel/to/package.json",
           "uglifyjs dist/packages/barrel/to/esm.js -o dist/packages/barrel/to/esm.js -c --no-annotations",
           "uglifyjs dist/packages/barrel/to/cjs.js -o dist/packages/barrel/to/cjs.js -c --no-annotations",

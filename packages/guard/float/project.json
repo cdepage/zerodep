@@ -12,6 +12,8 @@
           "rollup -c packages/guard/float/rollup.config.mjs",
           "mv dist/packages/guard/float/esm.d.ts dist/packages/guard/float/index.d.ts",
           "cp packages/guard/float/README.md dist/packages/guard/float/README.md",
+          "cp LICENSE.md dist/packages/guard/float/LICENSE.md",
+          "cp SECURITY.md dist/packages/guard/float/SECURITY.md",
           "cp packages/guard/float/package.json dist/packages/guard/float/package.json",
           "uglifyjs dist/packages/guard/float/esm.js -o dist/packages/guard/float/esm.js -c --no-annotations",
           "uglifyjs dist/packages/guard/float/cjs.js -o dist/packages/guard/float/cjs.js -c --no-annotations",

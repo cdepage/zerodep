@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/geo-country",
   "description": "Get info about a country by its name or common abbreviation",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,9 +16,8 @@
   "main": "cjs.js",
   "module": "esm.js",
   "exports": {
-    "types": "./index.d.ts",
     "import": "./esm.js",
-    "default": "./cjs.js"
+    "require": "./cjs.js"
   },
   "keywords": [
     "geo",

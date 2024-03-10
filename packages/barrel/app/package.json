@@ -1,7 +1,8 @@
 {
   "name": "@zerodep/app",
   "description": "A modern library/monorepo of high-quality, zero-dependency, fully typed, fully tested, tree-shakeable utilities, parsers, data structure factories, converters and other capabilities ",
-  "version": "2.8.3",
+  "version": "2.8.4",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdepage/zerodep.git",
@@ -15,9 +16,8 @@
   "main": "cjs.js",
   "module": "esm.js",
   "exports": {
-    "types": "./index.d.ts",
     "import": "./esm.js",
-    "default": "./cjs.js"
+    "require": "./cjs.js"
   },
   "keywords": [
     "zerodep",

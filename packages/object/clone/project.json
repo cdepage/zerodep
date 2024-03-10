@@ -1,0 +1,58 @@
+{
+  "name": "object-clone",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/object/clone/src",
+  "projectType": "library",
+  "targets": {
+    "XXXXbuild": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/object/clone/*",
+          "rollup -c packages/object/clone/rollup.config.mjs",
+          "mv dist/packages/object/clone/esm.d.ts dist/packages/object/clone/index.d.ts",
+          "cp packages/object/clone/README.md dist/packages/object/clone/README.md",
+          "cp LICENSE.md dist/packages/object/clone/LICENSE.md",
+          "cp SECURITY.md dist/packages/object/clone/SECURITY.md",
+          "cp packages/object/clone/package.json dist/packages/object/clone/package.json",
+          "uglifyjs dist/packages/object/clone/esm.js -o dist/packages/object/clone/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/object/clone/cjs.js -o dist/packages/object/clone/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/object/clone/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "XXXXpublish": {
+      "command": "cd dist/packages/object/clone && npm publish --access public"
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/object/clone"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/object/clone/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/object/clone/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

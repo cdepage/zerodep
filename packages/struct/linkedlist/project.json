@@ -12,6 +12,8 @@
           "rollup -c packages/struct/linkedlist/rollup.config.mjs",
           "mv dist/packages/struct/linkedlist/esm.d.ts dist/packages/struct/linkedlist/index.d.ts",
           "cp packages/struct/linkedlist/README.md dist/packages/struct/linkedlist/README.md",
+          "cp LICENSE.md dist/packages/struct/linkedlist/LICENSE.md",
+          "cp SECURITY.md dist/packages/struct/linkedlist/SECURITY.md",
           "cp packages/struct/linkedlist/package.json dist/packages/struct/linkedlist/package.json",
           "uglifyjs dist/packages/struct/linkedlist/esm.js -o dist/packages/struct/linkedlist/esm.js -c --no-annotations",
           "rm dist/packages/struct/linkedlist/esm.js"

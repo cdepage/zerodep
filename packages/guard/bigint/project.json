@@ -12,6 +12,8 @@
           "rollup -c packages/guard/bigint/rollup.config.mjs",
           "mv dist/packages/guard/bigint/esm.d.ts dist/packages/guard/bigint/index.d.ts",
           "cp packages/guard/bigint/README.md dist/packages/guard/bigint/README.md",
+          "cp LICENSE.md dist/packages/guard/bigint/LICENSE.md",
+          "cp SECURITY.md dist/packages/guard/bigint/SECURITY.md",
           "cp packages/guard/bigint/package.json dist/packages/guard/bigint/package.json",
           "uglifyjs dist/packages/guard/bigint/esm.js -o dist/packages/guard/bigint/esm.js -c --no-annotations",
           "uglifyjs dist/packages/guard/bigint/cjs.js -o dist/packages/guard/bigint/cjs.js -c --no-annotations",

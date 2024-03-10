@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/case-kebab",
   "description": "A utility to convert a string to kebab-case",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,9 +16,8 @@
   "main": "cjs.js",
   "module": "esm.js",
   "exports": {
-    "types": "./index.d.ts",
     "import": "./esm.js",
-    "default": "./cjs.js"
+    "require": "./cjs.js"
   },
   "keywords": [
     "case",

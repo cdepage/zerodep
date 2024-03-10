@@ -12,6 +12,8 @@
           "rollup -c packages/case/camel/rollup.config.mjs",
           "mv dist/packages/case/camel/esm.d.ts dist/packages/case/camel/index.d.ts",
           "cp packages/case/camel/README.md dist/packages/case/camel/README.md",
+          "cp LICENSE.md dist/packages/case/camel/LICENSE.md",
+          "cp SECURITY.md dist/packages/case/camel/SECURITY.md",
           "cp packages/case/camel/package.json dist/packages/case/camel/package.json",
           "uglifyjs dist/packages/case/camel/esm.js -o dist/packages/case/camel/esm.js -c --no-annotations",
           "uglifyjs dist/packages/case/camel/cjs.js -o dist/packages/case/camel/cjs.js -c --no-annotations",

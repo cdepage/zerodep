@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-parse",
   "description": "An address parser for American and Canadian addresses that breaks down the provided address into its component parts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,10 +15,12 @@
   "main": "cjs.js",
   "module": "esm.js",
   "types": "index.d.ts",
-  "keywords": [],
   "exports": {
-    "types": "./index.d.ts",
     "import": "./esm.js",
-    "default": "./cjs.js"
-  }
+    "require": "./cjs.js"
+  },
+  "keywords": [
+    "address",
+    "parse"
+  ]
 }

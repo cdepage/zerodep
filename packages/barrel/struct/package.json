@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct",
   "description": "A collection of factories to create various optionally-typed data structures",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,9 +16,8 @@
   "main": "cjs.js",
   "module": "esm.js",
   "exports": {
-    "types": "./index.d.ts",
     "import": "./esm.js",
-    "default": "./cjs.js"
+    "require": "./cjs.js"
   },
   "keywords": [
     "data",

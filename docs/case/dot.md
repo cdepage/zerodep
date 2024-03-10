@@ -1,10 +1,12 @@
 # caseDot()
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/case-dot?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/case-dot)
-[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/case-dot?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/case-dot)
 [![version](https://img.shields.io/npm/v/@zerodep/case-dot?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/case-dot)
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+
+[![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
+[![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
 A utility to convert a string to dot.case, intended for converting variable names, that also strips out non-alphanumeric characters and any leading numeric characters. Non-string values will cause a `ZeroDepError` to be thrown.
 
@@ -79,7 +81,7 @@ import { caseDot } from '@zerodep/case-dot';
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+#### [2.0.0] - 2023-10-14
 
 **Added**
 

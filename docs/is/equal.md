@@ -1,10 +1,12 @@
 # isEqual
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/is-equal?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-equal)
-[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/is-equal?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-equal)
 [![version](https://img.shields.io/npm/v/@zerodep/is-equal?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-equal)
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+
+[![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
+[![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
 A performant utility to compare two values for equality by value (not by reference). This means JSON objects with the same key:value pairs will be deemed equal as will arrays with identical items even if in different order.
 
