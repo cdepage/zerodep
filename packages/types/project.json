@@ -16,7 +16,7 @@
           "cp SECURITY.md dist/packages/types/SECURITY.md",
           "cp packages/types/package.json dist/packages/types/package.json",
           "uglifyjs dist/packages/types/esm.mjs -o dist/packages/types/esm.mjs -c --no-annotations",
-          "rm dist/packages/types/esm.js"
+          "rm dist/packages/types/esm.mjs"
         ],
         "parallel": false
       }

@@ -16,7 +16,8 @@
           "cp SECURITY.md dist/packages/struct/queue/SECURITY.md",
           "cp packages/struct/queue/package.json dist/packages/struct/queue/package.json",
           "uglifyjs dist/packages/struct/queue/esm.mjs -o dist/packages/struct/queue/esm.mjs -c --no-annotations",
-          "rm dist/packages/struct/queue/esm.js"
+          "uglifyjs dist/packages/struct/queue/cjs.cjs -o dist/packages/struct/queue/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/struct/queue/cjs.d.cts"
         ],
         "parallel": false
       }

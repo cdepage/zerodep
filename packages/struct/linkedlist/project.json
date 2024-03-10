@@ -16,7 +16,8 @@
           "cp SECURITY.md dist/packages/struct/linkedlist/SECURITY.md",
           "cp packages/struct/linkedlist/package.json dist/packages/struct/linkedlist/package.json",
           "uglifyjs dist/packages/struct/linkedlist/esm.mjs -o dist/packages/struct/linkedlist/esm.mjs -c --no-annotations",
-          "rm dist/packages/struct/linkedlist/esm.js"
+          "uglifyjs dist/packages/struct/linkedlist/cjs.cjs -o dist/packages/struct/linkedlist/cjs.cjs -c --no-annotations",
+          "rm -rf dist/packages/struct/linkedlist/cjs.d.cts"
         ],
         "parallel": false
       }

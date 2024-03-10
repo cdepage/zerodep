@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-linkedlist",
   "description": "A factory that returns an optionally-typed, iterable Linked List data structure.",
-  "version": "2.5.5",
+  "version": "2.5.6",
   "license": "MIT",
   "repository": {
     "type": "git",
