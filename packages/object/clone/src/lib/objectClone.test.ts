@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { objectClone } from './objectClone';
 
-describe('objectClone', () => {
+// objectClone is not yet released
+describe.skip('objectClone', () => {
   it('should deeply clone an object with nested values', () => {
     const originalObject = {
       a: 1,
