@@ -135,9 +135,6 @@ export const toPojo = <T = Record<string, Serializables> | Serializables[]>(
     if (error.value) {
       zdError.value = error.value;
     }
-
-    // for every HOF that is for configuration (not argument currying) export a function using the default values
-
     throw zdError;
   }
 };

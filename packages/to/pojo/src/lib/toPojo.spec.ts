@@ -302,5 +302,14 @@ describe('toPojo', () => {
       // @ts-ignore
       expect(toPojo(undefined)).toEqual(null);
     });
+
+    it('should NOT convert an object with a circular reference', () => {
+      const obj = { a: 1, b: 2, c: [3, 4] };
+      // @ts-ignore
+      obj.c.push(obj);
+
+      const fn = () => toPojo(obj);
+      expect(fn).toThrow('Cannot convert to JSON');
+    });
   });
 });
