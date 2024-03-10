@@ -12,12 +12,15 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
-  "main": "cjs.js",
-  "module": "esm.js",
   "types": "index.d.ts",
+  "main": "index.min.cjs",
+  "module": "index.min.mjs",
+  "type": "module",
   "exports": {
-    "import": "./esm.js",
-    "require": "./cjs.js"
+    ".": {
+      "import": "./index.min.mjs",
+      "require": "./index.min.cjs"
+    }
   },
   "keywords": [
     "address",

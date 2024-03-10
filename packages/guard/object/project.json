@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/guard/object/*",
           "rollup -c packages/guard/object/rollup.config.mjs",
-          "mv dist/packages/guard/object/esm.d.mts dist/packages/guard/object/index.d.ts",
+          "mv dist/packages/guard/object/index.d.mts dist/packages/guard/object/index.d.ts",
           "cp packages/guard/object/README.md dist/packages/guard/object/README.md",
           "cp LICENSE.md dist/packages/guard/object/LICENSE.md",
           "cp SECURITY.md dist/packages/guard/object/SECURITY.md",
           "cp packages/guard/object/package.json dist/packages/guard/object/package.json",
-          "uglifyjs dist/packages/guard/object/esm.mjs -o dist/packages/guard/object/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/guard/object/cjs.cjs -o dist/packages/guard/object/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/guard/object/cjs.d.cts"
+          "uglifyjs dist/packages/guard/object/index.mjs -o dist/packages/guard/object/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/guard/object/index.cjs -o dist/packages/guard/object/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/guard/object/index.d.cts",
+          "rm -rf dist/packages/guard/object/index.mjs",
+          "rm -rf dist/packages/guard/object/index.cjs"
         ],
         "parallel": false
       }

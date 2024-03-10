@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/guard/float/*",
           "rollup -c packages/guard/float/rollup.config.mjs",
-          "mv dist/packages/guard/float/esm.d.mts dist/packages/guard/float/index.d.ts",
+          "mv dist/packages/guard/float/index.d.mts dist/packages/guard/float/index.d.ts",
           "cp packages/guard/float/README.md dist/packages/guard/float/README.md",
           "cp LICENSE.md dist/packages/guard/float/LICENSE.md",
           "cp SECURITY.md dist/packages/guard/float/SECURITY.md",
           "cp packages/guard/float/package.json dist/packages/guard/float/package.json",
-          "uglifyjs dist/packages/guard/float/esm.mjs -o dist/packages/guard/float/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/guard/float/cjs.cjs -o dist/packages/guard/float/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/guard/float/cjs.d.cts"
+          "uglifyjs dist/packages/guard/float/index.mjs -o dist/packages/guard/float/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/guard/float/index.cjs -o dist/packages/guard/float/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/guard/float/index.d.cts",
+          "rm -rf dist/packages/guard/float/index.mjs",
+          "rm -rf dist/packages/guard/float/index.cjs"
         ],
         "parallel": false
       }

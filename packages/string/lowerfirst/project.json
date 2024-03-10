@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/string/lowerfirst/*",
           "rollup -c packages/string/lowerfirst/rollup.config.mjs",
-          "mv dist/packages/string/lowerfirst/esm.d.mts dist/packages/string/lowerfirst/index.d.ts",
+          "mv dist/packages/string/lowerfirst/index.d.mts dist/packages/string/lowerfirst/index.d.ts",
           "cp packages/string/lowerfirst/README.md dist/packages/string/lowerfirst/README.md",
           "cp LICENSE.md dist/packages/string/lowerfirst/LICENSE.md",
           "cp SECURITY.md dist/packages/string/lowerfirst/SECURITY.md",
           "cp packages/string/lowerfirst/package.json dist/packages/string/lowerfirst/package.json",
-          "uglifyjs dist/packages/string/lowerfirst/esm.mjs -o dist/packages/string/lowerfirst/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/string/lowerfirst/cjs.cjs -o dist/packages/string/lowerfirst/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/string/lowerfirst/cjs.d.cts"
+          "uglifyjs dist/packages/string/lowerfirst/index.mjs -o dist/packages/string/lowerfirst/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/string/lowerfirst/index.cjs -o dist/packages/string/lowerfirst/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/string/lowerfirst/index.d.cts",
+          "rm -rf dist/packages/string/lowerfirst/index.mjs",
+          "rm -rf dist/packages/string/lowerfirst/index.cjs"
         ],
         "parallel": false
       }

@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/struct/queue/*",
           "rollup -c packages/struct/queue/rollup.config.mjs",
-          "mv dist/packages/struct/queue/esm.d.mts dist/packages/struct/queue/index.d.ts",
+          "mv dist/packages/struct/queue/index.d.mts dist/packages/struct/queue/index.d.ts",
           "cp packages/struct/queue/README.md dist/packages/struct/queue/README.md",
           "cp LICENSE.md dist/packages/struct/queue/LICENSE.md",
           "cp SECURITY.md dist/packages/struct/queue/SECURITY.md",
           "cp packages/struct/queue/package.json dist/packages/struct/queue/package.json",
-          "uglifyjs dist/packages/struct/queue/esm.mjs -o dist/packages/struct/queue/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/struct/queue/cjs.cjs -o dist/packages/struct/queue/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/struct/queue/cjs.d.cts"
+          "uglifyjs dist/packages/struct/queue/index.mjs -o dist/packages/struct/queue/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/struct/queue/index.cjs -o dist/packages/struct/queue/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/struct/queue/index.d.cts",
+          "rm -rf dist/packages/struct/queue/index.mjs",
+          "rm -rf dist/packages/struct/queue/index.cjs"
         ],
         "parallel": false
       }

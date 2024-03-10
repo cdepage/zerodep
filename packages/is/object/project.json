@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/is/object/*",
           "rollup -c packages/is/object/rollup.config.mjs",
-          "mv dist/packages/is/object/esm.d.mts dist/packages/is/object/index.d.ts",
+          "mv dist/packages/is/object/index.d.mts dist/packages/is/object/index.d.ts",
           "cp packages/is/object/README.md dist/packages/is/object/README.md",
           "cp LICENSE.md dist/packages/is/object/LICENSE.md",
           "cp SECURITY.md dist/packages/is/object/SECURITY.md",
           "cp packages/is/object/package.json dist/packages/is/object/package.json",
-          "uglifyjs dist/packages/is/object/esm.mjs -o dist/packages/is/object/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/is/object/cjs.cjs -o dist/packages/is/object/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/is/object/cjs.d.cts"
+          "uglifyjs dist/packages/is/object/index.mjs -o dist/packages/is/object/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/is/object/index.cjs -o dist/packages/is/object/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/is/object/index.d.cts",
+          "rm -rf dist/packages/is/object/index.mjs",
+          "rm -rf dist/packages/is/object/index.cjs"
         ],
         "parallel": false
       }

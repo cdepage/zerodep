@@ -6,11 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+### [Unreleased]
+
+**Changed**
+
+- updated @zerodep/types timezones
+- removed support for Node v16 as it is beyond end of life
+- internal package updates
+
+---
+
 ### [2.7.2] - 2024-03-10
 
 **Fixed**
 
-- fixed a bug where importing into ESM projects did not work
+- fixed a bug when importing into projects with `"type": "module"` in their `package.json` did not work
 
 ---
 
@@ -18,7 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 **Fixed**
 
-- fixed a bug where named imports did not work as expected for both `cjs` and `esm` packages, with or without Typescript
+- ~~fixed~~ tried to fix a bug where named imports did not work as expected for both `cjs` and `esm` packages, with or without Typescript
 
 **Changed**
 

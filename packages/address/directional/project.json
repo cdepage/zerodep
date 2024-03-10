@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/address/directional/*",
           "rollup -c packages/address/directional/rollup.config.mjs",
-          "mv dist/packages/address/directional/esm.d.mts dist/packages/address/directional/index.d.ts",
+          "mv dist/packages/address/directional/index.d.mts dist/packages/address/directional/index.d.ts",
           "cp packages/address/directional/README.md dist/packages/address/directional/README.md",
           "cp LICENSE.md dist/packages/address/directional/LICENSE.md",
           "cp SECURITY.md dist/packages/address/directional/SECURITY.md",
           "cp packages/address/directional/package.json dist/packages/address/directional/package.json",
-          "uglifyjs dist/packages/address/directional/esm.mjs -o dist/packages/address/directional/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/address/directional/cjs.cjs -o dist/packages/address/directional/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/address/directional/cjs.d.cts"
+          "uglifyjs dist/packages/address/directional/index.mjs -o dist/packages/address/directional/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/address/directional/index.cjs -o dist/packages/address/directional/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/address/directional/index.d.cts",
+          "rm -rf dist/packages/address/directional/index.mjs",
+          "rm -rf dist/packages/address/directional/index.cjs"
         ],
         "parallel": false
       }

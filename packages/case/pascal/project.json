@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/case/pascal/*",
           "rollup -c packages/case/pascal/rollup.config.mjs",
-          "mv dist/packages/case/pascal/esm.d.mts dist/packages/case/pascal/index.d.ts",
+          "mv dist/packages/case/pascal/index.d.mts dist/packages/case/pascal/index.d.ts",
           "cp packages/case/pascal/README.md dist/packages/case/pascal/README.md",
           "cp LICENSE.md dist/packages/case/pascal/LICENSE.md",
           "cp SECURITY.md dist/packages/case/pascal/SECURITY.md",
           "cp packages/case/pascal/package.json dist/packages/case/pascal/package.json",
-          "uglifyjs dist/packages/case/pascal/esm.mjs -o dist/packages/case/pascal/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/case/pascal/cjs.cjs -o dist/packages/case/pascal/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/case/pascal/cjs.d.cts"
+          "uglifyjs dist/packages/case/pascal/index.mjs -o dist/packages/case/pascal/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/case/pascal/index.cjs -o dist/packages/case/pascal/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/case/pascal/index.d.cts",
+          "rm -rf dist/packages/case/pascal/index.mjs",
+          "rm -rf dist/packages/case/pascal/index.cjs"
         ],
         "parallel": false
       }

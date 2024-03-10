@@ -143,7 +143,6 @@ All functionality is tested on:
 
 - v20.x - Iron LTS
 - v18.x - Hydrogen LTS
-- v16.x - Gallium LTS
 
 ## Semver
 

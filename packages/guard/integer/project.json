@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/guard/integer/*",
           "rollup -c packages/guard/integer/rollup.config.mjs",
-          "mv dist/packages/guard/integer/esm.d.mts dist/packages/guard/integer/index.d.ts",
+          "mv dist/packages/guard/integer/index.d.mts dist/packages/guard/integer/index.d.ts",
           "cp packages/guard/integer/README.md dist/packages/guard/integer/README.md",
           "cp LICENSE.md dist/packages/guard/integer/LICENSE.md",
           "cp SECURITY.md dist/packages/guard/integer/SECURITY.md",
           "cp packages/guard/integer/package.json dist/packages/guard/integer/package.json",
-          "uglifyjs dist/packages/guard/integer/esm.mjs -o dist/packages/guard/integer/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/guard/integer/cjs.cjs -o dist/packages/guard/integer/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/guard/integer/cjs.d.cts"
+          "uglifyjs dist/packages/guard/integer/index.mjs -o dist/packages/guard/integer/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/guard/integer/index.cjs -o dist/packages/guard/integer/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/guard/integer/index.d.cts",
+          "rm -rf dist/packages/guard/integer/index.mjs",
+          "rm -rf dist/packages/guard/integer/index.cjs"
         ],
         "parallel": false
       }

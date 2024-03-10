@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/barrel/utilities/*",
           "rollup -c packages/barrel/utilities/rollup.config.mjs",
-          "mv dist/packages/barrel/utilities/esm.d.mts dist/packages/barrel/utilities/index.d.ts",
+          "mv dist/packages/barrel/utilities/index.d.mts dist/packages/barrel/utilities/index.d.ts",
           "cp packages/barrel/utilities/README.md dist/packages/barrel/utilities/README.md",
           "cp LICENSE.md dist/packages/barrel/utilities/LICENSE.md",
           "cp SECURITY.md dist/packages/barrel/utilities/SECURITY.md",
           "cp packages/barrel/utilities/package.json dist/packages/barrel/utilities/package.json",
-          "uglifyjs dist/packages/barrel/utilities/esm.mjs -o dist/packages/barrel/utilities/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/barrel/utilities/cjs.cjs -o dist/packages/barrel/utilities/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/barrel/utilities/cjs.d.cts"
+          "uglifyjs dist/packages/barrel/utilities/index.mjs -o dist/packages/barrel/utilities/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/barrel/utilities/index.cjs -o dist/packages/barrel/utilities/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/barrel/utilities/index.d.cts",
+          "rm -rf dist/packages/barrel/utilities/index.mjs",
+          "rm -rf dist/packages/barrel/utilities/index.cjs"
         ],
         "parallel": false
       }

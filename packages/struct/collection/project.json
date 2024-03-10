@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/struct/collection/*",
           "rollup -c packages/struct/collection/rollup.config.mjs",
-          "mv dist/packages/struct/collection/esm.d.mts dist/packages/struct/collection/index.d.ts",
+          "mv dist/packages/struct/collection/index.d.mts dist/packages/struct/collection/index.d.ts",
           "cp packages/struct/collection/README.md dist/packages/struct/collection/README.md",
           "cp LICENSE.md dist/packages/struct/collection/LICENSE.md",
           "cp SECURITY.md dist/packages/struct/collection/SECURITY.md",
           "cp packages/struct/collection/package.json dist/packages/struct/collection/package.json",
-          "uglifyjs dist/packages/struct/collection/esm.mjs -o dist/packages/struct/collection/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/struct/collection/cjs.cjs -o dist/packages/struct/collection/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/struct/collection/cjs.d.cts"
+          "uglifyjs dist/packages/struct/collection/index.mjs -o dist/packages/struct/collection/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/struct/collection/index.cjs -o dist/packages/struct/collection/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/struct/collection/index.d.cts",
+          "rm -rf dist/packages/struct/collection/index.mjs",
+          "rm -rf dist/packages/struct/collection/index.cjs"
         ],
         "parallel": false
       }

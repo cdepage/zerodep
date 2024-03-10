@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/string/words/*",
           "rollup -c packages/string/words/rollup.config.mjs",
-          "mv dist/packages/string/words/esm.d.mts dist/packages/string/words/index.d.ts",
+          "mv dist/packages/string/words/index.d.mts dist/packages/string/words/index.d.ts",
           "cp packages/string/words/README.md dist/packages/string/words/README.md",
           "cp LICENSE.md dist/packages/string/words/LICENSE.md",
           "cp SECURITY.md dist/packages/string/words/SECURITY.md",
           "cp packages/string/words/package.json dist/packages/string/words/package.json",
-          "uglifyjs dist/packages/string/words/esm.mjs -o dist/packages/string/words/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/string/words/cjs.cjs -o dist/packages/string/words/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/string/words/cjs.d.cts"
+          "uglifyjs dist/packages/string/words/index.mjs -o dist/packages/string/words/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/string/words/index.cjs -o dist/packages/string/words/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/string/words/index.d.cts",
+          "rm -rf dist/packages/string/words/index.mjs",
+          "rm -rf dist/packages/string/words/index.cjs"
         ],
         "parallel": false
       }

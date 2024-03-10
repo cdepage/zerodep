@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/guard/bigint/*",
           "rollup -c packages/guard/bigint/rollup.config.mjs",
-          "mv dist/packages/guard/bigint/esm.d.mts dist/packages/guard/bigint/index.d.ts",
+          "mv dist/packages/guard/bigint/index.d.mts dist/packages/guard/bigint/index.d.ts",
           "cp packages/guard/bigint/README.md dist/packages/guard/bigint/README.md",
           "cp LICENSE.md dist/packages/guard/bigint/LICENSE.md",
           "cp SECURITY.md dist/packages/guard/bigint/SECURITY.md",
           "cp packages/guard/bigint/package.json dist/packages/guard/bigint/package.json",
-          "uglifyjs dist/packages/guard/bigint/esm.mjs -o dist/packages/guard/bigint/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/guard/bigint/cjs.cjs -o dist/packages/guard/bigint/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/guard/bigint/cjs.d.cts"
+          "uglifyjs dist/packages/guard/bigint/index.mjs -o dist/packages/guard/bigint/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/guard/bigint/index.cjs -o dist/packages/guard/bigint/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/guard/bigint/index.d.cts",
+          "rm -rf dist/packages/guard/bigint/index.mjs",
+          "rm -rf dist/packages/guard/bigint/index.cjs"
         ],
         "parallel": false
       }

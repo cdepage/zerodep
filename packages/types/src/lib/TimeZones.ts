@@ -1,7 +1,7 @@
 /**
  * @source https://timezonedb.com
  *
- * Last update on 2022-05-01
+ * Last update on 2024-03-10
  */
 export type TimeZone =
   | 'Africa/Abidjan'
@@ -93,6 +93,7 @@ export type TimeZone =
   | 'America/Cayman'
   | 'America/Chicago'
   | 'America/Chihuahua'
+  | 'America/Ciudad_Juarez'
   | 'America/Costa_Rica'
   | 'America/Creston'
   | 'America/Cuiaba'
@@ -156,7 +157,6 @@ export type TimeZone =
   | 'America/Montserrat'
   | 'America/Nassau'
   | 'America/New_York'
-  | 'America/Nipigon'
   | 'America/Nome'
   | 'America/Noronha'
   | 'America/North_Dakota/Beulah'
@@ -165,7 +165,6 @@ export type TimeZone =
   | 'America/Nuuk'
   | 'America/Ojinaga'
   | 'America/Panama'
-  | 'America/Pangnirtung'
   | 'America/Paramaribo'
   | 'America/Phoenix'
   | 'America/Port-au-Prince'
@@ -173,7 +172,6 @@ export type TimeZone =
   | 'America/Porto_Velho'
   | 'America/Puerto_Rico'
   | 'America/Punta_Arenas'
-  | 'America/Rainy_River'
   | 'America/Rankin_Inlet'
   | 'America/Recife'
   | 'America/Regina'
@@ -194,7 +192,6 @@ export type TimeZone =
   | 'America/Swift_Current'
   | 'America/Tegucigalpa'
   | 'America/Thule'
-  | 'America/Thunder_Bay'
   | 'America/Tijuana'
   | 'America/Toronto'
   | 'America/Tortola'
@@ -202,7 +199,6 @@ export type TimeZone =
   | 'America/Whitehorse'
   | 'America/Winnipeg'
   | 'America/Yakutat'
-  | 'America/Yellowknife'
   | 'Antarctica/Casey'
   | 'Antarctica/Davis'
   | 'Antarctica/DumontDUrville'
@@ -340,8 +336,8 @@ export type TimeZone =
   | 'Europe/Istanbul'
   | 'Europe/Jersey'
   | 'Europe/Kaliningrad'
-  | 'Europe/Kiev'
   | 'Europe/Kirov'
+  | 'Europe/Kyiv'
   | 'Europe/Lisbon'
   | 'Europe/Ljubljana'
   | 'Europe/London'
@@ -369,7 +365,6 @@ export type TimeZone =
   | 'Europe/Tallinn'
   | 'Europe/Tirane'
   | 'Europe/Ulyanovsk'
-  | 'Europe/Uzhgorod'
   | 'Europe/Vaduz'
   | 'Europe/Vatican'
   | 'Europe/Vienna'
@@ -377,7 +372,6 @@ export type TimeZone =
   | 'Europe/Volgograd'
   | 'Europe/Warsaw'
   | 'Europe/Zagreb'
-  | 'Europe/Zaporozhye'
   | 'Europe/Zurich'
   | 'Indian/Antananarivo'
   | 'Indian/Chagos'

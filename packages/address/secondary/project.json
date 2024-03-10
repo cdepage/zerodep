@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/address/secondary/*",
           "rollup -c packages/address/secondary/rollup.config.mjs",
-          "mv dist/packages/address/secondary/esm.d.mts dist/packages/address/secondary/index.d.ts",
+          "mv dist/packages/address/secondary/index.d.mts dist/packages/address/secondary/index.d.ts",
           "cp packages/address/secondary/README.md dist/packages/address/secondary/README.md",
           "cp LICENSE.md dist/packages/address/secondary/LICENSE.md",
           "cp SECURITY.md dist/packages/address/secondary/SECURITY.md",
           "cp packages/address/secondary/package.json dist/packages/address/secondary/package.json",
-          "uglifyjs dist/packages/address/secondary/esm.mjs -o dist/packages/address/secondary/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/address/secondary/cjs.cjs -o dist/packages/address/secondary/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/address/secondary/cjs.d.cts"
+          "uglifyjs dist/packages/address/secondary/index.mjs -o dist/packages/address/secondary/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/address/secondary/index.cjs -o dist/packages/address/secondary/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/address/secondary/index.d.cts",
+          "rm -rf dist/packages/address/secondary/index.mjs",
+          "rm -rf dist/packages/address/secondary/index.cjs"
         ],
         "parallel": false
       }

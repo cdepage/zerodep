@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/is/empty/*",
           "rollup -c packages/is/empty/rollup.config.mjs",
-          "mv dist/packages/is/empty/esm.d.mts dist/packages/is/empty/index.d.ts",
+          "mv dist/packages/is/empty/index.d.mts dist/packages/is/empty/index.d.ts",
           "cp packages/is/empty/README.md dist/packages/is/empty/README.md",
           "cp LICENSE.md dist/packages/is/empty/LICENSE.md",
           "cp SECURITY.md dist/packages/is/empty/SECURITY.md",
           "cp packages/is/empty/package.json dist/packages/is/empty/package.json",
-          "uglifyjs dist/packages/is/empty/esm.mjs -o dist/packages/is/empty/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/is/empty/cjs.cjs -o dist/packages/is/empty/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/is/empty/cjs.d.cts"
+          "uglifyjs dist/packages/is/empty/index.mjs -o dist/packages/is/empty/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/is/empty/index.cjs -o dist/packages/is/empty/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/is/empty/index.d.cts",
+          "rm -rf dist/packages/is/empty/index.mjs",
+          "rm -rf dist/packages/is/empty/index.cjs"
         ],
         "parallel": false
       }

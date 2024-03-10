@@ -10,14 +10,16 @@
         "commands": [
           "rm -rf dist/packages/to/integer/*",
           "rollup -c packages/to/integer/rollup.config.mjs",
-          "mv dist/packages/to/integer/esm.d.mts dist/packages/to/integer/index.d.ts",
+          "mv dist/packages/to/integer/index.d.mts dist/packages/to/integer/index.d.ts",
           "cp packages/to/integer/README.md dist/packages/to/integer/README.md",
           "cp LICENSE.md dist/packages/to/integer/LICENSE.md",
           "cp SECURITY.md dist/packages/to/integer/SECURITY.md",
           "cp packages/to/integer/package.json dist/packages/to/integer/package.json",
-          "uglifyjs dist/packages/to/integer/esm.mjs -o dist/packages/to/integer/esm.mjs -c --no-annotations",
-          "uglifyjs dist/packages/to/integer/cjs.cjs -o dist/packages/to/integer/cjs.cjs -c --no-annotations",
-          "rm -rf dist/packages/to/integer/cjs.d.cts"
+          "uglifyjs dist/packages/to/integer/index.mjs -o dist/packages/to/integer/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/to/integer/index.cjs -o dist/packages/to/integer/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/to/integer/index.d.cts",
+          "rm -rf dist/packages/to/integer/index.mjs",
+          "rm -rf dist/packages/to/integer/index.cjs"
         ],
         "parallel": false
       }

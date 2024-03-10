@@ -13,13 +13,13 @@
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
   "types": "index.d.ts",
-  "main": "cjs.cjs",
-  "module": "esm.mjs",
+  "main": "index.min.cjs",
+  "module": "index.min.mjs",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./esm.mjs",
-      "require": "./cjs.cjs"
+      "import": "./index.min.mjs",
+      "require": "./index.min.cjs"
     }
   },
   "keywords": [
