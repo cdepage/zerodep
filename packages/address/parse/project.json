@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/address/parse && npm version patch"
+      "command": "cd packages/address/parse && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/address/parse && npm version minor"
+      "command": "cd packages/address/parse && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/address/parse && npm version major"
+      "command": "cd packages/address/parse && npm version major"
     },
     "lint": {
       "executor": "@nx/eslint:lint",

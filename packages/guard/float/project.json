@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/guard/float && npm version patch"
+      "command": "cd packages/guard/float && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/guard/float && npm version minor"
+      "command": "cd packages/guard/float && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/guard/float && npm version major"
+      "command": "cd packages/guard/float && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

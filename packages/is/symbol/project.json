@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/is/symbol && npm version patch"
+      "command": "cd packages/is/symbol && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/is/symbol && npm version minor"
+      "command": "cd packages/is/symbol && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/is/symbol && npm version major"
+      "command": "cd packages/is/symbol && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

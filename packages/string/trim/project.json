@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/string/trim && npm version patch"
+      "command": "cd packages/string/trim && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/string/trim && npm version minor"
+      "command": "cd packages/string/trim && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/string/trim && npm version major"
+      "command": "cd packages/string/trim && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

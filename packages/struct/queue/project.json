@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/struct/queue && npm version patch"
+      "command": "cd packages/struct/queue && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/struct/queue && npm version minor"
+      "command": "cd packages/struct/queue && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/struct/queue && npm version major"
+      "command": "cd packages/struct/queue && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

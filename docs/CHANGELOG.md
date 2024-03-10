@@ -6,7 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-### [Unreleased]
+### [2.7.3] - 2024-03-10
+
+**Fixed**
+
+- fixed a bug when checking if `isPojo()` on an object with a circular dependency
 
 **Changed**
 

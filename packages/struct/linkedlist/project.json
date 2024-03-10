@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/struct/linkedlist && npm version patch"
+      "command": "cd packages/struct/linkedlist && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/struct/linkedlist && npm version minor"
+      "command": "cd packages/struct/linkedlist && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/struct/linkedlist && npm version major"
+      "command": "cd packages/struct/linkedlist && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/case/sentence && npm version patch"
+      "command": "cd packages/case/sentence && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/case/sentence && npm version minor"
+      "command": "cd packages/case/sentence && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/case/sentence && npm version major"
+      "command": "cd packages/case/sentence && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

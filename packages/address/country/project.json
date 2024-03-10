@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/address/country && npm version patch"
+      "command": "cd packages/address/country && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/address/country && npm version minor"
+      "command": "cd packages/address/country && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/address/country && npm version major"
+      "command": "cd packages/address/country && npm version major"
     },
     "lint": {
       "executor": "@nx/eslint:lint",

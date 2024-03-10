@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/string/trimleft && npm version patch"
+      "command": "cd packages/string/trimleft && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/string/trimleft && npm version minor"
+      "command": "cd packages/string/trimleft && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/string/trimleft && npm version major"
+      "command": "cd packages/string/trimleft && npm version major"
     },
     "lint": {
       "executor": "@nx/eslint:lint",

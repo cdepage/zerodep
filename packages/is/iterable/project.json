@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/is/iterable && npm version patch"
+      "command": "cd packages/is/iterable && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/is/iterable && npm version minor"
+      "command": "cd packages/is/iterable && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/is/iterable && npm version major"
+      "command": "cd packages/is/iterable && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

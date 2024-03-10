@@ -25,7 +25,7 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/struct/tree && npm version patch"
+      "command": "cd packages/struct/tree && npm version patch"
     },
     "packageFix": {
       "executor": "nx:run-commands",

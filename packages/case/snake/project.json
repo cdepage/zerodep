@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/case/snake && npm version patch"
+      "command": "cd packages/case/snake && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/case/snake && npm version minor"
+      "command": "cd packages/case/snake && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/case/snake && npm version major"
+      "command": "cd packages/case/snake && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

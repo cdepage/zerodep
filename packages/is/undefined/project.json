@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/is/undefined && npm version patch"
+      "command": "cd packages/is/undefined && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/is/undefined && npm version minor"
+      "command": "cd packages/is/undefined && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/is/undefined && npm version major"
+      "command": "cd packages/is/undefined && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

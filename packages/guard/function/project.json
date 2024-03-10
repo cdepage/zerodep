@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/guard/function && npm version patch"
+      "command": "cd packages/guard/function && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/guard/function && npm version minor"
+      "command": "cd packages/guard/function && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/guard/function && npm version major"
+      "command": "cd packages/guard/function && npm version major"
     },
     "lint": {
       "executor": "@nx/eslint:lint",

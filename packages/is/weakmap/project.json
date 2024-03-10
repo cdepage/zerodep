@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/is/weakmap && npm version patch"
+      "command": "cd packages/is/weakmap && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/is/weakmap && npm version minor"
+      "command": "cd packages/is/weakmap && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/is/weakmap && npm version major"
+      "command": "cd packages/is/weakmap && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/guard/boolean && npm version patch"
+      "command": "cd packages/guard/boolean && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/guard/boolean && npm version minor"
+      "command": "cd packages/guard/boolean && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/guard/boolean && npm version major"
+      "command": "cd packages/guard/boolean && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

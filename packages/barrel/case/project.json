@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/barrel/case && npm version patch"
+      "command": "cd packages/barrel/case && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/barrel/case && npm version minor"
+      "command": "cd packages/barrel/case && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/barrel/case && npm version major"
+      "command": "cd packages/barrel/case && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

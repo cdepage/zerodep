@@ -26,13 +26,13 @@
       "dependsOn": ["build"]
     },
     "patch": {
-      "command": "cd dist/packages/address/data && npm version patch"
+      "command": "cd packages/address/data && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/address/data && npm version minor"
+      "command": "cd packages/address/data && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/address/data && npm version major"
+      "command": "cd packages/address/data && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",

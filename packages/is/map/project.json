@@ -25,13 +25,13 @@
       }
     },
     "patch": {
-      "command": "cd dist/packages/is/map && npm version patch"
+      "command": "cd packages/is/map && npm version patch"
     },
     "minor": {
-      "command": "cd dist/packages/is/map && npm version minor"
+      "command": "cd packages/is/map && npm version minor"
     },
     "major": {
-      "command": "cd dist/packages/is/map && npm version major"
+      "command": "cd packages/is/map && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",
