@@ -12,6 +12,8 @@
           "rollup -c packages/is/equal/rollup.config.mjs",
           "mv dist/packages/is/equal/esm.d.ts dist/packages/is/equal/index.d.ts",
           "cp packages/is/equal/README.md dist/packages/is/equal/README.md",
+          "cp LICENSE.md dist/packages/is/equal/LICENSE.md",
+          "cp SECURITY.md dist/packages/is/equal/SECURITY.md",
           "cp packages/is/equal/package.json dist/packages/is/equal/package.json",
           "uglifyjs dist/packages/is/equal/esm.js -o dist/packages/is/equal/esm.js -c --no-annotations",
           "uglifyjs dist/packages/is/equal/cjs.js -o dist/packages/is/equal/cjs.js -c --no-annotations",

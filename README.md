@@ -28,7 +28,6 @@ All @zerodep packages are built for the ES2022 specification. Should you need to
 
 - v20.x - Iron LTS
 - v18.x - Hydrogen LTS
-- v16.x - Gallium LTS
 
 **Browsers**
 

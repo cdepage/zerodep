@@ -1,0 +1,58 @@
+{
+  "name": "object-merge",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/object/merge/src",
+  "projectType": "library",
+  "targets": {
+    "XXXXbuild": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/object/merge/*",
+          "rollup -c packages/object/merge/rollup.config.mjs",
+          "mv dist/packages/object/merge/esm.d.ts dist/packages/object/merge/index.d.ts",
+          "cp packages/object/merge/README.md dist/packages/object/merge/README.md",
+          "cp LICENSE.md dist/packages/object/merge/LICENSE.md",
+          "cp SECURITY.md dist/packages/object/merge/SECURITY.md",
+          "cp packages/object/merge/package.json dist/packages/object/merge/package.json",
+          "uglifyjs dist/packages/object/merge/esm.js -o dist/packages/object/merge/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/object/merge/cjs.js -o dist/packages/object/merge/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/object/merge/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "XXXXpublish": {
+      "command": "cd dist/packages/object/merge && npm publish --access public"
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/object/merge"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/object/merge/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/object/merge/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,58 @@
+{
+  "name": "color-hex2hsl",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/color/hex2hsl/src",
+  "projectType": "library",
+  "targets": {
+    "XXXXbuild": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/color/hex2hsl/*",
+          "rollup -c packages/color/hex2hsl/rollup.config.mjs",
+          "mv dist/packages/color/hex2hsl/esm.d.ts dist/packages/color/hex2hsl/index.d.ts",
+          "cp packages/color/hex2hsl/README.md dist/packages/color/hex2hsl/README.md",
+          "cp LICENSE.md dist/packages/color/hex2hsl/LICENSE.md",
+          "cp SECURITY.md dist/packages/color/hex2hsl/SECURITY.md",
+          "cp packages/color/hex2hsl/package.json dist/packages/color/hex2hsl/package.json",
+          "uglifyjs dist/packages/color/hex2hsl/esm.js -o dist/packages/color/hex2hsl/esm.js -c --no-annotations",
+          "uglifyjs dist/packages/color/hex2hsl/cjs.js -o dist/packages/color/hex2hsl/cjs.js -c --no-annotations",
+          "rm -rf dist/packages/color/hex2hsl/cjs.d.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "XXXXpublish": {
+      "command": "cd dist/packages/color/hex2hsl && npm publish --access public"
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/color/hex2hsl"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/color/hex2hsl/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/color/hex2hsl/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

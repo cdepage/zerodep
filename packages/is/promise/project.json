@@ -12,6 +12,8 @@
           "rollup -c packages/is/promise/rollup.config.mjs",
           "mv dist/packages/is/promise/esm.d.ts dist/packages/is/promise/index.d.ts",
           "cp packages/is/promise/README.md dist/packages/is/promise/README.md",
+          "cp LICENSE.md dist/packages/is/promise/LICENSE.md",
+          "cp SECURITY.md dist/packages/is/promise/SECURITY.md",
           "cp packages/is/promise/package.json dist/packages/is/promise/package.json",
           "uglifyjs dist/packages/is/promise/esm.js -o dist/packages/is/promise/esm.js -c --no-annotations",
           "uglifyjs dist/packages/is/promise/cjs.js -o dist/packages/is/promise/cjs.js -c --no-annotations",

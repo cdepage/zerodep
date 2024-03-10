@@ -4,24 +4,41 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [Unreleased] - TBD
+---
+
+### [2.7.1] - 2024-03-09
+
+**Fixed**
+
+- fixed a bug where named imports did not work as expected for both `cjs` and `esm` packages, with or without Typescript
+
+**Changed**
+
+- added a LICENSE.md and SECURITY.md files to every package on `npm.js`
+- removed `bundlephobia` package size buttons/links in README files as they were no longer functional
+
+---
+
+#### [2.7.0] - 2023-10-15
 
 **Added**
 
 - created the `@zerodep/case-dot` package with `caeDot()` method
-
-#### [2.7.0] - 2023-10-15
 
 **Changed**
 
 - added an optional error subclass/type check to the `isError()` method
 - added a check to the `isError()` method to ensure the error's `message` property is a string (if it exists)
 
+---
+
 ### [2.6.2] - 2023-10-14
 
 **Changed**
 
 - added a max length check the address normalizer and parser to prevent ReDoS attacks
+
+---
 
 ### [2.6.1] - 2023-10-14
 
@@ -32,11 +49,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - add support for Node v20 (Iron LTS)
 - update build to ES2022 spec (previously E2020)
 
+---
+
 ### [2.6.0] - 2023-08-29
 
 **Added**
 
 - added the `@zerodep/struct-tree` package, included it in the `@zerodep/app` and `@zerodep/struct` barrel packages
+
+---
 
 ### [2.5.0] - 2023-08-28
 
@@ -44,11 +65,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - added the `@zerodep/struct-linkedlist` package, included it in the `@zerodep/app` and `@zerodep/struct` barrel packages
 
+---
+
 ### [2.4.0] - 2023-08-27
 
 **Added**
 
 - added the `@zerodep/struct-queue` package, included it in the `@zerodep/app` and `@zerodep/struct` barrel packages
+
+---
 
 ### [2.3.0] - 2023-07-03
 
@@ -67,12 +92,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - refactor the `@zerodep/geo-country` and `@zerodep/geo-state` packages to use the new `@zerodep/geo-data` package
 
+---
+
 ### [2.2.0] - 2023-07-03
 
 **Added**
 
 - added the `StateCa`, `StateCaAbbr`, `StateUs` and `StateUsAbbr` type definitions and `geoState()`, `geoStateIso()`, `geoCountry()`, and `geoCountryIso()`functions to the `@zerodep/types`, `@zerodep/app`, `@zerodep/parsers` and `@zerodep/utilities` packages
 - added the `@zerodep/geo`, `@zerodep/geo-country` and`@zerodep/geo-state` packages
+
+---
 
 ## [2.1.0] - 2023-07-02
 
@@ -86,6 +115,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Added the `@zerodep/struct-collection` data structure to the `@zerodep/app` barrel package
 - Added the `@zerodep/struct-stack` data structure to the `@zerodep/app` barrel package
+
+---
 
 ## [2.0.0] - 2023-05-21
 
@@ -118,17 +149,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Removed all localization-specific functions
 
+---
+
 ## [1.x.x] - 2022-00-00
 
 ### Unknown
 
 - The entire 1.x.x changeset has disappeared
 
+---
+
 ## [0.11.0] - 2022-12-21
 
 ### Added
 
 - added the `address-parse()` parser to identify the components of US and Canadian addresses
+
+---
 
 ## [0.9.0] - 2022-05-07
 
@@ -141,6 +178,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add a few badges to the README files
 - Refactor ZeroDepError classes
 - Quashed a couple of typo-related bugs
+
+---
 
 ## [0.8.0] - 2022-05-03
 
@@ -162,6 +201,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - README updates
 
+---
+
 ## [0.7.0] - 2022-05-02
 
 ### Changed
@@ -169,11 +210,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fix casing of the exported `isJSON()` and `toJSON()` utilities, included associated documentation
 - Harmonize README documentation
 
+---
+
 ## [0.6.0] - 2022-05-02
 
 ### Changed
 
 - Update monorepo management and build tooling npm packages
+
+---
 
 ## [0.5.0] - 2022-05-02
 
@@ -185,6 +230,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Export error classes thrown by `guard_*` packages
+
+---
 
 ## [0.4.0] - 2022-05-01
 
@@ -205,6 +252,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fixed "How to Use" examples for arrays
 - ZeroDepError `tax` value renamed to `category` for clarity
 
+---
+
 ## [0.3.0] - 2022-04-28
 
 ### Added
@@ -220,6 +269,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add link to source code to the minified, distributed packages
 - Remove the CHANGELOG.md file from the distributed packages
 - Add more types and constructs to unit tests for all packages
+
+---
 
 ## [0.2.0] - 2022-04-26
 
@@ -253,6 +304,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added the `is.weakmap()` utility
 - Added the `is.weakset()` utility
 
+---
+
 ## [0.2.0] - 2022-04-25
 
 ### Added
@@ -263,6 +316,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added the `guard.boolean()` utility
 - Added the `guard.date()` utility
 - Added the `guard.object()` utility
+
+---
 
 ## [0.1.0] - 2022-04-25
 

@@ -12,6 +12,8 @@
           "rollup -c packages/geo/data/rollup.config.mjs",
           "mv dist/packages/geo/data/esm.d.ts dist/packages/geo/data/index.d.ts",
           "cp packages/geo/data/README.md dist/packages/geo/data/README.md",
+          "cp LICENSE.md dist/packages/geo/data/LICENSE.md",
+          "cp SECURITY.md dist/packages/geo/data/SECURITY.md",
           "cp packages/geo/data/package.json dist/packages/geo/data/package.json",
           "uglifyjs dist/packages/geo/data/esm.js -o dist/packages/geo/data/esm.js -c --no-annotations",
           "uglifyjs dist/packages/geo/data/cjs.js -o dist/packages/geo/data/cjs.js -c --no-annotations",

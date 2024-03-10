@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/guard-float",
   "description": "A configurable defensive programming utility to guard against non-float values",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,9 +16,8 @@
   "main": "cjs.js",
   "module": "esm.js",
   "exports": {
-    "types": "./index.d.ts",
     "import": "./esm.js",
-    "default": "./cjs.js"
+    "require": "./cjs.js"
   },
   "keywords": [
     "guard",

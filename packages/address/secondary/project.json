@@ -12,6 +12,8 @@
           "rollup -c packages/address/secondary/rollup.config.mjs",
           "mv dist/packages/address/secondary/esm.d.ts dist/packages/address/secondary/index.d.ts",
           "cp packages/address/secondary/README.md dist/packages/address/secondary/README.md",
+          "cp LICENSE.md dist/packages/address/secondary/LICENSE.md",
+          "cp SECURITY.md dist/packages/address/secondary/SECURITY.md",
           "cp packages/address/secondary/package.json dist/packages/address/secondary/package.json",
           "uglifyjs dist/packages/address/secondary/esm.js -o dist/packages/address/secondary/esm.js -c --no-annotations",
           "uglifyjs dist/packages/address/secondary/cjs.js -o dist/packages/address/secondary/cjs.js -c --no-annotations",

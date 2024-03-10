@@ -1,0 +1,27 @@
+{
+  "name": "@zerodep/object-merge",
+  "description": "A utility to determine if a value is a merge",
+  "version": "2.0.4",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/object/merge"
+  },
+  "homepage": "https://zerodep.app",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris@zerodep.app>",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "main": "cjs.js",
+  "module": "esm.js",
+  "exports": {
+    "import": "./esm.js",
+    "require": "./cjs.js"
+  },
+  "keywords": [
+    "is",
+    "merge",
+    "type"
+  ]
+}

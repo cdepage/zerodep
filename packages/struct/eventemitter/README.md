@@ -1,10 +1,12 @@
 # @zerodep/struct-eventemitter
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/struct-eventemitter?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/struct-eventemitter)
-[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/struct-eventemitter?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/struct-eventemitter)
 [![version](https://img.shields.io/npm/v/@zerodep/struct-eventemitter?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/struct-eventemitter)
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+
+[![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
+[![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
 **A factory function to add fully typed event emitter functionality to any object literal factory.**
 

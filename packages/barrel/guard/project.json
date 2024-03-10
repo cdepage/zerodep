@@ -12,6 +12,8 @@
           "rollup -c packages/barrel/guard/rollup.config.mjs",
           "mv dist/packages/barrel/guard/esm.d.ts dist/packages/barrel/guard/index.d.ts",
           "cp packages/barrel/guard/README.md dist/packages/barrel/guard/README.md",
+          "cp LICENSE.md dist/packages/barrel/guard/LICENSE.md",
+          "cp SECURITY.md dist/packages/barrel/guard/SECURITY.md",
           "cp packages/barrel/guard/package.json dist/packages/barrel/guard/package.json",
           "uglifyjs dist/packages/barrel/guard/esm.js -o dist/packages/barrel/guard/esm.js -c --no-annotations",
           "uglifyjs dist/packages/barrel/guard/cjs.js -o dist/packages/barrel/guard/cjs.js -c --no-annotations",

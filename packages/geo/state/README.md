@@ -1,10 +1,12 @@
 # @zerodep/geo-state
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/geo-state?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/geo-state)
-[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/geo-state?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/geo-state)
 [![version](https://img.shields.io/npm/v/@zerodep/geo-state?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/geo-state)
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+
+[![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
+[![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
 A parser to get state abbreviation and information from a state name or abbreviation; it will throw a `ZeroDepError` if the guard fails.
 

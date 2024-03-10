@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/parsers",
   "description": "A collection of all parsers within the @zerodep ecosystem",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,9 +16,8 @@
   "main": "cjs.js",
   "module": "esm.js",
   "exports": {
-    "types": "./index.d.ts",
     "import": "./esm.js",
-    "default": "./cjs.js"
+    "require": "./cjs.js"
   },
   "keywords": [
     "parsers"

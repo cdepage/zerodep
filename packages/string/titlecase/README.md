@@ -1,10 +1,12 @@
 # @zerodep/string-titlecase
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/string-titlecase?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/string-titlecase)
-[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/string-titlecase?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/string-titlecase)
 [![version](https://img.shields.io/npm/v/@zerodep/string-titlecase?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/string-titlecase)
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+
+[![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
+[![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
 A utility to convert the first letter of each word to an uppercase value, with special exceptions for English contractions and possessives. Non-string values will cause a `ZeroDepError` to be thrown.
 

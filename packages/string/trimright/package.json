@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/string-trimright",
   "description": "A utility to trim whitespace or specific values from the end of a string",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,9 +16,8 @@
   "main": "cjs.js",
   "module": "esm.js",
   "exports": {
-    "types": "./index.d.ts",
     "import": "./esm.js",
-    "default": "./cjs.js"
+    "require": "./cjs.js"
   },
   "keywords": [
     "string",

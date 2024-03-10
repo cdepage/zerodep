@@ -12,6 +12,8 @@
           "rollup -c packages/address/normalize/rollup.config.mjs",
           "mv dist/packages/address/normalize/esm.d.ts dist/packages/address/normalize/index.d.ts",
           "cp packages/address/normalize/README.md dist/packages/address/normalize/README.md",
+          "cp LICENSE.md dist/packages/address/normalize/LICENSE.md",
+          "cp SECURITY.md dist/packages/address/normalize/SECURITY.md",
           "cp packages/address/normalize/package.json dist/packages/address/normalize/package.json",
           "uglifyjs dist/packages/address/normalize/esm.js -o dist/packages/address/normalize/esm.js -c --no-annotations",
           "uglifyjs dist/packages/address/normalize/cjs.js -o dist/packages/address/normalize/cjs.js -c --no-annotations",

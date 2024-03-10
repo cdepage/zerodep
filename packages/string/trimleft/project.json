@@ -12,6 +12,8 @@
           "rollup -c packages/string/trimleft/rollup.config.mjs",
           "mv dist/packages/string/trimleft/esm.d.ts dist/packages/string/trimleft/index.d.ts",
           "cp packages/string/trimleft/README.md dist/packages/string/trimleft/README.md",
+          "cp LICENSE.md dist/packages/string/trimleft/LICENSE.md",
+          "cp SECURITY.md dist/packages/string/trimleft/SECURITY.md",
           "cp packages/string/trimleft/package.json dist/packages/string/trimleft/package.json",
           "uglifyjs dist/packages/string/trimleft/esm.js -o dist/packages/string/trimleft/esm.js -c --no-annotations",
           "uglifyjs dist/packages/string/trimleft/cjs.js -o dist/packages/string/trimleft/cjs.js -c --no-annotations",

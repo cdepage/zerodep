@@ -12,6 +12,8 @@
           "rollup -c packages/address/street/rollup.config.mjs",
           "mv dist/packages/address/street/esm.d.ts dist/packages/address/street/index.d.ts",
           "cp packages/address/street/README.md dist/packages/address/street/README.md",
+          "cp LICENSE.md dist/packages/address/street/LICENSE.md",
+          "cp SECURITY.md dist/packages/address/street/SECURITY.md",
           "cp packages/address/street/package.json dist/packages/address/street/package.json",
           "uglifyjs dist/packages/address/street/esm.js -o dist/packages/address/street/esm.js -c --no-annotations",
           "uglifyjs dist/packages/address/street/cjs.js -o dist/packages/address/street/cjs.js -c --no-annotations",

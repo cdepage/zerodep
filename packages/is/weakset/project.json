@@ -12,6 +12,8 @@
           "rollup -c packages/is/weakset/rollup.config.mjs",
           "mv dist/packages/is/weakset/esm.d.ts dist/packages/is/weakset/index.d.ts",
           "cp packages/is/weakset/README.md dist/packages/is/weakset/README.md",
+          "cp LICENSE.md dist/packages/is/weakset/LICENSE.md",
+          "cp SECURITY.md dist/packages/is/weakset/SECURITY.md",
           "cp packages/is/weakset/package.json dist/packages/is/weakset/package.json",
           "uglifyjs dist/packages/is/weakset/esm.js -o dist/packages/is/weakset/esm.js -c --no-annotations",
           "uglifyjs dist/packages/is/weakset/cjs.js -o dist/packages/is/weakset/cjs.js -c --no-annotations",

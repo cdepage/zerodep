@@ -12,6 +12,8 @@
           "rollup -c packages/is/error/rollup.config.mjs",
           "mv dist/packages/is/error/esm.d.ts dist/packages/is/error/index.d.ts",
           "cp packages/is/error/README.md dist/packages/is/error/README.md",
+          "cp LICENSE.md dist/packages/is/error/LICENSE.md",
+          "cp SECURITY.md dist/packages/is/error/SECURITY.md",
           "cp packages/is/error/package.json dist/packages/is/error/package.json",
           "uglifyjs dist/packages/is/error/esm.js -o dist/packages/is/error/esm.js -c --no-annotations",
           "uglifyjs dist/packages/is/error/cjs.js -o dist/packages/is/error/cjs.js -c --no-annotations",

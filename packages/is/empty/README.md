@@ -1,10 +1,12 @@
 # @zerodep/is-empty
 
-[![minified size](https://img.shields.io/bundlephobia/min/@zerodep/is-empty?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-empty)
-[![minified+gzipped size](https://img.shields.io/bundlephobia/minzip/@zerodep/is-empty?style=flat-square&color=blue)](https://bundlephobia.com/package/@zerodep/is-empty)
 [![version](https://img.shields.io/npm/v/@zerodep/is-empty?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-empty)
 ![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
 ![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+
+[![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
+[![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
 A simple, performant utility to determine if a value is `null`, `undefined` or an empty array, string, object, Map, Set, WeakMap or WeakSet.
 

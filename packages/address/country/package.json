@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-country",
   "description": "A parser to find where a country name or abbreviation is in a string",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,9 +16,8 @@
   "main": "cjs.js",
   "module": "esm.js",
   "exports": {
-    "types": "./index.d.ts",
     "import": "./esm.js",
-    "default": "./cjs.js"
+    "require": "./cjs.js"
   },
   "keywords": [
     "to",

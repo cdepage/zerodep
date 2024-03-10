@@ -12,6 +12,8 @@
           "rollup -c packages/is/map/rollup.config.mjs",
           "mv dist/packages/is/map/esm.d.ts dist/packages/is/map/index.d.ts",
           "cp packages/is/map/README.md dist/packages/is/map/README.md",
+          "cp LICENSE.md dist/packages/is/map/LICENSE.md",
+          "cp SECURITY.md dist/packages/is/map/SECURITY.md",
           "cp packages/is/map/package.json dist/packages/is/map/package.json",
           "uglifyjs dist/packages/is/map/esm.js -o dist/packages/is/map/esm.js -c --no-annotations",
           "uglifyjs dist/packages/is/map/cjs.js -o dist/packages/is/map/cjs.js -c --no-annotations",

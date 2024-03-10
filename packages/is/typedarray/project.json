@@ -12,6 +12,8 @@
           "rollup -c packages/is/typedarray/rollup.config.mjs",
           "mv dist/packages/is/typedarray/esm.d.ts dist/packages/is/typedarray/index.d.ts",
           "cp packages/is/typedarray/README.md dist/packages/is/typedarray/README.md",
+          "cp LICENSE.md dist/packages/is/typedarray/LICENSE.md",
+          "cp SECURITY.md dist/packages/is/typedarray/SECURITY.md",
           "cp packages/is/typedarray/package.json dist/packages/is/typedarray/package.json",
           "uglifyjs dist/packages/is/typedarray/esm.js -o dist/packages/is/typedarray/esm.js -c --no-annotations",
           "uglifyjs dist/packages/is/typedarray/cjs.js -o dist/packages/is/typedarray/cjs.js -c --no-annotations",
