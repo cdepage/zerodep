@@ -36,9 +36,14 @@ const isAllowedJSONProperty = (value: any): boolean => {
 };
 
 export const isPojo = (value: any): boolean => {
-  if ((!isArray(value) && !isObject(value)) || isNil(value)) {
+  try {
+    if ((!isArray(value) && !isObject(value)) || isNil(value)) {
+      return false;
+    }
+
+    return isAllowedJSONProperty(value);
+  } catch {
+    // anything that isn't serializable must be false, such as a circular reference
     return false;
   }
-
-  return isAllowedJSONProperty(value);
 };

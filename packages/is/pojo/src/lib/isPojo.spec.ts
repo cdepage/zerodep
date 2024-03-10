@@ -18,4 +18,12 @@ describe('isPojo', () => {
       expect(isPojo(value)).toEqual(false);
     }
   );
+
+  test('should return FALSE for a circular reference', () => {
+    const obj = { a: 1, b: 2, c: [3, 4] };
+    // @ts-ignore
+    obj.c.push(obj);
+
+    expect(isPojo(obj)).toEqual(false);
+  });
 });
