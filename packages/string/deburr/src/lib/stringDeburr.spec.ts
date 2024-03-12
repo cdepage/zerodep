@@ -197,7 +197,7 @@ const accentedWords = [
   ['ſ', 's'],
 ];
 
-xdescribe('stringDeburr', () => {
+describe('stringDeburr', () => {
   test.each(accentedWords)(
     'should return a non-accented value of %s',
     (title, value) => {

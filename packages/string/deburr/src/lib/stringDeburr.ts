@@ -1,4 +1,6 @@
 // @source https://en.wikipedia.org/wiki/List_of_Unicode_characters
+import { guardString } from '@zerodep/guard-string';
+
 const latinRegex = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g;
 const comboMarkRegex = /[\u0300-\u036f\ufe20-\ufe2f\u20d0-\u20ff]/g;
 const charMap: Record<string, string> = {
@@ -197,9 +199,7 @@ const charMap: Record<string, string> = {
 };
 
 export const stringDeburr = (value: string): string => {
-  if (!value) {
-    return '';
-  }
+  guardString(value);
 
   // dev note: yes, you can use a function as the replacer
   return value

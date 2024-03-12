@@ -7,6 +7,7 @@ export const stringTrim = (value: string, char = ''): string => {
   if (char === '') {
     return value.trim();
   }
+  guardString(char);
 
   // ensure the character in the regex is regex-safe
   const safeChar = ['.', '?'].includes(char) ? `\\${char}` : char;
