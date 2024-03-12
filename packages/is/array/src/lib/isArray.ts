@@ -1,3 +1,8 @@
 export const isArray = (value: unknown): boolean => {
-  return Array.isArray(value);
+  try {
+    return Array.isArray(value);
+  } catch {
+    // anything that isn't handled by the above code is definitely false
+    return false;
+  }
 };

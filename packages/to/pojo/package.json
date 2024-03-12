@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/to-pojo",
   "description": "A utility to convert a value to a POJO",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "license": "MIT",
   "repository": {
     "type": "git",

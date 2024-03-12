@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-bigint",
   "description": "A utility to determine if a value is a BigInt",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "license": "MIT",
   "repository": {
     "type": "git",

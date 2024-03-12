@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+### [Unreleased]
+
+**Changed**
+
+- updated all `@zerodep/is-*` packages to handle exceptional cases
+
+---
+
 ### [2.7.3] - 2024-03-10
 
 **Fixed**

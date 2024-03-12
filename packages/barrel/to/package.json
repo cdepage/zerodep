@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/to",
   "description": "A set of functions to convert between data types",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "license": "MIT",
   "repository": {
     "type": "git",

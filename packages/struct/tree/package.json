@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-tree",
   "description": "A factory that returns an optionally-typed, Tree data structure instance with breadth- and depth-first searching capabilities.",
-  "version": "2.6.6",
+  "version": "2.6.7",
   "license": "MIT",
   "repository": {
     "type": "git",

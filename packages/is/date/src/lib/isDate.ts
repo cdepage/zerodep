@@ -14,9 +14,9 @@ export const isDate = (value: unknown): boolean => {
     if (Number.isNaN(ms)) {
       return false;
     }
-  } catch (err: any) {
+    return true;
+  } catch {
+    // anything that isn't handled by the above code is definitely false
     return false;
   }
-
-  return true;
 };

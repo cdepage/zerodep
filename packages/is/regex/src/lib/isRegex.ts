@@ -1,3 +1,8 @@
 export const isRegex = (value: unknown): boolean => {
-  return Object.prototype.toString.call(value) === '[object RegExp]';
+  try {
+    return Object.prototype.toString.call(value) === '[object RegExp]';
+  } catch {
+    // anything that isn't handled by the above code is definitely false
+    return false;
+  }
 };

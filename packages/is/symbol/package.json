@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-symbol",
   "description": "A utility to determine if a value is a Symbol",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "license": "MIT",
   "repository": {
     "type": "git",
