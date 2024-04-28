@@ -6,7 +6,7 @@ describe('addressParse', () => {
       '9655 east river road northeast apt 12 salem oregon 97303-1234 usa';
     expect(addressParse(addy)).toEqual({
       source: addy,
-      normalized: '9655 EAST RIVER ROAD NE APT 12 SALEM OREGON 97303-1234 USA',
+      normalized: '9655 EAST RIVER RD NE APT 12 SALEM OREGON 97303-1234 USA',
 
       secondary: 'APT 12',
 
@@ -24,7 +24,7 @@ describe('addressParse', () => {
       'apt 12 9655 east river road northeast salem oregon 97303-1234 usa';
     expect(addressParse(addy)).toEqual({
       source: addy,
-      normalized: 'APT 12 9655 EAST RIVER ROAD NE SALEM OREGON 97303-1234 USA',
+      normalized: 'APT 12 9655 EAST RIVER RD NE SALEM OREGON 97303-1234 USA',
 
       secondary: 'APT 12',
 
@@ -54,7 +54,7 @@ describe('addressParse', () => {
       '#42 14694 Woodburn Monitor Road Northeast Woodburn Oregon 97071';
     expect(addressParse(addy)).toEqual({
       source: addy,
-      normalized: '#42 14694 WOODBURN MONITOR ROAD NE WOODBURN OREGON 97071',
+      normalized: '#42 14694 WOODBURN MONITOR RD NE WOODBURN OREGON 97071',
 
       secondary: '#42',
 
@@ -149,7 +149,7 @@ describe('addressParse', () => {
       })
     ).toEqual({
       source: addy,
-      normalized: '123 MAPLE STREET ROCHESTER NEW YORK 10001-1234',
+      normalized: '123 MAPLE ST ROCHESTER NEW YORK 10001-1234',
       street: '123 MAPLE ST ROCHESTER',
       city: 'ROCHESTER',
       stateAbbr: 'NY',

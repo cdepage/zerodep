@@ -30,12 +30,13 @@ addressNormalize: (value: string) => string;
 ## How to Use
 
 ```javascript
+addressNormalize('1234 Main st sw apt14-a');
 addressNormalize('1234 Main Street S.West apt # 14-a');
-addressNormalize('1234 Main Street south-west apt 14-a');
-// "1234 MAIN STREET SW APT 14-A"
+addressNormalize('1234 Main Street south-west, apt 14-a');
+// "1234 MAIN ST SW APT 14-A"
 
 addressNormalize('apartment 3c, south-east cloverfield ave, manville nj 08835');
-addressNormalize('apmt 3c se cloverfield ave manville nj 08835');
+addressNormalize('apmt 3c se cloverfield avenue manville nj 08835');
 // "APT 3C SE CLOVERFIELD AVE MANVILLE NJ 08835"
 
 addressNormalize('p.o.b 1234');

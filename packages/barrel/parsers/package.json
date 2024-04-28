@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/parsers",
   "description": "A collection of all parsers within the @zerodep ecosystem",
-  "version": "2.4.7",
+  "version": "2.4.8",
   "license": "MIT",
   "repository": {
     "type": "git",

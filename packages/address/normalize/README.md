@@ -31,7 +31,7 @@ const { addressNormalize } = require('@zerodep/address-normalize');
 ```javascript
 addressNormalize('1234 Main Street S.West apt # 14-a');
 addressNormalize('1234 Main Street south-west apt 14-a');
-// "1234 MAIN STREET SW APT 14-A"
+// "1234 MAIN ST SW APT 14-A"
 
 addressNormalize('apartment 3c, southeast cloverfield ave, manville nj 08835');
 addressNormalize('apmt 3c se cloverfield ave manville nj 08835');
