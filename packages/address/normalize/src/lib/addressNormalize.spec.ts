@@ -172,4 +172,8 @@ describe('addressNormalize', () => {
     const fn = () => addressNormalize(longAddress);
     expect(fn).toThrow('Address is too long');
   });
+
+  it('should return an empty string when an empty string provided', () => {
+    expect(addressNormalize('')).toEqual('');
+  });
 });

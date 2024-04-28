@@ -136,4 +136,38 @@ describe('addressParse', () => {
       stateAbbr: 'NY',
     });
   });
+
+  it('should parse an address with an apt, city, state & country', () => {
+    const addy = '123 Maple Street Rochester, New York 10001-1234';
+    expect(
+      addressParse(addy, {
+        city: 'Rochester',
+        state: 'New York',
+        country: 'USA',
+        zip: '10001',
+        zipExt: '1234',
+      })
+    ).toEqual({
+      source: addy,
+      normalized: '123 MAPLE STREET ROCHESTER NEW YORK 10001-1234',
+      street: '123 MAPLE ST ROCHESTER',
+      city: 'ROCHESTER',
+      stateAbbr: 'NY',
+      zip: '10001',
+      zipExt: '1234',
+      countryIso2: 'US',
+    });
+  });
+
+  // TODO: fix this so the building is correctly identified
+  it('should parse an highway contract address', () => {
+    const addy = '10135 starr st sw';
+    expect(addressParse(addy)).toEqual({
+      source: addy,
+      normalized: '10135 STARR ST SW',
+
+      street: 'STARR ST SW',
+      zip: '10135',
+    });
+  });
 });

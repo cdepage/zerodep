@@ -435,7 +435,6 @@ export const addressParse = (
   // edge case: stash is a building if it is numeric & there is no building
   if (stash.length && !address.building && stash[0].isNumeric) {
     const item = stash.pop();
-    console.log('item', item);
     address.building = item.term;
   }
 
