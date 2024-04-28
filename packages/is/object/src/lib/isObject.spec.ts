@@ -1,8 +1,9 @@
 import { testData } from '../../../../testValues';
-import { isObject } from './isObject';
+import { isObject } from './isObject'; // extract the positive test cases, the rest will be negative
 
 // extract the positive test cases, the rest will be negative
-const { objectLiteralsSafe, objectLiteralsUnsafe, ...rest } = testData;
+const { objectLiteralsSafe, objectLiteralsUnsafe, circularReference, ...rest } =
+  testData;
 const positiveCases = [...objectLiteralsSafe, ...objectLiteralsUnsafe];
 const negativeCases = Object.values(rest).flat();
 
@@ -20,6 +21,15 @@ describe('isObject', () => {
     (title, value) => {
       // @ts-ignore
       expect(isObject(value)).toEqual(false);
+    }
+  );
+
+  // @ts-ignore
+  test.each(circularReference)(
+    'should throw an exception for a/an %s',
+    // @ts-ignore
+    (title, value) => {
+      expect(isObject(value)).toEqual(true);
     }
   );
 });

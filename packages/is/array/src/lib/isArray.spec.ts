@@ -6,7 +6,7 @@ const { arraysSafe, arraysUnsafe, ...rest } = testData;
 const positiveCases = [...arraysSafe, ...arraysUnsafe];
 const negativeCases = Object.values(rest).flat();
 
-describe('isInteger', () => {
+describe('isArray', () => {
   // @ts-ignore
   test.each(positiveCases)('should return TRUE for a/an %s', (title, value) => {
     // @ts-ignore

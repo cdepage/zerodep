@@ -1,6 +1,5 @@
-import { stringLowerFirst } from '@zerodep/string-lowerfirst';
 import { testData } from '../../../../testValues';
-import { toDate } from './toDate';
+import { toDate } from './toDate'; // extract the positive test cases, the rest will be negative
 
 // extract the positive test cases, the rest will be negative
 const {
@@ -9,6 +8,7 @@ const {
   dates,
   integers,
   floats,
+  integersENotation,
   floatENotation,
   numberIsh,
   ...rest
@@ -63,9 +63,30 @@ describe('toDate', () => {
   });
 
   // @ts-ignore
+  test.each(integers)('should NOT throw for a/an %s', (title, value) => {
+    // @ts-ignore
+    const fn = () => toDate(value);
+    expect(fn).not.toThrow('Invalid Date');
+  });
+
+  // @ts-ignore
+  test.each(bigInts)('should NOT throw for a/an %s', (title, value) => {
+    // @ts-ignore
+    const fn = () => toDate(value);
+    expect(fn).not.toThrow('Invalid Date');
+  });
+
+  // @ts-ignore
+  test.each(dates)('should NOT throw for a/an %s', (title, value) => {
+    // @ts-ignore
+    const fn = () => toDate(value);
+    expect(fn).not.toThrow('Invalid Date');
+  });
+
+  // @ts-ignore
   test.each(negativeCases)('should throw for a/an %s', (title, value) => {
     // @ts-ignore
-    const fn = () => stringLowerFirst(value);
-    expect(fn).toThrow('Value is not a string');
+    const fn = () => toDate(value);
+    expect(fn).toThrow('Invalid Date');
   });
 });

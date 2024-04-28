@@ -1,8 +1,3 @@
 export const isString = (value: unknown): boolean => {
-  try {
-    return Object.prototype.toString.call(value) === '[object String]';
-  } catch {
-    // anything that isn't handled by the above code is definitely false
-    return false;
-  }
+  return Object.prototype.toString.call(value) === '[object String]';
 };

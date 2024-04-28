@@ -106,4 +106,26 @@ describe('addressState', () => {
       },
     ]);
   });
+
+  it('should find a state when the US specified', () => {
+    expect(addressState('1234 main street, green bay new york', 'US')).toEqual([
+      {
+        stateAbbr: 'NY',
+        source: 'new york',
+        ndx: 28,
+        length: 8,
+      },
+    ]);
+  });
+
+  it('should find both states and provinces', () => {
+    expect(addressState('1234 oregon street, toronto ont', 'CA')).toEqual([
+      {
+        stateAbbr: 'ON',
+        source: 'ont',
+        ndx: 28,
+        length: 3,
+      },
+    ]);
+  });
 });

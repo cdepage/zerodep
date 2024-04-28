@@ -38,4 +38,10 @@ describe('stringWords', () => {
     const fn = () => stringWords(value);
     expect(fn).toThrow('Value is not a string');
   });
+
+  it('should handle an empty string', () => {
+    // @ts-ignore
+    const fn = () => stringWords('a b c', 42);
+    expect(fn).toThrow('Separator is not a string or Regex');
+  });
 });

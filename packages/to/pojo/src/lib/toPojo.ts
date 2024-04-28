@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ZeroDepError } from '@zerodep/errors';
-import { isArray } from '@zerodep/is-array';
 import { isBigInt } from '@zerodep/is-bigint';
 import { isBoolean } from '@zerodep/is-boolean';
 import { isFunction } from '@zerodep/is-function';
 import { isMap } from '@zerodep/is-map';
 import { isNil } from '@zerodep/is-nil';
 import { isNumber } from '@zerodep/is-number';
-import { isObject } from '@zerodep/is-object';
 import { isPromise } from '@zerodep/is-promise';
 import { isRegex } from '@zerodep/is-regex';
 import { isSet } from '@zerodep/is-set';
@@ -15,7 +13,7 @@ import { isString } from '@zerodep/is-string';
 import { isSymbol } from '@zerodep/is-symbol';
 import { isTypedArray } from '@zerodep/is-typedarray';
 import { isWeakMap } from '@zerodep/is-weakmap';
-import { isWeakSet } from '@zerodep/is-weakset';
+import { isWeakSet } from '@zerodep/is-weakset'; // Replacer is used by the JSON.stringify() method
 
 // Replacer is used by the JSON.stringify() method
 // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#the_replacer_parameter
@@ -119,17 +117,7 @@ export const toPojo = <T = Record<string, Serializables> | Serializables[]>(
     // dev reminders:
     // - undefined is converted to null by stringify()
     // - the replacer converts nested values recursively
-    const json = JSON.parse(JSON.stringify(maybeJSON ?? value, replacer));
-
-    // final paranoid check
-    if (isObject(json) || isArray(json)) {
-      return json;
-    }
-
-    // only objects can be returned
-    const error = new ZeroDepError(errMessage);
-    error.value = json;
-    throw error;
+    return JSON.parse(JSON.stringify(maybeJSON ?? value, replacer));
   } catch (error: any) {
     const zdError = new ZeroDepError(errMessage);
     if (error.value) {

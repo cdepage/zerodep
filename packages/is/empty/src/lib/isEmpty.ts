@@ -15,51 +15,37 @@ import { isString } from '@zerodep/is-string';
 import { isSymbol } from '@zerodep/is-symbol';
 
 export const isEmpty = (value: unknown): boolean => {
-  try {
-    if (isNil(value)) {
-      return true;
-    }
-
-    // more common types used by this function
-    if (
-      isNumber(value) ||
-      isBoolean(value) ||
-      isBigInt(value) ||
-      isDate(value)
-    ) {
-      return false;
-    }
-
-    if (isString(value)) {
-      return value === '';
-    }
-
-    if (isArray(value)) {
-      return !(value as any[]).length;
-    }
-
-    if (isObject(value)) {
-      return !Object.keys(value as Record<string, any>).length;
-    }
-
-    if (isMap(value) || isSet(value)) {
-      return !(value as Map<any, any> | Set<any>).size;
-    }
-
-    // less common things likely used in this function
-    if (
-      isRegex(value) ||
-      isFunction(value) ||
-      isPromise(value) ||
-      isSymbol(value) ||
-      isError(value)
-    ) {
-      return false;
-    }
-
+  if (isNil(value)) {
     return true;
-  } catch {
-    // anything that isn't handled by the above code is definitely false
+  }
+
+  // more common types used by this function
+  if (isNumber(value) || isBoolean(value) || isBigInt(value) || isDate(value)) {
     return false;
   }
+
+  if (isString(value)) {
+    return value === '';
+  }
+
+  if (isArray(value)) {
+    return !(value as any[]).length;
+  }
+
+  if (isObject(value)) {
+    return !Object.keys(value as Record<string, any>).length;
+  }
+
+  if (isMap(value) || isSet(value)) {
+    return !(value as Map<any, any> | Set<any>).size;
+  }
+
+  // less common things likely used in this function
+  return !(
+    isRegex(value) ||
+    isFunction(value) ||
+    isPromise(value) ||
+    isSymbol(value) ||
+    isError(value)
+  );
 };

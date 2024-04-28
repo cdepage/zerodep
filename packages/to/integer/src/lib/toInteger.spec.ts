@@ -1,4 +1,7 @@
+import { testData } from '../../../../testValues';
 import { toInteger } from './toInteger';
+
+const { bigInts, integers, floats, circularReference } = testData;
 
 describe('toInteger', () => {
   // NUMBERS
@@ -109,6 +112,30 @@ describe('toInteger', () => {
   it('should NOT convert undefined ', () => {
     // @ts-ignore
     const fn = () => toInteger(undefined);
+    expect(fn).toThrow('Cannot convert to number');
+  });
+
+  test.each(bigInts)('should NOT throw for a/an %s', (title, value) => {
+    // @ts-ignore
+    const fn = () => toInteger(value);
+    expect(fn).not.toThrow('Cannot convert to number');
+  });
+
+  test.each(integers)('should NOT throw for a/an %s', (title, value) => {
+    // @ts-ignore
+    const fn = () => toInteger(value);
+    expect(fn).not.toThrow('Cannot convert to number');
+  });
+
+  test.each(floats)('should NOT throw for a/an %s', (title, value) => {
+    // @ts-ignore
+    const fn = () => toInteger(value);
+    expect(fn).not.toThrow('Cannot convert to number');
+  });
+
+  test.each(circularReference)('should throw for a/an %s', (title, value) => {
+    // @ts-ignore
+    const fn = () => toInteger(value);
     expect(fn).toThrow('Cannot convert to number');
   });
 });

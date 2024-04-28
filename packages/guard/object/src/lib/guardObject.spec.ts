@@ -3,7 +3,8 @@ import { testData } from '../../../../testValues';
 import { guardObject, guardObjectHOF, GuardObjectOptions } from './guardObject';
 
 // extract the positive test cases, the rest will be negative
-const { objectLiteralsSafe, objectLiteralsUnsafe, ...rest } = testData;
+const { objectLiteralsSafe, objectLiteralsUnsafe, circularReference, ...rest } =
+  testData;
 const positiveCases = [...objectLiteralsSafe, ...objectLiteralsUnsafe];
 const negativeCases = Object.values(rest).flat();
 
@@ -28,6 +29,12 @@ describe('guardInteger', () => {
       // @ts-ignore
       const fn = () => guard(value);
       expect(fn).toThrow('Value is not an object');
+    });
+
+    // @ts-ignore
+    test.each(circularReference)('should allow a/an %s', (title, value) => {
+      // @ts-ignore
+      expect(guard(value)).toBeUndefined();
     });
   });
 

@@ -1,8 +1,5 @@
-import { ZeroDepError } from '@zerodep/errors';
 import { isInteger } from '@zerodep/is-integer';
 import { toNumber } from '@zerodep/to-number';
-
-const errMessage = `Cannot convert to integer`;
 
 export const toInteger = (
   value: number | bigint | string | boolean | Date
@@ -12,10 +9,5 @@ export const toInteger = (
     return num;
   }
 
-  const int = Math.trunc(num);
-  if (!Number.isNaN(int)) {
-    return int;
-  }
-
-  throw new ZeroDepError(errMessage);
+  return Math.trunc(num);
 };

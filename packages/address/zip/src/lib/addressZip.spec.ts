@@ -115,4 +115,12 @@ describe('addressZip', () => {
       },
     ]);
   });
+
+  it('should NOT find a postal code', () => {
+    expect(addressZip('14 Main Street, Toronto ON, Canada')).toEqual([]);
+  });
+
+  it('should handle no address', () => {
+    expect(addressZip('')).toEqual([]);
+  });
 });

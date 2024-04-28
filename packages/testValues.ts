@@ -18,6 +18,10 @@ const testPromiseAllResolved = Promise.all([
   testPromiseResolved2,
 ]);
 
+const circularRef = { a: 1, b: 2, c: [3, 4] };
+// @ts-ignore
+circularRef.c.push(circularRef);
+
 export class TestClass1 {
   public a: any;
   constructor(prop1: any) {
@@ -363,4 +367,6 @@ export const testData = {
     ['regex literal', testRegex1],
     ['regex object', testRegex2],
   ],
+
+  circularReference: [['circular reference', circularRef]],
 };

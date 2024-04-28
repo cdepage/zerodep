@@ -1,4 +1,5 @@
 import { ZeroDepError } from '@zerodep/errors';
+import { guardString } from '@zerodep/guard-string';
 import { isBigInt } from '@zerodep/is-bigint';
 import { isDate } from '@zerodep/is-date';
 import { isNumber } from '@zerodep/is-number';
@@ -29,37 +30,23 @@ export const toDate = (value: string | number | bigint | Date): Date => {
       val += '000';
     }
 
-    try {
-      const date = new Date(Number(val));
-      if (isDate(date)) {
-        return date;
-      }
-      throw new ZeroDepError(errMessage, 'type', 'to');
-    } catch (err: any) {
-      throw err instanceof ZeroDepError
-        ? err
-        : new ZeroDepError(errMessage, 'unknown', 'to');
-    }
-  }
-
-  try {
-    // create a date from the string or number, check that it is a real date
-    const date = new Date(value as string);
-    if (isDate(value)) {
+    const date = new Date(Number(val));
+    if (isDate(date)) {
       return date;
     }
-
-    // parse the date if it's a string
-    if (isString(value)) {
-      return breakDateIntoPieces(value as string);
-    }
-
-    throw new ZeroDepError(errMessage, 'type', 'to');
-  } catch (err: any) {
-    throw err instanceof ZeroDepError
-      ? err
-      : new ZeroDepError(errMessage, 'unknown', 'to');
   }
+
+  // create a date from the string or number, check that it is a real date
+  // const date = new Date(value as string);
+  // if (isDate(value)) {
+  //   return date;
+  // }
+
+  // parse the date if it's a string
+  // if (isString(value)) {
+  return breakDateIntoPieces(value as string);
+  // }
+  // throw new ZeroDepError(errMessage, 'type', 'to');
 };
 
 const monthMap: Record<string, number> = {
@@ -127,7 +114,8 @@ const monthMap: Record<string, number> = {
 };
 
 const breakDateIntoPieces = (value: string) => {
-  const [dateString, timeString] = value.split('T');
+  guardString(value);
+  const [dateString] = value.split('T');
   const datePieces = stringDeburr(dateString)
     .toLowerCase()
     .replace(/[/. ]/g, '-')
@@ -176,21 +164,17 @@ const breakDateIntoPieces = (value: string) => {
   }
   // console.log({ value, yyyy, mm, dd, hr, min, sec, msec, tz });
 
-  if (yyyy && mm && dd) {
-    mm = stringPadLeft(mm, 2, '0');
-    dd = stringPadLeft(dd, 2, '0');
-    hr = stringPadLeft(hr, 2, '0');
-    min = stringPadLeft(min, 2, '0');
-    sec = stringPadLeft(sec, 2, '0');
-    msec = stringPadLeft(msec, 3, '0');
-    if (String(yyyy).length <= 2) {
-      const prefix = Number(yyyy) < 70 ? 20 : 19;
-      yyyy = `${prefix}${stringPadLeft(yyyy, 2, '0')}`;
-    }
-
-    // console.log(`${yyyy}-${mm}-${dd}T${hr}:${min}:${sec}.${msec}${tz}`);
-    return new Date(`${yyyy}-${mm}-${dd}T${hr}:${min}:${sec}.${msec}${tz}`);
+  mm = stringPadLeft(mm, 2, '0');
+  dd = stringPadLeft(dd, 2, '0');
+  hr = stringPadLeft(hr, 2, '0');
+  min = stringPadLeft(min, 2, '0');
+  sec = stringPadLeft(sec, 2, '0');
+  msec = stringPadLeft(msec, 3, '0');
+  if (String(yyyy).length <= 2) {
+    const prefix = Number(yyyy) < 70 ? 20 : 19;
+    yyyy = `${prefix}${stringPadLeft(yyyy, 2, '0')}`;
   }
 
-  throw new ZeroDepError(errMessage, 'unknown', 'to');
+  // console.log(`${yyyy}-${mm}-${dd}T${hr}:${min}:${sec}.${msec}${tz}`);
+  return new Date(`${yyyy}-${mm}-${dd}T${hr}:${min}:${sec}.${msec}${tz}`);
 };
