@@ -47,7 +47,7 @@ export const addressNormalize = (address: string): string => {
         /\b(H|HIWAY|HIGHWAY)[-. ]?(C|CONTRACT)[-. ]?(R|ROUTE)?[-. ]?\b/g,
         'HC '
       )
-      .replace(/\b(S|STAR)[-. ]?(R|ROUTE)[-. ]?\b/g, 'HC ')
+      .replace(/\b(STAR[-. ]?ROUTE|S[-. ]?R)\b/g, 'HC ')
 
       // general delivery
       .replace(
