@@ -12,6 +12,8 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
+
 A modern library/monorepo of high-quality, zero-dependency, fully typed, fully tested, tree-shakeable utilities, parsers, data structure factories, converters and other capabilities to help you create quality Node.js and JavaScript/TypeScript applications quickly.
 
 All packages are published to `npm` both individually and logically/semantically grouped in barrel packages.
@@ -26,7 +28,6 @@ All @zerodep packages are built for the ES2022 specification. Should you need to
 
 **Node**
 
-- v22.x - Jod LTS
 - v20.x - Iron LTS
 - v18.x - Hydrogen LTS
 

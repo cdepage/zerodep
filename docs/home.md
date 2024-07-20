@@ -3,6 +3,7 @@
 ![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
 @zerodep is a library of modern, fully typed utilities, parsers, data structures and other capabilities to help with creating application functionality with no third-party dependencies.
 

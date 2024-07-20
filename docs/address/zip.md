@@ -10,6 +10,8 @@
 
 A parser to find where zip/postal codes (and US 5-digit extensions) are in a string.
 
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
+
 This function will return an array of results, with the most likely result being first. If a zip/postal code is not found an empty array will be returned.
 
 NOTE: currently supports US and CA zip/postal codes
