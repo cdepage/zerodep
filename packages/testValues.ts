@@ -184,7 +184,7 @@ export const testData = {
   booleans: [
     ['boolean true', true],
     ['boolean false', false],
-    ['string from new Boolean()', new Boolean(true)],
+    ['boolean from new Boolean()', new Boolean(true)],
   ],
 
   dates: [['date object', testDate1]],

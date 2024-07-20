@@ -1,0 +1,36 @@
+{
+  "name": "@zerodep/to-boolean",
+  "description": "A utility to reliably convert a value to a boolean",
+  "version": "2.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdepage/zerodep.git",
+    "directory": "packages/to/boolean"
+  },
+  "homepage": "https://zerodep.app",
+  "bugs": "https://github.com/cdepage/zerodep/issues",
+  "author": "Chris dePage <chris@zerodep.app>",
+  "sideEffects": false,
+  "types": "index.d.mts",
+  "type": "module",
+  "main": "index.min.cjs",
+  "module": "index.min.mjs",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./index.d.mts",
+        "default": "./index.min.mjs"
+      },
+      "require": {
+        "types": "./index.d.cts",
+        "default": "./index.min.cjs"
+      }
+    }
+  },
+  "keywords": [
+    "to",
+    "boolean",
+    "converter"
+  ]
+}
