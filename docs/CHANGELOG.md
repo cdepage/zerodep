@@ -6,11 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-### [Unreleased]
 
-**Changed**
+### [2.9.0] - 2024-07-20
 
-- updated all `@zerodep/is-*` packages to handle exceptional cases
+**Added**
+
+- added the `@zerodep/to-boolean` package with `toBoolean()` method, updated the following barrel packages to include it: `@zerodep/app`, `@zerodep/parsers`, `@zerodep/utilities`, and `@zerodep/to`   
+
+**Fixed**
+
+- type definitions were not properly being exported for both ESM and CJS packages
 
 ---
 

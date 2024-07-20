@@ -5,6 +5,7 @@ describe('"To" barrel package', () => {
   it('should export specific packages and interfaces', () => {
     expect(keys).toEqual([
       'ZeroDepError',
+      'toBoolean',
       'toDate',
       'toInteger',
       'toNumber',

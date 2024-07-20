@@ -26,6 +26,7 @@ To converters designed for changing data from one type to another.
 
 All of the following converters are available in this package:
 
+- [toBoolean()](to/boolean.md)
 - [toDate()](to/date.md)
 - [toInteger()](to/integer.md)
 - [toNumber()](to/number.md)

@@ -115,6 +115,7 @@
 
 - To Converters
 
+  - [toBoolean()](to/boolean.md)
   - [toDate()](to/date.md)
   - [toInteger()](to/integer.md)
   - [toNumber()](to/number.md)

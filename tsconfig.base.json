@@ -101,6 +101,7 @@
       "@zerodep/struct-stack": ["packages/struct/stack/src/index.ts"],
       "@zerodep/struct-tree": ["packages/struct/tree/src/index.ts"],
       "@zerodep/to": ["packages/barrel/to/src/index.ts"],
+      "@zerodep/to-boolean": ["packages/to/boolean/src/index.ts"],
       "@zerodep/to-date": ["packages/to/date/src/index.ts"],
       "@zerodep/to-integer": ["packages/to/integer/src/index.ts"],
       "@zerodep/to-number": ["packages/to/number/src/index.ts"],

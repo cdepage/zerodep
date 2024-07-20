@@ -91,6 +91,7 @@ describe('"App" barrel package', () => {
       'structQueueFactory',
       'structStackFactory',
       'structTreeFactory',
+      'toBoolean',
       'toDate',
       'toInteger',
       'toNumber',

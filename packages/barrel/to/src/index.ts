@@ -1,4 +1,5 @@
 export { ZeroDepError } from '@zerodep/errors';
+export { toBoolean } from '@zerodep/to-boolean';
 export { toDate } from '@zerodep/to-date';
 export { toInteger } from '@zerodep/to-integer';
 export { toNumber } from '@zerodep/to-number';
