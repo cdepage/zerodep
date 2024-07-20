@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-parse",
   "description": "An address parser for American and Canadian addresses that breaks down the provided address into its component parts",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,14 +12,19 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
-  "types": "index.d.ts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./index.min.mjs",
-      "require": "./index.min.cjs"
+      "import": {
+        "types": "./index.d.mts",
+        "default": "./index.min.mjs"
+      },
+      "require": {
+        "types": "./index.d.cts",
+        "default": "./index.min.cjs"
+      }
     }
   },
   "keywords": [

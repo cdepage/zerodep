@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/case/kebab/*",
           "rollup -c packages/case/kebab/rollup.config.mjs",
-          "mv dist/packages/case/kebab/index.d.mts dist/packages/case/kebab/index.d.ts",
           "cp packages/case/kebab/README.md dist/packages/case/kebab/README.md",
           "cp LICENSE.md dist/packages/case/kebab/LICENSE.md",
           "cp SECURITY.md dist/packages/case/kebab/SECURITY.md",
           "cp packages/case/kebab/package.json dist/packages/case/kebab/package.json",
           "uglifyjs dist/packages/case/kebab/index.mjs -o dist/packages/case/kebab/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/case/kebab/index.cjs -o dist/packages/case/kebab/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/case/kebab/index.d.cts",
           "rm -rf dist/packages/case/kebab/index.mjs",
           "rm -rf dist/packages/case/kebab/index.cjs"
         ],

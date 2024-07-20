@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/string/trim/*",
           "rollup -c packages/string/trim/rollup.config.mjs",
-          "mv dist/packages/string/trim/index.d.mts dist/packages/string/trim/index.d.ts",
           "cp packages/string/trim/README.md dist/packages/string/trim/README.md",
           "cp LICENSE.md dist/packages/string/trim/LICENSE.md",
           "cp SECURITY.md dist/packages/string/trim/SECURITY.md",
           "cp packages/string/trim/package.json dist/packages/string/trim/package.json",
           "uglifyjs dist/packages/string/trim/index.mjs -o dist/packages/string/trim/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/string/trim/index.cjs -o dist/packages/string/trim/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/string/trim/index.d.cts",
           "rm -rf dist/packages/string/trim/index.mjs",
           "rm -rf dist/packages/string/trim/index.cjs"
         ],

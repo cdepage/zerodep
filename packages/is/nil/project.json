@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/is/nil/*",
           "rollup -c packages/is/nil/rollup.config.mjs",
-          "mv dist/packages/is/nil/index.d.mts dist/packages/is/nil/index.d.ts",
           "cp packages/is/nil/README.md dist/packages/is/nil/README.md",
           "cp LICENSE.md dist/packages/is/nil/LICENSE.md",
           "cp SECURITY.md dist/packages/is/nil/SECURITY.md",
           "cp packages/is/nil/package.json dist/packages/is/nil/package.json",
           "uglifyjs dist/packages/is/nil/index.mjs -o dist/packages/is/nil/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/is/nil/index.cjs -o dist/packages/is/nil/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/is/nil/index.d.cts",
           "rm -rf dist/packages/is/nil/index.mjs",
           "rm -rf dist/packages/is/nil/index.cjs"
         ],

@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/barrel/to/*",
           "rollup -c packages/barrel/to/rollup.config.mjs",
-          "mv dist/packages/barrel/to/index.d.mts dist/packages/barrel/to/index.d.ts",
           "cp packages/barrel/to/README.md dist/packages/barrel/to/README.md",
           "cp LICENSE.md dist/packages/barrel/to/LICENSE.md",
           "cp SECURITY.md dist/packages/barrel/to/SECURITY.md",
           "cp packages/barrel/to/package.json dist/packages/barrel/to/package.json",
           "uglifyjs dist/packages/barrel/to/index.mjs -o dist/packages/barrel/to/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/barrel/to/index.cjs -o dist/packages/barrel/to/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/barrel/to/index.d.cts",
           "rm -rf dist/packages/barrel/to/index.mjs",
           "rm -rf dist/packages/barrel/to/index.cjs"
         ],

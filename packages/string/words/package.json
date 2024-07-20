@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/string-words",
   "description": "A utility to convert a string into an array of words",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,13 +13,18 @@
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
   "type": "module",
-  "types": "index.d.ts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
   "exports": {
     ".": {
-      "import": "./index.min.mjs",
-      "require": "./index.min.cjs"
+      "import": {
+        "types": "./index.d.mts",
+        "default": "./index.min.mjs"
+      },
+      "require": {
+        "types": "./index.d.cts",
+        "default": "./index.min.cjs"
+      }
     }
   },
   "keywords": [

@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/guard/function/*",
           "rollup -c packages/guard/function/rollup.config.mjs",
-          "mv dist/packages/guard/function/index.d.mts dist/packages/guard/function/index.d.ts",
           "cp packages/guard/function/README.md dist/packages/guard/function/README.md",
           "cp LICENSE.md dist/packages/guard/function/LICENSE.md",
           "cp SECURITY.md dist/packages/guard/function/SECURITY.md",
           "cp packages/guard/function/package.json dist/packages/guard/function/package.json",
           "uglifyjs dist/packages/guard/function/index.mjs -o dist/packages/guard/function/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/guard/function/index.cjs -o dist/packages/guard/function/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/guard/function/index.d.cts",
           "rm -rf dist/packages/guard/function/index.mjs",
           "rm -rf dist/packages/guard/function/index.cjs"
         ],

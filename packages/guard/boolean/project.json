@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/guard/boolean/*",
           "rollup -c packages/guard/boolean/rollup.config.mjs",
-          "mv dist/packages/guard/boolean/index.d.mts dist/packages/guard/boolean/index.d.ts",
           "cp packages/guard/boolean/README.md dist/packages/guard/boolean/README.md",
           "cp LICENSE.md dist/packages/guard/boolean/LICENSE.md",
           "cp SECURITY.md dist/packages/guard/boolean/SECURITY.md",
           "cp packages/guard/boolean/package.json dist/packages/guard/boolean/package.json",
           "uglifyjs dist/packages/guard/boolean/index.mjs -o dist/packages/guard/boolean/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/guard/boolean/index.cjs -o dist/packages/guard/boolean/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/guard/boolean/index.d.cts",
           "rm -rf dist/packages/guard/boolean/index.mjs",
           "rm -rf dist/packages/guard/boolean/index.cjs"
         ],
