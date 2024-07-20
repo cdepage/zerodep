@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/address/country/*",
           "rollup -c packages/address/country/rollup.config.mjs",
-          "mv dist/packages/address/country/index.d.mts dist/packages/address/country/index.d.ts",
           "cp packages/address/country/README.md dist/packages/address/country/README.md",
           "cp LICENSE.md dist/packages/address/country/LICENSE.md",
           "cp SECURITY.md dist/packages/address/country/SECURITY.md",
           "cp packages/address/country/package.json dist/packages/address/country/package.json",
           "uglifyjs dist/packages/address/country/index.mjs -o dist/packages/address/country/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/address/country/index.cjs -o dist/packages/address/country/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/address/country/index.d.cts",
           "rm -rf dist/packages/address/country/index.mjs",
           "rm -rf dist/packages/address/country/index.cjs"
         ],

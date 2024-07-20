@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/types",
   "description": "A collection of Typescript literal union types",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,9 +12,15 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
-  "types": "index.d.ts",
   "exports": {
-    "types": "./index.d.ts"
+    ".": {
+      "import": {
+        "types": "./index.d.ts"
+      },
+      "require": {
+        "types": "./index.d.ts"
+      }
+    }
   },
   "keywords": [
     "typescript",

@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/address/parse/*",
           "rollup -c packages/address/parse/rollup.config.mjs",
-          "mv dist/packages/address/parse/index.d.mts dist/packages/address/parse/index.d.ts",
           "cp packages/address/parse/README.md dist/packages/address/parse/README.md",
           "cp LICENSE.md dist/packages/address/parse/LICENSE.md",
           "cp SECURITY.md dist/packages/address/parse/SECURITY.md",
           "cp packages/address/parse/package.json dist/packages/address/parse/package.json",
           "uglifyjs dist/packages/address/parse/index.mjs -o dist/packages/address/parse/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/address/parse/index.cjs -o dist/packages/address/parse/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/address/parse/index.d.cts",
           "rm -rf dist/packages/address/parse/index.mjs",
           "rm -rf dist/packages/address/parse/index.cjs"
         ],

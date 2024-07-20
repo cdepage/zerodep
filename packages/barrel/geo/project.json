@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/barrel/geo/*",
           "rollup -c packages/barrel/geo/rollup.config.mjs",
-          "mv dist/packages/barrel/geo/index.d.mts dist/packages/barrel/geo/index.d.ts",
           "cp packages/barrel/geo/README.md dist/packages/barrel/geo/README.md",
           "cp LICENSE.md dist/packages/barrel/geo/LICENSE.md",
           "cp SECURITY.md dist/packages/barrel/geo/SECURITY.md",
           "cp packages/barrel/geo/package.json dist/packages/barrel/geo/package.json",
           "uglifyjs dist/packages/barrel/geo/index.mjs -o dist/packages/barrel/geo/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/barrel/geo/index.cjs -o dist/packages/barrel/geo/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/barrel/geo/index.d.cts",
           "rm -rf dist/packages/barrel/geo/index.mjs",
           "rm -rf dist/packages/barrel/geo/index.cjs"
         ],

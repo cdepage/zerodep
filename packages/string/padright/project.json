@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/string/padright/*",
           "rollup -c packages/string/padright/rollup.config.mjs",
-          "mv dist/packages/string/padright/index.d.mts dist/packages/string/padright/index.d.ts",
           "cp packages/string/padright/README.md dist/packages/string/padright/README.md",
           "cp LICENSE.md dist/packages/string/padright/LICENSE.md",
           "cp SECURITY.md dist/packages/string/padright/SECURITY.md",
           "cp packages/string/padright/package.json dist/packages/string/padright/package.json",
           "uglifyjs dist/packages/string/padright/index.mjs -o dist/packages/string/padright/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/string/padright/index.cjs -o dist/packages/string/padright/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/string/padright/index.d.cts",
           "rm -rf dist/packages/string/padright/index.mjs",
           "rm -rf dist/packages/string/padright/index.cjs"
         ],

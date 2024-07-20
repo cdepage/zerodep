@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/address/normalize/*",
           "rollup -c packages/address/normalize/rollup.config.mjs",
-          "mv dist/packages/address/normalize/index.d.mts dist/packages/address/normalize/index.d.ts",
           "cp packages/address/normalize/README.md dist/packages/address/normalize/README.md",
           "cp LICENSE.md dist/packages/address/normalize/LICENSE.md",
           "cp SECURITY.md dist/packages/address/normalize/SECURITY.md",
           "cp packages/address/normalize/package.json dist/packages/address/normalize/package.json",
           "uglifyjs dist/packages/address/normalize/index.mjs -o dist/packages/address/normalize/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/address/normalize/index.cjs -o dist/packages/address/normalize/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/address/normalize/index.d.cts",
           "rm -rf dist/packages/address/normalize/index.mjs",
           "rm -rf dist/packages/address/normalize/index.cjs"
         ],

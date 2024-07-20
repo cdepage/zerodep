@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/geo/country/*",
           "rollup -c packages/geo/country/rollup.config.mjs",
-          "mv dist/packages/geo/country/index.d.mts dist/packages/geo/country/index.d.ts",
           "cp packages/geo/country/README.md dist/packages/geo/country/README.md",
           "cp LICENSE.md dist/packages/geo/country/LICENSE.md",
           "cp SECURITY.md dist/packages/geo/country/SECURITY.md",
           "cp packages/geo/country/package.json dist/packages/geo/country/package.json",
           "uglifyjs dist/packages/geo/country/index.mjs -o dist/packages/geo/country/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/geo/country/index.cjs -o dist/packages/geo/country/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/geo/country/index.d.cts",
           "rm -rf dist/packages/geo/country/index.mjs",
           "rm -rf dist/packages/geo/country/index.cjs"
         ],

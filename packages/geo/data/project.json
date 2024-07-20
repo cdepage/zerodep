@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/geo/data/*",
           "rollup -c packages/geo/data/rollup.config.mjs",
-          "mv dist/packages/geo/data/index.d.mts dist/packages/geo/data/index.d.ts",
           "cp packages/geo/data/README.md dist/packages/geo/data/README.md",
           "cp LICENSE.md dist/packages/geo/data/LICENSE.md",
           "cp SECURITY.md dist/packages/geo/data/SECURITY.md",
           "cp packages/geo/data/package.json dist/packages/geo/data/package.json",
           "uglifyjs dist/packages/geo/data/index.mjs -o dist/packages/geo/data/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/geo/data/index.cjs -o dist/packages/geo/data/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/geo/data/index.d.cts",
           "rm -rf dist/packages/geo/data/index.mjs",
           "rm -rf dist/packages/geo/data/index.cjs"
         ],

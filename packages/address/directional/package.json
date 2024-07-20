@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-directional",
   "description": "A parser to find where a directional name or abbreviation is in a string",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,14 +12,19 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
-  "types": "index.d.ts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./index.min.mjs",
-      "require": "./index.min.cjs"
+      "import": {
+        "types": "./index.d.mts",
+        "default": "./index.min.mjs"
+      },
+      "require": {
+        "types": "./index.d.cts",
+        "default": "./index.min.cjs"
+      }
     }
   },
   "keywords": [

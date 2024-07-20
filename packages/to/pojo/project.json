@@ -10,14 +10,12 @@
         "commands": [
           "rm -rf dist/packages/to/pojo/*",
           "rollup -c packages/to/pojo/rollup.config.mjs",
-          "mv dist/packages/to/pojo/index.d.mts dist/packages/to/pojo/index.d.ts",
           "cp packages/to/pojo/README.md dist/packages/to/pojo/README.md",
           "cp LICENSE.md dist/packages/to/pojo/LICENSE.md",
           "cp SECURITY.md dist/packages/to/pojo/SECURITY.md",
           "cp packages/to/pojo/package.json dist/packages/to/pojo/package.json",
           "uglifyjs dist/packages/to/pojo/index.mjs -o dist/packages/to/pojo/index.min.mjs -c --no-annotations",
           "uglifyjs dist/packages/to/pojo/index.cjs -o dist/packages/to/pojo/index.min.cjs -c --no-annotations",
-          "rm -rf dist/packages/to/pojo/index.d.cts",
           "rm -rf dist/packages/to/pojo/index.mjs",
           "rm -rf dist/packages/to/pojo/index.cjs"
         ],
