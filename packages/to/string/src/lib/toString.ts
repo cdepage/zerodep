@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable sonarjs/cognitive-complexity */
 import { ZeroDepError } from '@zerodep/errors';
 import { isArray } from '@zerodep/is-array';
 import { isBigInt } from '@zerodep/is-bigint';
@@ -82,7 +82,7 @@ export const toString = (value: Stringifiables): string => {
 
   // let's try to stringify any remaining objects, maps, whatever is left
   try {
-    // @ts-ignore
+    // @ts-expect-error - unknown value type allowed here
     return JSON.stringify(toPojo(value));
   } catch {
     const error = new ZeroDepError('Cannot convert to string');

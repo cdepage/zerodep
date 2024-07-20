@@ -43,8 +43,6 @@ export const guardObjectHOF = (options: GuardObjectOptions = {}) => {
       error.value = value;
       throw error;
     }
-
-    return;
   };
 };
 

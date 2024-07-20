@@ -1,4 +1,3 @@
-import { caseSentence } from '@zerodep/case-sentence';
 import { ZeroDepError } from '@zerodep/errors';
 import { caseSnake } from './caseSnake';
 

@@ -159,6 +159,7 @@ describe('addressParse', () => {
     });
   });
 
+  // eslint-disable-next-line
   // TODO: fix this so the building is correctly identified
   it('should parse an highway contract address', () => {
     const addy = '10135 starr st sw';

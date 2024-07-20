@@ -33,7 +33,7 @@ describe('structCollectionFactory', () => {
     it('should convert to an array', () => {
       collection.add(10);
       collection.add(20);
-      collection.add(20);
+      collection.add(20); // eslint-disable-line sonarjs/no-element-overwrite
       expect(collection.toArray()).toEqual([10, 20]);
     });
 

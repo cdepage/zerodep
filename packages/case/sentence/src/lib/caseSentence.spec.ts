@@ -1,4 +1,3 @@
-import { casePascal } from '@zerodep/case-pascal';
 import { ZeroDepError } from '@zerodep/errors';
 import { caseSentence } from './caseSentence';
 

@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity, @typescript-eslint/no-non-null-assertion */
 import { ZeroDepError } from '@zerodep/errors';
 import { isBigInt } from '@zerodep/is-bigint';
 import { isDate } from '@zerodep/is-date';
@@ -127,7 +128,7 @@ const monthMap: Record<string, number> = {
 };
 
 const breakDateIntoPieces = (value: string) => {
-  const [dateString, timeString] = value.split('T');
+  const [dateString] = value.split('T');
   const datePieces = stringDeburr(dateString)
     .toLowerCase()
     .replace(/[/. ]/g, '-')
@@ -174,7 +175,6 @@ const breakDateIntoPieces = (value: string) => {
   if (!yyyy && remainderDatePieces.length) {
     yyyy = remainderDatePieces.shift()!;
   }
-  // console.log({ value, yyyy, mm, dd, hr, min, sec, msec, tz });
 
   if (yyyy && mm && dd) {
     mm = stringPadLeft(mm, 2, '0');
@@ -188,7 +188,6 @@ const breakDateIntoPieces = (value: string) => {
       yyyy = `${prefix}${stringPadLeft(yyyy, 2, '0')}`;
     }
 
-    // console.log(`${yyyy}-${mm}-${dd}T${hr}:${min}:${sec}.${msec}${tz}`);
     return new Date(`${yyyy}-${mm}-${dd}T${hr}:${min}:${sec}.${msec}${tz}`);
   }
 

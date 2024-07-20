@@ -58,6 +58,7 @@ const stateZips = [
   { min: 82000, max: 83199, iso2: 'WY' },
 ];
 
+// eslint-disable-next-line
 // TODO: Canadian Postal Codes
 
 interface IResult {

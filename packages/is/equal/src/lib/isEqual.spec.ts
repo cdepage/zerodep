@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-primitive-wrappers, sonarjs/no-empty-function, sonarjs/duplicates-in-character-class, sonarjs/concise-regex, sonarjs/prefer-promise-shorthand, sonarjs/single-char-in-character-classes */
 import { isEqual } from './isEqual';
 
 const stringObj = new String('c');

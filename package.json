@@ -63,6 +63,7 @@
     "docsify-cli": "4.4.4",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-sonarjs": "1.0.4-alpha.1",
     "fixpack": "4.0.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",

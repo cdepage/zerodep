@@ -7,7 +7,7 @@ export const caseSnake = (value: string): string => {
   const snake = stringDeburr(value)
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/[^a-z0-9]/gi, ' ')
-    .replace(/^[0-9]+/, '')
+    .replace(/^\d+/, '')
     .trim()
     .replace(/ +/g, '_');
 

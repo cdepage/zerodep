@@ -34,8 +34,6 @@ export const guardNumberHOF = (options: GuardNumberOptions = {}) => {
       error.value = value;
       throw error;
     }
-
-    return;
   };
 };
 

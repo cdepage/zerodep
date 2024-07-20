@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/slow-regex, sonarjs/regex-complexity */
 import { ZeroDepError } from '@zerodep/errors';
 import { stringDeburr } from '@zerodep/string-deburr';
 

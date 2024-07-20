@@ -10,8 +10,6 @@ export const guardFunctionHOF = () => {
       error.value = value;
       throw error;
     }
-
-    return;
   };
 };
 

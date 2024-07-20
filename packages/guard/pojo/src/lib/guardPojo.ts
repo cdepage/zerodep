@@ -44,8 +44,6 @@ export const guardPojoHOF = (options: GuardPojoOptions = {}) => {
       error.value = value;
       throw error;
     }
-
-    return;
   };
 };
 

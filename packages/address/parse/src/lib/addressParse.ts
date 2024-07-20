@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity, sonarjs/concise-regex  */
 import { addressCountry } from '@zerodep/address-country';
 import { addressDirectional } from '@zerodep/address-directional';
 import { addressNormalize } from '@zerodep/address-normalize';
@@ -117,7 +118,7 @@ export const addressParse = (
   const pieces: any[] = [];
   const terms = stringWords(address.normalized);
   let offset = 0;
-  terms.forEach((term, ndx) => {
+  terms.forEach((term) => {
     const type: string[] = [];
     if (countryTerms.includes(term)) type.push('country');
     if (zipTerms.includes(term)) type.push('zip');
@@ -127,7 +128,7 @@ export const addressParse = (
     if (secondaryTerms.includes(term)) type.push('secondary');
     if (!type.length) type.push('unknown');
 
-    const isNumeric = !/[^0-9]/g.test(term);
+    const isNumeric = !/D/g.test(term);
 
     pieces.push({
       term,
@@ -140,7 +141,6 @@ export const addressParse = (
 
   // order the pieces backwards for parsing sanity
   pieces.reverse();
-  // console.log(pieces);
 
   //
   // STEP 5: add suggestions to what the next items may be based on previous items
@@ -456,11 +456,6 @@ export const addressParse = (
     address.building = `${address.secondaryNumber} ${address.building}`;
     address.secondaryNumber = undefined;
   }
-
-  // console.log(options);
-  // console.log('stash', stash);
-  // console.log('pieces', pieces);
-  // console.log('address', address);
 
   //
   // STEP 7: inject options

@@ -1,5 +1,5 @@
-/* eslint-disable no-case-declarations */
-import {ZeroDepError} from '@zerodep/errors';
+/* eslint-disable no-case-declarations, sonarjs/cognitive-complexity */
+import { ZeroDepError } from '@zerodep/errors';
 
 const getType = Object.prototype.toString;
 

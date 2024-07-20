@@ -34,8 +34,6 @@ export const guardIntegerHOF = (options: GuardIntegerOptions = {}) => {
       error.value = value;
       throw error;
     }
-
-    return;
   };
 };
 

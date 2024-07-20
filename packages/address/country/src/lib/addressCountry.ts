@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 import { geoCountryNameMap } from '@zerodep/geo-data';
 import { CountryIso2 } from '@zerodep/types';
 

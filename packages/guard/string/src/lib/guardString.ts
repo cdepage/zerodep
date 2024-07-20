@@ -44,8 +44,6 @@ export const guardStringHOF = (options: GuardStringOptions = {}) => {
       error.value = value;
       throw error;
     }
-
-    return;
   };
 };
 

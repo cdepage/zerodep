@@ -7,8 +7,8 @@ export const casePascal = (value: string): string => {
 
   const pascal = stringDeburr(value)
     .replace(/([a-z])([A-Z])/g, '$1 $2')
-    .replace(/[^a-z0-9]/gi, ' ')
-    .replace(/^[0-9]+/, '')
+    .replace(/[^a-z\d]/gi, ' ')
+    .replace(/^\d+/, '')
     .replace(/ +/g, ' ')
     .split(' ')
     .map((val) => stringUpperFirst(val))

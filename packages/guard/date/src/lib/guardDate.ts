@@ -37,8 +37,6 @@ export const guardDateHOF = (options: GuardDateOptions = {}) => {
       error.value = value;
       throw error;
     }
-
-    return;
   };
 };
 

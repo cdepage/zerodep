@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-dead-store, @typescript-eslint/no-unused-vars */
 import { ZeroDepError } from '@zerodep/errors';
 
 export const colorHex2Hsl = (hex: string): string => {

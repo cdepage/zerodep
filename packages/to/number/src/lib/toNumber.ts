@@ -44,16 +44,6 @@ const numberFromLocaleString = (value: unknown): number | null => {
     }
   }
 
-  // certain locales use a comma as a decimal point, if we're in one of those locales treat it as such (as we've got this far with no success)
-  // TODO: re-enable if required
-  // if (localeDecimalChar === ',') {
-  //   const possibleNumber4 = cleanedValue.replace(',', '.');
-  //   const try4 = Number(possibleNumber4);
-  //   if (isNumber(try4)) {
-  //     return try4;
-  //   }
-  // }
-
   // nope, can't figure out what the number is, if it even is a number
   return null;
 };

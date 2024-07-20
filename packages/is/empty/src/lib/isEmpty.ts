@@ -47,17 +47,13 @@ export const isEmpty = (value: unknown): boolean => {
     }
 
     // less common things likely used in this function
-    if (
+    return !(
       isRegex(value) ||
       isFunction(value) ||
       isPromise(value) ||
       isSymbol(value) ||
       isError(value)
-    ) {
-      return false;
-    }
-
-    return true;
+    );
   } catch {
     // anything that isn't handled by the above code is definitely false
     return false;

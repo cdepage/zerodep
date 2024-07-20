@@ -2,6 +2,16 @@ import { geoStateNameMapCA, geoStateNameMapUS } from '@zerodep/geo-data';
 import { stringDeburr } from '@zerodep/string-deburr';
 import { CountryIso2, StateCaAbbr, StateUsAbbr } from '@zerodep/types';
 
+const findInMap = (map: Map<string, string[]>, state: string): string => {
+  const lcState = state.toLowerCase();
+  for (const [stateIso, names] of map.entries()) {
+    if (names.includes(lcState)) {
+      return stateIso;
+    }
+  }
+  return '';
+};
+
 export const geoStateIso = (
   state: string,
   country?: 'US' | 'CA' | 'us' | 'ca'
@@ -17,11 +27,9 @@ export const geoStateIso = (
     if (geoStateNameMapUS.has(ucState)) {
       return [ucState, 'US'];
     }
-    const lcState = ucState.toLowerCase();
-    for (const [stateIso, names] of geoStateNameMapUS.entries()) {
-      if (names.includes(lcState)) {
-        return [stateIso, 'US'];
-      }
+    const stateIsoUs = findInMap(geoStateNameMapUS, ucState);
+    if (stateIsoUs) {
+      return [stateIsoUs as StateUsAbbr, 'US'];
     }
   }
 
@@ -30,11 +38,9 @@ export const geoStateIso = (
     if (geoStateNameMapCA.has(ucState)) {
       return [ucState, 'CA'];
     }
-    const lcState = ucState.toLowerCase();
-    for (const [stateIso, names] of geoStateNameMapCA.entries()) {
-      if (names.includes(lcState)) {
-        return [stateIso, 'CA'];
-      }
+    const stateIsoCa = findInMap(geoStateNameMapCA, ucState);
+    if (stateIsoCa) {
+      return [stateIsoCa as StateCaAbbr, 'CA'];
     }
   }
 

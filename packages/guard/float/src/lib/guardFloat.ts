@@ -34,8 +34,6 @@ export const guardFloatHOF = (options: GuardFloatOptions = {}) => {
       error.value = value;
       throw error;
     }
-
-    return;
   };
 };
 

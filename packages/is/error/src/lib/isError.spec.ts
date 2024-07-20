@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-identical-functions */
 import { testData } from '../../../../testValues';
 import { isError } from './isError';
 

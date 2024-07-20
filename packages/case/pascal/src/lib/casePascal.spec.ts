@@ -1,4 +1,3 @@
-import { caseKebab } from '@zerodep/case-kebab';
 import { ZeroDepError } from '@zerodep/errors';
 import { casePascal } from './casePascal';
 

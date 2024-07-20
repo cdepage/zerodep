@@ -35,8 +35,6 @@ export const guardBigIntHOF = (options: GuardBigIntOptions = {}) => {
       error.value = value;
       throw error;
     }
-
-    return;
   };
 };
 

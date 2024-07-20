@@ -3,6 +3,7 @@ import { testData } from '../../../../testValues';
 import { toDate } from './toDate';
 
 // extract the positive test cases, the rest will be negative
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const {
   strings,
   bigInts,
@@ -14,6 +15,8 @@ const {
   ...rest
 } = testData;
 const negativeCases = Object.values(rest).flat();
+
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 describe('toDate', () => {
   it('should return a date when a date is provided', () => {
