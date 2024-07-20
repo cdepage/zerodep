@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-eventemitter",
   "description": "A factory function to add event emitting capabilities to any object factory",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "types": "index.d.mts",
   "type": "module",
   "main": "index.min.cjs",
   "module": "index.min.mjs",

@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/to",
   "description": "A set of functions to convert between data types",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "types": "index.d.mts",
   "type": "module",
   "main": "index.min.cjs",
   "module": "index.min.mjs",

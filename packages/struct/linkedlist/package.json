@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-linkedlist",
   "description": "A factory that returns an optionally-typed, iterable Linked List data structure.",
-  "version": "2.5.8",
+  "version": "2.5.9",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "types": "index.d.mts",
   "type": "module",
   "main": "index.min.cjs",
   "module": "index.min.mjs",

@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/to-integer",
   "description": "A utility to convert a value to an integer",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "types": "index.d.mts",
   "type": "module",
   "main": "index.min.cjs",
   "module": "index.min.mjs",

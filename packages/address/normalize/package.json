@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-normalize",
   "description": "A utility that normalizes an address string for ease of parsing",
-  "version": "2.4.7",
+  "version": "2.4.8",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "types": "index.d.mts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
   "type": "module",

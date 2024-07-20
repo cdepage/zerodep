@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is",
   "description": "A collection of utility methods to determine type, classification or equality",
-  "version": "2.1.10",
+  "version": "2.1.12",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "types": "index.d.mts",
   "type": "module",
   "main": "index.min.cjs",
   "module": "index.min.mjs",

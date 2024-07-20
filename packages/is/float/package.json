@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-float",
   "description": "A utility to determine if a value is a finite float",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "types": "index.d.mts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
   "type": "module",

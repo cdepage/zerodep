@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-zip",
   "description": "A parser to find where zip/postal codes (and US 5-digit extensions) are in a string",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "types": "index.d.mts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
   "type": "module",

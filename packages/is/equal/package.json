@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-equal",
   "description": "A utility to compare two values of any type for equality by value",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "types": "index.d.mts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
   "type": "module",

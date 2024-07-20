@@ -37,6 +37,7 @@
     "npm:patch:affected": "nx affected --target=patch",
     "npm:minor:affected": "nx affected --target=minor",
     "npm:major:affected": "nx affected --target=major",
+    "npm:publish": "nx release publish -y --access=public",
     "----- NX ----------------": "",
     "nxUpdate": "npx nx migrate latest",
     "nxMigrate": "npx nx migrate --run-migrations --verbose --if-exists",
