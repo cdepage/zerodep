@@ -34,6 +34,12 @@ describe('toBoolean', () => {
     ['"oui"', 'oui', true],
     ['"ouais"', 'ouais', true],
     ['"o"', 'o', true],
+    ['2', 2, true],
+    ['2n', 2n, true],
+    ['"3"', '3', true],
+    ['"3n"', '3n', true],
+    ['"8.675.309,123"', '8.675.309,123', true],
+    ['"any other big string"', 'any other big string', true],
 
     ['false', false, false],
     ['0', 0, false],
@@ -47,6 +53,11 @@ describe('toBoolean', () => {
     ['"no"', 'no', false],
     ['"non"', 'non', false],
     ['"n"', 'n', false],
+    ['-2', -2, false],
+    ['-2n', -2n, false],
+    ['"-3"', '-3', false],
+    ['"-3n"', '-3n', false],
+    ['"-8.675.309,123"', '-8.675.309,123', false],
     ['""', '', false],
     ['null', null, false],
     ['undefined', undefined, false],
@@ -77,11 +88,6 @@ describe('toBoolean', () => {
     ['Function', testFunction1],
     ['RegExp', testRegex1],
     ['NaN', NaN],
-    ['42', 42],
-    ['42n', 42n],
-    ['-1', -1],
-    ['-1n', -1n],
-    ['a string', 'a string'],
   ];
   // @ts-ignore
   test.each(exceptionCases)('should not convert a %s', (title, value) => {

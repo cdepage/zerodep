@@ -12,16 +12,49 @@
 
 A utility to reliably convert a value to a boolean. Consideration for common boolean-like words and abbreviations are included. Values that cannot reliably be converted to a boolean will cause a `ZeroDepError` to be thrown.
 
-This method behaves differently than the native `Boolean()` method:
+This method behaves differently than the native `Boolean()` coercion method:
+
+**Numbers**
+
+- native method will convert any non-zero number to `true` (including negative values)
+- this `toBoolean` method will convert positive numbers to `true`, zero and negative values to `false`
+- this `toBoolean` method will throw an exception for `NaN` values
+
+**BigInts**
+
+- native method will convert all BigInts to `true` (even On)
+- this `toBoolean` method will convert positive BigInt values to `true`, zero and negative values to `false`
+
+**Strings**
 
 - native method will convert any non-empty string to `true`
-- native method will convert objects, Symbols and non-zero BigInts to `true`
-- native method will convert any non-zero number to true (including negative values)
-- native method will convert `NaN` to false
-- this `toBoolean` method will convert specific truthy/falsy strings and abbreviations to the appropriate boolean value
-- this `toBoolean` method will convert 0 or 1 integers and BigInts to boolean equivalents, and throw an error for all other values
-- this `toBoolean` method will convert empty POJOs, arrays, Sets and Maps to `false`, those with one or more values to `true`
-- this `toBoolean` method will throw an error for all other `object` types
+- this `toBoolean` method will convert specific truthy/falsy strings and abbreviations to the appropriate boolean values, otherwise strings with length are `true`
+- this `toBoolean` method will convert numbers or BigInts represented as strings as per the logic for Numbers and BigInts (above)
+
+**Arrays**
+
+- native method will convert arrays to `true`
+- this `toBoolean` method will convert empty arrays to `false` and arrays with one or more items to `true`
+
+**POJOs**
+
+- native method will convert any POJOs to `true`
+- this `toBoolean` method will convert empty POJOs to `false` and POJOs with any values `true`
+
+**Dates**
+
+- native method will convert any Date to `true`
+- this `toBoolean` method will throw an exception for a Date as it cannot be reliably converted to a boolean
+
+**Sets and Maps**
+
+- native method will convert any Set or Map to `true`
+- this `toBoolean` method will convert empty Sets and Maps to `false` and Sets and Maps with any values `true`
+
+**Others**
+
+- native method will convert anything with a type of "object" to `true` - this includes Symbols, Promises, Classes, WeakMaps, WeakSets, Functions, Regular Expressions, TypedArrays and Generators
+- this `toBoolean` method will throw an exception for any other type as they cannot be reliably converted to a boolean
 
 ## Signature
 
@@ -70,52 +103,65 @@ toBoolean('non'); // false
 toBoolean('n'); // false
 toBoolean(''); // false
 
-// boolean-like numbers as strings
+// boolean-like numbers as strings are treated as numbers
 toBoolean('1'); // true
 toBoolean('0'); // false <-- number "0"
 toBoolean('-0'); // false <-- number "0"
-toBoolean('2'); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean('-1'); // throws ZeroDepError: Cannot reliably convert to boolean
 
-// numbers
+// numerical strings
+toBoolean('171.3'); // true
+toBoolean('3e8'); // true
+toBoolean('8,675,309'); // true
+toBoolean('8.675.309,123'); // true
+toBoolean('-171.3'); // false
+toBoolean('-3e8'); // false
+toBoolean('-8,675,309'); // false
+toBoolean('-8.675.309,123'); // false
+
+// any string that isn't a number or BigInt or one of the keywords/letters above
+toBoolean('string of any length'); // true
+
+// numbers - positive numbers are truthy, negative numbers are falsy, zero is always falsy
 toBoolean(1); // true
+toBoolean(42); // true
+toBoolean(3.14); // true
+toBoolean(100e10); // true
 toBoolean(0); // false
 toBoolean(-0); // false
-toBoolean(42); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean(3.14); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean(100e10); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(-42); // false
+toBoolean(-3.14); // false
+toBoolean(-100e10); // false
+toBoolean(NaN); // // throws ZeroDepError: Cannot reliably convert to boolean
 
-// bigint
+// bigint - positive values are truthy, negative values are falsy, zero is always falsy
 toBoolean(1n); // true
+toBoolean(42n); // true
 toBoolean(0n); // false
 toBoolean(-0n); // false
-toBoolean(42n); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(-42n); // false
 
 // empty values
 toBoolean(null); // false
 toBoolean(undefined); // false
 
-// numerical strings
-toBoolean('-171.3'); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean('3e8'); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean('8,675,309'); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean('8.675.309,123'); // throws ZeroDepError: Cannot reliably convert to boolean
-
 // dates
 toBoolean(new Date('2022-04-22T10:30:00.000Z')); // throws ZeroDepError: Cannot reliably convert to boolean
 
-// objects
+// objects - empty are falsy, non-empty are truthy
 toBoolean({}); // false
 toBoolean({ an: 'object' }); // true
 
+// arrats - empty are falsy, non-empty are truthy
 toBoolean([]); // false
 toBoolean(['an', 'array']); // true
 toBoolean([false]); // true <-- CAUTION: content not evaluated
 
+// sets - empty are falsy, non-empty are truthy
 toBoolean(new Set()); // false
 toBoolean(new Set([0, 1, 2])); // true
 toBoolean(new Set([0])); // true <-- CAUTION: content not evaluated
 
+// maps - empty are falsy, non-empty are truthy
 toBoolean(new Map()); // false
 toBoolean(new Map([['a', 'anything']])); // true
 ```

@@ -55,52 +55,65 @@ toBoolean('non'); // false
 toBoolean('n'); // false
 toBoolean(''); // false
 
-// boolean-like numbers as strings
+// boolean-like numbers as strings are treated as numbers
 toBoolean('1'); // true
 toBoolean('0'); // false <-- number "0"
 toBoolean('-0'); // false <-- number "0"
-toBoolean('2'); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean('-1'); // throws ZeroDepError: Cannot reliably convert to boolean
 
-// numbers
+// numerical strings
+toBoolean('171.3'); // true
+toBoolean('3e8'); // true
+toBoolean('8,675,309'); // true
+toBoolean('8.675.309,123'); // true
+toBoolean('-171.3'); // false
+toBoolean('-3e8'); // false
+toBoolean('-8,675,309'); // false
+toBoolean('-8.675.309,123'); // false
+
+// any string that isn't a number or BigInt or one of the keywords/letters above
+toBoolean('string of any length'); // true
+
+// numbers - positive numbers are truthy, negative numbers are falsy, zero is always falsy
 toBoolean(1); // true
+toBoolean(42); // true
+toBoolean(3.14); // true
+toBoolean(100e10); // true
 toBoolean(0); // false
 toBoolean(-0); // false
-toBoolean(42); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean(3.14); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean(100e10); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(-42); // false
+toBoolean(-3.14); // false
+toBoolean(-100e10); // false
+toBoolean(NaN); // // throws ZeroDepError: Cannot reliably convert to boolean
 
-// bigint
+// bigint - positive values are truthy, negative values are falsy, zero is always falsy
 toBoolean(1n); // true
+toBoolean(42n); // true
 toBoolean(0n); // false
 toBoolean(-0n); // false
-toBoolean(42n); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(-42n); // false
 
 // empty values
 toBoolean(null); // false
 toBoolean(undefined); // false
 
-// numerical strings
-toBoolean('-171.3'); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean('3e8'); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean('8,675,309'); // throws ZeroDepError: Cannot reliably convert to boolean
-toBoolean('8.675.309,123'); // throws ZeroDepError: Cannot reliably convert to boolean
-
 // dates
 toBoolean(new Date('2022-04-22T10:30:00.000Z')); // throws ZeroDepError: Cannot reliably convert to boolean
 
-// objects
+// objects - empty are falsy, non-empty are truthy
 toBoolean({}); // false
 toBoolean({ an: 'object' }); // true
 
+// arrats - empty are falsy, non-empty are truthy
 toBoolean([]); // false
 toBoolean(['an', 'array']); // true
 toBoolean([false]); // true <-- CAUTION: content not evaluated
 
+// sets - empty are falsy, non-empty are truthy
 toBoolean(new Set()); // false
 toBoolean(new Set([0, 1, 2])); // true
 toBoolean(new Set([0])); // true <-- CAUTION: content not evaluated
 
+// maps - empty are falsy, non-empty are truthy
 toBoolean(new Map()); // false
 toBoolean(new Map([['a', 'anything']])); // true
 ```
