@@ -40,6 +40,14 @@ describe('toBoolean', () => {
     ['"3n"', '3n', true],
     ['"8.675.309,123"', '8.675.309,123', true],
     ['"any other big string"', 'any other big string', true],
+    ['"12D"', '12D', true], // not a number, should be treated as a string
+    ['"-12D"', '-12D', true], // not a number, should be treated as a string
+    ['"3.14x"', '3.14x', true], // not a number, should be treated as a string
+    ['"-3.14x"', '-3.14x', true], // not a number, should be treated as a string
+    ['"a12"', 'a12', true], // not a number, should be treated as a string
+    ['"-a12"', '-a12', true], // not a number, should be treated as a string
+    ['"a3.14"', 'a3.14', true], // not a number, should be treated as a string
+    ['"-a3.14"', '-a3.14', true], // not a number, should be treated as a string
 
     ['false', false, false],
     ['0', 0, false],

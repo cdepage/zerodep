@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/app",
   "description": "A modern library/monorepo of high-quality, zero-dependency, fully typed, fully tested, tree-shakeable utilities, parsers, data structure factories, converters and other capabilities ",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -75,10 +75,12 @@ export const toBoolean = (value: unknown): boolean => {
     }
 
     // bigint or number provided as string
-    try {
-      return BigInt(parseInt(value as string, 10)) > 0n;
-    } catch {
-      // not a bigint or number
+    if (/^-?\d+n?$/.test((value as string).replace(/[,.]/g, ''))) {
+      try {
+        return BigInt(parseInt(value as string, 10)) > 0n;
+      } catch {
+        // not a bigint or number
+      }
     }
 
     // any string not handled above is truthy
