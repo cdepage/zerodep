@@ -110,7 +110,7 @@ toBoolean({ an: 'object' }); // true
 
 toBoolean([]); // false
 toBoolean(['an', 'array']); // true
-toBoolean([true]); // false <-- CAUTION: content not evaluated
+toBoolean([false]); // true <-- CAUTION: content not evaluated
 
 toBoolean(new Set()); // false
 toBoolean(new Set([0, 1, 2])); // true
