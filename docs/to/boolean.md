@@ -59,7 +59,7 @@ This method behaves differently than the native `Boolean()` coercion method:
 ## Signature
 
 ```typescript
-const toBoolean: (value: unknown) => number;
+const toBoolean: (value: unknown) => boolean;
 ```
 
 ### Function Parameters
