@@ -12,6 +12,14 @@
 
 A utility to reliably convert a value to a boolean. Consideration for common boolean-like words and abbreviations are included. Values that cannot reliably be converted to a boolean will cause a `ZeroDepError` to be thrown.
 
+## Signature
+
+```typescript
+const toBoolean: (value: unknown) => boolean;
+```
+
+## Behaviours
+
 This method behaves differently than the native `Boolean()` coercion method:
 
 **Numbers**
@@ -56,11 +64,6 @@ This method behaves differently than the native `Boolean()` coercion method:
 - native method will convert anything with a type of "object" to `true` - this includes Symbols, Promises, Classes, WeakMaps, WeakSets, Functions, Regular Expressions, TypedArrays and Generators
 - this `toBoolean` method will throw an exception for any other type as they cannot be reliably converted to a boolean
 
-## Signature
-
-```typescript
-const toBoolean: (value: unknown) => boolean;
-```
 
 ### Function Parameters
 
