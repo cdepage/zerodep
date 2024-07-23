@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/case-dot",
   "description": "A utility to convert a string to dot.case",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "license": "MIT",
   "repository": {
     "type": "git",

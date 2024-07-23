@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-eventemitter",
   "description": "A factory function to add event emitting capabilities to any object factory",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "license": "MIT",
   "repository": {
     "type": "git",

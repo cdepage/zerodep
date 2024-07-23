@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-number",
   "description": "A utility to determine if a value is a finite float or integer",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "license": "MIT",
   "repository": {
     "type": "git",
