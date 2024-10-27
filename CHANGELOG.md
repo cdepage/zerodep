@@ -25,7 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 **Updated**
 
-- improve the documentation for every `address`, `case`, `guard`, `is`, `string`, and `to` function/converter/factory with better descriptions and examples
+- improve the documentation for every `is`, `guard`, `string`, and `to` function/converter/factory with better descriptions and examples
 
 ---
 
