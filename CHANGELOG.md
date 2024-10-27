@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+### Unreleased/Next
+
+**Updated**
+
+- improve accuracy of `addressParse()` 
+
+---
+
 ### Release 2.10.0
 
 **Added**
