@@ -14,7 +14,7 @@ import { isWeakMap } from '@zerodep/is-weakmap';
 import { isWeakSet } from '@zerodep/is-weakset';
 import { toPojo } from '@zerodep/to-pojo';
 
-export type Stringifiables =
+export type Stringifiable =
   | bigint
   | boolean
   | null
@@ -22,13 +22,13 @@ export type Stringifiables =
   | string
   | undefined
   | Date
-  | Map<string, Stringifiables>
-  | Set<Stringifiables>
-  | Stringifiables[]
-  | { [key: string]: Stringifiables }
+  | Map<string, Stringifiable>
+  | Set<Stringifiable>
+  | Stringifiable[]
+  | { [key: string]: Stringifiable }
   | { toString: () => string; [key: string]: any };
 
-export const toString = (value: Stringifiables): string => {
+export const toString = (value: Stringifiable): string => {
   if (isString(value)) {
     return value as string;
   }

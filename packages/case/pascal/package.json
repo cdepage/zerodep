@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/case-pascal",
-  "description": "A utility to convert a string to PascalCase",
-  "version": "2.0.14",
+  "description": "A utility that deburrs a string, converts it to PascalCase, strips all non-alphanumeric characters and removes leading numbers.",
+  "version": "2.0.15",
   "license": "MIT",
   "repository": {
     "type": "git",

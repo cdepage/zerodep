@@ -1,3 +1,32 @@
+import {
+  testAggregateError,
+  TestClass1,
+  testClassInstance1,
+  testDate1,
+  testDate2,
+  testError,
+  testFunction,
+  testFunctionAsync,
+  testFunctionGenerator,
+  testFunctionGeneratorAsync,
+  testMapEmpty,
+  testMapNumbers,
+  testMapStrings,
+  testPromise1,
+  testPromiseAll,
+  testPromiseAllSettled,
+  testPromiseRace,
+  testPromiseResolved1,
+  testRexExp1,
+  testRexExp2,
+  testSetEmpty,
+  testSetNumbers,
+  testSetStrings,
+  testSymbol1,
+  testSymbol2,
+  testWeakMap,
+  testWeakSet,
+} from '../../../../is/isTestData';
 import { toInteger } from './toInteger';
 
 describe('toInteger', () => {
@@ -13,7 +42,7 @@ describe('toInteger', () => {
   });
   it('should NOT convert a NaN', () => {
     const fn = () => toInteger(NaN);
-    expect(fn).toThrow('Cannot convert to number');
+    expect(fn).toThrow('Cannot convert to integer');
   });
 
   // STRINGS
@@ -51,15 +80,15 @@ describe('toInteger', () => {
   });
   it('should NOT convert "867,5309"', () => {
     const fn = () => toInteger('867,5309');
-    expect(fn).toThrow('Cannot convert to number');
+    expect(fn).toThrow('Cannot convert to integer');
   });
   it('should NOT convert a non-numeric string', () => {
     const fn = () => toInteger('asdf');
-    expect(fn).toThrow('Cannot convert to number');
+    expect(fn).toThrow('Cannot convert to integer');
   });
   it('should NOT convert a non-numeric string', () => {
     const fn = () => toInteger('+/- some.');
-    expect(fn).toThrow('Cannot convert to number');
+    expect(fn).toThrow('Cannot convert to integer');
   });
 
   // NUMBERS
@@ -74,11 +103,11 @@ describe('toInteger', () => {
   });
   it('should NOT convert NaN', () => {
     const fn = () => toInteger(NaN);
-    expect(fn).toThrow('Cannot convert to number');
+    expect(fn).toThrow('Cannot convert to integer');
   });
   it('should NOT convert an infinite number', () => {
     const fn = () => toInteger(Number.POSITIVE_INFINITY);
-    expect(fn).toThrow('Cannot convert to number');
+    expect(fn).toThrow('Cannot convert to integer');
   });
 
   // BIG INT
@@ -104,11 +133,122 @@ describe('toInteger', () => {
   it('should NOT convert a null', () => {
     // @ts-ignore
     const fn = () => toInteger(null);
-    expect(fn).toThrow('Cannot convert to number');
+    expect(fn).toThrow('Cannot convert to integer');
   });
   it('should NOT convert undefined ', () => {
     // @ts-ignore
     const fn = () => toInteger(undefined);
-    expect(fn).toThrow('Cannot convert to number');
+    expect(fn).toThrow('Cannot convert to integer');
   });
+
+  const validCases = [
+    ['bigint - 42n', 42n, 42],
+    ['bigint - 0n', 0n, 0],
+    ['bigint - -0n', -0n, 0],
+    ['bigint - -42n', -42n, -42],
+    ['boolean - true', true, 1],
+    ['boolean - false', false, 0],
+    ['date - past', testDate1, 946684799999],
+    ['date - future', testDate2, 1651082556634],
+    ['float - 3.14', 3.14, 3],
+    ['float - 0.0', 0.0, 0],
+    ['float - -0.0', -0.0, -0],
+    ['float - -3.14', -3.14, -3],
+    ['float - Math.E', Math.E, 2],
+    ['float - Math.PI', Math.PI, 3],
+    ['float - min value', Number.MIN_VALUE, 0],
+    ['number - max safe int', Number.MAX_SAFE_INTEGER, 9007199254740991],
+    ['number - max value', Number.MAX_VALUE, 1.7976931348623157e308],
+    ['number - 3e8', 3e8, 300000000],
+    ['number - 42', 42, 42],
+    ['number - 1', 1, 1],
+    ['number - 0', 0, 0],
+    ['number - -0', -0, -0],
+    ['number - -1', -1, -1],
+    ['number - -42', -42, -42],
+    ['number - -3e8', -3e8, -300000000],
+    ['number - min safe int', Number.MIN_SAFE_INTEGER, -9007199254740991],
+    ['string - ""', '', 0],
+    ['string - "1000n"', '1000n', 1000],
+    ['string - "3e8"', '3e8', 300000000],
+    ['string - "42"', '42', 42],
+    ['string - "3.14"', '3.14', 3],
+    ['string - "0"', '0', 0],
+    ['string - "-0"', '-0', -0],
+    ['string - "-3.14"', '-3.14', -3],
+    ['string - "-42"', '-42', -42],
+    ['string - "-3e8"', '-3e8', -300000000],
+    ['string - "-1000n"', '-1000n', -1000],
+  ];
+  // @ts-ignore
+  test.each(validCases)('should assess %s', async (title, value, result) => {
+    // @ts-ignore
+    expect(toInteger(value)).toEqual(result);
+  });
+
+  const invalidCases = [
+    ['array - empty', []],
+    ['array - nonempty int', [1, 2, 3]],
+    ['array - nonempty str', ['a', 'b', 'c']],
+    ['class', TestClass1],
+    ['class', testClassInstance1],
+    ['error', testError],
+    ['error - aggregate', testAggregateError],
+    ['function', testFunction],
+    ['function - async', testFunctionAsync],
+    ['generator', testFunctionGenerator],
+    ['generator - async', testFunctionGeneratorAsync],
+    ['map - empty', testMapEmpty],
+    ['map - nonempty number', testMapNumbers],
+    ['map - nonempty string', testMapStrings],
+    ['nothing - null', null],
+    ['nothing - undefined', undefined],
+    ['number - infinity - positive', Number.POSITIVE_INFINITY],
+    ['number - infinity - negative', Number.NEGATIVE_INFINITY],
+    ['number - NaN', Number.NaN],
+    ['pojo - empty', {}],
+    ['pojo - nonempty string', { key: 'string' }],
+    ['pojo - nonempty number', { key: 123 }],
+    ['promise', testPromise1],
+    ['promise - all', testPromiseAll],
+    ['promise - allSettled', testPromiseAllSettled],
+    ['promise - race', testPromiseRace],
+    ['promise - resolved', testPromiseResolved1],
+    ['regex1', testRexExp1],
+    ['regex2', testRexExp2],
+    ['set - empty', testSetEmpty],
+    ['set - numbers', testSetNumbers],
+    ['set - strings', testSetStrings],
+    ['string - "long string"', 'a longer string'],
+    ['symbol', testSymbol1],
+    ['symbol + description', testSymbol2],
+    ['this - globalThis', globalThis],
+    ['this - this', this],
+    ['typedArray - int8Array', new Int8Array(2)],
+    ['typedArray - int16Array', new Int16Array(2)],
+    ['typedArray - int32Array', new Int32Array(2)],
+    ['typedArray - uint8Array', new Uint8Array(2)],
+    ['typedArray - uint16Array', new Uint16Array(2)],
+    ['typedArray - uint32Array', new Uint32Array(2)],
+    ['typedArray - uint8ClampedArray', new Uint8ClampedArray(2)],
+    ['typedArray - bigInt64Array', new BigInt64Array(2)],
+    ['typedArray - bigUint64Array', new BigUint64Array(2)],
+    ['typedArray - float32Array', new Float32Array(2)],
+    ['typedArray - float64Array', new Float64Array(2)],
+    ['typedArray - sharedArrayBuffer', new SharedArrayBuffer(512)],
+    ['weakMap - empty', new WeakMap()],
+    ['weakMap - nonempty', testWeakMap],
+    ['weakSet - empty', new WeakSet()],
+    ['weakSet - nonempty', testWeakSet],
+  ];
+  // @ts-ignore
+  test.each(invalidCases)(
+    'should throw for %s',
+    // @ts-ignore
+    async (title, value) => {
+      // @ts-ignore
+      const fn = () => toInteger(value);
+      expect(fn).toThrow('Cannot convert to integer');
+    }
+  );
 });

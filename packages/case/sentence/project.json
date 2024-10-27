@@ -48,6 +48,14 @@
       "options": {
         "jestConfig": "packages/case/sentence/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/case/sentence",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

@@ -5,6 +5,9 @@ describe('caseDot', () => {
   it('should convert a sentence case', () => {
     expect(caseDot('From sentence case')).toEqual('from.sentence.case');
   });
+  it('should convert a sentence case', () => {
+    expect(caseDot('from.dot.case')).toEqual('from.dot.case');
+  });
 
   it('should convert a camel case', () => {
     expect(caseDot('fromCamelCase')).toEqual('from.camel.case');

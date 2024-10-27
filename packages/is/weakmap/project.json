@@ -48,6 +48,14 @@
       "options": {
         "jestConfig": "packages/is/weakmap/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/is/weakmap",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

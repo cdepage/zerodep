@@ -15,7 +15,7 @@ A utility to prefix a value with a specified character to create a string of a s
 ## Signature
 
 ```typescript
-const stringPadLeft: (value: string | number | bigint, size: number, char?: string) => string;
+declare const stringPadLeft: (value: string | number | bigint, size: number, char?: string) => string;
 ```
 
 ### Function Parameters
@@ -28,38 +28,30 @@ The `stringPadLeft` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
 ```javascript
-import { stringPadLeft } from '@zerodep/string-padleft';
-// or
-const { stringPadLeft } = require('@zerodep/string-padleft');
+// ESM
+import { stringPadLeft } from '@zerodep/app';
+
+// CJS
+const { stringPadLeft } = require('@zerodep/app');
 ```
 
-### Using Default Space Separator
-
 ```javascript
+// with the default separator (a space character)
 stringPadLeft('abc', 10); // "       abc"
 stringPadLeft(123, 10); // "       123"
 stringPadLeft(456n, 10); // "       456"
-```
 
-### Using Custom Separator
-
-```javascript
+// with a custom separator
 stringPadLeft('bc', 5, 'a'); // "aaabc"
 stringPadLeft(123, 6, '0'); // "000123"
 stringPadLeft(456n, 7, '_'); // "____456"
-```
 
-### Edge Cases
-
-```javascript
-// when the value exceeds the requested size the full value is returned
+// when the value exceeds the requested size the full value is returned (non-destructive)
 stringPadLeft('abcdefghij', 5, 'x'); // "abcdefghij"
 
-// non-string values
-stringPadLeft({ not: 'a string' }, 2); // throws ZeroDepError: Value is not a string
+// with anything that is not a string
+stringPadLeft({ a: 'not string' }); // throws ZeroDepError: Value is not a string
 ```
 
 ## Installation Sources
@@ -80,23 +72,15 @@ npm i @zerodep/string
 npm i @zerodep/string-padleft
 ```
 
-then
+---
 
-```javascript
-import { stringPadLeft } from '@zerodep/app';
-// or
-import { stringPadLeft } from '@zerodep/utilities';
-// or
-import { stringPadLeft } from '@zerodep/string';
-// or
-import { stringPadLeft } from '@zerodep/string-padleft';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

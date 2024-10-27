@@ -15,55 +15,165 @@ A simple, performant utility to determine if a value is a Plain Old Javascript O
 ## Signature
 
 ```typescript
-const isPojo(value: any) => boolean;
+declare const isPojo: (value: unknown) => boolean;
 ```
 
 ### Function Parameters
 
-The `isArray` function has the following parameters:
+The `isPojo` function has the following parameters:
 
 - **value** - the value to check
 
 ## Examples
 
-### Positive Response
-
 ```javascript
-isPojo([]); // true
-isPojo(['a', 1, true]); // true
-isPojo({}); // true
-isPojo({ a: 'string', b: 2, c: false }); // true
+// ESM
+import { isPojo } from '@zerodep/app';
+
+// CJS
+const { isPojo } = require('@zerodep/app');
 ```
 
-### Negative Response
-
 ```javascript
-isPojo(null); // false - CAUTION
-isPojo({ aMap: new Map() }); // false - CAUTION
-isPojo({ aSet: new Set() }); // false - CAUTION
+// Arrays
+isPojo([]); // true
+isPojo([1, 2, 3]); // true
+isPojo(['a', 'b', 'c']); // true
 
-isPojo(1000n); // false
+// BigInts
+isPojo(42n); // false
+isPojo(0n); // false
+isPojo(-0n); // false
+isPojo(-42n); // false
+
+// Booleans
 isPojo(true); // false
-isPojo(new Date()); // false
-isPojo(''); // false
-isPojo(new Error('message')); // false
-isPojo(3.14); // false
-isPojo(() => 'function'); // false
-isPojo(42); // false
+isPojo(false); // false
+
+// Class
 isPojo(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // false
-isPojo(null); // false
-isPojo(new Promise(() => {})); // false
-isPojo(/[regex]+/gi); // false
-isPojo(new Set([1, 2, 3])); // false
-isPojo('a string'); // false
-isPojo(Symbol()); // false
-isPojo(new Int32Array(2)); // false
+
+// Dates
+isPojo(new Date()); // false
+isPojo(new Date('1970-01-01T12:00:00.000Z')); // false
+isPojo(new Date('2099-12-31')); // false
+
+// Empty
+isPojo(null); // false  <-- CAUTION: null values are excluded
 isPojo(undefined); // false
+
+// Errors
+isPojo(new Error('message')); // false
+isPojo(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
+
+// Floats
+isPojo(3.14); // false
+isPojo(0.0); // false
+isPojo(-0.0); // false
+isPojo(-3.14); // false
+isPojo(Math.E); // false
+isPojo(Math.PI); // false
+isPojo(Number.MIN_VALUE); // false
+
+// Functions
+isPojo(() => 'function'); // false
+isPojo(async () => 'function'); // false
+
+// Generators
+isPojo(function* () {
+  yield 'a';
+}); // false
+isPojo(async function* () {
+  yield 'a';
+}); // false
+
+// Maps
+isPojo(new Map()); // false
+isPojo(new Map([['key1', 123]])); // false
+isPojo(new Map([['key1', 'value1']])); // false
+
+// Numbers
+isPojo(Number.POSITIVE_INFINITY); // false
+isPojo(Number.MAX_SAFE_INTEGER); // false
+isPojo(3e8); // false
+isPojo(42); // false
+isPojo(1); // false
+isPojo(0); // false
+isPojo(-0); // false
+isPojo(-1); // false
+isPojo(-42); // false
+isPojo(-3e8); // false
+isPojo(Number.MIN_SAFE_INTEGER); // false
+isPojo(Number.NEGATIVE_INFINITY); // false
+isPojo(Number.NaN); // false
+
+// POJOs
+isPojo({}); // true
+isPojo({ key: 'string' }); // true
+isPojo({ key: 123 }); // true
+
+// Promise
+isPojo(new Promise(() => {})); // false
+isPojo(new Promise.all([])); // false
+isPojo(new Promise.allSettled([])); // false
+isPojo(new Promise.race([])); // false
+isPojo(Promise.resolve()); // false
+
+// Regular Expression
+isPojo(/[regex]+/gi); // false
+isPojo(new RegExp('d', 'gi')); // false
+
+// Sets
+isPojo(new Set()); // false
+isPojo(new Set([1, 2, 3])); // false
+isPojo(new Set(['a', 'b', 'c'])); // false
+
+// Strings
+isPojo(''); // false
+isPojo('a longer string'); // false
+isPojo('1000n'); // false
+isPojo('3e8'); // false
+isPojo('42'); // false
+isPojo('3.14'); // false
+isPojo('0'); // false
+isPojo('-0'); // false
+isPojo('-3.14'); // false
+isPojo('-42'); // false
+isPojo('-3e8'); // false
+isPojo('-1000n'); // false
+
+// Symbols
+isPojo(Symbol()); // false
+isPojo(Symbol('name')); // false
+
+// This
+isPojo(this); // false
+isPojo(globalThis); // false
+
+// TypedArrays
+isPojo(new Int8Array(2)); // false
+isPojo(new Int16Array(2)); // false
+isPojo(new Int32Array(2)); // false
+isPojo(new Uint8Array(2)); // false
+isPojo(new Uint16Array(2)); // false
+isPojo(new Uint32Array(2)); // false
+isPojo(new Uint8ClampedArray(2)); // false
+
+isPojo(new BigInt64Array(2)); // false
+isPojo(new BigUint64Array(2)); // false
+
+isPojo(new Float32Array(2)); // false
+isPojo(new Float64Array(2)); // false
+
+isPojo(new SharedArrayBuffer(512)); // false
+
+// WeakMap and WeakSet
+isPojo(new WeakMap()); // false
+isPojo(new WeakSet()); // false
 ```
 
 ## Installation Sources
@@ -84,23 +194,15 @@ npm i @zerodep/is
 npm i @zerodep/is-pojo
 ```
 
-then
+---
 
-```javascript
-import { isPojo } from '@zerodep/app';
-// or
-import { isPojo } from '@zerodep/utilities';
-// or
-import { isPojo } from '@zerodep/is';
-// or
-import { isPojo } from '@zerodep/is-pojo';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release2.0.x
 
 **Breaking**
 

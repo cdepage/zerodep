@@ -15,7 +15,7 @@ A factory function that returns an optionally-typed Stack data structure instanc
 ## Signature
 
 ```typescript
-const structStackFactory: <T = any>(items?: T[]) => Stack<T>;
+declare const structStackFactory: <T = any>(items?: T[]) => Stack<T>;
 
 interface Stack<T> {
   push: (item: T) => void;
@@ -45,6 +45,14 @@ The `structStackFactory` returns an object with the following methods:
 - **toArray()** - converts the stack to an array suitable for serialization, first item in the stack is the last item in the array, or, bottom item in the stack is the first value of the array
 
 ## Examples
+
+```javascript
+// ESM
+import { structStackFactory } from '@zerodep/app';
+
+// CJS
+const { structStackFactory } = require('@zerodep/app');
+```
 
 ### Simple Case
 
@@ -108,17 +116,7 @@ npm i @zerodep/struct
 npm i @zerodep/struct-stack
 ```
 
-then
-
-```javascript
-import { structStackFactory, Stack } from '@zerodep/app';
-// or
-import { structStackFactory, Stack } from '@zerodep/struct';
-// or
-import { structStackFactory, Stack } from '@zerodep/struct-stack';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

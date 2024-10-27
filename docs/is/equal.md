@@ -10,102 +10,175 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A performant utility to compare two values for equality by value (not by reference). This means JSON objects with the same key:value pairs will be deemed equal as will arrays with identical items even if in different order.
+A performant utility to compare two values for equality by value (not by reference). Incomparable items will throw an error.
 
 ## Signature
 
 ```typescript
-const isEqual(value1: any, value2: any) => boolean;
+declare const isEqual: (value1: unknown, value2: unknown) => boolean;
 ```
 
 ### Function Parameters
 
-The `isArray` function has the following parameters:
+The `isEqual` function has the following parameters:
 
-- **value** - the value to check
+- **value1** - the first value used in the comparison
+- **value2** - the other value used in the comparison
 
 ## Examples
 
-### Multiple Cases
+```javascript
+// ESM
+import { isEqual } from '@zerodep/app';
+
+// CJS
+const { isEqual } = require('@zerodep/app');
+```
 
 ```javascript
-// strings
-isEqual('abc', 'abc'); // true
-isEqual('abc', 'def'); // false
-isEqual('', ''); // true
-isEqual('G', new String('G')); // true
-
-// integers
-isEqual(42, 42); // true
-isEqual(42, 12); // false
-isEqual(2161, new Number(2161)); // true
-isEqual(0, -0); // false
-
-// floats
-isEqual(3.141592653589793, 3.141592653589793); // true
-isEqual(-273.15, new Number(-273.15)); // true
-
-// number-like
-isEqual(Math.NaN, Math.NaN); // true
-isEqual(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY); // true
-
-// booleans
-isEqual(false, false); // true
-isEqual(true, new Boolean(true)); // true
-
-// bigint
-isEqual(-20n, -20n); // true
-isEqual(8675309n, BigInt(8675309)); // true
-
-// nothing
-isEqual(null, null); // true
-isEqual(undefined, undefined); // true
-
-// arrays (even if deeply nested)
+// Arrays - size and order of items must be identical
 isEqual([], []); // true
 isEqual([1, 2], [1, 2]); // true
-isEqual([6], [7]); // false
-isEqual(['b', [2, 4, ['c', 'd', 6]]], [[4, ['c', 'd', 6], 2], 'b']); // true
+isEqual([1, 2], [2, 1]); // false
+isEqual([1, 2], [1, 2, 3]); // false
+isEqual(['a', 'b', 'c'], ['c', 'b', 'a']); // false
+isEqual(['a', 'b', 'c'], ['a', 'b', 'c', 'd']); // false
+isEqual(['b', [2, 4, ['c', 'd', 6]]], ['b', [2, 4, ['c', 'd', 6]]]); // true
+isEqual(['b', [2, 4, ['c', 'd', 6]]], [[4, ['c', 'd', 6], 2], 'b']); // false
 
-// objects (even if deeply nested)
-isEqual({}, {}); // true
-isEqual({ c: 3, d: 4 }, { c: 3, d: 4, e: 5 }); // false
-isEqual({ g: 5, h: { i: [1, 2, 3], j: ['a', 'b', 'c'] } }, { h: { j: ['a', 'b', 'c'], i: [1, 2, 3] }, g: 5 }); // true
+// BigInts - must have identical values
+isEqual(42n, 42n); // true
+isEqual(0n, 0); // false
+isEqual(8675309n, BigInt(8675309)); // true
 
-// dates
+// Booleans
+isEqual(true, true); // true
+isEqual(true, false); // false
+isEqual(true, new Boolean(true)); // true
+isEqual(false, new Boolean(false)); // false
+
+// Dates - are compared by value
 isEqual(new Date('2000-01-01T00:00:00.000Z'), new Date('2000-01-01T00:00:00.000Z')); // true
+isEqual(new Date('2000-01-01T00:00:00.000Z'), new Date('1999-12-31T23:59:59.999Z')); // false
 
-// errors
-isEqual(new Error('error 2'), new Error('error 2')); // true
+// Empty
+isEqual(null, null); // true
+isEqual(undefined, undefined); // true
+isEqual(null, undefined); // false
+
+// Errors - are compared by type and attributes
+isEqual(new Error('message'), new Error('message')); // true
+isEqual(new Error('message'), new Error('xxxx')); // false
 isEqual(new TypeError('error'), new RangeError('error')); // false
 
-// functions
-isEqual(() => {}, () => {}); // true
-isEqual(() => 'a', () => 'b'); // false
+// Floats
+isEqual(0.08, 0.08); // true
+isEqual(Math.PI, Math.PI); // true
+isEqual(-273.15, new Number(-273.15)); // false  <-- CAUTION `new Number()` is an object
 
-// maps
-isEqual(new Map([]), new Map()); // true
-isEqual(new Map([['d', 4]]), new Map([['e', 5]]); // false
+// Functions
+isEqual(
+  () => 'function',
+  () => 'function'
+); // true
+isEqual(
+  () => 'xxxx',
+  () => 'yyyy'
+); // false
 
-isEqual(new Set([]), new Set([])); // true
-isEqual(new Set([1, 2, 3]), new Set([1, 2, 3])); // true
+// Generators - cannot be compared
+isEqual(
+  function* () {
+    yield 'a';
+  },
+  function* () {
+    yield 'a';
+  }
+); // false
+isEqual(
+  function* () {
+    yield 'a';
+  },
+  function* () {
+    yield 'b';
+  }
+); // false
 
-// regex
-isEqual(/\d+/g, /\d+/g); // true
-isEqual(/[0-9]+/g, /[\d]+/g); // false
+// Maps
+isEqual(new Map(), new Map()); // true
+isEqual(new Map([['key1', 123]])), new Map([['key1', 123]]); // true
+isEqual(new Map([['key1', 123]])), new Map([['2key', 123]]); // false
+isEqual(new Map([['key1', 123]])), new Map([['key1', 456]]); // false
+isEqual(new Map([['key1', 123]], ['key2', 456])),
+  new Map([
+    ['key1', 123],
+    ['key2', 456],
+  ]); // true
+isEqual(new Map([['key1', 123]], ['key2', 456])),
+  new Map([
+    ['key2', 456],
+    ['key1', 123],
+  ]); // true
+isEqual(new Map([['key1', 123]], ['key2', 456])), new Map([['key1', 123]]); // false
 
-// array buffers
-isEqual(new ArrayBuffer(12), new ArrayBuffer(12)); // true
-isEqual(new ArrayBuffer(32), new ArrayBuffer(16)); // false
+// Numbers
+isEqual(0, 0); // true
+isEqual(0, -0); // false  <-- these are indeed different
+isEqual(3e8, 3e8); // true
+isEqual(1234, 5678); // false
+isEqual(Infinity, Infinity); // true
+isEqual(Infinity, -Infinity); // false
+isEqual(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER); // true
+isEqual(Number.MAX_SAFE_INTEGER, Number.MIN_SAFE_INTEGER); // false
+isEqual(Number.NaN, Number.NaN); // true
+isEqual(2161, new Number(2161)); // false  <-- CAUTION `new Number()` is an object
 
-// typed arrays
-isEqual(Int8Array.from([2]), Int8Array.from([2])); // true
-isEqual(Uint8Array.from([3]), Uint8Array.from([4])); // false
+// POJOs - are deeply compared by value
+isEqual({}, {}); // true
+isEqual({ key: 'string' }, { key: 'string' }); // true
+isEqual({ key: [1, 2, 3] }, { key: [1, 2, 3] }); // true
+isEqual({ key: [1, 2, 3] }, { key: [3, 2, 1] }); // false
+isEqual({ a: 1, b: { c: [1, 2] } }, { a: 1, b: { c: [1, 2] } }); // true
+isEqual({ a: 1, b: { c: [1, 2] } }, { b: { c: [1, 2] }, a: 1 }); // true
+isEqual({ a: 1, b: { c: [1, 2] } }, { b: 1, c: { d: [1, 2] } }); // false
+isEqual({ a: 1, b: { c: [1, 2] } }, { a: 1, b: { c: [2, 1] } }); // false
 
-// incomparables
-isEqual(new WeakMap(), new WeakMap()); // throws ZeroDepError: Cannot compare WeakMap values
-isEqual(new WeakSet(), new WeakSet()); // throws ZeroDepError: Cannot compare WeakSet values
-isEqual(Symbol(), Symbol()); // throws ZeroDepError: Cannot compare Symbol values
+// Promises - cannot be compared
+isEqual(new Promise(() => {}), new Promise(() => {})); // false
+isEqual(Promise.all([]), Promise.all([])); // false
+isEqual(Promise.allSettled([]), Promise.allSettled([])); // false
+isEqual(Promise.race([]), Promise.race([])); // false
+isEqual(Promise.resolve(), Promise.resolve()); // false
+
+// Regular Expression
+isEqual(/[aeiou]+/gi, /[aeiou]+/gi); // true
+isEqual(new RegExp('d', 'gi'), new RegExp('d', 'gi')); // true
+isEqual(/[aeiou]+/gi, new RegExp('[aeiou]+', 'gi')); // true
+isEqual(new RegExp('abc'), new RegExp('def')); // false
+
+// Sets
+isEqual(new Set(), new Set()); // true
+isEqual(new Set([1, 2, 3])), new Set([1, 2, 3]); // true
+isEqual(new Set([1, 2, 3])), new Set([3, 2, 1]); // true  <-- CAUTION: sets are unordered
+isEqual(new Set([1, 2, 3])), new Set([1, 2]); // false
+
+// Strings
+isEqual('', ''); // true
+isEqual('asdf', 'asdf'); // true
+isEqual('asdf', 'qwerty'); // false
+isEqual('G', new String('G')); // true
+
+// Symbols - cannot be compared
+isEqual(Symbol(), Symbol()); // throws ZeroDepError - Cannot compare Symbol values
+isEqual(Symbol('val1'), Symbol('val1')); // throws ZeroDepError - Cannot compare Symbol values
+
+// TypedArrays
+isEqual(new Int8Array(2), new Int8Array(2)); // true
+isEqual(new SharedArrayBuffer(2), new SharedArrayBuffer(2)); // throws ZeroDepError - Cannot compare SharedArrayBuffer values
+
+// WeakMap and WeakSet - cannot be compared
+isEqual(new WeakMap(), new WeakMap()); // throws ZeroDepError - Cannot compare WeakMap values
+isEqual(new WeakSet(), new WeakSet()); // throws ZeroDepError - Cannot compare WeakSet values
 ```
 
 ## Installation Sources
@@ -126,23 +199,23 @@ npm i @zerodep/is
 npm i @zerodep/is-equal
 ```
 
-then
+---
 
-```javascript
-import { isEqual } from '@zerodep/app';
-// or
-import { isEqual } from '@zerodep/utilities';
-// or
-import { isEqual } from '@zerodep/is';
-// or
-import { isEqual } from '@zerodep/is-equal';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.1.x
+
+**Fixed**
+
+- the `isEqual()` function to ignore Map keys ordering, Set value ordering, and handle array item ordering
+
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

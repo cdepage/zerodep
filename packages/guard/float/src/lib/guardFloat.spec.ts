@@ -22,8 +22,13 @@ describe('guardFloat', () => {
 
     // @ts-ignore
     test.each(negativeCases)('should NOT allow a/an %s', (title, value) => {
-      const fn = () => guard(value);
-      expect(fn).toThrow('Value is not a float');
+      // @ts-ignore
+      if (['positive zero', 'negative zero'].includes(title)) {
+        expect(guard(value)).toBeUndefined();
+      } else {
+        const fn = () => guard(value);
+        expect(fn).toThrow('Value is not a float');
+      }
     });
   });
 

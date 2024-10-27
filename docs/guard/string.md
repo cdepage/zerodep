@@ -10,63 +10,179 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A run-time guard to require a value to be a string; it will throw a `ZeroDepError` if the guard fails.
+A run-time guard to require a value to be a string; it will throw a `ZeroDepError` if the guard fails. Optional advanced configuration allows specifying min and/or max string lengths.
 
-## Signature
+## Basic Signature
 
 ```typescript
-const guardString: (value: any) => void;
+declare const guardString: (value: unknown) => void;
 ```
 
 The `guardString` function has the following parameters:
 
 - **value** - the value to guard
 
-## Examples
-
-### Successful Cases
+## Basic Examples
 
 ```javascript
-guardString(''); // void
-guardString('a string'); // void
+// ESM
+import { guardString } from '@zerodep/app';
+
+// CJS
+const { guardString } = require('@zerodep/app');
 ```
 
-### Unsuccessful Cases
-
 ```javascript
+// Arrays
 guardString([]); // throws ZeroDepError: Value is not a string
+guardString([1, 2, 3]); // throws ZeroDepError: Value is not a string
 guardString(['a', 'b', 'c']); // throws ZeroDepError: Value is not a string
-guardString(1000n); // throws ZeroDepError: Value is not a string
+
+// BigInts
+guardString(42n); // throws ZeroDepError: Value is not a string
+guardString(0n); // throws ZeroDepError: Value is not a string
+guardString(-0n); // throws ZeroDepError: Value is not a string
+guardString(-42n); // throws ZeroDepError: Value is not a string
+
+// Booleans
 guardString(true); // throws ZeroDepError: Value is not a string
-guardString(new Date()); // throws ZeroDepError: Value is not a string
-guardString(new Error('message')); // throws ZeroDepError: Value is not a string
-guardString(3.14); // throws ZeroDepError: Value is not a string
-guardString(() => 'function'); // throws ZeroDepError: Value is not a string
-guardString(42); // throws ZeroDepError: Value is not a string
+guardString(false); // throws ZeroDepError: Value is not a string
+
+// Class
 guardString(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // throws ZeroDepError: Value is not a string
+
+// Dates
+guardString(new Date()); // throws ZeroDepError: Value is not a string
+guardString(new Date('1970-01-01T12:00:00.000Z')); // throws ZeroDepError: Value is not a string
+guardString(new Date('2099-12-31')); // throws ZeroDepError: Value is not a string
+
+// Empty
 guardString(null); // throws ZeroDepError: Value is not a string
-guardString({ an: 'object' }); // throws ZeroDepError: Value is not a string
-guardString(new Promise(() => {})); // throws ZeroDepError: Value is not a string
-guardString(/[regex]+/gi); // throws ZeroDepError: Value is not a string
-guardString(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a string
-guardString(Symbol()); // throws ZeroDepError: Value is not a string
-guardString(new Int32Array(2)); // throws ZeroDepError: Value is not a string
 guardString(undefined); // throws ZeroDepError: Value is not a string
+
+// Errors
+guardString(new Error('message')); // throws ZeroDepError: Value is not a string
+guardString(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // throws ZeroDepError: Value is not a string
+
+// Floats
+guardString(3.14); // throws ZeroDepError: Value is not a string
+guardString(0.0); // throws ZeroDepError: Value is not a string
+guardString(-0.0); // throws ZeroDepError: Value is not a string
+guardString(-3.14); // throws ZeroDepError: Value is not a string
+guardString(Math.E); // throws ZeroDepError: Value is not a string
+guardString(Math.PI); // throws ZeroDepError: Value is not a string
+guardString(Number.MIN_VALUE); // throws ZeroDepError: Value is not a string
+
+// Functions
+guardString(() => 'function'); // throws ZeroDepError: Value is not a string
+guardString(async () => 'function'); // throws ZeroDepError: Value is not a string
+
+// Generators
+guardString(function* () {
+  yield 'a';
+}); // throws ZeroDepError: Value is not a string
+guardString(async function* () {
+  yield 'a';
+}); // throws ZeroDepError: Value is not a string
+
+// Maps
+guardString(new Map()); // throws ZeroDepError: Value is not a string
+guardString(new Map([['key1', 123]])); // throws ZeroDepError: Value is not a string
+guardString(new Map([['key1', 'value1']])); // throws ZeroDepError: Value is not a string
+
+// Numbers
+guardString(Number.POSITIVE_INFINITY); // throws ZeroDepError: Value is not a string
+guardString(Number.MAX_SAFE_INTEGER); // throws ZeroDepError: Value is not a string
+guardString(Number.MAX_VALUE); // throws ZeroDepError: Value is not a string
+guardString(3e8); // throws ZeroDepError: Value is not a string
+guardString(42); // throws ZeroDepError: Value is not a string
+guardString(1); // throws ZeroDepError: Value is not a string
+guardString(0); // throws ZeroDepError: Value is not a string
+guardString(-0); // throws ZeroDepError: Value is not a string
+guardString(-1); // throws ZeroDepError: Value is not a string
+guardString(-42); // throws ZeroDepError: Value is not a string
+guardString(-3e8); // throws ZeroDepError: Value is not a string
+guardString(Number.MIN_SAFE_INTEGER); // throws ZeroDepError: Value is not a string
+guardString(Number.NEGATIVE_INFINITY); // throws ZeroDepError: Value is not a string
+guardString(Number.NaN); // throws ZeroDepError: Value is not a string
+
+// POJOs
+guardString({}); // throws ZeroDepError: Value is not a string
+guardString({ key: 'string' }); // throws ZeroDepError: Value is not a string
+guardString({ key: 123 }); // throws ZeroDepError: Value is not a string
+
+// Promise
+guardString(new Promise(() => {})); // throws ZeroDepError: Value is not a string
+guardString(new Promise.all([])); // throws ZeroDepError: Value is not a string
+guardString(new Promise.allSettled([])); // throws ZeroDepError: Value is not a string
+guardString(new Promise.race([])); // throws ZeroDepError: Value is not a string
+guardString(Promise.resolve()); // throws ZeroDepError: Value is not a string
+
+// Regular Expression
+guardString(/[regex]+/gi); // throws ZeroDepError: Value is not a string
+guardString(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not a string
+
+// Sets
+guardString(new Set()); // throws ZeroDepError: Value is not a string
+guardString(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a string
+guardString(new Set(['a', 'b', 'c'])); // throws ZeroDepError: Value is not a string
+
+// Strings
+guardString(''); // void
+guardString('a longer string'); // void
+guardString('1000n'); // void
+guardString('3e8'); // void
+guardString('42'); // void
+guardString('3.14'); // void
+guardString('0'); // void
+guardString('-0'); // void
+guardString('-3.14'); // void
+guardString('-42'); // void
+guardString('-3e8'); // void
+guardString('-1000n'); // void
+
+// Symbols
+guardString(Symbol()); // throws ZeroDepError: Value is not a string
+guardString(Symbol('name')); // throws ZeroDepError: Value is not a string
+
+// This
+guardString(this); // throws ZeroDepError: Value is not a string
+guardString(globalThis); // throws ZeroDepError: Value is not a string
+
+// TypedArrays
+guardString(new Int8Array(2)); // throws ZeroDepError: Value is not a string
+guardString(new Int16Array(2)); // throws ZeroDepError: Value is not a string
+guardString(new Int32Array(2)); // throws ZeroDepError: Value is not a string
+guardString(new Uint8Array(2)); // throws ZeroDepError: Value is not a string
+guardString(new Uint16Array(2)); // throws ZeroDepError: Value is not a string
+guardString(new Uint32Array(2)); // throws ZeroDepError: Value is not a string
+guardString(new Uint8ClampedArray(2)); // throws ZeroDepError: Value is not a string
+
+guardString(new BigInt64Array(2)); // throws ZeroDepError: Value is not a string
+guardString(new BigUint64Array(2)); // throws ZeroDepError: Value is not a string
+
+guardString(new Float32Array(2)); // throws ZeroDepError: Value is not a string
+guardString(new Float64Array(2)); // throws ZeroDepError: Value is not a string
+
+guardString(new SharedArrayBuffer(512)); // throws ZeroDepError: Value is not a string
+
+// WeakMap and WeakSet
+guardString(new WeakMap()); // throws ZeroDepError: Value is not a string
+guardString(new WeakSet()); // throws ZeroDepError: Value is not a string
 ```
 
 ## Advanced Use
 
 The guard may optionally be configured, via the `guardStringHOF` function, with additional run-time checks.
 
-### Signature
+### Advanced Signature
 
 ```typescript
-const guardStringHOF: (options: GuardStringOptions) => (value: any) => void;
+declare const guardStringHOF: (options: GuardStringOptions) => (value: unknown) => void;
 
 interface GuardStringOptions {
   minLength?: number;
@@ -83,11 +199,17 @@ The `guardStringHOF` has the following configuration options, all are optional:
 
 ### Advanced Examples
 
+```javascript
+// ESM
+import { guardStringHOF, GuardStringOptions } from '@zerodep/app';
+
+// CJS
+const { guardStringHOF, GuardStringOptions } = require('@zerodep/app');
+```
+
 **Min & Max Length**
 
 ```typescript
-import { guardStringHOF, GuardStringOptions } from '@zerodep/guard-string';
-
 const config: GuardStringOptions = {
   minLength: 5,
   maxLength: 10,
@@ -118,23 +240,15 @@ npm i @zerodep/guards
 npm i @zerodep/guard-string
 ```
 
-then
+---
 
-```javascript
-import { guardString } from '@zerodep/app';
-// or
-import { guardString } from '@zerodep/utilities';
-// or
-import { guardString } from '@zerodep/guard';
-// or
-import { guardString } from '@zerodep/guard-string';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

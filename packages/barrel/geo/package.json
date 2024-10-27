@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/geo",
   "description": "A collection of geo parsers",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "license": "MIT",
   "repository": {
     "type": "git",

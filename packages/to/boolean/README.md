@@ -8,17 +8,21 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
+
 A utility to reliably convert a value to a boolean. Consideration for common boolean-like words and abbreviations are included. Values that cannot reliably be converted to a boolean will cause a `ZeroDepError` to be thrown.
 
 This method behaves differently than the native `Boolean()` method. Full documentation is available at the [zerodep.app](http://zerodep.app/#/to/boolean) page.
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
+All @zerodep packages support both ESM and CJS formats, each complete with Typescript typings.
 
 ```javascript
+// ESM
 import { toBoolean } from '@zerodep/to-boolean';
-// or
+
+// CJS
 const { toBoolean } = require('@zerodep/to-boolean');
 ```
 
@@ -117,3 +121,18 @@ toBoolean(new Set([0])); // true <-- CAUTION: content not evaluated
 toBoolean(new Map()); // false
 toBoolean(new Map([['a', 'anything']])); // true
 ```
+
+---
+
+## ZeroDep Advantages
+
+- **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases node_modules folder size
+- **ESM & CJS** - has both ecmascript modules and common javascript exports
+- **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible size
+- **Fully typed** - typescript definitions are provided for every package for a better developer experience
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples at [zerodep.app](https://zerodep.app)
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
+- **100% Tested** - all methods and packages are fully unit tested
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
+- **MIT Licensed** - permissively licensed for maximum usability

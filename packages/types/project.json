@@ -21,13 +21,13 @@
       }
     },
     "patch": {
-      "command": "cd packages/to/types && npm version patch"
+      "command": "cd packages/types && npm version patch"
     },
     "minor": {
-      "command": "cd packages/to/types && npm version minor"
+      "command": "cd packages/types && npm version minor"
     },
     "major": {
-      "command": "cd packages/to/types && npm version major"
+      "command": "cd packages/types && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",
@@ -46,6 +46,14 @@
       "options": {
         "jestConfig": "packages/types/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/types",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

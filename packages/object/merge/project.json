@@ -22,8 +22,14 @@
         "parallel": false
       }
     },
-    "XXXXpublish": {
-      "command": "cd dist/packages/object/merge && npm version patch"
+    "XXXXpatch": {
+      "command": "cd packages/object/merge && npm version patch"
+    },
+    "XXXXminor": {
+      "command": "cd packages/object/merge && npm version minor"
+    },
+    "XXXXmajor": {
+      "command": "cd packages/object/merge && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",
@@ -42,6 +48,14 @@
       "options": {
         "jestConfig": "packages/object/merge/jest.config.ts"
       }
+    },
+    "XXXXdeploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/object/merge",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

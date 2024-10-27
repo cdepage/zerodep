@@ -3,7 +3,7 @@ import { ZeroDepError } from '@zerodep/errors';
 import { isFunction } from '@zerodep/is-function';
 
 export const guardFunctionHOF = () => {
-  return (value: any): void => {
+  return (value: unknown): void => {
     // we need to check for the typeof first as "undefined" will cause isFunction() to error
     if (!isFunction(value)) {
       const error = new ZeroDepError('Value is not a function');

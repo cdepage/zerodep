@@ -66,6 +66,7 @@
 - Is Functions
 
   - [isArray()](is/array.md)
+  - [isAsync()](is/async.md)
   - [isBigInt()](is/bigint.md)
   - [isBoolean()](is/boolean.md)
   - [isDate()](is/date.md)
@@ -74,6 +75,7 @@
   - [isError()](is/error.md)
   - [isFloat()](is/float.md)
   - [isFunction()](is/function.md)
+  - [isGenerator()](is/generator.md)
   - [isInteger()](is/integer.md)
   - [isIterable()](is/iterable.md)
   - [isMap()](is/map.md)
@@ -126,7 +128,9 @@
 
 > ---
 
-- [**Change Log**](CHANGELOG.md)
-- [**Contributing Guide**](CONTRIBUTING.md)
+- [**Changelog**](CHANGELOG.md)
 - [**Code of Conduct**](CODE_OF_CONDUCT.md)
+- [**Contributing Guide**](CONTRIBUTING.md)
+- [**Quick Start Guide**](QUICK_START.md)
 - [**Security Policy**](SECURITY.md)
+- [**Roadmap**](ROADMAP.md)

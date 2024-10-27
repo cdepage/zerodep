@@ -15,7 +15,7 @@ A factory function that returns an optionally-typed Queue data structure instanc
 ## Signature
 
 ```typescript
-const structQueueFactory: <T = any>(name: string, items?: T[]) => Queue<T>;
+declare const structQueueFactory: <T = any>(name: string, items?: T[]) => Queue<T>;
 
 interface Queue<T> {
   enqueue: (item: T) => void;
@@ -62,6 +62,14 @@ The `structQueueFactory` events return an object with the following shape:
 - **payload** - the item that was enqueued or dequeued
 
 ## Examples
+
+```javascript
+// ESM
+import { queueFactory } from '@zerodep/app';
+
+// CJS
+const { queueFactory } = require('@zerodep/app');
+```
 
 ### Simple Case
 
@@ -144,17 +152,7 @@ npm i @zerodep/struct
 npm i @zerodep/struct-queue
 ```
 
-then
-
-```javascript
-import { structQueueFactory, Queue } from '@zerodep/app';
-// or
-import { structQueueFactory, Queue } from '@zerodep/struct';
-// or
-import { structQueueFactory, Queue } from '@zerodep/struct-queue';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

@@ -10,63 +10,179 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A run-time guard to require a value to be a Date; it will throw a `ZeroDepError` if the guard fails.
+A run-time guard to require a value to be a Date; it will throw a `ZeroDepError` if the guard fails. Optional advanced configuration allows specifying min and/or max dates.
 
-## Signature
+## Basic Signature
 
 ```typescript
-const guardDate: (value: any) => void;
+declare const guardDate: (value: unknown) => void;
 ```
 
 The `guardDate` function has the following parameters:
 
 - **value** - the value to guard
 
-## Examples
-
-### Successful Cases
+## Basic Examples
 
 ```javascript
-guardDate(new Date()); // void
+// ESM
+import { guardDate } from '@zerodep/app';
+
+// CJS
+const { guardDate } = require('@zerodep/app');
 ```
 
-### Unsuccessful Cases
-
 ```javascript
+// Arrays
 guardDate([]); // throws ZeroDepError: Value is not a date
+guardDate([1, 2, 3]); // throws ZeroDepError: Value is not a date
 guardDate(['a', 'b', 'c']); // throws ZeroDepError: Value is not a date
-guardDate(1000n); // throws ZeroDepError: Value is not a date
+
+// BigInts
+guardDate(42n); // throws ZeroDepError: Value is not a date
+guardDate(0n); // throws ZeroDepError: Value is not a date
+guardDate(-0n); // throws ZeroDepError: Value is not a date
+guardDate(-42n); // throws ZeroDepError: Value is not a date
+
+// Booleans
 guardDate(true); // throws ZeroDepError: Value is not a date
-guardDate(''); // throws ZeroDepError: Value is not a date
-guardDate(new Error('message')); // throws ZeroDepError: Value is not a date
-guardDate(3.14); // throws ZeroDepError: Value is not a date
-guardDate(() => 'function'); // throws ZeroDepError: Value is not a date
-guardDate(42); // throws ZeroDepError: Value is not a date
+guardDate(false); // throws ZeroDepError: Value is not a date
+
+// Class
 guardDate(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // throws ZeroDepError: Value is not a date
+
+// Dates
+guardDate(new Date()); // void
+guardDate(new Date('1970-01-01T12:00:00.000Z')); // void
+guardDate(new Date('2099-12-31')); // void
+
+// Empty
 guardDate(null); // throws ZeroDepError: Value is not a date
-guardDate({ an: 'object' }); // throws ZeroDepError: Value is not a date
-guardDate(new Promise(() => {})); // throws ZeroDepError: Value is not a date
-guardDate(/[regex]+/gi); // throws ZeroDepError: Value is not a date
-guardDate(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a date
-guardDate('a string'); // throws ZeroDepError: Value is not a date
-guardDate(Symbol()); // throws ZeroDepError: Value is not a date
-guardDate(new Int32Array(2)); // throws ZeroDepError: Value is not a date
 guardDate(undefined); // throws ZeroDepError: Value is not a date
+
+// Errors
+guardDate(new Error('message')); // throws ZeroDepError: Value is not a date
+guardDate(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // throws ZeroDepError: Value is not a date
+
+// Floats
+guardDate(3.14); // throws ZeroDepError: Value is not a date
+guardDate(0.0); // throws ZeroDepError: Value is not a date
+guardDate(-0.0); // throws ZeroDepError: Value is not a date
+guardDate(-3.14); // throws ZeroDepError: Value is not a date
+guardDate(Math.E); // throws ZeroDepError: Value is not a date
+guardDate(Math.PI); // throws ZeroDepError: Value is not a date
+guardDate(Number.MIN_VALUE); // throws ZeroDepError: Value is not a date
+
+// Functions
+guardDate(() => 'function'); // throws ZeroDepError: Value is not a date
+guardDate(async () => 'function'); // throws ZeroDepError: Value is not a date
+
+// Generators
+guardDate(function* () {
+  yield 'a';
+}); // throws ZeroDepError: Value is not a date
+guardDate(async function* () {
+  yield 'a';
+}); // throws ZeroDepError: Value is not a date
+
+// Maps
+guardDate(new Map()); // throws ZeroDepError: Value is not a date
+guardDate(new Map([['key1', 123]])); // throws ZeroDepError: Value is not a date
+guardDate(new Map([['key1', 'value1']])); // throws ZeroDepError: Value is not a date
+
+// Numbers
+guardDate(Number.POSITIVE_INFINITY); // throws ZeroDepError: Value is not a date
+guardDate(Number.MAX_SAFE_INTEGER); // throws ZeroDepError: Value is not a date
+guardDate(Number.MAX_VALUE); // throws ZeroDepError: Value is not a date
+guardDate(3e8); // throws ZeroDepError: Value is not a date
+guardDate(42); // throws ZeroDepError: Value is not a date
+guardDate(1); // throws ZeroDepError: Value is not a date
+guardDate(0); // throws ZeroDepError: Value is not a date
+guardDate(-0); // throws ZeroDepError: Value is not a date
+guardDate(-1); // throws ZeroDepError: Value is not a date
+guardDate(-42); // throws ZeroDepError: Value is not a date
+guardDate(-3e8); // throws ZeroDepError: Value is not a date
+guardDate(Number.MIN_SAFE_INTEGER); // throws ZeroDepError: Value is not a date
+guardDate(Number.NEGATIVE_INFINITY); // throws ZeroDepError: Value is not a date
+guardDate(Number.NaN); // throws ZeroDepError: Value is not a date
+
+// POJOs
+guardDate({}); // throws ZeroDepError: Value is not a date
+guardDate({ key: 'string' }); // throws ZeroDepError: Value is not a date
+guardDate({ key: 123 }); // throws ZeroDepError: Value is not a date
+
+// Promise
+guardDate(new Promise(() => {})); // throws ZeroDepError: Value is not a date
+guardDate(new Promise.all([])); // throws ZeroDepError: Value is not a date
+guardDate(new Promise.allSettled([])); // throws ZeroDepError: Value is not a date
+guardDate(new Promise.race([])); // throws ZeroDepError: Value is not a date
+guardDate(Promise.resolve()); // throws ZeroDepError: Value is not a date
+
+// Regular Expression
+guardDate(/[regex]+/gi); // throws ZeroDepError: Value is not a date
+guardDate(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not a date
+
+// Sets
+guardDate(new Set()); // throws ZeroDepError: Value is not a date
+guardDate(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a date
+guardDate(new Set(['a', 'b', 'c'])); // throws ZeroDepError: Value is not a date
+
+// Strings
+guardDate(''); // throws ZeroDepError: Value is not a date
+guardDate('a longer string'); // throws ZeroDepError: Value is not a date
+guardDate('1000n'); // throws ZeroDepError: Value is not a date
+guardDate('3e8'); // throws ZeroDepError: Value is not a date
+guardDate('42'); // throws ZeroDepError: Value is not a date
+guardDate('3.14'); // throws ZeroDepError: Value is not a date
+guardDate('0'); // throws ZeroDepError: Value is not a date
+guardDate('-0'); // throws ZeroDepError: Value is not a date
+guardDate('-3.14'); // throws ZeroDepError: Value is not a date
+guardDate('-42'); // throws ZeroDepError: Value is not a date
+guardDate('-3e8'); // throws ZeroDepError: Value is not a date
+guardDate('-1000n'); // throws ZeroDepError: Value is not a date
+
+// Symbols
+guardDate(Symbol()); // throws ZeroDepError: Value is not a date
+guardDate(Symbol('name')); // throws ZeroDepError: Value is not a date
+
+// This
+guardDate(this); // throws ZeroDepError: Value is not a date
+guardDate(globalThis); // throws ZeroDepError: Value is not a date
+
+// TypedArrays
+guardDate(new Int8Array(2)); // throws ZeroDepError: Value is not a date
+guardDate(new Int16Array(2)); // throws ZeroDepError: Value is not a date
+guardDate(new Int32Array(2)); // throws ZeroDepError: Value is not a date
+guardDate(new Uint8Array(2)); // throws ZeroDepError: Value is not a date
+guardDate(new Uint16Array(2)); // throws ZeroDepError: Value is not a date
+guardDate(new Uint32Array(2)); // throws ZeroDepError: Value is not a date
+guardDate(new Uint8ClampedArray(2)); // throws ZeroDepError: Value is not a date
+
+guardDate(new BigInt64Array(2)); // throws ZeroDepError: Value is not a date
+guardDate(new BigUint64Array(2)); // throws ZeroDepError: Value is not a date
+
+guardDate(new Float32Array(2)); // throws ZeroDepError: Value is not a date
+guardDate(new Float64Array(2)); // throws ZeroDepError: Value is not a date
+
+guardDate(new SharedArrayBuffer(512)); // throws ZeroDepError: Value is not a date
+
+// WeakMap and WeakSet
+guardDate(new WeakMap()); // throws ZeroDepError: Value is not a date
+guardDate(new WeakSet()); // throws ZeroDepError: Value is not a date
 ```
 
 ## Advanced Use
 
 The guard may optionally be configured, via the `guardDateHOF` function, with additional run-time range checks.
 
-### Signature
+### Advanced Signature
 
 ```typescript
-const guardDateHOF: (options: GuardDateOptions) => (value: any) => void;
+declare const guardDateHOF: (options: GuardDateOptions) => (value: unknown) => void;
 
 interface GuardDateOptions {
   earliest?: number;
@@ -83,11 +199,17 @@ The `GuardDateOptions` has the following configuration options, all are optional
 
 ### Advanced Examples
 
+```javascript
+// ESM
+import { guardDateHOF, GuardDateOptions } from '@zerodep/app';
+
+// CJS
+const { guardDateHOF, GuardDateOptions } = require('@zerodep/app');
+```
+
 **Earliest & Latest Dates**
 
 ```typescript
-import { guardDateHOF, GuardDateOptions } from '@zerodep/guard-date';
-
 const config: GuardDateOptions = {
   earliest: new Date('1999-12-31'),
   latest: new Date('2038-01-19'),
@@ -118,23 +240,15 @@ npm i @zerodep/guards
 npm i @zerodep/guard-date
 ```
 
-then
+---
 
-```javascript
-import { guardDate } from '@zerodep/app';
-// or
-import { guardDate } from '@zerodep/utilities';
-// or
-import { guardDate } from '@zerodep/guard';
-// or
-import { guardDate } from '@zerodep/guard-date';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

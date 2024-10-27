@@ -10,7 +10,7 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A utility that normalizes an address string for ease of parsing.
+A utility that normalizes an address (with a 200 character limit).
 
 This will:
 
@@ -26,10 +26,10 @@ Normalization is done in accordance with USPS and Canada Post addressing standar
 ## Signature
 
 ```typescript
-addressNormalize: (value: string) => string;
+declare const addressNormalize: (value: string) => string;
 ```
 
-## How to Use
+## Examples
 
 ```javascript
 addressNormalize('1234 Main st sw apt14-a');
@@ -76,7 +76,7 @@ import { addressNormalize } from '@zerodep/address';
 import { addressNormalize } from '@zerodep/address-normalize';
 ```
 
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

@@ -10,12 +10,14 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A utility to convert a string to camelCase, intended for converting variable names, that also strips out non-alphanumeric characters and any leading numeric characters.
+A utility that deburrs a string, converts it to camelCase, strips all non-alphanumeric characters and removes leading numbers.
+
+This utility is intended for database field names, CSV header conversion, and other field normalizations, among other uses.
 
 ## Signature
 
 ```typescript
-const caseCamel: (value: string) => string;
+declare const caseCamel: (value: string) => string;
 ```
 
 ### Function Parameters
@@ -27,13 +29,22 @@ The `caseCamel` function has the following parameters:
 ## Examples
 
 ```javascript
-caseCamel('From sentence case'); // "fromSentenceCase"
+// ESM
+import { caseCamel } from '@zerodep/app';
+
+// CJS
+const { caseCamel } = require('@zerodep/app');
+```
+
+```javascript
+caseCamel('from sentence case'); // "fromSentenceCase"
+caseCamel('from.dot.case'); // "fromDotCase"
 caseCamel('from-kebab-case'); // "fromKebabCase"
 caseCamel('from_snake_case'); // "fromSnakeCase"
 caseCamel('FromPascalCase'); // "fromPascalCase"
 caseCamel(''); // ""
 
-// with non-alphanumeric characters
+// with non-alphanumeric characters in the string
 caseCamel('A string with some !@#$%^& characters'); // "aStringWithSomeCharacters"
 caseCamel('A #22 character long string'); // "a22CharacterLongString"
 caseCamel("I'm a sp3c!al $741ng"); // "iMASp3cAl741ng"
@@ -67,23 +78,15 @@ npm i @zerodep/case
 npm i @zerodep/case-camel
 ```
 
-then
+---
 
-```javascript
-import { caseCamel } from '@zerodep/app';
-// or
-import { caseCamel } from '@zerodep/utilities';
-// or
-import { caseCamel } from '@zerodep/case';
-// or
-import { caseCamel } from '@zerodep/case-camel';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

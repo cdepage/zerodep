@@ -25,6 +25,12 @@
     "patch": {
       "command": "cd packages/struct/tree && npm version patch"
     },
+    "minor": {
+      "command": "cd packages/struct/tree && npm version minor"
+    },
+    "major": {
+      "command": "cd packages/struct/tree && npm version major"
+    },
     "packageFix": {
       "executor": "nx:run-commands",
       "options": {
@@ -42,6 +48,14 @@
       "options": {
         "jestConfig": "packages/struct/tree/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/struct/tree",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

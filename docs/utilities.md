@@ -30,3 +30,21 @@ All of the following are available in this package:
 - [Every String Function](string.md)
 - [Every To Converter](to.md)
 - [Every Type Literal Union](types.md)
+
+---
+
+## Package Changelog
+
+All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+#### Release 2.5.x
+
+**Added**
+
+- added the `isAsync()` method
+- added the `isGenerator()` method
+- added the `toBoolean()` method
+
+**Fixed**
+
+- the `isEqual()` method to properly handle Map keys ordering, Set value ordering, and array item ordering

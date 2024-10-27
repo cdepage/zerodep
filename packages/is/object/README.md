@@ -174,6 +174,8 @@ isObject(new WeakMap()); // false
 isObject(new WeakSet()); // false
 ```
 
+---
+
 ## ZeroDep Advantages
 
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases node_modules folder size

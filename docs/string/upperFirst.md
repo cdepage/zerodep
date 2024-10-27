@@ -15,7 +15,7 @@ A utility to convert the first letter of a provided string to a lowercase value.
 ## Signature
 
 ```typescript
-const stringUpperFirst: (value: string) => string;
+declare const stringUpperFirst: (value: string) => string;
 ```
 
 ### Function Parameters
@@ -26,18 +26,22 @@ The `stringUpperFirst` function has the following parameters:
 
 ## Examples
 
-### Successful Response
+```javascript
+// ESM
+import { stringUpperFirst } from '@zerodep/app';
+
+// CJS
+const { stringUpperFirst } = require('@zerodep/app');
+```
 
 ```javascript
+// strings with various permutations
 stringUpperFirst('california'); // "California"
 stringUpperFirst('new york'); // "New york"
 stringUpperFirst('Vermont'); // "Vermont"
-```
 
-### Unsuccessful Response
-
-```javascript
-stringUpperFirst({ not: 'a string' }); // throws ZeroDepError: Value is not a string
+// with anything that is not a string
+stringUpperFirst({ a: 'not string' }); // throws ZeroDepError: Value is not a string
 ```
 
 ## Installation Sources
@@ -58,23 +62,15 @@ npm i @zerodep/string
 npm i @zerodep/string-upperfirst
 ```
 
-then
+---
 
-```javascript
-import { stringUpperFirst } from '@zerodep/app';
-// or
-import { stringUpperFirst } from '@zerodep/utilities';
-// or
-import { stringUpperFirst } from '@zerodep/string';
-// or
-import { stringUpperFirst } from '@zerodep/string-upperfirst';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

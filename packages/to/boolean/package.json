@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/to-boolean",
   "description": "A utility to reliably convert a value to a boolean",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "license": "MIT",
   "repository": {
     "type": "git",

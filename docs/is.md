@@ -23,6 +23,7 @@ npm i @zerodep/is
 ## Available Functions
 
 - [isArray()](is/array.md)
+- [isAsync()](is/async.md)
 - [isBigInt()](is/bigint.md)
 - [isBoolean()](is/boolean.md)
 - [isDate()](is/date.md)
@@ -31,6 +32,7 @@ npm i @zerodep/is
 - [isError()](is/error.md)
 - [isFloat()](is/float.md)
 - [isFunction()](is/function.md)
+- [isGenerator()](is/generator.md)
 - [isInteger()](is/integer.md)
 - [isIterable()](is/iterable.md)
 - [isMap()](is/map.md)
@@ -48,3 +50,22 @@ npm i @zerodep/is
 - [isUndefined()](is/undefined.md)
 - [isWeakMap()](is/weakMap.md)
 - [isWeakSet()](is/weakSet.md)
+
+## Changelog
+
+All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+#### Release 2.2.x
+
+**Added**
+
+- added the `isAsync()` method
+- added the `isGenerator()` method
+
+**Fixed**
+
+- the `isEqual()` method to properly handle Map keys ordering, Set value ordering, and array item ordering
+
+**Updated**
+
+- the documentation for every `is` package and method with better descriptions and examples

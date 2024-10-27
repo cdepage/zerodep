@@ -15,7 +15,7 @@ export const toDate = (value: string | number | bigint | Date): Date => {
     return value as Date;
   }
 
-  // only strings & numbers have any hope of becoming dates
+  // only strings, numbers and BigInts have any hope of becoming dates
   if (!isString(value) && !isNumber(value) && !isBigInt(value)) {
     throw new ZeroDepError(errMessage, 'type', 'to');
   }

@@ -10,7 +10,7 @@ export interface GuardArrayOptions {
 export const guardArrayHOF = (options: GuardArrayOptions = {}) => {
   const config: GuardArrayOptions = options;
 
-  return (value: any | any[]): void => {
+  return (value: unknown): void => {
     if (!isArray(value)) {
       const error = new ZeroDepError('Value is not an array');
       error.value = value;
@@ -19,7 +19,7 @@ export const guardArrayHOF = (options: GuardArrayOptions = {}) => {
 
     if (
       typeof config.minQuantity !== 'undefined' &&
-      value.length < config.minQuantity
+      (value as unknown[]).length < config.minQuantity
     ) {
       const error = new ZeroDepError(
         `Array has fewer than ${config.minQuantity} items`
@@ -30,7 +30,7 @@ export const guardArrayHOF = (options: GuardArrayOptions = {}) => {
 
     if (
       typeof config.maxQuantity !== 'undefined' &&
-      value.length > config.maxQuantity
+      (value as unknown[]).length > config.maxQuantity
     ) {
       const error = new ZeroDepError(
         `Array has more than ${config.maxQuantity} items`
@@ -40,7 +40,7 @@ export const guardArrayHOF = (options: GuardArrayOptions = {}) => {
     }
 
     if (config.typeFn) {
-      for (const item of value) {
+      for (const item of value as unknown[]) {
         if (!config.typeFn(item)) {
           const error = new ZeroDepError(
             `An array item is of the incorrect type`

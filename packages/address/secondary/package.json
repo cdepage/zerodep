@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/address-secondary",
   "description": "A parser to find where a secondary name or abbreviation is in a string",
-  "version": "2.3.7",
+  "version": "2.3.8",
   "license": "MIT",
   "repository": {
     "type": "git",

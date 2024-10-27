@@ -31,10 +31,6 @@
     "major": {
       "command": "cd packages/string/trimleft && npm version major"
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
     "packageFix": {
       "executor": "nx:run-commands",
       "options": {
@@ -42,12 +38,24 @@
         "cwd": "packages/string/trimleft"
       }
     },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "packages/string/trimleft/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/string/trimleft",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

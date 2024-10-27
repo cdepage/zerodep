@@ -17,9 +17,9 @@ A parser to get country ISO codes and information from a country name or abbrevi
 In the definition below `CountryIso2` are from [@zerodep/types](/types.md).
 
 ```typescript
-const geoCountryIso: (country: string) => CountryIso2;
+declare const geoCountryIso: (country: string) => CountryIso2;
 // and
-const geoCountry: (country: string) => GeoCountry;
+declare const geoCountry: (country: string) => GeoCountry;
 
 interface GeoCountry {
   countryName: string;

@@ -15,7 +15,7 @@ A utility to split a sentence of words into an array of those words and remove p
 ## Signature
 
 ```typescript
-const stringWords: (value: string, separator?: string | RegExp) => string[];
+declare const stringWords: (value: string, separator?: string | RegExp) => string[];
 ```
 
 ### Function Parameters
@@ -27,25 +27,26 @@ The `stringWords` function has the following parameters:
 
 ## Examples
 
-### Using Default Space Separator
+```javascript
+// ESM
+import { stringWords } from '@zerodep/app';
+
+// CJS
+const { stringWords } = require('@zerodep/app');
+```
 
 ```javascript
+// strings with various permutations
 stringWords('California'); // ["California"]
 stringWords('3.14 Pi'); // ["3.14", "Pi"]
 stringWords("I'll be there for you. How about you?"); // ["I'll", "be", "there", "for", "you", "How", "about", "you"]
 stringWords(''); // []
-```
 
-### Using Custom Separator
-
-```javascript
+// with a custom separator
 stringWords('this_is_a_snake_case_string', '_'); // ["this", "is", "a", "snake", "case", "string"]
-```
 
-### Unsuccessful Response
-
-```javascript
-stringWords({ not: 'a string' }); // throws ZeroDepError: Value is not a string
+// with anything that is not a string
+stringWords({ a: 'not string' }); // throws ZeroDepError: Value is not a string
 ```
 
 ## Installation Sources
@@ -66,23 +67,15 @@ npm i @zerodep/string
 npm i @zerodep/string-words
 ```
 
-then
+---
 
-```javascript
-import { stringWords } from '@zerodep/app';
-// or
-import { stringWords } from '@zerodep/utilities';
-// or
-import { stringWords } from '@zerodep/string';
-// or
-import { stringWords } from '@zerodep/string-words';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

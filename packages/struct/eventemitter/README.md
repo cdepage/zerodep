@@ -8,6 +8,8 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
+
 **A factory function to add fully typed event emitter functionality to any object literal factory.**
 
 Full documentation is available at the [zerodep.app](http://zerodep.app/#/to/string) page.

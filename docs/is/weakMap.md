@@ -15,7 +15,7 @@ A simple, performant utility to determine if a value is a Weak Map.
 ## Signature
 
 ```typescript
-const isWeakMap(value: any) => boolean;
+declare const isWeakMap: (value: unknown) => boolean;
 ```
 
 ### Function Parameters
@@ -26,52 +26,155 @@ The `isWeakMap` function has the following parameters:
 
 ## Examples
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
-
 ```javascript
-import { isWeakMap } from '@zerodep/is-weakmap';
-// or
-const { isWeakMap } = require('@zerodep/is-weakmap');
+// ESM
+import { isWeakmap } from '@zerodep/app';
+
+// CJS
+// CJS
+const { isWeakmap } = require('@zerodep/app');
 ```
 
-### Positive Response
-
 ```javascript
-// prepare a weak map
-cost obj = {}
-const wm = new WeakMap();
-wm.set(obj, 37);
+// Arrays
+isWeakmap([]); // false
+isWeakmap([1, 2, 3]); // false
+isWeakmap(['a', 'b', 'c']); // false
 
-is-weakmap(wm); // true
-```
+// BigInts
+isWeakmap(42n); // false
+isWeakmap(0n); // false
+isWeakmap(-0n); // false
+isWeakmap(-42n); // false
 
-### Negative Response
+// Booleans
+isWeakmap(true); // false
+isWeakmap(false); // false
 
-```javascript
-isWeakMap(['a', 'b', 'c']); // false
-isWeakMap(1000n); // false
-isWeakMap(true); // false
-isWeakMap(new Date()); // false
-isWeakMap(''); // false
-isWeakMap(new Error('message')); // false
-isWeakMap(3.14); // false
-isWeakMap(() => 'function'); // false
-isWeakMap(42); // false
-isWeakMap(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+// Class
+isWeakmap(
+  class SomeClass {
+    constructor() {}
+  }
 ); // false
-isWeakMap(null); // false
-isWeakMap({ an: 'object' }); // false
-isWeakMap(new Promise(() => {})); // false
-isWeakMap(/[regex]+/gi); // false
-isWeakMap(new Set([1, 2, 3])); // false
-isWeakMap('a string'); // false
-isWeakMap(Symbol()); // false
-isWeakMap(new Int32Array(2)); // false
-isWeakMap(undefined); // false
+
+// Dates
+isWeakmap(new Date()); // false
+isWeakmap(new Date('1970-01-01T12:00:00.000Z')); // false
+isWeakmap(new Date('2099-12-31')); // false
+
+// Empty
+isWeakmap(null); // false
+isWeakmap(undefined); // false
+
+// Errors
+isWeakmap(new Error('message')); // false
+isWeakmap(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
+
+// Floats
+isWeakmap(3.14); // false
+isWeakmap(0.0); // false
+isWeakmap(-0.0); // false
+isWeakmap(-3.14); // false
+isWeakmap(Math.E); // false
+isWeakmap(Math.PI); // false
+isWeakmap(Number.MIN_VALUE); // false
+
+// Functions
+isWeakmap(() => 'function'); // false
+isWeakmap(async () => 'function'); // false
+
+// Generators
+isWeakmap(function* () {
+  yield 'a';
+}); // false
+isWeakmap(async function* () {
+  yield 'a';
+}); // false
+
+// Maps
+isWeakmap(new Map()); // false
+isWeakmap(new Map([['key1', 123]])); // false
+isWeakmap(new Map([['key1', 'value1']])); // false
+
+// Numbers
+isWeakmap(Number.POSITIVE_INFINITY); // false
+isWeakmap(Number.MAX_SAFE_INTEGER); // false
+isWeakmap(3e8); // false
+isWeakmap(42); // false
+isWeakmap(1); // false
+isWeakmap(0); // false
+isWeakmap(-0); // false
+isWeakmap(-1); // false
+isWeakmap(-42); // false
+isWeakmap(-3e8); // false
+isWeakmap(Number.MIN_SAFE_INTEGER); // false
+isWeakmap(Number.NEGATIVE_INFINITY); // false
+isWeakmap(Number.NaN); // false
+
+// POJOs
+isWeakmap({}); // false
+isWeakmap({ key: 'string' }); // false
+isWeakmap({ key: 123 }); // false
+
+// Promise
+isWeakmap(new Promise(() => {})); // false
+isWeakmap(new Promise.all([])); // false
+isWeakmap(new Promise.allSettled([])); // false
+isWeakmap(new Promise.race([])); // false
+isWeakmap(Promise.resolve()); // false
+
+// Regular Expression
+isWeakmap(/[regex]+/gi); // false
+isWeakmap(new RegExp('d', 'gi')); // false
+
+// Sets
+isWeakmap(new Set()); // false
+isWeakmap(new Set([1, 2, 3])); // false
+isWeakmap(new Set(['a', 'b', 'c'])); // false
+
+// Strings
+isWeakmap(''); // false
+isWeakmap('a longer string'); // false
+isWeakmap('1000n'); // false
+isWeakmap('3e8'); // false
+isWeakmap('42'); // false
+isWeakmap('3.14'); // false
+isWeakmap('0'); // false
+isWeakmap('-0'); // false
+isWeakmap('-3.14'); // false
+isWeakmap('-42'); // false
+isWeakmap('-3e8'); // false
+isWeakmap('-1000n'); // false
+
+// Symbols
+isWeakmap(Symbol()); // false
+isWeakmap(Symbol('name')); // false
+
+// This
+isWeakmap(this); // false
+isWeakmap(globalThis); // false
+
+// TypedArrays
+isWeakmap(new Int8Array(2)); // false
+isWeakmap(new Int16Array(2)); // false
+isWeakmap(new Int32Array(2)); // false
+isWeakmap(new Uint8Array(2)); // false
+isWeakmap(new Uint16Array(2)); // false
+isWeakmap(new Uint32Array(2)); // false
+isWeakmap(new Uint8ClampedArray(2)); // false
+
+isWeakmap(new BigInt64Array(2)); // false
+isWeakmap(new BigUint64Array(2)); // false
+
+isWeakmap(new Float32Array(2)); // false
+isWeakmap(new Float64Array(2)); // false
+
+isWeakmap(new SharedArrayBuffer(512)); // false
+
+// WeakMap and WeakSet
+isWeakmap(new WeakMap()); // true
+isWeakmap(new WeakSet()); // false
 ```
 
 ## Installation Sources
@@ -92,23 +195,15 @@ npm i @zerodep/utilities
 npm i @zerodep/is-weakmap
 ```
 
-then
+---
 
-```javascript
-import { isWeakMap } from '@zerodep/app';
-// or
-import { isWeakMap } from '@zerodep/utilities';
-// or
-import { isWeakMap } from '@zerodep/is';
-// or
-import { isWeakMap } from '@zerodep/is-weakmap';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

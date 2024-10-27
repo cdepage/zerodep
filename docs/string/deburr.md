@@ -15,7 +15,7 @@ A utility to convert accented characters to their equivalent ASCII values. Non-s
 ## Signature
 
 ```typescript
-const stringDeburr: (value: string) => string;
+declare const stringDeburr: (value: string) => string;
 ```
 
 ### Function Parameters
@@ -26,25 +26,24 @@ The `stringDeburr` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
 ```javascript
-import { stringDeburr } from '@zerodep/string-deburr';
-// or
-const { stringDeburr } = require('@zerodep/string-deburr');
+// ESM
+import { stringDeburr } from '@zerodep/app';
+
+// CJS
+const { stringDeburr } = require('@zerodep/app');
 ```
 
-### Use Cases
-
 ```javascript
-stringDeburr('àëîóüý Žøñç'); // "aeioUy Zonc"
-stringDeburr('Hello There!ç'); // "Hello THere!"
-```
+// with accented strings
+stringDeburr('àëîóüý Žøñç'); // "aeiouy Zonc"
+stringDeburr('Hello There!ç'); // "Hello There!c""
 
-### Unsuccessful Response
+// with regular ascii characters
+stringDeburr('Testing 1234 !@#$%'); // "Testing 1234 !@#$%"
 
-```javascript
-stringDeburr({ not: 'a string' }); // throws ZeroDepError: Value is not a string
+// with anything that is not a string
+stringDeburr({ a: 'not string' }); // throws ZeroDepError: Value is not a string
 ```
 
 ## Installation Sources
@@ -65,23 +64,15 @@ npm i @zerodep/string
 npm i @zerodep/string-deburr
 ```
 
-then
+---
 
-```javascript
-import { stringDeburr } from '@zerodep/app';
-// or
-import { stringDeburr } from '@zerodep/utilities';
-// or
-import { stringDeburr } from '@zerodep/string';
-// or
-import { stringDeburr } from '@zerodep/string-deburr';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

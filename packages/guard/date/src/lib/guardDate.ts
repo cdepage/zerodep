@@ -15,14 +15,17 @@ const defaultOptions: GuardDateOptions = {
 export const guardDateHOF = (options: GuardDateOptions = {}) => {
   const config: GuardDateOptions = { ...defaultOptions, ...options };
 
-  return (value: any): void => {
+  return (value: unknown): void => {
     if (!isDate(value)) {
       const error = new ZeroDepError('Value is not a date');
       error.value = value;
       throw error;
     }
 
-    if (typeof config.earliest !== 'undefined' && value < config.earliest) {
+    if (
+      typeof config.earliest !== 'undefined' &&
+      (value as Date) < config.earliest
+    ) {
       const error = new ZeroDepError(
         `Date is less than ${config.earliest.toISOString()}`
       );
@@ -30,7 +33,10 @@ export const guardDateHOF = (options: GuardDateOptions = {}) => {
       throw error;
     }
 
-    if (typeof config.latest !== 'undefined' && value > config.latest) {
+    if (
+      typeof config.latest !== 'undefined' &&
+      (value as Date) > config.latest
+    ) {
       const error = new ZeroDepError(
         `Date is greater than ${config.latest.toISOString()}`
       );

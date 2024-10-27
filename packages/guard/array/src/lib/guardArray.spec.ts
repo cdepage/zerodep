@@ -8,7 +8,7 @@ const { arraysSafe, arraysUnsafe, ...rest } = testData;
 const positiveCases = [...arraysSafe, ...arraysUnsafe];
 const negativeCases = Object.values(rest).flat();
 
-describe('guardInteger', () => {
+describe('guardArray', () => {
   describe('with default options', () => {
     const guard = guardArray;
 

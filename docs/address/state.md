@@ -17,7 +17,7 @@ This function will return an array of results, with the most likely result being
 ## Signature
 
 ```typescript
-const addressState: (address: string, countryIso2?: CountryIso2) => AddressState[];
+declare const addressState: (address: string, countryIso2?: CountryIso2) => AddressState[];
 
 interface AddressState {
   stateAbbr: StateUsAbbr | StateCaAbbr;
@@ -49,13 +49,11 @@ The `addressState` function will throw an `Error` if the state cannot be found.
 
 ## Examples
 
-**Successful Case - US**
-
 ```javascript
+// American address
 addressState('1234 Main Street, Los Angeles California, 90210');
 // or
 addressState('1234 Main Street, Los Angeles California, 90210', 'US');
-
 //  [
 //    {
 //      stateAbbr: 'CA',
@@ -64,11 +62,8 @@ addressState('1234 Main Street, Los Angeles California, 90210', 'US');
 //      length: 10,
 //    },
 //  ]
-```
 
-**Successful Case - CA**
-
-```javascript
+// Canadian Address
 addressState('13375 rue rita pierrefonds quebec h8z1j3');
 // or
 addressState('13375 rue rita pierrefonds quebec h8z1j3', 'CA');
@@ -80,11 +75,8 @@ addressState('13375 rue rita pierrefonds quebec h8z1j3', 'CA');
 //     "length": 6,
 //   }
 // ]
-```
 
-**Successful Case - Mixed Countries**
-
-```javascript
+// Unspecified country
 addressState('1234 oregon street, toronto on');
 // [
 //   {
@@ -100,11 +92,8 @@ addressState('1234 oregon street, toronto on');
 //     "length": 6
 //   }
 // ]
-```
 
-**Unsuccessful Cases**
-
-```javascript
+// no results found
 addressState('unknown');
 // []
 ```
@@ -127,19 +116,7 @@ npm i @zerodep/address
 npm i @zerodep/address-state
 ```
 
-then
-
-```javascript
-import { addressState } from '@zerodep/app';
-// or
-import { addressState } from '@zerodep/utilities';
-// or
-import { addressState } from '@zerodep/address';
-// or
-import { addressState } from '@zerodep/address-state';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

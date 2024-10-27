@@ -15,7 +15,7 @@ A utility to convert the first letter of a provided string to a lowercase value.
 ## Signature
 
 ```typescript
-const stringLowerFirst: (value: string) => string;
+declare const stringLowerFirst: (value: string) => string;
 ```
 
 ### Function Parameters
@@ -26,26 +26,22 @@ The `stringLowerFirst` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
 ```javascript
-import { stringLowerFirst } from '@zerodep/string-lowerfirst';
-// or
-const { stringLowerFirst } = require('@zerodep/string-lowerfirst');
+// ESM
+import { stringLowerFirst } from '@zerodep/app';
+
+// CJS
+const { stringLowerFirst } = require('@zerodep/app');
 ```
 
-### Successful Response
-
 ```javascript
+// with accented strings
 stringLowerFirst('California'); // "california"
 stringLowerFirst('New York'); // "new York"
 stringLowerFirst('vermont'); // "vermont"
-```
 
-### Unsuccessful Response
-
-```javascript
-stringLowerFirst({ not: 'a string' }); // throws ZeroDepError: Value is not a string
+// with anything that is not a string
+stringLowerFirst({ a: 'not string' }); // throws ZeroDepError: Value is not a string
 ```
 
 ## Installation Sources
@@ -66,23 +62,15 @@ npm i @zerodep/string
 npm i @zerodep/string-lowerfirst
 ```
 
-then
+---
 
-```javascript
-import { stringLowerFirst } from '@zerodep/app';
-// or
-import { stringLowerFirst } from '@zerodep/utilities';
-// or
-import { stringLowerFirst } from '@zerodep/string';
-// or
-import { stringLowerFirst } from '@zerodep/string-lowerfirst';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

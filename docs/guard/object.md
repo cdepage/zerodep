@@ -10,63 +10,179 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A run-time guard to require a value to be an object; it will throw a `ZeroDepError` if the guard fails.
+A run-time guard to require a value to be an object; it will throw a `ZeroDepError` if the guard fails. Optional advanced configuration allows specifying min and/or max number of items.
 
-## Signature
+## Basic Signature
 
 ```typescript
-const guardObject: (value: any) => void;
+declare const guardObject: (value: unknown) => void;
 ```
 
 The `guardObject` function has the following parameters:
 
 - **value** - the value to guard
 
-## Examples
-
-### Successful Cases
+## Basic Examples
 
 ```javascript
-guardObject({ an: 'object' }); // void
+// ESM
+import { guardObject } from '@zerodep/app';
+
+// CJS
+const { guardObject } = require('@zerodep/app');
 ```
 
-### Unsuccessful Cases
-
 ```javascript
+// Arrays
 guardObject([]); // throws ZeroDepError: Value is not an object
+guardObject([1, 2, 3]); // throws ZeroDepError: Value is not an object
 guardObject(['a', 'b', 'c']); // throws ZeroDepError: Value is not an object
-guardObject(1000n); // throws ZeroDepError: Value is not an object
+
+// BigInts
+guardObject(42n); // throws ZeroDepError: Value is not an object
+guardObject(0n); // throws ZeroDepError: Value is not an object
+guardObject(-0n); // throws ZeroDepError: Value is not an object
+guardObject(-42n); // throws ZeroDepError: Value is not an object
+
+// Booleans
 guardObject(true); // throws ZeroDepError: Value is not an object
-guardObject(new Date()); // throws ZeroDepError: Value is not an object
-guardObject(''); // throws ZeroDepError: Value is not an object
-guardObject(new Error('message')); // throws ZeroDepError: Value is not an object
-guardObject(3.14); // throws ZeroDepError: Value is not an object
-guardObject(() => 'function'); // throws ZeroDepError: Value is not an object
-guardObject(42); // throws ZeroDepError: Value is not an object
+guardObject(false); // throws ZeroDepError: Value is not an object
+
+// Class
 guardObject(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // throws ZeroDepError: Value is not an object
+
+// Dates
+guardObject(new Date()); // throws ZeroDepError: Value is not an object
+guardObject(new Date('1970-01-01T12:00:00.000Z')); // throws ZeroDepError: Value is not an object
+guardObject(new Date('2099-12-31')); // throws ZeroDepError: Value is not an object
+
+// Empty
 guardObject(null); // throws ZeroDepError: Value is not an object
-guardObject(new Promise(() => {})); // throws ZeroDepError: Value is not an object
-guardObject(/[regex]+/gi); // throws ZeroDepError: Value is not an object
-guardObject(new Set([1, 2, 3])); // throws ZeroDepError: Value is not an object
-guardObject('a string'); // throws ZeroDepError: Value is not an object
-guardObject(Symbol()); // throws ZeroDepError: Value is not an object
-guardObject(new Int32Array(2)); // throws ZeroDepError: Value is not an object
 guardObject(undefined); // throws ZeroDepError: Value is not an object
+
+// Errors
+guardObject(new Error('message')); // throws ZeroDepError: Value is not an object
+guardObject(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // throws ZeroDepError: Value is not an object
+
+// Floats
+guardObject(3.14); // throws ZeroDepError: Value is not an object
+guardObject(0.0); // throws ZeroDepError: Value is not an object
+guardObject(-0.0); // throws ZeroDepError: Value is not an object
+guardObject(-3.14); // throws ZeroDepError: Value is not an object
+guardObject(Math.E); // throws ZeroDepError: Value is not an object
+guardObject(Math.PI); // throws ZeroDepError: Value is not an object
+guardObject(Number.MIN_VALUE); // throws ZeroDepError: Value is not an object
+
+// Functions
+guardObject(() => 'function'); // throws ZeroDepError: Value is not an object
+guardObject(async () => 'function'); // throws ZeroDepError: Value is not an object
+
+// Generators
+guardObject(function* () {
+  yield 'a';
+}); // throws ZeroDepError: Value is not an object
+guardObject(async function* () {
+  yield 'a';
+}); // throws ZeroDepError: Value is not an object
+
+// Maps
+guardObject(new Map()); // throws ZeroDepError: Value is not an object
+guardObject(new Map([['key1', 123]])); // throws ZeroDepError: Value is not an object
+guardObject(new Map([['key1', 'value1']])); // throws ZeroDepError: Value is not an object
+
+// Numbers
+guardObject(Number.POSITIVE_INFINITY); // throws ZeroDepError: Value is not an object
+guardObject(Number.MAX_SAFE_INTEGER); // throws ZeroDepError: Value is not an object
+guardObject(Number.MAX_VALUE); // throws ZeroDepError: Value is not an object
+guardObject(3e8); // throws ZeroDepError: Value is not an object
+guardObject(42); // throws ZeroDepError: Value is not an object
+guardObject(1); // throws ZeroDepError: Value is not an object
+guardObject(0); // throws ZeroDepError: Value is not an object
+guardObject(-0); // throws ZeroDepError: Value is not an object
+guardObject(-1); // throws ZeroDepError: Value is not an object
+guardObject(-42); // throws ZeroDepError: Value is not an object
+guardObject(-3e8); // throws ZeroDepError: Value is not an object
+guardObject(Number.MIN_SAFE_INTEGER); // throws ZeroDepError: Value is not an object
+guardObject(Number.NEGATIVE_INFINITY); // throws ZeroDepError: Value is not an object
+guardObject(Number.NaN); // throws ZeroDepError: Value is not an object
+
+// POJOs
+guardObject({}); // true
+guardObject({ key: 'string' }); // true
+guardObject({ key: 123 }); // true
+
+// Promise
+guardObject(new Promise(() => {})); // throws ZeroDepError: Value is not an object
+guardObject(new Promise.all([])); // throws ZeroDepError: Value is not an object
+guardObject(new Promise.allSettled([])); // throws ZeroDepError: Value is not an object
+guardObject(new Promise.race([])); // throws ZeroDepError: Value is not an object
+guardObject(Promise.resolve()); // throws ZeroDepError: Value is not an object
+
+// Regular Expression
+guardObject(/[regex]+/gi); // throws ZeroDepError: Value is not an object
+guardObject(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not an object
+
+// Sets
+guardObject(new Set()); // throws ZeroDepError: Value is not an object
+guardObject(new Set([1, 2, 3])); // throws ZeroDepError: Value is not an object
+guardObject(new Set(['a', 'b', 'c'])); // throws ZeroDepError: Value is not an object
+
+// Strings
+guardObject(''); // throws ZeroDepError: Value is not an object
+guardObject('a longer string'); // throws ZeroDepError: Value is not an object
+guardObject('1000n'); // throws ZeroDepError: Value is not an object
+guardObject('3e8'); // throws ZeroDepError: Value is not an object
+guardObject('42'); // throws ZeroDepError: Value is not an object
+guardObject('3.14'); // throws ZeroDepError: Value is not an object
+guardObject('0'); // throws ZeroDepError: Value is not an object
+guardObject('-0'); // throws ZeroDepError: Value is not an object
+guardObject('-3.14'); // throws ZeroDepError: Value is not an object
+guardObject('-42'); // throws ZeroDepError: Value is not an object
+guardObject('-3e8'); // throws ZeroDepError: Value is not an object
+guardObject('-1000n'); // throws ZeroDepError: Value is not an object
+
+// Symbols
+guardObject(Symbol()); // throws ZeroDepError: Value is not an object
+guardObject(Symbol('name')); // throws ZeroDepError: Value is not an object
+
+// This
+guardObject(this); // throws ZeroDepError: Value is not an object
+guardObject(globalThis); // throws ZeroDepError: Value is not an object
+
+// TypedArrays
+guardObject(new Int8Array(2)); // throws ZeroDepError: Value is not an object
+guardObject(new Int16Array(2)); // throws ZeroDepError: Value is not an object
+guardObject(new Int32Array(2)); // throws ZeroDepError: Value is not an object
+guardObject(new Uint8Array(2)); // throws ZeroDepError: Value is not an object
+guardObject(new Uint16Array(2)); // throws ZeroDepError: Value is not an object
+guardObject(new Uint32Array(2)); // throws ZeroDepError: Value is not an object
+guardObject(new Uint8ClampedArray(2)); // throws ZeroDepError: Value is not an object
+
+guardObject(new BigInt64Array(2)); // throws ZeroDepError: Value is not an object
+guardObject(new BigUint64Array(2)); // throws ZeroDepError: Value is not an object
+
+guardObject(new Float32Array(2)); // throws ZeroDepError: Value is not an object
+guardObject(new Float64Array(2)); // throws ZeroDepError: Value is not an object
+
+guardObject(new SharedArrayBuffer(512)); // throws ZeroDepError: Value is not an object
+
+// WeakMap and WeakSet
+guardObject(new WeakMap()); // throws ZeroDepError: Value is not an object
+guardObject(new WeakSet()); // throws ZeroDepError: Value is not an object
 ```
 
 ## Advanced Use
 
 The guard may optionally be configured, via the `guardObjectHOF` function, with additional run-time quantity and value checks.
 
-### Signature
+### Advanced Signature
 
 ```typescript
-const guardObjectHOF: (options: GuardObjectOptions) => (value: any) => void;
+declare const guardObjectHOF: (options: GuardObjectOptions) => (value: unknown) => void;
 
 interface GuardObjectOptions {
   minQuantity?: number;
@@ -82,6 +198,14 @@ The `guardObjectHOF` has the following configuration options, all are optional:
 - **maxQuantity** - the maximum number of properties in the object
 
 ### Advanced Examples
+
+```javascript
+// ESM
+import { guardObjectHOF, GuardObjectOptions } from '@zerodep/app';
+
+// CJS
+const { guardObjectHOF, GuardObjectOptions } = require('@zerodep/app');
+```
 
 **Min & Max Quantity**`
 
@@ -122,23 +246,15 @@ npm i @zerodep/guards
 npm i @zerodep/guard-object
 ```
 
-then
+---
 
-```javascript
-import { guardObject } from '@zerodep/app';
-// or
-import { guardObject } from '@zerodep/utilities';
-// or
-import { guardObject } from '@zerodep/guard';
-// or
-import { guardObject } from '@zerodep/guard-object';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

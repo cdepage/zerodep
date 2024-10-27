@@ -6,8 +6,17 @@
  */
 export const isFloat = (value: unknown): boolean => {
   try {
+    // it must be a number
+    if (Object.prototype.toString.call(value) !== '[object Number]') {
+      return false;
+    }
+
+    // zero is always allowed
+    if (value === 0) {
+      return true;
+    }
+
     return (
-      Object.prototype.toString.call(value) === '[object Number]' &&
       (value as number) % 1 !== 0 &&
       Math.abs(value as number) !== Infinity &&
       !Number.isNaN(value)

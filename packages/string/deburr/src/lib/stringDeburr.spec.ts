@@ -218,6 +218,12 @@ describe('stringDeburr', () => {
     expect(stringDeburr('')).toEqual('');
   });
 
+  it('should convert all examples used in the readme', () => {
+    expect(stringDeburr('Hello There!ç')).toEqual('Hello There!c');
+    expect(stringDeburr('àëîóüý Žøñç')).toEqual('aeiouy Zonc');
+    expect(stringDeburr('Testing 1234 !@#$%')).toEqual('Testing 1234 !@#$%');
+  });
+
   // @ts-ignore
   test.each(negativeCases)('should throw for a/an %s', (title, value) => {
     // @ts-ignore

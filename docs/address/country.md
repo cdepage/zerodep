@@ -17,7 +17,7 @@ This function will return an array of results, with the most likely result being
 ## Signature
 
 ```typescript
-const addressCountry: (address: string, findInMiddle: boolean = false) => AddressCountry[];
+declare const addressCountry: (address: string, findInMiddle: boolean = false) => AddressCountry[];
 
 interface AddressCountry {
   countryIso2: CountryIso2[];
@@ -41,9 +41,8 @@ The `addressCountry` result has the following properties:
 
 ## Examples
 
-### Well Formatted Case
-
 ```javascript
+// well formatted address
 addressCountry('1234 Main Street, Los Angeles CA, America');
 //  [
 //    {
@@ -53,11 +52,8 @@ addressCountry('1234 Main Street, Los Angeles CA, America');
 //      length: 7,
 //    },
 //  ]
-```
 
-### With Check-in-Middle Flag Enabled
-
-```javascript
+// with Check-in-Middle Flag Enabled
 const CHECK_IN_MIDDLE = true;
 addressCountry('1234 Main Street, Los Angeles CA, United States 90210', CHECK_IN_MIDDLE);
 // [
@@ -74,12 +70,8 @@ addressCountry('1234 Main Street, Los Angeles CA, United States 90210', CHECK_IN
 //     length: 2,
 //   },
 // ]
-```
 
-### Unsuccessful Case
-
-```javascript
-const CHECK_IN_MIDDLE = true;
+// unsuccessful Case
 addressCountry('unknown');
 // []
 ```
@@ -102,19 +94,7 @@ npm i @zerodep/address
 npm i @zerodep/address-country
 ```
 
-then
-
-```javascript
-import { addressCountry } from '@zerodep/add';
-// or
-import { addressCountry } from '@zerodep/parsers';
-// or
-import { addressCountry } from '@zerodep/address';
-// or
-import { addressCountry } from '@zerodep/address-country';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

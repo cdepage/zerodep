@@ -48,6 +48,14 @@
       "options": {
         "jestConfig": "packages/string/padleft/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/string/padleft",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

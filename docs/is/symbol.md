@@ -15,51 +15,165 @@ A simple, performant utility to determine if a value is a Symbol.
 ## Signature
 
 ```typescript
-const isSymbol(value: any) => boolean;
+declare const isSymbol: (value: unknown) => boolean;
 ```
 
 ### Function Parameters
 
-The `isArray` function has the following parameters:
+The `isSymbol` function has the following parameters:
 
 - **value** - the value to check
 
 ## Examples
 
-### Positive Response
-
 ```javascript
+// ESM
 import { isSymbol } from '@zerodep/app';
 
-isSymbol(Symbol()); // true
+// CJS
+const { isSymbol } = require('@zerodep/app');
 ```
 
-### Negative Response
-
 ```javascript
+// Arrays
+isSymbol([]); // false
+isSymbol([1, 2, 3]); // false
 isSymbol(['a', 'b', 'c']); // false
-isSymbol(1000n); // false
+
+// BigInts
+isSymbol(42n); // false
+isSymbol(0n); // false
+isSymbol(-0n); // false
+isSymbol(-42n); // false
+
+// Booleans
 isSymbol(true); // false
-isSymbol(new Date()); // false
-isSymbol(''); // false
-isSymbol(new Error('message')); // false
-isSymbol(3.14); // false
-isSymbol(() => 'function'); // false
-isSymbol(42); // false
+isSymbol(false); // false
+
+// Class
 isSymbol(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // false
+
+// Dates
+isSymbol(new Date()); // false
+isSymbol(new Date('1970-01-01T12:00:00.000Z')); // false
+isSymbol(new Date('2099-12-31')); // false
+
+// Empty
 isSymbol(null); // false
-isSymbol({ an: 'object' }); // false
-isSymbol(new Promise(() => {})); // false
-isSymbol(/[regex]+/gi); // false
-isSymbol(new Set([1, 2, 3])); // false
-isSymbol('a string'); // false
-isSymbol(new Int32Array(2)); // false
 isSymbol(undefined); // false
+
+// Errors
+isSymbol(new Error('message')); // false
+isSymbol(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
+
+// Floats
+isSymbol(3.14); // false
+isSymbol(0.0); // false
+isSymbol(-0.0); // false
+isSymbol(-3.14); // false
+isSymbol(Math.E); // false
+isSymbol(Math.PI); // false
+isSymbol(Number.MIN_VALUE); // false
+
+// Functions
+isSymbol(() => 'function'); // false
+isSymbol(async () => 'function'); // false
+
+// Generators
+isSymbol(function* () {
+  yield 'a';
+}); // false
+isSymbol(async function* () {
+  yield 'a';
+}); // false
+
+// Maps
+isSymbol(new Map()); // false
+isSymbol(new Map([['key1', 123]])); // false
+isSymbol(new Map([['key1', 'value1']])); // false
+
+// Numbers
+isSymbol(Number.POSITIVE_INFINITY); // false
+isSymbol(Number.MAX_SAFE_INTEGER); // false
+isSymbol(3e8); // false
+isSymbol(42); // false
+isSymbol(1); // false
+isSymbol(0); // false
+isSymbol(-0); // false
+isSymbol(-1); // false
+isSymbol(-42); // false
+isSymbol(-3e8); // false
+isSymbol(Number.MIN_SAFE_INTEGER); // false
+isSymbol(Number.NEGATIVE_INFINITY); // false
+isSymbol(Number.NaN); // false
+
+// POJOs
+isSymbol({}); // false
+isSymbol({ key: 'string' }); // false
+isSymbol({ key: 123 }); // false
+
+// Promise
+isSymbol(new Promise(() => {})); // false
+isSymbol(new Promise.all([])); // false
+isSymbol(new Promise.allSettled([])); // false
+isSymbol(new Promise.race([])); // false
+isSymbol(Promise.resolve()); // false
+
+// Regular Expression
+isSymbol(/[regex]+/gi); // false
+isSymbol(new RegExp('d', 'gi')); // false
+
+// Sets
+isSymbol(new Set()); // false
+isSymbol(new Set([1, 2, 3])); // false
+isSymbol(new Set(['a', 'b', 'c'])); // false
+
+// Strings
+isSymbol(''); // false
+isSymbol('a longer string'); // false
+isSymbol('1000n'); // false
+isSymbol('3e8'); // false
+isSymbol('42'); // false
+isSymbol('3.14'); // false
+isSymbol('0'); // false
+isSymbol('-0'); // false
+isSymbol('-3.14'); // false
+isSymbol('-42'); // false
+isSymbol('-3e8'); // false
+isSymbol('-1000n'); // false
+
+// Symbols
+isSymbol(Symbol()); // true
+isSymbol(Symbol('name')); // true
+
+// This
+isSymbol(this); // false
+isSymbol(globalThis); // false
+
+// TypedArrays
+isSymbol(new Int8Array(2)); // false
+isSymbol(new Int16Array(2)); // false
+isSymbol(new Int32Array(2)); // false
+isSymbol(new Uint8Array(2)); // false
+isSymbol(new Uint16Array(2)); // false
+isSymbol(new Uint32Array(2)); // false
+isSymbol(new Uint8ClampedArray(2)); // false
+
+isSymbol(new BigInt64Array(2)); // false
+isSymbol(new BigUint64Array(2)); // false
+
+isSymbol(new Float32Array(2)); // false
+isSymbol(new Float64Array(2)); // false
+
+isSymbol(new SharedArrayBuffer(512)); // false
+
+// WeakMap and WeakSet
+isSymbol(new WeakMap()); // false
+isSymbol(new WeakSet()); // false
 ```
 
 ## Installation Sources
@@ -80,23 +194,15 @@ npm i @zerodep/is
 npm i @zerodep/is-symbol
 ```
 
-then
+---
 
-```javascript
-import { isSymbol } from '@zerodep/app';
-// or
-import { isSymbol } from '@zerodep/utilities';
-// or
-import { isSymbol } from '@zerodep/is';
-// or
-import { isSymbol } from '@zerodep/is-symbol';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

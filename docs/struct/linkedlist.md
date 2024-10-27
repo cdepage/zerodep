@@ -15,7 +15,7 @@ A factory function that returns an optionally-typed, iterable, Doubly Linked Lis
 ## Signature
 
 ```typescript
-const structLinkedListFactory: <T = unknown>(data?: T[]) => LinkedList<T>;
+declare const structLinkedListFactory: <T = unknown>(data?: T[]) => LinkedList<T>;
 
 interface LinkedList<T> {
   size: () => number;
@@ -74,6 +74,14 @@ The `getHead()`, `getTail()` and `find()` methods return nodes which have the fo
 - **next** - the reference/pointer to the next node in the list
 
 ## Examples
+
+```javascript
+// ESM
+import { structLinkedListFactory } from '@zerodep/app';
+
+// CJS
+const { structLinkedListFactory } = require('@zerodep/app');
+```
 
 ### Adding, Removing and Getting Nodes
 
@@ -164,17 +172,7 @@ npm i @zerodep/struct
 npm i @zerodep/struct-linkedlist
 ```
 
-then
-
-```javascript
-import { structLinkedlistFactory, LinkedList, LinkedListNode } from '@zerodep/app';
-// or
-import { structLinkedlistFactory, LinkedList, LinkedListNode } from '@zerodep/struct';
-// or
-import { structLinkedlistFactory, LinkedList, LinkedListNode } from '@zerodep/struct-linkedlist';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

@@ -48,6 +48,14 @@
       "options": {
         "jestConfig": "packages/barrel/to/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/barrel/to",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

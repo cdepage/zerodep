@@ -15,7 +15,7 @@ A utility to convert the first letter of each word to an uppercase value, with s
 ## Signature
 
 ```typescript
-const stringTitleCase: (value: string) => string;
+declare const stringTitleCase: (value: string) => string;
 ```
 
 ### Function Parameters
@@ -26,17 +26,16 @@ The `stringTitleCase` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
 ```javascript
-import { stringTitleCase } from '@zerodep/string-titlecase';
-// or
-const { stringTitleCase } = require('@zerodep/string-titlecase');
+// ESM
+import { stringTitleCase } from '@zerodep/app';
+
+// CJS
+const { stringTitleCase } = require('@zerodep/app');
 ```
 
-### Successful Response
-
 ```javascript
+// strings with various permutations
 stringTitleCase('california'); // "California"
 stringTitleCase('New york'); // "New York"
 stringTitleCase('sanchez-ferrero'); // "Sanches-Ferrero"
@@ -47,12 +46,9 @@ stringTitleCase('éclair'); // "Éclair"
 stringTitleCase("john's"); // "John's"
 stringTitleCase("i'll be there"); // "I'll Be There"
 stringTitleCase(''); // ""
-```
 
-### Unsuccessful Response
-
-```javascript
-stringTitleCase({ not: 'a string' }); // throws ZeroDepError: Value is not a string
+// with anything that is not a string
+stringTitleCase({ a: 'not string' }); // throws ZeroDepError: Value is not a string
 ```
 
 ## Installation Sources
@@ -73,23 +69,15 @@ npm i @zerodep/string
 npm i @zerodep/string-titlecase
 ```
 
-then
+---
 
-```javascript
-import { stringTitleCase } from '@zerodep/app';
-// or
-import { stringTitleCase } from '@zerodep/utilities';
-// or
-import { stringTitleCase } from '@zerodep/string';
-// or
-import { stringTitleCase } from '@zerodep/string-titlecase';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

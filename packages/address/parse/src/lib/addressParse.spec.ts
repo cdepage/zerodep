@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-commented-code */
 import { addressParse } from './addressParse';
 
 describe('addressParse', () => {
@@ -169,6 +170,89 @@ describe('addressParse', () => {
 
       street: 'STARR ST SW',
       zip: '10135',
+    });
+  });
+
+  it('should parse addresses used in the README', () => {
+    // const addy0 = '7335 pumpkin hill st. northwest, #14b, atlanta, 30303';
+    // expect(addressParse(addy0)).toEqual({
+    //   source: '7335 pumpkin hill st. northwest, #14b, atlanta, 30303',
+    //   normalized: '7335 PUMPKIN HILL ST NW #14B ATLANTA 30303',
+    //   street: '7335 PUMPKIN HILL ST NW',
+    //   city: '#14B',
+    //   zip: '30303',
+    // });
+
+    // const addy1 = '6435 1/2 tulip road space 67 springfield';
+    // expect(addressParse(addy1, { city: 'springfield', zip: '97478' })).toEqual({
+    //   source: '7335 pumpkin hill st. northwest, #14b, atlanta, 30303',
+    //   normalized: '7335 PUMPKIN HILL ST NW #14B ATLANTA 30303',
+    //   street: '7335 PUMPKIN HILL ST NW',
+    //   city: '#14B',
+    //   zip: '30303',
+    // });
+
+    const addy2 = '6435 1/2 tulip road space 67 springfield';
+    expect(addressParse(addy2)).toEqual({
+      source: '6435 1/2 tulip road space 67 springfield',
+      normalized: '6435 1/2 TULIP RD SPC 67 SPRINGFIELD',
+      secondary: 'SPC 67',
+      street: '1/2 TULIP RD',
+    });
+
+    const addy3 = '30 nelson street, penthouse, toronto, on m5v0h5';
+    expect(addressParse(addy3)).toEqual({
+      source: '30 nelson street, penthouse, toronto, on m5v0h5',
+      normalized: '30 NELSON STREET PH TORONTO ON M5V0H5',
+      secondary: 'PH',
+      street: '30 NELSON ST',
+      city: 'TORONTO',
+      stateAbbr: 'ON',
+      zip: 'M5V 0H5',
+    });
+
+    const addy4 = 'post office box 3094 collierville tn 38027';
+    expect(addressParse(addy4)).toEqual({
+      source: 'post office box 3094 collierville tn 38027',
+      normalized: 'PO BOX 3094 COLLIERVILLE TN 38027',
+      street: 'PO BOX 3094',
+      city: 'COLLIERVILLE',
+      stateAbbr: 'TN',
+      zip: '38027',
+    });
+
+    // RURAL ROUTE
+    // const addy5 = 'rural route #9 box #23a hornbrook california 96044';
+    // expect(addressParse(addy5)).toEqual({
+    //   source: 'ruralroute #9 box #23a hornbrook california 96044',
+    //   normalized: 'RR #9 BOX #23A HORNBROOK CALIFORNIA 96044',
+    //   street: '#9 BOX #23A',
+    //   city: 'HORNBROOK',
+    //   secondary: 'RR',
+    //   stateAbbr: 'CA',
+    //   zip: '96044',
+    // });
+
+    // GENERAL DELIVERY
+    const addy6 = 'gen del tampa fl 33602-9999';
+    expect(addressParse(addy6)).toEqual({
+      source: 'gen del tampa fl 33602-9999',
+      normalized: 'GENERAL DELIVERY TAMPA FL 33602-9999',
+      street: 'GENERAL DELIVERY',
+      city: 'TAMPA',
+      stateAbbr: 'FL',
+      zip: '33602',
+      zipExt: '9999',
+    });
+
+    // HIGHWAY CONTRACT
+    const addy7 = 'highway contract route 68 box 23a';
+    expect(addressParse(addy7, { city: 'vale', state: 'co' })).toEqual({
+      source: 'highway contract route 68 box 23a',
+      normalized: 'HC 68 BOX 23A',
+      city: 'VALE',
+      stateAbbr: 'CO',
+      street: 'HC',
     });
   });
 });

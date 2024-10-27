@@ -66,6 +66,15 @@ export const testGenerator = (function* () {
   yield 2;
   yield 3;
 })();
+export const testGenerator2 = (function* () {
+  yield 1;
+  yield 2;
+  yield 3;
+})();
+export const testGenerator3 = (function* () {
+  yield 4;
+  yield 5;
+})();
 
 export const testFunction1 = () => {};
 

@@ -17,7 +17,7 @@ This function will return an array of results, with the most likely result being
 ## Signature
 
 ```typescript
-const addressDirectional: (address: string) => Addressdirectional[];
+declare const addressDirectional: (address: string) => Addressdirectional[];
 
 interface Addressdirectional {
   directional: string;
@@ -79,19 +79,7 @@ npm i @zerodep/address
 npm i @zerodep/address-directional
 ```
 
-then
-
-```javascript
-import { addressDirectional } from '@zerodep/add';
-// or
-import { addressDirectional } from '@zerodep/parsers';
-// or
-import { addressDirectional } from '@zerodep/address';
-// or
-import { addressDirectional } from '@zerodep/address-directional';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

@@ -5,6 +5,7 @@ describe('"Is" barrel package', () => {
   it('should export specific packages and interfaces', () => {
     expect(keys).toEqual([
       'isArray',
+      'isAsync',
       'isBigInt',
       'isBoolean',
       'isDate',
@@ -13,6 +14,7 @@ describe('"Is" barrel package', () => {
       'isError',
       'isFloat',
       'isFunction',
+      'isGenerator',
       'isInteger',
       'isIterable',
       'isMap',

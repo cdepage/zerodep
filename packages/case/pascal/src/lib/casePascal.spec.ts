@@ -5,6 +5,9 @@ describe('casePascal', () => {
   it('should convert a sentence case', () => {
     expect(casePascal('From sentence case')).toEqual('FromSentenceCase');
   });
+  it('should convert a sentence case', () => {
+    expect(casePascal('from.dot.case')).toEqual('FromDotCase');
+  });
 
   it('should convert a camel case', () => {
     expect(casePascal('fromCamelCase')).toEqual('FromCamelCase');

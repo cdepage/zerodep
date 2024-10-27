@@ -10,12 +10,14 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A utility to convert a string to snake_case, intended for converting variable names, that also strips out non-alphanumeric characters and any leading numeric characters. Non-string values will cause a `ZeroDepError` to be thrown.
+A utility that deburrs a string, converts it to snake_case, strips all non-alphanumeric characters and removes leading numbers.
+
+This utility is intended for database field names, CSV header conversion, and other field normalizations, among other uses.
 
 ## Signature
 
 ```typescript
-const caseSnake: (value: string) => string;
+declare const caseSnake: (value: string) => string;
 ```
 
 ### Function Parameters
@@ -27,13 +29,22 @@ The `caseSnake` function has the following parameters:
 ## Examples
 
 ```javascript
-caseSnake('From sentence case'); // "from_sentence_case"
+// ESM
+import { caseSnake } from '@zerodep/app';
+
+// CJS
+const { caseSnake } = require('@zerodep/app');
+```
+
+```javascript
+caseSnake('from sentence case'); // "from_sentence_case"
+caseSnake('from.dot.case'); // "from_dot_case"
 caseSnake('fromCamelCase'); // "from_camel_case"
 caseSnake('from_snake_case'); // "from_snake_case"
 caseSnake('FromPascalCase'); // "from_pascal_case"
 caseSnake(''); // ""
 
-// with non-alphanumeric characters
+// with non-alphanumeric characters in the string
 caseSnake('A string with some !@#$%^& characters'); // "a_string_with_some_characters"
 caseSnake('A #22 character long string'); // "a_22_character_long_string"
 caseSnake("I'm a sp3c!al $741ng"); // "i_m_a_sp3c_al_741ng"
@@ -67,23 +78,15 @@ npm i @zerodep/case
 npm i @zerodep/case-snake
 ```
 
-then
+---
 
-```javascript
-import { caseSnake } from '@zerodep/app';
-// or
-import { caseSnake } from '@zerodep/utilities';
-// or
-import { caseSnake } from '@zerodep/case';
-// or
-import { caseSnake } from '@zerodep/case-snake';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

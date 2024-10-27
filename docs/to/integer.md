@@ -15,7 +15,7 @@ A utility to convert values to an integer. Invalid values will cause a `ZeroDepE
 ## Signature
 
 ```typescript
-const toInteger: (value: number | bigint | string | boolean | Date) => number;
+declare const toInteger: (value: number | bigint | string | boolean | Date) => number;
 ```
 
 ### Function Parameters
@@ -26,37 +26,79 @@ The `toNumber` function has the following parameters:
 
 ## Examples
 
-### Use Cases
+```javascript
+// ESM
+import { toInteger } from '@zerodep/app';
+
+// CJS
+const { toInteger } = require('@zerodep/app');
+```
 
 ```javascript
-// numbers
-toInteger(42); // 42
-toInteger(100e10); // 1000000000000
+// BigInts
+toInteger(8675309n); // 8675309
+toInteger(42n); // 42
+toInteger(0n); // 0
+toInteger(-0n); // 0
+toInteger(-42n); // -42
+toInteger(-8675309n); // -8675309
 
-// floats
+// Booleans
+toInteger(true); // 1
+toInteger(false); // 0
+
+// Dates
+toInteger(new Date('2022-04-22T10:30:00.000Z')); // 1650623400000
+toInteger(new Date('2099-12-31')); // 4102358400000
+
+// Floats
 toInteger(3.14); // 3
+toInteger(0.0); // 0
+toInteger(-0.0); // -0
 toInteger(-171.3); // -171
+toInteger(Math.E); // 2
+toInteger(Math.PI); // 3
+toInteger(Number.MIN_VALUE); // 0
 
-// strings
+// Numbers
+toInteger(Number.POSITIVE_INFINITY); // throws ZeroDepError: Cannot convert to integer
+toInteger(Number.MAX_SAFE_INTEGER); // 9007199254740991
+toInteger(Number.MAX_VALUE); // 1.7976931348623157e+308
+toInteger(3e8); // 300000000
+toInteger(42); // 42
+toInteger(1); // 1
+toInteger(0); // 0
+toInteger(-0); // -0
+toInteger(-1); // -1
+toInteger(-42); // -42
+toInteger(-3e8); // -300000000
+toInteger(Number.MIN_SAFE_INTEGER); // -9007199254740991
+toInteger(Number.NEGATIVE_INFINITY); // throws ZeroDepError: Cannot convert to integer
+toInteger(Number.NaN); // throws ZeroDepError: Cannot convert to integer
+
+// Strings
 toInteger('42'); // 24
 toInteger('3e8'); // 300000000
 toInteger('8,675,309'); // 8675309  <-- thousand separators are commas
 toInteger('8.675.309,123'); // 8675309  <-- thousand separators are decimal points
+toInteger(''); // 0
+toInteger('a longer string'); // false
+toInteger('1000n'); // 1000
+toInteger('3e8'); // 300000000
+toInteger('42'); // 42
+toInteger('3.14'); // 3
+toInteger('0'); // 0
+toInteger('-0'); // -0
+toInteger('-3.14'); // -3
+toInteger('-42'); // -42
+toInteger('-3e8'); // -300000000
+toInteger('-1000n'); // -1000
 
-// bigint
-toInteger(8675309n); // 8675309
-
-// booleans
-toInteger(true); // 1
-toInteger(false); // 0
-
-// dates
-toInteger(new Date('2022-04-22T10:30:00.000Z')); // 1650623400000
-
-// invalid values
-toInteger(null); // throws ZeroDepError: Cannot convert to number
-toInteger('asdf'); // throws ZeroDepError: Cannot convert to number
-toInteger({ not: 'a number' }); // throws ZeroDepError: Cannot convert to number
+// Other - anything that is not a number, bigint,  string,  boolean or Date
+toInteger(null); // throws ZeroDepError: Cannot convert to integer <-- CAUTION
+toInteger(undefined); // throws ZeroDepError: Cannot convert to integer <-- CAUTION
+toInteger('asdf'); // throws ZeroDepError: Cannot convert to integer
+toInteger({ not: 'a number' }); // throws ZeroDepError: Cannot convert to integer
 ```
 
 ## Installation Sources
@@ -77,23 +119,15 @@ npm i @zerodep/to
 npm i @zerodep/to-integer
 ```
 
-then
+---
 
-```javascript
-import { toInteger } from '@zerodep/app';
-// or
-import { toInteger } from '@zerodep/utilities';
-// or
-import { toInteger } from '@zerodep/to';
-// or
-import { toInteger } from '@zerodep/to-integer';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

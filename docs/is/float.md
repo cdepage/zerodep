@@ -15,53 +15,165 @@ A simple, performant utility to determine if a value is a float.
 ## Signature
 
 ```typescript
-const isFloat(value: any) => boolean;
+declare const isFloat: (value: unknown) => boolean;
 ```
 
 ### Function Parameters
 
-The `isArray` function has the following parameters:
+The `isFloat` function has the following parameters:
 
 - **value** - the value to check
 
 ## Examples
 
-### Positive Response
-
 ```javascript
-isFloat(3.14); // true
-isFloat(new Number(98.6)); // true
+// ESM
+import { isFloat } from '@zerodep/app';
+
+// CJS
+const { isFloat } = require('@zerodep/app');
 ```
 
-### Negative Response
-
 ```javascript
-isFloat(Infinity); // false - CAUTION
-isFloat(Number.isNan); // false - CAUTION
-
+// Arrays
+isFloat([]); // false
+isFloat([1, 2, 3]); // false
 isFloat(['a', 'b', 'c']); // false
-isFloat(1000n); // false
+
+// BigInts
+isFloat(42n); // false
+isFloat(0n); // false
+isFloat(-0n); // false
+isFloat(-42n); // false
+
+// Booleans
 isFloat(true); // false
-isFloat(new Date()); // false
-isFloat(''); // false
-isFloat(new Error('message')); // false
-isFloat(() => 'function'); // false
-isFloat(42); // false
+isFloat(false); // false
+
+// Class
 isFloat(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // false
+
+// Dates
+isFloat(new Date()); // false
+isFloat(new Date('1970-01-01T12:00:00.000Z')); // false
+isFloat(new Date('2099-12-31')); // false
+
+// Empty
 isFloat(null); // false
-isFloat({ an: 'object' }); // false
-isFloat(new Promise(() => {})); // false
-isFloat(/[regex]+/gi); // false
-isFloat(new Set([1, 2, 3])); // false
-isFloat('a string'); // false
-isFloat(Symbol()); // false
-isFloat(new Int32Array(2)); // false
 isFloat(undefined); // false
+
+// Errors
+isFloat(new Error('message')); // false
+isFloat(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
+
+// Floats
+isFloat(3.14); // true
+isFloat(0.0); // true  <-- CAUTION: zero is allowed as a float
+isFloat(-0.0); // true  <-- CAUTION: zero is allowed as a float
+isFloat(-3.14); // true
+isFloat(Math.E); // true
+isFloat(Math.PI); // true
+isFloat(Number.MIN_VALUE); // true
+
+// Functions
+isFloat(() => 'function'); // false
+isFloat(async () => 'function'); // false
+
+// Generators
+isFloat(function* () {
+  yield 'a';
+}); // false
+isFloat(async function* () {
+  yield 'a';
+}); // false
+
+// Maps
+isFloat(new Map()); // false
+isFloat(new Map([['key1', 123]])); // false
+isFloat(new Map([['key1', 'value1']])); // false
+
+// Numbers
+isFloat(Number.POSITIVE_INFINITY); // false
+isFloat(Number.MAX_SAFE_INTEGER); // false
+isFloat(3e8); // false
+isFloat(42); // false
+isFloat(1); // false
+isFloat(0); // true  <-- CAUTION: zero is allowed as a float
+isFloat(-0); // true  <-- CAUTION: zero is allowed as a float
+isFloat(-1); // false
+isFloat(-42); // false
+isFloat(-3e8); // false
+isFloat(Number.MIN_SAFE_INTEGER); // false
+isFloat(Number.NEGATIVE_INFINITY); // false
+isFloat(Number.NaN); // false
+
+// POJOs
+isFloat({}); // false
+isFloat({ key: 'string' }); // false
+isFloat({ key: 123 }); // false
+
+// Promise
+isFloat(new Promise(() => {})); // false
+isFloat(new Promise.all([])); // false
+isFloat(new Promise.allSettled([])); // false
+isFloat(new Promise.race([])); // false
+isFloat(Promise.resolve()); // false
+
+// Regular Expression
+isFloat(/[regex]+/gi); // false
+isFloat(new RegExp('d', 'gi')); // false
+
+// Sets
+isFloat(new Set()); // false
+isFloat(new Set([1, 2, 3])); // false
+isFloat(new Set(['a', 'b', 'c'])); // false
+
+// Strings
+isFloat(''); // false
+isFloat('a longer string'); // false
+isFloat('1000n'); // false
+isFloat('3e8'); // false
+isFloat('42'); // false
+isFloat('3.14'); // false
+isFloat('0'); // false
+isFloat('-0'); // false
+isFloat('-3.14'); // false
+isFloat('-42'); // false
+isFloat('-3e8'); // false
+isFloat('-1000n'); // false
+
+// Symbols
+isFloat(Symbol()); // false
+isFloat(Symbol('name')); // false
+
+// This
+isFloat(this); // false
+isFloat(globalThis); // false
+
+// TypedArrays
+isFloat(new Int8Array(2)); // false
+isFloat(new Int16Array(2)); // false
+isFloat(new Int32Array(2)); // false
+isFloat(new Uint8Array(2)); // false
+isFloat(new Uint16Array(2)); // false
+isFloat(new Uint32Array(2)); // false
+isFloat(new Uint8ClampedArray(2)); // false
+
+isFloat(new BigInt64Array(2)); // false
+isFloat(new BigUint64Array(2)); // false
+
+isFloat(new Float32Array(2)); // false
+isFloat(new Float64Array(2)); // false
+
+isFloat(new SharedArrayBuffer(512)); // false
+
+// WeakMap and WeakSet
+isFloat(new WeakMap()); // false
+isFloat(new WeakSet()); // false
 ```
 
 ## Installation Sources
@@ -82,23 +194,23 @@ npm i @zerodep/is
 npm i @zerodep/is-float
 ```
 
-then
+---
 
-```javascript
-import { isFloat } from '@zerodep/app';
-// or
-import { isFloat } from '@zerodep/utilities';
-// or
-import { isFloat } from '@zerodep/is';
-// or
-import { isFloat } from '@zerodep/is-float';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.1.x
+
+**Fixed**
+
+- the `isFloat()` function to properly handle zero values
+
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

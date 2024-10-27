@@ -1,4 +1,4 @@
-import { Stringifiables, toString } from '@zerodep/to-string';
+import { Stringifiable, toString } from '@zerodep/to-string';
 
 /**
  * A really fast and somewhat weak hashing algorithm.
@@ -6,7 +6,7 @@ import { Stringifiables, toString } from '@zerodep/to-string';
  * @source https://github.com/darkskyapp/string-hash/blob/master/index.js
  * @date 2023-07-01
  */
-export const hash = (val: Stringifiables) => {
+export const hash = (val: Stringifiable) => {
   const str = toString(val);
   let hash = 5381;
   let i = str.length;

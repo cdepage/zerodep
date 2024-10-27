@@ -15,7 +15,7 @@ const defaultOptions: GuardNumberOptions = {
 export const guardNumberHOF = (options: GuardNumberOptions = {}) => {
   const config: GuardNumberOptions = { ...defaultOptions, ...options };
 
-  return (value: any): void => {
+  return (value: unknown): void => {
     // we need to check for the typeof first as "undefined" will cause isNumber() to error
     if (!isNumber(value)) {
       const error = new ZeroDepError('Value is not a number');
@@ -23,13 +23,13 @@ export const guardNumberHOF = (options: GuardNumberOptions = {}) => {
       throw error;
     }
 
-    if (typeof config.min !== 'undefined' && value < config.min) {
+    if (typeof config.min !== 'undefined' && (value as number) < config.min) {
       const error = new ZeroDepError(`Number is less than ${config.min}`);
       error.value = value;
       throw error;
     }
 
-    if (typeof config.max !== 'undefined' && value > config.max) {
+    if (typeof config.max !== 'undefined' && (value as number) > config.max) {
       const error = new ZeroDepError(`Number is greater than ${config.max}`);
       error.value = value;
       throw error;

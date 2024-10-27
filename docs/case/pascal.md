@@ -10,12 +10,14 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A utility to convert a string to PascalCase, intended for converting variable names, that also strips out non-alphanumeric characters and any leading numeric characters.
+A utility that deburrs a string, converts it to PascalCase, strips all non-alphanumeric characters and removes leading numbers.
+
+This utility is intended for database field names, CSV header conversion, and other field normalizations, among other uses.
 
 ## Signature
 
 ```typescript
-const casePascal: (value: string) => string;
+declare const casePascal: (value: string) => string;
 ```
 
 ### Function Parameters
@@ -27,13 +29,22 @@ The `casePascal` function has the following parameters:
 ## Examples
 
 ```javascript
-casePascal('From sentence case'); // "FromSentenceCase"
+// ESM
+import { casePascal } from '@zerodep/app';
+
+// CJS
+const { casePascal } = require('@zerodep/app');
+```
+
+```javascript
+casePascal('fFrom sentence case'); // "FromSentenceCase"
+casePascal('from.dot.case'); // "FromDotCase"
 casePascal('from-kebab-case'); // "FromKebabCase"
 casePascal('from_snake_case'); // "FromSnakeCase"
 casePascal('FromPascalCase'); // "FromPascalCase"
 casePascal(''); // ""
 
-// with non-alphanumeric characters
+// with non-alphanumeric characters in the string
 casePascal('A string with some !@#$%^& characters'); // "AStringWithSomeCharacters"
 casePascal('A #22 character long string'); // "A22CharacterLongString"
 casePascal("I'm a sp3c!al $741ng"); // "IMASp3cAl741ng"
@@ -67,23 +78,15 @@ npm i @zerodep/case
 npm i @zerodep/case-pascal
 ```
 
-then
+---
 
-```javascript
-import { casePascal } from '@zerodep/app';
-// or
-import { casePascal } from '@zerodep/utilities';
-// or
-import { casePascal } from '@zerodep/case';
-// or
-import { casePascal } from '@zerodep/case-pascal';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

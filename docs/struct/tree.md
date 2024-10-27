@@ -15,7 +15,7 @@ A factory function that returns an optionally-typed, Tree data structure instanc
 ## Signature
 
 ```typescript
-const structTreeFactory: <T = unknown>(json?: TreeJson<T> | undefined) => Tree<T>;
+declare const structTreeFactory: <T = unknown>(json?: TreeJson<T> | undefined) => Tree<T>;
 
 interface Tree<T> {
   getRootNode: () => TreeNode<T> | null;
@@ -79,6 +79,14 @@ The `getRootNode()`, `dfs()`, `bfs()`, `dfsFilter()` and `bfsFilter()` methods r
 - **children** - the reference/pointer to the children nodes of the current node, if any
 
 ## Examples
+
+```javascript
+// ESM
+import { structTreeFactory } from '@zerodep/app';
+
+// CJS
+const { structTreeFactory } = require('@zerodep/app');
+```
 
 ### Building a Tree
 
@@ -184,17 +192,7 @@ npm i @zerodep/struct
 npm i @zerodep/struct-tree
 ```
 
-then
-
-```javascript
-import { structTreeFactory, Tree, TreeNode, TreeJson } from '@zerodep/app';
-// or
-import { structTreeFactory, Tree, TreeNode, TreeJson } from '@zerodep/struct';
-// or
-import { structTreeFactory, Tree, TreeNode, TreeJson } from '@zerodep/struct-tree';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

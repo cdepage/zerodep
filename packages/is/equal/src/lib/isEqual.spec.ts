@@ -1,4 +1,9 @@
 /* eslint-disable sonarjs/no-primitive-wrappers, sonarjs/no-empty-function, sonarjs/duplicates-in-character-class, sonarjs/concise-regex, sonarjs/prefer-promise-shorthand, sonarjs/single-char-in-character-classes */
+import {
+  testGenerator,
+  testGenerator2,
+  testGenerator3,
+} from '../../../../testValues';
 import { isEqual } from './isEqual';
 
 const stringObj = new String('c');
@@ -107,9 +112,9 @@ const sameTypesData: any[] = [
   [true, 'Array', [], []], // empty
   [false, 'Array', [1, 2, 3], [1, 2, 3, 4]], // lengths different, left side shorter
   [false, 'Array', [1, 2, 3, 4, 5], [1, 2, 3, 4]], // lengths different, left side longer
-  [true, 'Array', ['d', 'e'], ['e', 'd']], // identical values, out-of-order
+  [false, 'Array', ['d', 'e'], ['e', 'd']], // identical values, out-of-order
   [false, 'Array', ['b', 42, 3.14, null], ['a', 42, 3.14, null]], // only the first item is different
-  [true, 'Array', ['b', [2, 4, ['c', 'd', 6]]], [[4, ['c', 'd', 6], 2], 'b']], // nested, identical values, out-of-order
+  [false, 'Array', ['b', [2, 4, ['c', 'd', 6]]], [[4, ['c', 'd', 6], 2], 'b']], // nested, identical values, out-of-order
   [false, 'Array', [['c', ['d', ['e', ['f']]]]], [['d', [['g'], 'e']], 'c']], // nested, different values, out of order
 
   // objects
@@ -123,7 +128,7 @@ const sameTypesData: any[] = [
     'Object',
     { g: 5, h: { i: [1, 2, 3], j: ['a', 'b', 'c'] } },
     { h: { j: ['a', 'b', 'c'], i: [1, 2, 3] }, g: 5 },
-  ], // nested, identical values, out-of-order
+  ], // nested, identical values, object keys out-of-order
   [
     false,
     'Object',
@@ -286,4 +291,236 @@ describe('isEqual', () => {
     const fn = () => isEqual(weakSetObj, weakSetObj2);
     expect(fn).toThrow('Cannot compare WeakSet values');
   });
+
+  const exampleCases = [
+    ['array - empty', [], [], true],
+    ['array - ints - equal', [1, 2], [1, 2], true],
+    ['array - ints - unequal', [1, 2], [2, 1], false],
+    [
+      'array - ints nested - equal',
+      ['b', [2, 4, ['c', 'd', 6]]],
+      ['b', [2, 4, ['c', 'd', 6]]],
+      true,
+    ],
+    [
+      'array - ints nested - unequal',
+      ['b', [2, 4, ['c', 'd', 6]]],
+      [[4, ['c', 'd', 6], 2], 'b'],
+      false,
+    ],
+
+    ['bigints - equal', 42n, 42n, true],
+    ['bigints - equal', 0n, 0, false],
+    ['bigints - equal+', 8675309n, BigInt(8675309), true],
+
+    [
+      'dates - equal',
+      new Date('2000-01-01T00:00:00.000Z'),
+      new Date('2000-01-01T00:00:00.000Z'),
+      true,
+    ],
+    [
+      'dates - unequal',
+      new Date('2000-01-01T00:00:00.000Z'),
+      new Date('1999-12-31T23:59:59.999Z'),
+      false,
+    ],
+
+    ['empty - null', null, null, true],
+    ['empty - undefined', undefined, undefined, true],
+    ['empty - null+undefined', null, undefined, false],
+
+    ['errors - equal', new Error('message'), new Error('message'), true],
+    ['errors - unequal', new Error('xxxx'), new Error('yyyy'), false],
+    ['errors - unequal', new TypeError('err'), new RangeError('err'), false],
+
+    ['floats - equal', 0.08, 0.08, true],
+    ['floats - equal Pi', Math.PI, Math.PI, true],
+    ['floats - equal+', -273.15, new Number(-273.15), false],
+    ['floats - unequal', 173.5, 42, false],
+
+    ['functions - equal', () => 'function', () => 'function', true],
+    ['functions - unequal', () => 'xxxx', () => 'yyyy', false],
+
+    ['generators - equal', testGenerator, testGenerator2, false],
+    ['generators - unequal', testGenerator, testGenerator3, false],
+
+    ['maps - equal', new Map(), new Map(), true],
+    [
+      'maps - equal items',
+      new Map([['key1', 123]]),
+      new Map([['key1', 123]]),
+      true,
+    ],
+    [
+      'maps - unequal keys',
+      new Map([['key1', 123]]),
+      new Map([['2key', 123]]),
+      false,
+    ],
+    [
+      'maps - unequal items',
+      new Map([['key1', 123]]),
+      new Map([['key1', 456]]),
+      false,
+    ],
+    [
+      'maps - unordered keys',
+      new Map([
+        ['key1', 123],
+        ['key2', 456],
+      ]),
+      new Map([
+        ['key2', 456],
+        ['key1', 456],
+      ]),
+      false,
+    ],
+    [
+      'maps - missing keys',
+      new Map([
+        ['key1', 123],
+        ['key2', 456],
+      ]),
+      new Map([['key1', 456]]),
+      false,
+    ],
+
+    ['numbers - equal', 0, 0, true],
+    ['numbers - unequal 0', 0, -0, false],
+    ['numbers - equal sci', 3e8, 3e8, true],
+    ['numbers - infinity', Infinity, Infinity, true],
+    [
+      'numbers - max int',
+      Number.MAX_SAFE_INTEGER,
+      Number.MAX_SAFE_INTEGER,
+      true,
+    ],
+    [
+      'numbers - min & max int',
+      Number.MAX_SAFE_INTEGER,
+      Number.MIN_SAFE_INTEGER,
+      false,
+    ],
+    ['numbers - NaN', Number.NaN, Number.NaN, true],
+    ['numbers - equal+', 2161, new Number(2161), false],
+
+    ['pojo - equal empty', {}, {}, true],
+    ['pojo - equal populated', { key: 'string' }, { key: 'string' }, true],
+    ['pojo - equal array', { key: [1, 2, 3] }, { key: [1, 2, 3] }, true],
+    ['pojo - unequal array', { key: [1, 2, 3] }, { key: [3, 2, 1] }, false],
+    [
+      'pojo - equal obj',
+      { a: 1, b: { c: [1, 2] } },
+      { a: 1, b: { c: [1, 2] } },
+      true,
+    ],
+    [
+      'pojo - equal obj unordered',
+      { a: 1, b: { c: [1, 2] } },
+      { b: { c: [1, 2] }, a: 1 },
+      true,
+    ],
+    [
+      'pojo - equal obj+array',
+      { a: 1, b: { c: [1, 2] } },
+      { a: 1, b: { c: [1, 2] } },
+      true,
+    ],
+    [
+      'pojo - unequal obj+array',
+      { a: 1, b: { c: [1, 2] } },
+      { a: 1, b: { c: [2, 1] } },
+      false,
+    ],
+
+    [
+      'promises - equal empty',
+      new Promise(() => {}),
+      new Promise(() => {}),
+      false,
+    ],
+    ['promises - equal all', Promise.all([]), Promise.all([]), false],
+    ['promises - equal race', Promise.race([]), Promise.race([]), false],
+    ['promises - equal resolved', Promise.resolve(), Promise.resolve(), false],
+
+    ['regex - equal literal', /[aeiou]+/gi, /[aeiou]+/gi, true],
+    ['regex - equal+', new RegExp('d', 'gi'), new RegExp('d', 'gi'), true],
+    ['regex - equal mixed', /[aeiou]+/gi, new RegExp('[aeiou]+', 'gi'), true],
+    ['regex - equal+', new RegExp('abc'), new RegExp('def'), false],
+
+    ['set - equal', new Set(), new Set(), true],
+    ['set - equal populated', new Set([1, 2, 3]), new Set([1, 2, 3]), true],
+    ['set - unequal populated', new Set([1, 2, 3]), new Set([3, 2, 1]), true],
+    ['set - unequal populated', new Set([1, 2, 3]), new Set([1, 2]), false],
+
+    ['string - equal empty', '', '', true],
+    ['string - equal empty', 'asdf', 'asdf', true],
+    ['string - equal empty', 'asdf', 'qerty', false],
+    ['string - equal empty', '0', new String('G'), false],
+
+    [
+      'typedArray - BigInt64Array',
+      new BigInt64Array(2),
+      new BigInt64Array(2),
+      true,
+    ],
+    [
+      'typedArray - BigUint64Array',
+      new BigUint64Array(2),
+      new BigUint64Array(2),
+      true,
+    ],
+    [
+      'typedArray - Float32Array',
+      new Float32Array(2),
+      new Float32Array(2),
+      true,
+    ],
+    [
+      'typedArray - Float64Array',
+      new Float64Array(2),
+      new Float64Array(2),
+      true,
+    ],
+    ['typedArray - Int16Array', new Int16Array(2), new Int16Array(2), true],
+    ['typedArray - Int32Array', new Int32Array(2), new Int32Array(2), true],
+    ['typedArray - Int8Array', new Int8Array(2), new Int8Array(2), true],
+    ['typedArray - Uint16Array', new Uint16Array(2), new Uint16Array(2), true],
+    ['typedArray - Uint32Array', new Uint32Array(2), new Uint32Array(2), true],
+    ['typedArray - Uint8Array', new Uint8Array(2), new Uint8Array(2), true],
+    [
+      'typedArray - Uint8ClampedArray',
+      new Uint8ClampedArray(2),
+      new Uint8ClampedArray(2),
+      true,
+    ],
+  ];
+  test.each(exampleCases)(
+    'should assess %s',
+    // @ts-ignore
+    async (title, value1, value2, result) => {
+      expect(isEqual(value1, value2)).toEqual(result);
+    }
+  );
+
+  const examplesThatThrow = [
+    ['symbol - identical', Symbol(), Symbol()],
+    ['symbol - identical+', Symbol('val'), Symbol('val')],
+
+    [
+      'typedArray - SharedArrayBuffer',
+      new SharedArrayBuffer(2),
+      new SharedArrayBuffer(2),
+    ],
+  ];
+  // @ts-ignore
+  test.each(examplesThatThrow)(
+    'should throw for %s',
+    // @ts-ignore
+    async (title, value1, value2) => {
+      const fn = () => isEqual(value1, value2);
+      expect(fn).toThrow();
+    }
+  );
 });

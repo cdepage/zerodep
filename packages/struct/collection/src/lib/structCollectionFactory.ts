@@ -1,4 +1,4 @@
-import { Stringifiables, toString } from '@zerodep/to-string';
+import { Stringifiable, toString } from '@zerodep/to-string';
 import { hash } from './hash';
 
 export interface Collection<T> {
@@ -25,7 +25,7 @@ export const structCollectionFactory = <T = any>(
 
   // add constructor items
   for (const item of items) {
-    const key = hash(toString(item as Stringifiables));
+    const key = hash(toString(item as Stringifiable));
     collection.set(key, item);
   }
 
@@ -33,7 +33,7 @@ export const structCollectionFactory = <T = any>(
     // time complexity: linear - O(n)
     fromArray: (data: T[]) => {
       for (const item of data) {
-        const key = hash(toString(item as Stringifiables));
+        const key = hash(toString(item as Stringifiable));
         collection.set(key, item);
       }
     },
@@ -43,7 +43,7 @@ export const structCollectionFactory = <T = any>(
 
     // time complexity: constant - O(1)
     add: (item: T) => {
-      const key = hash(toString(item as Stringifiables));
+      const key = hash(toString(item as Stringifiable));
       if (!collection.has(key)) {
         collection.set(key, item);
       }
@@ -51,7 +51,7 @@ export const structCollectionFactory = <T = any>(
 
     // time complexity: constant - O(1)
     has: (item: T) => {
-      const key = hash(toString(item as Stringifiables));
+      const key = hash(toString(item as Stringifiable));
       return collection.has(key);
     },
 
@@ -62,7 +62,7 @@ export const structCollectionFactory = <T = any>(
 
     // time complexity: constant - O(1)
     delete: (item: T) => {
-      const key = hash(toString(item as Stringifiables));
+      const key = hash(toString(item as Stringifiable));
       collection.delete(key);
     },
 

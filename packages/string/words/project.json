@@ -48,6 +48,14 @@
       "options": {
         "jestConfig": "packages/string/words/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/string/words",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

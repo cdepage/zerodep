@@ -1,150 +1,131 @@
-/* eslint-disable sonarjs/no-identical-functions */
-import { testData } from '../../../../testValues';
+import {
+  testAggregateError,
+  TestClass1,
+  testClassInstance1,
+  testDate0,
+  testDate1,
+  testDate2,
+  testError,
+  testFunction,
+  testFunctionAsync,
+  testFunctionGenerator,
+  testFunctionGeneratorAsync,
+  testMapEmpty,
+  testMapNumbers,
+  testMapStrings,
+  testPromise1,
+  testPromiseAll,
+  testPromiseAllSettled,
+  testPromiseRace,
+  testPromiseResolved1,
+  testRexExp1,
+  testRexExp2,
+  testSetEmpty,
+  testSetNumbers,
+  testSetStrings,
+  testSymbol1,
+  testSymbol2,
+  testWeakMap,
+  testWeakSet,
+} from '../../../isTestData';
 import { isError } from './isError';
 
-const negativeCases = Object.values(testData).flat();
-
-const positiveCases = [
-  // error
-  ['error', new Error('test error')],
-];
-
-class MyError extends Error {
-  constructor(message?: string | undefined) {
-    super(message);
-    this.name = this.constructor.name;
-    Object.setPrototypeOf(this, new.target.prototype); // restore prototype chain
-  }
-}
-
-class MySubError extends MyError {
-  constructor(message?: string | undefined) {
-    super(message);
-    this.name = this.constructor.name;
-    Object.setPrototypeOf(this, new.target.prototype); // restore prototype chain
-  }
-}
-
-class SimpleError extends Error {}
-
-describe('isInteger', () => {
+describe('isError', () => {
+  const exampleCases = [
+    ['array - empty', [], false],
+    ['array - nonempty int', [1, 2, 3], false],
+    ['array - nonempty str', ['a', 'b', 'c'], false],
+    ['bigint - 42n', 42n, false],
+    ['bigint - 0n', 0n, false],
+    ['bigint - -0n', -0n, false],
+    ['bigint - -42n', -42n, false],
+    ['boolean - true', true, false],
+    ['boolean - false', false, false],
+    ['class', TestClass1, false],
+    ['class', testClassInstance1, false],
+    ['date - now', testDate0, false],
+    ['date - past', testDate1, false],
+    ['date - future', testDate2, false],
+    ['empty - null', null, false],
+    ['empty - undefined', undefined, false],
+    ['error', testError, true],
+    ['error - aggregate', testAggregateError, true],
+    ['float - 3.14', 3.14, false],
+    ['float - 0.0', 0.0, false],
+    ['float - -0.0', -0.0, false],
+    ['float - -3.14', -3.14, false],
+    ['float - Math.E', Math.E, false],
+    ['float - Math.PI', Math.PI, false],
+    ['float - min value', Number.MIN_VALUE, false],
+    ['function', testFunction, false],
+    ['function - async', testFunctionAsync, false],
+    ['generator', testFunctionGenerator, false],
+    ['generator - async', testFunctionGeneratorAsync, false],
+    ['map - empty', testMapEmpty, false],
+    ['map - nonempty number', testMapNumbers, false],
+    ['map - nonempty string', testMapStrings, false],
+    ['number - infinity - positive', Number.POSITIVE_INFINITY, false],
+    ['number - max safe int', Number.MAX_SAFE_INTEGER, false],
+    ['number - max value', Number.MAX_VALUE, false],
+    ['number - 3e8', 3e8, false],
+    ['number - 42', 42, false],
+    ['number - 1', 1, false],
+    ['number - 0', 0, false],
+    ['number - -0', -0, false],
+    ['number - -1', -1, false],
+    ['number - -42', -42, false],
+    ['number - -3e8', -3e8, false],
+    ['number - min safe int', Number.MIN_SAFE_INTEGER, false],
+    ['number - infinity - negative', Number.NEGATIVE_INFINITY, false],
+    ['number - NaN', Number.NaN, false],
+    ['pojo - empty', {}, false],
+    ['pojo - nonempty string', { key: 'string' }, false],
+    ['pojo - nonempty number', { key: 123 }, false],
+    ['promise', testPromise1, false],
+    ['promise - all', testPromiseAll, false],
+    ['promise - allSettled', testPromiseAllSettled, false],
+    ['promise - race', testPromiseRace, false],
+    ['promise - resolved', testPromiseResolved1, false],
+    ['regex1', testRexExp1, false],
+    ['regex2', testRexExp2, false],
+    ['set - empty', testSetEmpty, false],
+    ['set - numbers', testSetNumbers, false],
+    ['set - strings', testSetStrings, false],
+    ['string - ""', '', false],
+    ['string - "long string"', 'a longer string', false],
+    ['string - "1000n"', '1000n', false],
+    ['string - "3e8"', '3e8', false],
+    ['string - "42"', '42', false],
+    ['string - "3.14"', '3.14', false],
+    ['string - "0"', '0', false],
+    ['string - "-0"', '-0', false],
+    ['string - "-3.14"', '-3.14', false],
+    ['string - "-42"', '-42', false],
+    ['string - "-3e8"', '-3e8', false],
+    ['string - "-1000n"', '-1000n', false],
+    ['symbol', testSymbol1, false],
+    ['symbol + description', testSymbol2, false],
+    ['this - globalThis', globalThis, false],
+    ['this - this', this, false],
+    ['typedArray - int8Array', new Int8Array(2), false],
+    ['typedArray - int16Array', new Int16Array(2), false],
+    ['typedArray - int32Array', new Int32Array(2), false],
+    ['typedArray - uint8Array', new Uint8Array(2), false],
+    ['typedArray - uint16Array', new Uint16Array(2), false],
+    ['typedArray - uint32Array', new Uint32Array(2), false],
+    ['typedArray - uint8ClampedArray', new Uint8ClampedArray(2), false],
+    ['typedArray - bigInt64Array', new BigInt64Array(2), false],
+    ['typedArray - bigUint64Array', new BigUint64Array(2), false],
+    ['typedArray - float32Array', new Float32Array(2), false],
+    ['typedArray - float64Array', new Float64Array(2), false],
+    ['typedArray - sharedArrayBuffer', new SharedArrayBuffer(512), false],
+    ['weakMap - empty', new WeakMap(), false],
+    ['weakMap - nonempty', testWeakMap, false],
+    ['weakSet - empty', new WeakSet(), false],
+    ['weakSet - nonempty', testWeakSet, false],
+  ];
   // @ts-ignore
-  test.each(positiveCases)('should return TRUE for a/an %s', (title, value) => {
-    // @ts-ignore
-    expect(isError(value)).toEqual(true);
-  });
-
-  // @ts-ignore
-  test.each(negativeCases)(
-    'should return FALSE for a/an %s',
-    // @ts-ignore
-    (title, value) => {
-      // @ts-ignore
-      expect(isError(value)).toEqual(false);
-    }
-  );
-
-  it('should return TRUE for an error without a message', () => {
-    const error = new Error();
-    expect(isError(error)).toEqual(true);
-  });
-
-  it('should return FALSE for a non-string (numeric) error message', () => {
-    const error = new Error();
-    // @ts-ignore
-    error.message = 123;
-    expect(isError(error)).toEqual(false);
-  });
-
-  it('should return FALSE for a non-string (null) error message', () => {
-    const error = new Error();
-    // @ts-ignore
-    error.message = null;
-    expect(isError(error)).toEqual(false);
-  });
-
-  it('should return FALSE for a non-string (undefined) error message', () => {
-    const error = new Error();
-    // @ts-ignore
-    error.message = undefined;
-    expect(isError(error)).toEqual(false);
-  });
-
-  it("should return TRUE for an error with it's message removed", () => {
-    const error = new Error('test');
-    // @ts-ignore
-    delete error.message;
-    expect(isError(error)).toEqual(true);
-  });
-
-  it('should return FALSE for a non-string (object) error message', () => {
-    const error = new Error();
-    // @ts-ignore
-    error.message = { an: 'object' };
-    expect(isError(error)).toEqual(false);
-  });
-
-  it('should return FALSE for a non-string (array) error message', () => {
-    const error = new Error();
-    // @ts-ignore
-    error.message = ['a', 'b'];
-    expect(isError(error)).toEqual(false);
-  });
-
-  it('should return FALSE for a non-string (boolean true) error message', () => {
-    const error = new Error();
-    // @ts-ignore
-    error.message = true;
-    expect(isError(error)).toEqual(false);
-  });
-
-  it('should return FALSE for a non-string (boolean false) error message', () => {
-    const error = new Error();
-    // @ts-ignore
-    error.message = false;
-    expect(isError(error)).toEqual(false);
-  });
-
-  it('should return TRUE when simple instance types match parent', () => {
-    const error = new SimpleError('some message');
-    expect(isError(error, Error)).toEqual(true);
-  });
-
-  it('should return TRUE when simple instance types match', () => {
-    const error = new SimpleError('some message');
-    expect(isError(error, SimpleError)).toEqual(true);
-  });
-
-  it('should return TRUE when instance types match', () => {
-    const error = new SyntaxError('some message');
-    expect(isError(error, SyntaxError)).toEqual(true);
-  });
-
-  it('should return TRUE when subclassed instance types match', () => {
-    const error = new MyError('some message');
-    expect(isError(error, Error)).toEqual(true);
-  });
-
-  it('should return TRUE when sub-subclassed instance types match', () => {
-    const error = new MySubError('some message');
-    expect(isError(error, MyError)).toEqual(true);
-  });
-
-  it('should return FALSE when instance types do not match', () => {
-    const error = new SyntaxError('some message');
-    expect(isError(error, EvalError)).toEqual(false);
-  });
-
-  it('should return FALSE when subclass instance types do not match', () => {
-    const error = new MySubError('some message');
-    expect(isError(error, EvalError)).toEqual(false);
-  });
-
-  it('should return FALSE when two custom types differ', () => {
-    class ErrorA extends Error {}
-    class ErrorB extends Error {}
-    expect(isError(new ErrorA('some message'), ErrorA)).toEqual(true);
-    expect(isError(new ErrorA('some message'), ErrorB)).toEqual(false);
-    expect(isError(new ErrorA('some message'), Error)).toEqual(true);
+  test.each(exampleCases)('should assess %s', async (title, value, result) => {
+    expect(isError(value)).toEqual(result);
   });
 });

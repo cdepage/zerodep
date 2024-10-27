@@ -2,15 +2,18 @@ export const isTypedArray = (value: unknown): boolean => {
   try {
     return (
       [
-        '[object Int8Array]',
-        '[object Uint8Array]',
-        '[object Uint8ClampedArray]',
-        '[object Int16Array]',
-        '[object Uint16Array]',
-        '[object Int32Array]',
-        '[object Uint32Array]',
+        '[object BigInt64Array]',
+        '[object BigUint64Array]',
         '[object Float32Array]',
         '[object Float64Array]',
+        '[object Int16Array]',
+        '[object Int32Array]',
+        '[object Int8Array]',
+        '[object SharedArrayBuffer]',
+        '[object Uint16Array]',
+        '[object Uint32Array]',
+        '[object Uint8Array]',
+        '[object Uint8ClampedArray]',
       ].indexOf(Object.prototype.toString.call(value)) !== -1
     );
   } catch {

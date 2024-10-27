@@ -15,7 +15,7 @@ A utility to convert values to a number. Invalid values will cause a `ZeroDepErr
 ## Signature
 
 ```typescript
-const toNumber: (value: number | bigint | string | boolean | Date) => number;
+declare const toNumber: (value: number | bigint | string | boolean | Date) => number;
 ```
 
 ### Function Parameters
@@ -26,32 +26,77 @@ The `toNumber` function has the following parameters:
 
 ## Examples
 
-### Use Cases
+```javascript
+// ESM
+import { toNumber } from '@zerodep/app';
+
+// CJS
+const { toNumber } = require('@zerodep/app');
+```
 
 ```javascript
-// numbers
-toNumber(42); // 42
-toNumber(3.14); // 3.14
-toNumber(100e10); // 1000000000000
-
-// strings
-toNumber('-171.3'); // -171.3
-toNumber('3e8'); // 300000000
-toNumber('8,675,309'); // 8675309  <-- thousand separators are commas
-toNumber('8.675.309,123'); // 8675309.123  <-- thousand separators are decimal points
-
-// bigint
+// BigInts
 toNumber(8675309n); // 8675309
+toNumber(42n); // 42
+toNumber(0n); // 0
+toNumber(-0n); // 0
+toNumber(-42n); // -42
+toNumber(-8675309n); // -8675309
 
-// booleans
+// Booleans
 toNumber(true); // 1
 toNumber(false); // 0
 
-// dates
+// Dates
 toNumber(new Date('2022-04-22T10:30:00.000Z')); // 1650623400000
+toNumber(new Date('2099-12-31')); // 4102358400000
 
-// invalid values
-toNumber(null); // throws ZeroDepError: Cannot convert to number
+// Floats
+toNumber(3.14); // 3.14
+toNumber(0.0); // 0
+toNumber(-0.0); // -0
+toNumber(-171.3); // -171.3
+toNumber(Math.E); // 2.718281828459045
+toNumber(Math.PI); // 3.141592653589793
+toNumber(Number.MIN_VALUE); // 5e-324
+
+// Numbers
+toNumber(Number.POSITIVE_INFINITY); // throws ZeroDepError: Cannot convert to number
+toNumber(Number.MAX_SAFE_INTEGER); // 9007199254740991
+toNumber(Number.MAX_VALUE); // 1.7976931348623157e+308
+toNumber(3e8); // 300000000
+toNumber(42); // 42
+toNumber(1); // 1
+toNumber(0); // 0
+toNumber(-0); // -0
+toNumber(-1); // -1
+toNumber(-42); // -42
+toNumber(-3e8); // -300000000
+toNumber(Number.MIN_SAFE_INTEGER); // -9007199254740991
+toNumber(Number.NEGATIVE_INFINITY); // throws ZeroDepError: Cannot convert to number
+toNumber(Number.NaN); // throws ZeroDepError: Cannot convert to number
+
+// Strings
+toNumber('42'); // 24
+toNumber('3e8'); // 300000000
+toNumber('8,675,309'); // 8675309  <-- thousand separators are commas
+toNumber('8.675.309,123'); // 8675309  <-- thousand separators are decimal points
+toNumber(''); // 0
+toNumber('a longer string'); // false
+toNumber('1000n'); // 1000
+toNumber('3e8'); // 300000000
+toNumber('42'); // 42
+toNumber('3.14'); // 3.14
+toNumber('0'); // 0
+toNumber('-0'); // -0
+toNumber('-3.14'); // -3.14
+toNumber('-42'); // -42
+toNumber('-3e8'); // -300000000
+toNumber('-1000n'); // -1000
+
+// Other - anything that is not a number, bigint,  string,  boolean or Date
+toNumber(null); // throws ZeroDepError: Cannot convert to number <-- CAUTION
+toNumber(undefined); // throws ZeroDepError: Cannot convert to number <-- CAUTION
 toNumber('asdf'); // throws ZeroDepError: Cannot convert to number
 toNumber({ not: 'a number' }); // throws ZeroDepError: Cannot convert to number
 ```
@@ -74,23 +119,15 @@ npm i @zerodep/to
 npm i @zerodep/to-number
 ```
 
-then
+---
 
-```javascript
-import { toNumber } from '@zerodep/app';
-// or
-import { toNumber } from '@zerodep/utilities';
-// or
-import { toNumber } from '@zerodep/to';
-// or
-import { toNumber } from '@zerodep/to-number';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

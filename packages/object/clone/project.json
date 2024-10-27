@@ -22,8 +22,14 @@
         "parallel": false
       }
     },
-    "XXXXpublish": {
-      "command": "cd dist/packages/object/clone && npm version patch"
+    "XXXpatch": {
+      "command": "cd packages/object/clone && npm version patch"
+    },
+    "XXXminor": {
+      "command": "cd packages/object/clone && npm version minor"
+    },
+    "XXXmajor": {
+      "command": "cd packages/object/clone && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",
@@ -42,6 +48,14 @@
       "options": {
         "jestConfig": "packages/object/clone/jest.config.ts"
       }
+    },
+    "XXXXdeploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/object/clone",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

@@ -21,229 +21,106 @@ This parser will:
 - intelligently determine the state by a zipcode, if no state provided
 - package and present the address information in an easy-to-use format
 
-Note that this is only a parser and does not guarantee that an address exists or is correct as it only works given the information provided. Given the variety of address formats and creativity of how people write addresses, this parser occasionally mis-identifies the specific components but the "line" values are usually stil. correct.
+This is only a parser and does not guarantee that an address exists or is correct as it only works given the information provided. Given the variety of address formats and creativity of how people write addresses, this parser occasionally mis-identifies the specific components but the "line" values are usually stil. correct.
 
 ## Signature
 
 ```typescript
-interface AddressPieces {
-  city?: string;
-  state?: string;
-  country?: string;
-  zip?: string | number;
-}
+declare const addressParse: (line: string, options?: AddressOptions) => Address;
 
 interface Address {
-  // main address data
-  attn?: string; // Atention line
-  careOf?: string; // Alternate recipient name
+  source: string; // The source address provided
+  normalized: string; // The normalized version of the source address
+
   secondary?: string; // Secondary unit
-  line1?: string; // First line of the mailing address
-  line2?: string; // Second line of the mailing address
-  line3?: string; // Third line of the mailing address
+  street?: string; // Building, street and directionals
   city?: string; // City name
   state?: string; // 2-letter state abbreviation
   zip?: string; // Zip or postal code
   zipExt?: string; // American zip code extension
-  country?: string; // 2-letter country abbreviation
-
-  // identified components: this info is used in the "line" fields above
-  pmb?: string; // Private mailbox
-  msc?: string; // Mail stop code
-  poBox?: string; // Post office box
-  rural?: string; // Rural routing
-  highway?: string; // Highway contract
-  military?: string;
-  generalDelivery?: string; // General delivery
-  secondaryType?: string; // Type of secondary unit
-  secondaryNumber?: string; // Identifier of the secondary unit
-  buildingNumber?: string; // Building number
-  directionalPre?: string; // Leading directional prefix
-  streetNamePre?: string; // Name of the street
-  streetType?: string; // Type of street
-  streetNamePost?: string; // Name of the street
-  directionalPost?: string; // Trailing directional prefix
-  street?: string; // The complete street address line
+  countryIso2?: string; // 2-letter country abbreviation
 }
 
-addressParse: (line: string, options?: AddressPieces) => Address;
+// if provided, these values will be used authoritatively
+interface AddressOptions {
+  city?: string;
+  state?: string;
+  zip?: string;
+  zipExt?: string;
+  country?: string;
+}
 ```
 
-## Residential Addresses
+## Examples
 
 ```javascript
-import { addressNormalize } from '@zerodep/app';
-
-// WITH TRAILING SECONDARY UNIT, NO STATE
-addressNormalize('7335 pumpkin hill st. northwest, #14b, atlanta, 30303');
+// COMPLETE ADDRESS
+addressParse('apt 12 9655 east river road northeast salem oregon 97303-1234 usa');
 // {
-//    secondary: 'STE 14B',
-//    line1: '7335 PUMPKIN HILL ST NW',
-//    city: 'ATLANTA',
-//    state: 'GA',
-//    zip: '30303',
-//    country: 'US',
-//
-//    secondaryType: 'STE',
-//    secondaryNumber: '14B',
-//    buildingNumber: '7335',
-//    streetNamePre: 'PUMPKIN HILL',
-//    streetType: 'ST',
-//    directionalPost: 'NW',
-//    street: '7335 PUMPKIN HILL ST NW',
-// }
-
-// WITH LEADING SECONDARY UNIT
-addressNormalize('apt 12 9655 river road northeast salem oregon 97303-1234 usa');
-// {
+//    source: 'apt 12 9655 east river road northeast salem oregon 97303-1234 usa',
+//    normalized: 'APT 12 9655 EAST RIVER RD NE SALEM OREGON 97303-1234 USA',
 //    secondary: 'APT 12',
-//    line1: '9655 RIVER RD NE',
+//    street: '9655 E RIVER RD NE',
 //    city: 'SALEM',
-//    state: 'OR',
+//    stateAbbr: 'OR',
 //    zip: '97303',
 //    zipExt: '1234',
-//    country: 'US',
-//
-//    secondaryType: 'APT',
-//    secondaryNumber: '12',
-//    buildingNumber: '9655,
-//    streetNamePre: 'RIVER',
-//    streetType: 'RD',
-//    directionalPost: 'NE'
-//    street: '9655 RIVER RD NE',
+//    countryIso2: 'US',
 // }
 
-// WITH OPTIONAL FIELDS, FRACTIONAL ADDRESS & DUPLICATED CITY
-addressNormalize('6435 1/2 tulip road space 67 springfield', {
-  city: 'springfield',
-  zip: '97478',
-});
+// FRACTIONAL ADDRESS
+addressParse('3813 1/2 Some Road, Los Angeles, CA');
 // {
-//    secondary: 'SPC 67',
-//    line1: '6435 1/2 TULIP RD',
-//    city: 'SPRINGFIELD',
-//    state: 'OR',
-//    zip: '97478',
-//    country: 'US',
-//
-//    secondaryType: 'SPC',
-//    secondaryNumber: '67',
-//    buildingNumber: '6435 1/2,
-//    streetNamePre: 'TULIP',
-//    streetType: 'RD',
-//    street: '6435 1/2 TULIP RD',
-// }
-
-// DUAL ADDRESS
-addressNormalize('1201 broad street east pob 1001 falls church va 22041-1001');
-// {
-//    secondary: 'SPC 67',
-//    line1: '1201 BROAD ST E',
-//    line2: 'PO BOX 1001',
-//    city: 'FALLS CHURCH',
-//    state: 'VA',
-//    zip: '22041',
-//    zipExt: '1001',
-//    country: 'US',
-//
-//    poBox: 'PO BOX 1001',
-//    buildingNumber: '1201,
-//    streetNamePre: 'BROAD',
-//    streetType: 'ST',
-//    directionalPost: 'E',
-//    street: '1201 BROAD ST E'
-// }
-
-// WITH PRIVATE MAIL BOX
-addressNormalize('10 main st ste 11 pmb 234 herndon va 22071-2716');
-// {
-//    secondary: 'STE 11',
-//    line1: 'PMB 234',
-//    line2: '10 MAIN ST',
-//    city: 'HERNDON',
-//    state: 'VA',
-//    zip: '22071',
-//    zipExt: '2716',
-//    country: 'US',
-//
-//    pmb: 'PMB 234',
-//    secondaryType: 'STE',
-//    secondaryNumber: '11',
-//    buildingNumber: '10',
-//    streetNamePre: 'MAIN',
-//    streetType: 'ST',
-//    street: '10 MAIN ST'
+//    source: '3813 1/2 Some Road, Los Angeles, CA',
+//    normalized: '3813 1/2 SOME ROAD LOS ANGELES CA',
+//    street: '3813 1/2 SOME RD',
+//    city: 'LOS ANGELES',
+//    stateAbbr: 'CA',
 // }
 
 // CANADIAN ADDRESS
-addressNormalize('30 nelson street, penthouse, toronto, on m5v0h5');
+addressParse('30 nelson street, penthouse, toronto, on m5v0h5');
 // {
+//    source: '30 nelson street, penthouse, toronto, on m5v0h5',
+//    normalized: '30 NELSON STREET PH TORONTO ON M5V0H5',
 //    secondary: 'PH',
-//    line1: '30 NELSON ST',
+//    street: '30 NELSON ST',
 //    city: 'TORONTO',
-//    state: 'ON',
+//    stateAbbr: 'ON',
 //    zip: 'M5V 0H5',
-//    country: 'CA',
-//
-//    secondaryType: 'PH',
-//    buildingNumber: '30',
-//    streetNamePre: 'NELSON',
-//    streetType: 'ST',
-//    street: '30 NELSON ST'
 // }
-```
-
-## Other Address Types
-
-```javascript
-import { addressNormalize } from '@zerodep/app';
 
 // POST OFFICE BOX
-addressNormalize('post office box 3094 collierville tn 38027');
+addressParse('post office box 3094 collierville tn 38027');
 // {
-//    line1: 'PO BOX 3094',
+//    source: 'post office box 3094 collierville tn 38027',
+//    normalized: 'PO BOX 3094 COLLIERVILLE TN 38027',
+//    street: 'PO BOX 3094',
 //    city: 'COLLIERVILLE',
-//    state: 'TN',
+//    stateAbbr: 'TN',
 //    zip: '38027',
-//    country: 'US',
-//
-//    poBox: 'PO BOX 3094',
-// }
-
-// RURAL ROUTE
-addressNormalize('ruralroute #9 box #23a hornbrook california 96044');
-// {
-//    line1: 'RR 9 BOX 23A',
-//    city: 'HORNBROOK',
-//    state: 'CA',
-//    zip: '96044',
-//    country: 'US',
-//
-//    rural: 'RR 9 BOX 23A',
 // }
 
 // GENERAL DELIVERY
-addressNormalize('gen del tampa fl 33602-9999');
+addressParse('gen del tampa fl 33602-9999');
 // {
-//    line1: 'GD',
+//    source: 'gen del tampa fl 33602-9999',
+//    normalized: 'GENERAL DELIVERY TAMPA FL 33602-9999',
+//    street: 'GENERAL DELIVERY',
 //    city: 'TAMPA',
-//    state: 'FL',
+//    stateAbbr: 'FL',
 //    zip: '33602',
 //    zipExt: '9999',
-//    country: 'US',
-//
-//    generalDelivery: 'GD',
 // }
 
 // HIGHWAY CONTRACT
-addressNormalize('highway contract route 68 box 23a', { city: 'vale', state: 'co' });
+addressParse('highway contract route 68 box 23a', { city: 'vale', state: 'co' });
 // {
-//   line1: 'HC 68 BOX 23A',
-//   city: 'VALE',
-//   state: 'CO',
-//   country: 'US',
-//
-//   highway: 'HC 68 BOX 23A',
+//    source: 'highway contract route 68 box 23a',
+//    normalized: 'HC 68 BOX 23A',
+//    city: 'VALE',
+//    stateAbbr: 'CO',
+//    street: 'HC',
 // }
 ```
 
@@ -256,16 +133,16 @@ This functionality is available from any of the following packages to best match
 npm i @zerodep/app
 
 # all @zerodep "parsers" packages
-import { addressNormalize } from '@zerodep/parsers';
+import { addressParse } from '@zerodep/parsers';
 
 // all @zerodep address functions
-import { addressNormalize } from '@zerodep/address';
+import { addressParse } from '@zerodep/address';
 
 # only this @zerodep package
-import { addressNormalize } from '@zerodep/address-normalize';
+import { addressParse } from '@zerodep/address-parse';
 ```
 
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

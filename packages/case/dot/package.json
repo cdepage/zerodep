@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/case-dot",
-  "description": "A utility to convert a string to dot.case",
-  "version": "2.0.12",
+  "description": "A utility that deburrs a string, converts it to dot.case, strips all non-alphanumeric characters and removes leading numbers.",
+  "version": "2.0.13",
   "license": "MIT",
   "repository": {
     "type": "git",

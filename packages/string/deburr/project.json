@@ -48,6 +48,14 @@
       "options": {
         "jestConfig": "packages/string/deburr/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/string/deburr",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

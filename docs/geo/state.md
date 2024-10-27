@@ -17,9 +17,9 @@ A parser to get state abbreviation and information from a state name or abbrevia
 In the definition below `StateUsAbbr`, `StateCaAbbr` and `CountryIso2` are from [@zerodep/types](/types.md).
 
 ```typescript
-const geoStateIso: (state: string) => [StateUsAbbr | StateCaAbbr, CountryIso2];
+declare const geoStateIso: (state: string) => [StateUsAbbr | StateCaAbbr, CountryIso2];
 // and
-const geoState: (state: string) => GeoState;
+declare const geoState: (state: string) => GeoState;
 
 interface GeoState extends GeoStateInfoMap {
   stateName: string;

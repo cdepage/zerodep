@@ -31,10 +31,6 @@
     "major": {
       "command": "cd packages/guard/function && npm version major"
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
     "packageFix": {
       "executor": "nx:run-commands",
       "options": {
@@ -42,12 +38,24 @@
         "cwd": "packages/guard/function"
       }
     },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "packages/guard/function/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/guard/function",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

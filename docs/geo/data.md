@@ -137,7 +137,7 @@ A map of 2-letter state or province abbreviations and their associated names and
 ### Signature
 
 ```typescript
-type type StateNameMap = Map<StateCaAbbr | StateUsAbbr, string[]>;
+type StateNameMap = Map<StateCaAbbr | StateUsAbbr, string[]>;
 ```
 
 ### Use

@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-queue",
   "description": "A factory that returns an optionally-typed, Queue data structure.",
-  "version": "2.4.11",
+  "version": "2.4.12",
   "license": "MIT",
   "repository": {
     "type": "git",

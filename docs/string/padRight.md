@@ -15,7 +15,7 @@ A utility to suffix a value with a specified character to create a string of a s
 ## Signature
 
 ```typescript
-const stringPadRight: (value: string | number | bigint, size: number, char?: string) => string;
+declare const stringPadRight: (value: string | number | bigint, size: number, char?: string) => string;
 ```
 
 ### Function Parameters
@@ -28,38 +28,30 @@ The `stringPadRight` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
 ```javascript
-import { stringPadRight } from '@zerodep/string-padright';
-// or
-const { stringPadRight } = require('@zerodep/string-padright');
+// ESM
+import { stringPadRight } from '@zerodep/app';
+
+// CJS
+const { stringPadRight } = require('@zerodep/app');
 ```
 
-### Using Default Space Separator
-
 ```javascript
+// with the default separator (a space character)
 stringPadRight('abc', 10); // "abc       "
 stringPadRight(123, 10); // "123       "
 stringPadRight(456n, 10); // "456       "
-```
 
-### Using Custom Separator
-
-```javascript
+// with a custom separator
 stringPadRight('bc', 5, 'a'); // "bcaaa"
 stringPadRight(123, 6, '0'); // "123000"
 stringPadRight(456n, 7, '_'); // "456____"
-```
 
-### Edge Cases
-
-```javascript
-// when the value exceeds the requested size the full value is returned
+// when the value exceeds the requested size the full value is returned (non-destructive)
 stringPadRight('abcdefghij', 5, 'x'); // "abcdefghij"
 
-// non-string values
-stringPadRight({ not: 'a string' }, 2); // throws ZeroDepError: Value is not a string
+// with anything that is not a string
+stringPadRight({ a: 'not string' }); // throws ZeroDepError: Value is not a string
 ```
 
 ## Installation Sources
@@ -80,23 +72,15 @@ npm i @zerodep/string
 npm i @zerodep/string-padright
 ```
 
-then
+---
 
-```javascript
-import { stringPadRight } from '@zerodep/app';
-// or
-import { stringPadRight } from '@zerodep/utilities';
-// or
-import { stringPadRight } from '@zerodep/string';
-// or
-import { stringPadRight } from '@zerodep/string-padright';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

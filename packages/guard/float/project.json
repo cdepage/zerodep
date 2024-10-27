@@ -48,6 +48,14 @@
       "options": {
         "jestConfig": "packages/guard/float/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/guard/float",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

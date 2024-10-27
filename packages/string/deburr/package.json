@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/string-deburr",
   "description": "A utility to convert accented characters to non-accented equivalents",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "license": "MIT",
   "repository": {
     "type": "git",

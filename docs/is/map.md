@@ -15,50 +15,165 @@ A simple, performant utility to determine if a value is a Map.
 ## Signature
 
 ```typescript
-const isMap(value: any) => boolean;
+declare const isMap: (value: unknown) => boolean;
 ```
 
 ### Function Parameters
 
-The `isArray` function has the following parameters:
+The `isMap` function has the following parameters:
 
 - **value** - the value to check
 
 ## Examples
 
-### Positive Response
-
 ```javascript
-isMap(new Map()); // true
-isMap(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
-); // true
+// ESM
+import { isMap } from '@zerodep/app';
+
+// CJS
+const { isMap } = require('@zerodep/app');
 ```
 
-### Negative Response
-
 ```javascript
+// Arrays
+isMap([]); // false
+isMap([1, 2, 3]); // false
 isMap(['a', 'b', 'c']); // false
-isMap(1000n); // false
+
+// BigInts
+isMap(42n); // false
+isMap(0n); // false
+isMap(-0n); // false
+isMap(-42n); // false
+
+// Booleans
 isMap(true); // false
+isMap(false); // false
+
+// Class
+isMap(
+  class SomeClass {
+    constructor() {}
+  }
+); // false
+
+// Dates
 isMap(new Date()); // false
-isMap(''); // false
-isMap(new Error('message')); // false
-isMap(3.14); // false
-isMap(() => 'function'); // false
-isMap(42); // false
+isMap(new Date('1970-01-01T12:00:00.000Z')); // false
+isMap(new Date('2099-12-31')); // false
+
+// Empty
 isMap(null); // false
-isMap({ an: 'object' }); // false
-isMap(new Promise(() => {})); // false
-isMap(/[regex]+/gi); // false
-isMap(new Set([1, 2, 3])); // false
-isMap('a string'); // false
-isMap(Symbol()); // false
-isMap(new Int32Array(2)); // false
 isMap(undefined); // false
+
+// Errors
+isMap(new Error('message')); // false
+isMap(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
+
+// Floats
+isMap(3.14); // false
+isMap(0.0); // false
+isMap(-0.0); // false
+isMap(-3.14); // false
+isMap(Math.E); // false
+isMap(Math.PI); // false
+isMap(Number.MIN_VALUE); // false
+
+// Functions
+isMap(() => 'function'); // false
+isMap(async () => 'function'); // false
+
+// Generators
+isMap(function* () {
+  yield 'a';
+}); // false
+isMap(async function* () {
+  yield 'a';
+}); // false
+
+// Maps
+isMap(new Map()); // true
+isMap(new Map([['key1', 123]])); // true
+isMap(new Map([['key1', 'value1']])); // true
+
+// Numbers
+isMap(Number.POSITIVE_INFINITY); // false
+isMap(Number.MAX_SAFE_INTEGER); // false
+isMap(3e8); // false
+isMap(42); // false
+isMap(1); // false
+isMap(0); // false
+isMap(-0); // false
+isMap(-1); // false
+isMap(-42); // false
+isMap(-3e8); // false
+isMap(Number.MIN_SAFE_INTEGER); // false
+isMap(Number.NEGATIVE_INFINITY); // false
+isMap(Number.NaN); // false
+
+// POJOs
+isMap({}); // false
+isMap({ key: 'string' }); // false
+isMap({ key: 123 }); // false
+
+// Promise
+isMap(new Promise(() => {})); // false
+isMap(new Promise.all([])); // false
+isMap(new Promise.allSettled([])); // false
+isMap(new Promise.race([])); // false
+isMap(Promise.resolve()); // false
+
+// Regular Expression
+isMap(/[regex]+/gi); // false
+isMap(new RegExp('d', 'gi')); // false
+
+// Sets
+isMap(new Set()); // false
+isMap(new Set([1, 2, 3])); // false
+isMap(new Set(['a', 'b', 'c'])); // false
+
+// Strings
+isMap(''); // false
+isMap('a longer string'); // false
+isMap('1000n'); // false
+isMap('3e8'); // false
+isMap('42'); // false
+isMap('3.14'); // false
+isMap('0'); // false
+isMap('-0'); // false
+isMap('-3.14'); // false
+isMap('-42'); // false
+isMap('-3e8'); // false
+isMap('-1000n'); // false
+
+// Symbols
+isMap(Symbol()); // false
+isMap(Symbol('name')); // false
+
+// This
+isMap(this); // false
+isMap(globalThis); // false
+
+// TypedArrays
+isMap(new Int8Array(2)); // false
+isMap(new Int16Array(2)); // false
+isMap(new Int32Array(2)); // false
+isMap(new Uint8Array(2)); // false
+isMap(new Uint16Array(2)); // false
+isMap(new Uint32Array(2)); // false
+isMap(new Uint8ClampedArray(2)); // false
+
+isMap(new BigInt64Array(2)); // false
+isMap(new BigUint64Array(2)); // false
+
+isMap(new Float32Array(2)); // false
+isMap(new Float64Array(2)); // false
+
+isMap(new SharedArrayBuffer(512)); // false
+
+// WeakMap and WeakSet
+isMap(new WeakMap()); // false
+isMap(new WeakSet()); // false
 ```
 
 ## Installation Sources
@@ -79,23 +194,15 @@ npm i @zerodep/is
 npm i @zerodep/is-map
 ```
 
-then
+---
 
-```javascript
-import { isMap } from '@zerodep/app';
-// or
-import { isMap } from '@zerodep/utilities';
-// or
-import { isMap } from '@zerodep/is';
-// or
-import { isMap } from '@zerodep/is-map';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

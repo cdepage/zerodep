@@ -34,3 +34,15 @@ All of the following converters are available in this package:
 - [toNumber()](to/number.md)
 - [toPojo()](to/pojo.md)
 - [toString()](to/string.md)
+
+---
+
+## Package Changelog
+
+All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+#### Release 2.2.x
+
+**Added**
+
+- added the `toBoolean()` method

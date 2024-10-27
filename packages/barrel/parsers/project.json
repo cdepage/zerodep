@@ -23,13 +23,13 @@
       }
     },
     "patch": {
-      "command": "cd packages/barrel/is && npm version patch"
+      "command": "cd packages/barrel/parsers && npm version patch"
     },
     "minor": {
-      "command": "cd packages/barrel/is && npm version minor"
+      "command": "cd packages/barrel/parsers && npm version minor"
     },
     "major": {
-      "command": "cd packages/barrel/is && npm version major"
+      "command": "cd packages/barrel/parsers && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",
@@ -48,6 +48,14 @@
       "options": {
         "jestConfig": "packages/barrel/parsers/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/barrel/parsers",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

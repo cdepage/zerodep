@@ -10,12 +10,14 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A utility to convert a string to kebab-case, intended for converting variable names, that also strips out non-alphanumeric characters and any leading numeric characters. Non-string values will cause a `ZeroDepError` to be thrown.
+A utility that deburrs a string, converts it to kebab-case, strips all non-alphanumeric characters and removes leading numbers.
+
+This utility is intended for database field names, CSV header conversion, and other field normalizations, among other uses.
 
 ## Signature
 
 ```typescript
-const caseKebab: (value: string) => string;
+declare const caseKebab: (value: string) => string;
 ```
 
 ### Function Parameters
@@ -27,13 +29,22 @@ The `caseKebab` function has the following parameters:
 ## Examples
 
 ```javascript
-caseKebab('From sentence case'); // "from-sentence-case"
+// ESM
+import { caseKebab } from '@zerodep/app';
+
+// CJS
+const { caseKebab } = require('@zerodep/app');
+```
+
+```javascript
+caseKebab('from sentence case'); // "from-sentence-case"
+caseKebab('from.dot.case'); // "from-dot-case"
 caseKebab('fromCamelCase'); // "from-camel-case"
 caseKebab('from_snake_case'); // "from-snake-case"
 caseKebab('FromPascalCase'); // "from-pascal-case"
 caseKebab(''); // ""
 
-// with non-alphanumeric characters
+// with non-alphanumeric characters in the string
 caseKebab('A string with some !@#$%^& characters'); // "a-string-with-some-characters"
 caseKebab('A #22 character long string'); // "a-22-character-long-string"
 caseKebab("I'm a sp3c!al $741ng"); // "i-m-a-sp3c-al-741ng"
@@ -67,23 +78,15 @@ npm i@zerodep/case
 npm i@zerodep/case-kebab'
 ```
 
-then
+---
 
-```javascript
-import { caseKebab } from '@zerodep/app';
-// or
-import { caseKebab } from '@zerodep/utilities';
-// or
-import { caseKebab } from '@zerodep/case';
-// or
-import { caseKebab } from '@zerodep/case-kebab';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

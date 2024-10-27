@@ -8,9 +8,9 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
-A parser to find where zip/postal codes (and US 5-digit extensions) are in a string.
-
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
+
+A parser to find where zip/postal codes (and US 5-digit extensions) are in a string.
 
 This function will return an array of results, with the most likely result being first. If a zip/postal code is not found an empty array will be returned.
 
@@ -19,7 +19,7 @@ NOTE: currently supports US and CA zip/postal codes
 ## Signature
 
 ```typescript
-const addressZip: (address: string) => AddressZip[];
+declare const addressZip: (address: string) => AddressZip[];
 
 interface AddressZip {
   zip: string;
@@ -46,9 +46,8 @@ The `addressZip` result has the following properties:
 
 ## Examples
 
-### Well Formatted
-
 ```javascript
+// well-formed address
 addressZip('1234 Main St, Los Angeles CA, US 90210-1234');
 //  [
 //    {
@@ -60,11 +59,8 @@ addressZip('1234 Main St, Los Angeles CA, US 90210-1234');
 //      length: 10,
 //    },
 //  ]
-```
 
-### Canadian and American Codes
-
-```javascript
+//  Canadian and American Codes
 addressZip('12345 Main Street, Toronto ON, Canada M4A 3B6');
 // [
 //   {
@@ -82,11 +78,8 @@ addressZip('12345 Main Street, Toronto ON, Canada M4A 3B6');
 //     length: 5,
 //   },
 // ]
-```
 
-### Unsuccessful Case
-
-```javascript
+// no results found
 addressZip('unknown');
 // []
 ```
@@ -109,19 +102,7 @@ npm i @zerodep/address
 npm i @zerodep/address-zip
 ```
 
-then
-
-```javascript
-import { addressZip } from '@zerodep/add';
-// or
-import { addressZip } from '@zerodep/parsers';
-// or
-import { addressZip } from '@zerodep/address';
-// or
-import { addressZip } from '@zerodep/address-zip';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

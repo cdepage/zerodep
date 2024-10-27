@@ -1,0 +1,62 @@
+{
+  "name": "is-async",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/is/async/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is/async/*",
+          "rollup -c packages/is/async/rollup.config.mjs",
+          "cp packages/is/async/README.md dist/packages/is/async/README.md",
+          "cp LICENSE.md dist/packages/is/async/LICENSE.md",
+          "cp SECURITY.md dist/packages/is/async/SECURITY.md",
+          "cp packages/is/async/package.json dist/packages/is/async/package.json",
+          "uglifyjs dist/packages/is/async/index.mjs -o dist/packages/is/async/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/is/async/index.cjs -o dist/packages/is/async/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/is/async/index.mjs",
+          "rm -rf dist/packages/is/async/index.cjs"
+        ],
+        "parallel": false
+      }
+    },
+    "patch": {
+      "command": "cd packages/is/async && npm version patch"
+    },
+    "minor": {
+      "command": "cd packages/is/async && npm version minor"
+    },
+    "major": {
+      "command": "cd packages/is/async && npm version major"
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is/array"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/is/async/jest.config.ts"
+      }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/is/async",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

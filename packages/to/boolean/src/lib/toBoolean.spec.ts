@@ -80,6 +80,7 @@ describe('toBoolean', () => {
   ];
   // @ts-ignore
   test.each(handledCases)('should convert %s', (title, value, result) => {
+    // @ts-ignore
     expect(toBoolean(value)).toEqual(Boolean(result));
   });
 
@@ -99,6 +100,7 @@ describe('toBoolean', () => {
   ];
   // @ts-ignore
   test.each(exceptionCases)('should not convert a %s', (title, value) => {
+    // @ts-ignore
     const fn = () => toBoolean(value);
     expect(fn).toThrow('Cannot reliably convert to boolean');
   });

@@ -1,103 +1,131 @@
+import {
+  testAggregateError,
+  TestClass1,
+  testClassInstance1,
+  testDate0,
+  testDate1,
+  testDate2,
+  testError,
+  testFunction,
+  testFunctionAsync,
+  testFunctionGenerator,
+  testFunctionGeneratorAsync,
+  testMapEmpty,
+  testMapNumbers,
+  testMapStrings,
+  testPromise1,
+  testPromiseAll,
+  testPromiseAllSettled,
+  testPromiseRace,
+  testPromiseResolved1,
+  testRexExp1,
+  testRexExp2,
+  testSetEmpty,
+  testSetNumbers,
+  testSetStrings,
+  testSymbol1,
+  testSymbol2,
+  testWeakMap,
+  testWeakSet,
+} from '../../../isTestData';
 import { isEmpty } from './isEmpty';
 
 describe('isEmpty', () => {
-  describe('positive cases', () => {
-    it('should treat undefined as empty', () => {
-      expect(isEmpty(undefined)).toEqual(true);
-    });
-
-    it('should treat null as empty', () => {
-      expect(isEmpty(null)).toEqual(true);
-    });
-
-    it('should treat an empty string as empty', () => {
-      expect(isEmpty('')).toEqual(true);
-    });
-
-    it('should treat an empty array as empty', () => {
-      expect(isEmpty([])).toEqual(true);
-    });
-
-    it('should treat an empty object as empty', () => {
-      expect(isEmpty({})).toEqual(true);
-    });
-
-    it('should treat an empty Map as empty', () => {
-      expect(isEmpty(new Map())).toEqual(true);
-    });
-
-    it('should treat an empty Set as empty', () => {
-      expect(isEmpty(new Set())).toEqual(true);
-    });
-
-    it('should treat an empty WeakMap as empty', () => {
-      expect(isEmpty(new WeakMap())).toEqual(true);
-    });
-
-    it('should treat an empty WeakSet as empty', () => {
-      expect(isEmpty(new WeakSet())).toEqual(true);
-    });
-  });
-
-  describe('negative cases', () => {
-    it('should treat a string as non-empty', () => {
-      expect(isEmpty('a')).toEqual(false);
-    });
-
-    it('should treat an integer as non-empty', () => {
-      expect(isEmpty(1)).toEqual(false);
-    });
-
-    it('should treat a non-empty array as non-empty', () => {
-      expect(isEmpty(['a'])).toEqual(false);
-    });
-
-    it('should treat a non-empty object as non-empty', () => {
-      expect(isEmpty({ some: 'value' })).toEqual(false);
-    });
-
-    it('should treat a non-empty Map as non-empty', () => {
-      expect(isEmpty(new Map([['a', 1]]))).toEqual(false);
-    });
-
-    it('should treat a non-empty Set as non-empty', () => {
-      expect(isEmpty(new Set(['a']))).toEqual(false);
-    });
-
-    it('should treat a float as non-empty', () => {
-      expect(isEmpty(0.08)).toEqual(false);
-    });
-
-    it('should treat a BigInt as non-empty', () => {
-      expect(isEmpty(42n)).toEqual(false);
-    });
-
-    it('should treat a boolean true as non-empty', () => {
-      expect(isEmpty(true)).toEqual(false);
-    });
-
-    it('should treat a boolean false as non-empty', () => {
-      expect(isEmpty(false)).toEqual(false);
-    });
-
-    it('should treat a date false as non-empty', () => {
-      expect(isEmpty(new Date())).toEqual(false);
-    });
-
-    it('should treat a function false as non-empty', () => {
-      expect(isEmpty(() => 42)).toEqual(false);
-    });
-
-    it('should treat a Promise false as non-empty', () => {
-      expect(isEmpty(new Promise(() => {}))).toEqual(false);
-    });
-
-    it('should treat a Symbol false as non-empty', () => {
-      expect(isEmpty(Symbol())).toEqual(false);
-    });
-
-    it('should treat an Error false as non-empty', () => {
-      expect(isEmpty(new Error('test'))).toEqual(false);
-    });
+  const exampleCases = [
+    ['array - empty', [], true],
+    ['array - nonempty int', [1, 2, 3], false],
+    ['array - nonempty str', ['a', 'b', 'c'], false],
+    ['bigint - 42n', 42n, false],
+    ['bigint - 0n', 0n, false],
+    ['bigint - -0n', -0n, false],
+    ['bigint - -42n', -42n, false],
+    ['boolean - true', true, false],
+    ['boolean - false', false, false],
+    ['class', TestClass1, false],
+    ['class', testClassInstance1, false],
+    ['date - now', testDate0, false],
+    ['date - past', testDate1, false],
+    ['date - future', testDate2, false],
+    ['empty - null', null, true],
+    ['empty - undefined', undefined, true],
+    ['error', testError, false],
+    ['error - aggregate', testAggregateError, false],
+    ['float - 3.14', 3.14, false],
+    ['float - 0.0', 0.0, false],
+    ['float - -0.0', -0.0, false],
+    ['float - -3.14', -3.14, false],
+    ['float - Math.E', Math.E, false],
+    ['float - Math.PI', Math.PI, false],
+    ['float - min value', Number.MIN_VALUE, false],
+    ['function', testFunction, false],
+    ['function - async', testFunctionAsync, false],
+    ['generator', testFunctionGenerator, false],
+    ['generator - async', testFunctionGeneratorAsync, false],
+    ['map - empty', testMapEmpty, true],
+    ['map - nonempty number', testMapNumbers, false],
+    ['map - nonempty string', testMapStrings, false],
+    ['number - infinity - positive', Number.POSITIVE_INFINITY, false],
+    ['number - max safe int', Number.MAX_SAFE_INTEGER, false],
+    ['number - max value', Number.MAX_VALUE, false],
+    ['number - 3e8', 3e8, false],
+    ['number - 42', 42, false],
+    ['number - 1', 1, false],
+    ['number - 0', 0, false],
+    ['number - -0', -0, false],
+    ['number - -1', -1, false],
+    ['number - -42', -42, false],
+    ['number - -3e8', -3e8, false],
+    ['number - min safe int', Number.MIN_SAFE_INTEGER, false],
+    ['number - infinity - negative', Number.NEGATIVE_INFINITY, false],
+    ['number - NaN', Number.NaN, false],
+    ['pojo - empty', {}, true],
+    ['pojo - nonempty string', { key: 'string' }, false],
+    ['pojo - nonempty number', { key: 123 }, false],
+    ['promise', testPromise1, false],
+    ['promise - all', testPromiseAll, false],
+    ['promise - allSettled', testPromiseAllSettled, false],
+    ['promise - race', testPromiseRace, false],
+    ['promise - resolved', testPromiseResolved1, false],
+    ['regex1', testRexExp1, false],
+    ['regex2', testRexExp2, false],
+    ['set - empty', testSetEmpty, true],
+    ['set - numbers', testSetNumbers, false],
+    ['set - strings', testSetStrings, false],
+    ['string - ""', '', true],
+    ['string - "long string"', 'a longer string', false],
+    ['string - "1000n"', '1000n', false],
+    ['string - "3e8"', '3e8', false],
+    ['string - "42"', '42', false],
+    ['string - "3.14"', '3.14', false],
+    ['string - "0"', '0', false],
+    ['string - "-0"', '-0', false],
+    ['string - "-3.14"', '-3.14', false],
+    ['string - "-42"', '-42', false],
+    ['string - "-3e8"', '-3e8', false],
+    ['string - "-1000n"', '-1000n', false],
+    ['symbol', testSymbol1, false],
+    ['symbol + description', testSymbol2, false],
+    ['this - globalThis', globalThis, false],
+    ['this - this', this, false],
+    ['typedArray - int8Array', new Int8Array(2), false],
+    ['typedArray - int16Array', new Int16Array(2), false],
+    ['typedArray - int32Array', new Int32Array(2), false],
+    ['typedArray - uint8Array', new Uint8Array(2), false],
+    ['typedArray - uint16Array', new Uint16Array(2), false],
+    ['typedArray - uint32Array', new Uint32Array(2), false],
+    ['typedArray - uint8ClampedArray', new Uint8ClampedArray(2), false],
+    ['typedArray - bigInt64Array', new BigInt64Array(2), false],
+    ['typedArray - bigUint64Array', new BigUint64Array(2), false],
+    ['typedArray - float32Array', new Float32Array(2), false],
+    ['typedArray - float64Array', new Float64Array(2), false],
+    ['typedArray - sharedArrayBuffer', new SharedArrayBuffer(512), false],
+    ['weakMap - empty', new WeakMap(), false],
+    ['weakMap - nonempty', testWeakMap, false],
+    ['weakSet - empty', new WeakSet(), false],
+    ['weakSet - nonempty', testWeakSet, false],
+  ];
+  // @ts-ignore
+  test.each(exampleCases)('should assess %s', async (title, value, result) => {
+    expect(isEmpty(value)).toEqual(result);
   });
 });

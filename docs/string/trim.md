@@ -15,7 +15,7 @@ A utility to remove a specific character from the start and end of a string. Non
 ## Signature
 
 ```typescript
-const stringTrim: (value: string, char?: string) => string;
+declare const stringTrim: (value: string, char?: string) => string;
 ```
 
 ### Function Parameters
@@ -27,30 +27,23 @@ The `stringTrim` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
 ```javascript
-import { stringTrim } from '@zerodep/string-trim';
-// or
-const { stringTrim } = require('@zerodep/string-trim');
+// ESM
+import { stringTrim } from '@zerodep/app';
+
+// CJS
+const { stringTrim } = require('@zerodep/app');
 ```
 
-### Using Default Space Separator
-
 ```javascript
+// with the default separator (a space character)
 stringTrim('   some string   '); // "some string"
-```
 
-### Using Custom Separator
-
-```javascript
+// with a custom separator
 stringTrim('xx some string  xx', 'x'); // " some string "
-```
 
-### Unsuccessful Response
-
-```javascript
-stringTrim({ not: 'a string' }); // throws ZeroDepError: Value is not a string
+// with anything that is not a string
+stringTrim({ a: 'not string' }); // throws ZeroDepError: Value is not a string
 ```
 
 ## Installation Sources
@@ -71,23 +64,15 @@ npm i @zerodep/string
 npm i @zerodep/string-trim
 ```
 
-then
+---
 
-```javascript
-import { stringTrim } from '@zerodep/app';
-// or
-import { stringTrim } from '@zerodep/utilities';
-// or
-import { stringTrim } from '@zerodep/string';
-// or
-import { stringTrim } from '@zerodep/string-trim';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

@@ -15,55 +15,29 @@ A utility to reliably convert a value to a boolean. Consideration for common boo
 ## Signature
 
 ```typescript
-const toBoolean: (value: unknown) => boolean;
+declare const toBoolean: (value: Booleanable) => boolean;
+
+type Booleanable = unknown[] | bigint | number | Map<unknown, unknown> | Set<unknown> | string | Record<string, unknown>;
 ```
 
-## Behaviours
+## Behaviour
 
-This method behaves differently than the native `Boolean()` coercion method:
+This method **behaves differently** than the native `Boolean()` coercion method for the following cases:
 
-**Numbers**
+|             | Native Boolean()                                       | @zerodep's toBoolean()                                                                                                                                                                                                     |
+| ----------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Arrays**  | always converted to `true`                             | `false` empty arrays<br />`true` non-empty arrays                                                                                                                                                                          |
+| **BigInt**  | `true` all values (including zero)                     | `true` positive values<br />`false` zero and negative values                                                                                                                                                               |
+| **Dates**   | always converted to `true`                             | throws a ZeroDepError exception (cannot reliably convert to a boolean)                                                                                                                                                     |
+| **NaN**     | `false`                                                | throws a ZeroDepError exception                                                                                                                                                                                            |
+| **Numbers** | `true` all non-zero numbers <br />`false` zero         | `true` all positive values<br /> `false` zero and all negative values                                                                                                                                                      |
+| **Maps**    | `true` even empty Maps                                 | `false` empty Maps<br />`true` Maps with one or more entries                                                                                                                                                               |
+| **Sets**    | `true` even empty Sets                                 | `false` empty Sets<br />`true` Sets with one or more items                                                                                                                                                                 |
+| **POJOs**   | `true` even empty Sets                                 | `false` empty POJOs<br />`true` POJOs with one or more items                                                                                                                                                               |
+| **Strings** | `true` all non-empty strings<br />`false` empty string | `true` non-empty strings (except specific words/letters, see below)<br /> `false` empty strings and specific words/letters (see below)<br /> `true/false` any Number or BigInt as a string will convert as per rules above |
+| **Other**   | `true` all JavaScript objects <sup>1</sup>             | throws a ZeroDepError exception (cannot reliably convert to a boolean)                                                                                                                                                     |
 
-- native method will convert any non-zero number to `true` (including negative values)
-- this `toBoolean` method will convert positive numbers to `true`, zero and negative values to `false`
-- this `toBoolean` method will throw an exception for `NaN` values
-
-**BigInts**
-
-- native method will convert all BigInts to `true` (even On)
-- this `toBoolean` method will convert positive BigInt values to `true`, zero and negative values to `false`
-
-**Strings**
-
-- native method will convert any non-empty string to `true`
-- this `toBoolean` method will convert specific truthy/falsy strings and abbreviations to the appropriate boolean values, otherwise strings with length are `true`
-- this `toBoolean` method will convert numbers or BigInts represented as strings as per the logic for Numbers and BigInts (above)
-
-**Arrays**
-
-- native method will convert arrays to `true`
-- this `toBoolean` method will convert empty arrays to `false` and arrays with one or more items to `true`
-
-**POJOs**
-
-- native method will convert any POJOs to `true`
-- this `toBoolean` method will convert empty POJOs to `false` and POJOs with any values `true`
-
-**Dates**
-
-- native method will convert any Date to `true`
-- this `toBoolean` method will throw an exception for a Date as it cannot be reliably converted to a boolean
-
-**Sets and Maps**
-
-- native method will convert any Set or Map to `true`
-- this `toBoolean` method will convert empty Sets and Maps to `false` and Sets and Maps with any values `true`
-
-**Others**
-
-- native method will convert anything with a type of "object" to `true` - this includes Symbols, Promises, Classes, WeakMaps, WeakSets, Functions, Regular Expressions, TypedArrays and Generators
-- this `toBoolean` method will throw an exception for any other type as they cannot be reliably converted to a boolean
-
+<sup>1</sup> JavaScript objects include Classes, Errors, functions, generators, Promises, Symbols, TypedArrays, WeakMaps, WeakSets, etc
 
 ### Function Parameters
 
@@ -73,14 +47,115 @@ The `toBoolean` function has the following parameters:
 
 ## Examples
 
-### Use Cases
+```javascript
+// ESM
+import { toBoolean } from '@zerodep/app';
+
+// CJS
+const { toBoolean } = require('@zerodep/app');
+```
 
 ```javascript
-// booleans
+// Arrays
+toBoolean([]); // false
+toBoolean([1, 2, 3]); // true
+toBoolean(['a', 'b', 'c']); // true
+
+// BigInts
+toBoolean(42n); // true
+toBoolean(1n); // true
+toBoolean(0n); // false
+toBoolean(-0n); // false
+toBoolean(-42n); // false
+
+// Booleans
 toBoolean(true); // true
 toBoolean(false); // false
 
-// boolean-like strings (case insensitive, includes English, Spanish & French terms)
+// Class
+toBoolean(
+  class SomeClass {
+    constructor() {}
+  }
+); // throws ZeroDepError: Cannot reliably convert to boolean
+
+// Dates
+toBoolean(new Date()); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Date('1970-01-01T12:00:00.000Z')); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Date('2099-12-31')); // throws ZeroDepError: Cannot reliably convert to boolean
+
+// Empty
+toBoolean(null); // false
+toBoolean(undefined); // false
+
+// Errors
+toBoolean(new Error('message')); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // throws ZeroDepError: Cannot reliably convert to boolean
+
+// Floats
+toBoolean(3.14); // true
+toBoolean(0.0); // false
+toBoolean(-0.0); // false
+toBoolean(-3.14); // false
+toBoolean(Math.E); // true
+toBoolean(Math.PI); // true
+toBoolean(Number.MIN_VALUE); // false
+
+// Functions
+toBoolean(() => 'function'); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(async () => 'function'); // throws ZeroDepError: Cannot reliably convert to boolean
+
+// Generators
+toBoolean(function* () {
+  yield 'a';
+}); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(async function* () {
+  yield 'a';
+}); // throws ZeroDepError: Cannot reliably convert to boolean
+
+// Maps
+toBoolean(new Map()); // false
+toBoolean(new Map([['key1', 123]])); // true
+toBoolean(new Map([['key1', 'value1']])); // true
+
+// Numbers
+toBoolean(Number.POSITIVE_INFINITY); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(Number.MAX_SAFE_INTEGER); // true
+toBoolean(Number.MAX_VALUE); // true
+toBoolean(3e8); // true
+toBoolean(42); // true
+toBoolean(1); // true
+toBoolean(0); // false
+toBoolean(-0); // false
+toBoolean(-1); // false
+toBoolean(-42); // false
+toBoolean(-3e8); // false
+toBoolean(Number.MIN_SAFE_INTEGER); // false
+toBoolean(Number.NEGATIVE_INFINITY); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(Number.NaN); // throws ZeroDepError: Cannot reliably convert to boolean
+
+// POJOs
+toBoolean({}); // false
+toBoolean({ key: 'string' }); // true
+toBoolean({ key: 123 }); // true
+
+// Promise
+toBoolean(new Promise(() => {})); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Promise.all([])); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Promise.allSettled([])); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Promise.race([])); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(Promise.resolve()); // throws ZeroDepError: Cannot reliably convert to boolean
+
+// Regular Expression
+toBoolean(/[regex]+/gi); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new RegExp('d', 'gi')); // throws ZeroDepError: Cannot reliably convert to boolean
+
+// Sets
+toBoolean(new Set()); // false
+toBoolean(new Set([1, 2, 3])); // true
+toBoolean(new Set(['a', 'b', 'c'])); // true
+
+// Boolean-like Strings (case insensitive, includes English, Spanish & French terms)
 toBoolean('true'); // true
 toBoolean('t'); // true
 toBoolean('yes'); // true
@@ -106,12 +181,10 @@ toBoolean('non'); // false
 toBoolean('n'); // false
 toBoolean(''); // false
 
-// boolean-like numbers as strings are treated as numbers
+// Boolean-like Numbers as Strings are treated as numbers
 toBoolean('1'); // true
 toBoolean('0'); // false <-- number "0"
 toBoolean('-0'); // false <-- number "0"
-
-// numerical strings
 toBoolean('171.3'); // true
 toBoolean('3e8'); // true
 toBoolean('8,675,309'); // true
@@ -121,52 +194,37 @@ toBoolean('-3e8'); // false
 toBoolean('-8,675,309'); // false
 toBoolean('-8.675.309,123'); // false
 
-// any string that isn't a number or BigInt or one of the keywords/letters above
+// String that isn't a number or BigInt or one of the keywords/letters above
 toBoolean('string of any length'); // true
 
-// numbers - positive numbers are truthy, negative numbers are falsy, zero is always falsy
-toBoolean(1); // true
-toBoolean(42); // true
-toBoolean(3.14); // true
-toBoolean(100e10); // true
-toBoolean(0); // false
-toBoolean(-0); // false
-toBoolean(-42); // false
-toBoolean(-3.14); // false
-toBoolean(-100e10); // false
-toBoolean(NaN); // // throws ZeroDepError: Cannot reliably convert to boolean
+// Symbols
+toBoolean(Symbol()); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(Symbol('name')); // throws ZeroDepError: Cannot reliably convert to boolean
 
-// bigint - positive values are truthy, negative values are falsy, zero is always falsy
-toBoolean(1n); // true
-toBoolean(42n); // true
-toBoolean(0n); // false
-toBoolean(-0n); // false
-toBoolean(-42n); // false
+// This
+toBoolean(this); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(globalThis); // throws ZeroDepError: Cannot reliably convert to boolean
 
-// empty values
-toBoolean(null); // false
-toBoolean(undefined); // false
+// TypedArrays
+toBoolean(new Int8Array(2)); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Int16Array(2)); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Int32Array(2)); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Uint8Array(2)); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Uint16Array(2)); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Uint32Array(2)); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Uint8ClampedArray(2)); // throws ZeroDepError: Cannot reliably convert to boolean
 
-// dates
-toBoolean(new Date('2022-04-22T10:30:00.000Z')); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new BigInt64Array(2)); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new BigUint64Array(2)); // throws ZeroDepError: Cannot reliably convert to boolean
 
-// objects - empty are falsy, non-empty are truthy
-toBoolean({}); // false
-toBoolean({ an: 'object' }); // true
+toBoolean(new Float32Array(2)); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new Float64Array(2)); // throws ZeroDepError: Cannot reliably convert to boolean
 
-// arrats - empty are falsy, non-empty are truthy
-toBoolean([]); // false
-toBoolean(['an', 'array']); // true
-toBoolean([false]); // true <-- CAUTION: content not evaluated
+toBoolean(new SharedArrayBuffer(512)); // throws ZeroDepError: Cannot reliably convert to boolean
 
-// sets - empty are falsy, non-empty are truthy
-toBoolean(new Set()); // false
-toBoolean(new Set([0, 1, 2])); // true
-toBoolean(new Set([0])); // true <-- CAUTION: content not evaluated
-
-// maps - empty are falsy, non-empty are truthy
-toBoolean(new Map()); // false
-toBoolean(new Map([['a', 'anything']])); // true
+// WeakMap and WeakSet
+toBoolean(new WeakMap()); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(new WeakSet()); // throws ZeroDepError: Cannot reliably convert to boolean
 ```
 
 ## Installation Sources
@@ -187,24 +245,16 @@ npm i @zerodep/to
 npm i @zerodep/to-boolean
 ```
 
-then
+---
 
-```javascript
-import { toBoolean } from '@zerodep/app';
-// or
-import { toBoolean } from '@zerodep/utilities';
-// or
-import { toBoolean } from '@zerodep/to';
-// or
-import { toBoolean } from '@zerodep/to-boolean';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2024-07-20
+--
+
+#### Release 2.0.x
 
 **Added**
 
-- added the `@zerodep/to.boolean` package
+- added the `@zerodep/to-boolean` package

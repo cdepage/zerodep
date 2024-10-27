@@ -15,50 +15,165 @@ A simple, performant utility to determine if a value is a non-null object.
 ## Signature
 
 ```typescript
-const isObject(value: any) => boolean;
+declare const isObject: (value: unknown) => boolean;
 ```
 
 ### Function Parameters
 
-The `isArray` function has the following parameters:
+The `isObject` function has the following parameters:
 
 - **value** - the value to check
 
 ## Examples
 
-### Positive Response
-
 ```javascript
-isObject({ an: 'object' }); // true
+// ESM
+import { isObject } from '@zerodep/app';
+
+// CJS
+const { isObject } = require('@zerodep/app');
 ```
 
-### Negative Response
-
 ```javascript
-isObject(null); // false - CAUTION
-
+// Arrays
+isObject([]); // false
+isObject([1, 2, 3]); // false
 isObject(['a', 'b', 'c']); // false
-isObject(1000n); // false
+
+// BigInts
+isObject(42n); // false
+isObject(0n); // false
+isObject(-0n); // false
+isObject(-42n); // false
+
+// Booleans
 isObject(true); // false
-isObject(new Date()); // false
-isObject(''); // false
-isObject(new Error('message')); // false
-isObject(3.14); // false
-isObject(() => 'function'); // false
-isObject(42); // false
+isObject(false); // false
+
+// Class
 isObject(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // false
-isObject(new Promise(() => {})); // false
-isObject(/[regex]+/gi); // false
-isObject(new Set([1, 2, 3])); // false
-isObject('a string'); // false
-isObject(Symbol()); // false
-isObject(new Int32Array(2)); // false
+
+// Dates
+isObject(new Date()); // false
+isObject(new Date('1970-01-01T12:00:00.000Z')); // false
+isObject(new Date('2099-12-31')); // false
+
+// Empty
+isObject(null); // false
 isObject(undefined); // false
+
+// Errors
+isObject(new Error('message')); // false
+isObject(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
+
+// Floats
+isObject(3.14); // false
+isObject(0.0); // false
+isObject(-0.0); // false
+isObject(-3.14); // false
+isObject(Math.E); // false
+isObject(Math.PI); // false
+isObject(Number.MIN_VALUE); // false
+
+// Functions
+isObject(() => 'function'); // false
+isObject(async () => 'function'); // false
+
+// Generators
+isObject(function* () {
+  yield 'a';
+}); // false
+isObject(async function* () {
+  yield 'a';
+}); // false
+
+// Maps
+isObject(new Map()); // false
+isObject(new Map([['key1', 123]])); // false
+isObject(new Map([['key1', 'value1']])); // false
+
+// Numbers
+isObject(Number.POSITIVE_INFINITY); // false
+isObject(Number.MAX_SAFE_INTEGER); // false
+isObject(3e8); // false
+isObject(42); // false
+isObject(1); // false
+isObject(0); // false
+isObject(-0); // false
+isObject(-1); // false
+isObject(-42); // false
+isObject(-3e8); // false
+isObject(Number.MIN_SAFE_INTEGER); // false
+isObject(Number.NEGATIVE_INFINITY); // false
+isObject(Number.NaN); // false
+
+// POJOs
+isObject({}); // true
+isObject({ key: 'string' }); // true
+isObject({ key: 123 }); // true
+
+// Promise
+isObject(new Promise(() => {})); // false
+isObject(new Promise.all([])); // false
+isObject(new Promise.allSettled([])); // false
+isObject(new Promise.race([])); // false
+isObject(Promise.resolve()); // false
+
+// Regular Expression
+isObject(/[regex]+/gi); // false
+isObject(new RegExp('d', 'gi')); // false
+
+// Sets
+isObject(new Set()); // false
+isObject(new Set([1, 2, 3])); // false
+isObject(new Set(['a', 'b', 'c'])); // false
+
+// Strings
+isObject(''); // false
+isObject('a longer string'); // false
+isObject('1000n'); // false
+isObject('3e8'); // false
+isObject('42'); // false
+isObject('3.14'); // false
+isObject('0'); // false
+isObject('-0'); // false
+isObject('-3.14'); // false
+isObject('-42'); // false
+isObject('-3e8'); // false
+isObject('-1000n'); // false
+
+// Symbols
+isObject(Symbol()); // false
+isObject(Symbol('name')); // false
+
+// This
+isObject(this); // false
+isObject(globalThis); // false
+
+// TypedArrays
+isObject(new Int8Array(2)); // false
+isObject(new Int16Array(2)); // false
+isObject(new Int32Array(2)); // false
+isObject(new Uint8Array(2)); // false
+isObject(new Uint16Array(2)); // false
+isObject(new Uint32Array(2)); // false
+isObject(new Uint8ClampedArray(2)); // false
+
+isObject(new BigInt64Array(2)); // false
+isObject(new BigUint64Array(2)); // false
+
+isObject(new Float32Array(2)); // false
+isObject(new Float64Array(2)); // false
+
+isObject(new SharedArrayBuffer(512)); // false
+
+// WeakMap and WeakSet
+isObject(new WeakMap()); // false
+isObject(new WeakSet()); // false
 ```
 
 ## Installation Sources
@@ -79,23 +194,15 @@ npm i @zerodep/is
 npm i @zerodep/is-object
 ```
 
-then
+---
 
-```javascript
-import { isObject } from '@zerodep/app';
-// or
-import { isObject } from '@zerodep/utilities';
-// or
-import { isObject } from '@zerodep/is';
-// or
-import { isObject } from '@zerodep/is-object';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

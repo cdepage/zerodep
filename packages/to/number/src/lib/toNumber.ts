@@ -6,7 +6,7 @@ import { isNumber } from '@zerodep/is-number';
 import { isString } from '@zerodep/is-string';
 
 // brute force attempt to make a string make sense as a number
-const numberFromLocaleString = (value: unknown): number | null => {
+export const numberFromLocaleString = (value: unknown): number | null => {
   const cleanedValue = String(value)
     .toLowerCase()
     .replace(/[^\d,.+e-]/g, '');

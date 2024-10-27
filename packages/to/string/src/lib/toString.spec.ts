@@ -1,4 +1,26 @@
 import {
+  testAggregateError,
+  testDate1,
+  testDate2,
+  testError,
+  testFunctionAsync,
+  testFunctionGenerator,
+  testFunctionGeneratorAsync,
+  testMapEmpty,
+  testMapNumbers,
+  testMapStrings,
+  testPromiseAll,
+  testPromiseAllSettled,
+  testPromiseRace,
+  testPromiseResolved1,
+  testRexExp1,
+  testRexExp2,
+  testSetEmpty,
+  testSetNumbers,
+  testSetStrings,
+  testSymbol2,
+} from '../../../../is/isTestData';
+import {
   TestClass1,
   TestClass2,
   testClassInstance1,
@@ -188,9 +210,10 @@ describe('toString', () => {
   it('should convert an instantiated class without a toString method', () => {
     expect(toString(testClassInstance2)).toEqual('{"b":2}');
   });
-  it('should convert a generator function', () => {
+  it('should NOT convert a generator function', () => {
     // @ts-ignore
-    expect(toString(testGenerator)).toEqual('{}');
+    const fn = () => toString(testGenerator);
+    expect(fn).toThrow('Cannot convert to string');
   });
 
   // TYPED ARRAYS
@@ -266,4 +289,113 @@ describe('toString', () => {
   it('should convert undefined to null', () => {
     expect(toString(undefined)).toEqual('');
   });
+
+  const exampleCases = [
+    ['array - empty', [], ''],
+    ['array - nonempty int', [1, 2, 3], '1, 2, 3'],
+    ['array - nonempty str', ['a', 'b', 'c'], 'a, b, c'],
+    ['bigint - 42n', 42n, '42'],
+    ['bigint - 0n', 0n, '0'],
+    ['bigint - -0n', -0n, '0'],
+    ['bigint - -42n', -42n, '-42'],
+    ['boolean - true', true, 'true'],
+    ['boolean - false', false, 'false'],
+    ['date - past', testDate1, '1999-12-31T23:59:59.999Z'],
+    ['date - future', testDate2, '2022-04-27T18:02:36.634Z'],
+    ['float - 3.14', 3.14, '3.14'],
+    ['float - 0.0', 0.0, '0'],
+    ['float - -0.0', -0.0, '0'],
+    ['float - -3.14', -3.14, '-3.14'],
+    ['float - Math.E', Math.E, '2.718281828459045'],
+    ['float - Math.PI', Math.PI, '3.141592653589793'],
+    ['float - min value', Number.MIN_VALUE, '5e-324'],
+    ['map - empty', testMapEmpty, '{}'],
+    ['map - nonempty number', testMapNumbers, '{"key":123}'],
+    ['map - nonempty string', testMapStrings, '{"key":"abc"}'],
+    ['nothing - null', null, ''],
+    ['nothing - undefined', undefined, ''],
+    ['number - infinity - positive', Number.POSITIVE_INFINITY, 'Infinity'],
+    ['number - max safe int', Number.MAX_SAFE_INTEGER, '9007199254740991'],
+    ['number - max value', Number.MAX_VALUE, '1.7976931348623157e+308'],
+    ['number - 3e8', 3e8, '300000000'],
+    ['number - 42', 42, '42'],
+    ['number - 1', 1, '1'],
+    ['number - 0', 0, '0'],
+    ['number - -0', -0, '0'],
+    ['number - -1', -1, '-1'],
+    ['number - -42', -42, '-42'],
+    ['number - -3e8', -3e8, '-300000000'],
+    ['number - min safe int', Number.MIN_SAFE_INTEGER, '-9007199254740991'],
+    ['number - infinity - negative', Number.NEGATIVE_INFINITY, '-Infinity'],
+    ['number - NaN', Number.NaN, 'NaN'],
+    ['pojo - empty', {}, '{}'],
+    ['pojo - nonempty string', { key: 'string' }, '{"key":"string"}'],
+    ['pojo - nonempty number', { key: 123 }, '{"key":123}'],
+    ['set - empty', testSetEmpty, ''],
+    ['set - numbers', testSetNumbers, '1, 2, 3'],
+    ['set - strings', testSetStrings, 'a, b, c'],
+    ['string - ""', '', ''],
+    ['string - "long string"', 'a longer string', 'a longer string'],
+    ['string - "1000n"', '1000n', '1000n'],
+    ['string - "3e8"', '3e8', '3e8'],
+    ['string - "42"', '42', '42'],
+    ['string - "3.14"', '3.14', '3.14'],
+    ['string - "0"', '0', '0'],
+    ['string - "-0"', '-0', '-0'],
+    ['string - "-3.14"', '-3.14', '-3.14'],
+    ['string - "-42"', '-42', '-42'],
+    ['string - "-3e8"', '-3e8', '-3e8'],
+    ['string - "-1000n"', '-1000n', '-1000n'],
+    ['class', testClassInstance1, '{"a":1}'],
+  ];
+  // @ts-ignore
+  test.each(exampleCases)('should assess %s', async (title, value, result) => {
+    // @ts-ignore
+    expect(toString(value)).toEqual(result);
+  });
+
+  const invalidCases = [
+    ['class', TestClass1],
+    ['error', testError],
+    ['error - aggregate', testAggregateError],
+    ['function', testFunction1],
+    ['function - async', testFunctionAsync],
+    ['generator', testFunctionGenerator],
+    ['generator - async', testFunctionGeneratorAsync],
+    ['promise', testPromise1],
+    ['promise - all', testPromiseAll],
+    ['promise - allSettled', testPromiseAllSettled],
+    ['promise - race', testPromiseRace],
+    ['promise - resolved', testPromiseResolved1],
+    ['regex1', testRexExp1],
+    ['regex2', testRexExp2],
+    ['symbol', testSymbol1],
+    ['symbol + description', testSymbol2],
+    ['typedArray - int8Array', new Int8Array(2)],
+    ['typedArray - int16Array', new Int16Array(2)],
+    ['typedArray - int32Array', new Int32Array(2)],
+    ['typedArray - uint8Array', new Uint8Array(2)],
+    ['typedArray - uint16Array', new Uint16Array(2)],
+    ['typedArray - uint32Array', new Uint32Array(2)],
+    ['typedArray - uint8ClampedArray', new Uint8ClampedArray(2)],
+    ['typedArray - bigInt64Array', new BigInt64Array(2)],
+    ['typedArray - bigUint64Array', new BigUint64Array(2)],
+    ['typedArray - float32Array', new Float32Array(2)],
+    ['typedArray - float64Array', new Float64Array(2)],
+    ['typedArray - sharedArrayBuffer', new SharedArrayBuffer(512)],
+    ['weakMap - empty', new WeakMap()],
+    ['weakMap - nonempty', testWeakMap],
+    ['weakSet - empty', new WeakSet()],
+    ['weakSet - nonempty', testWeakSet],
+  ];
+  // @ts-ignore
+  test.each(invalidCases)(
+    'should throw for %s',
+    // @ts-ignore
+    async (title, value) => {
+      // @ts-ignore
+      const fn = () => toString(value);
+      expect(fn).toThrow('Cannot convert to string');
+    }
+  );
 });

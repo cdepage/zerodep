@@ -10,63 +10,179 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A run-time guard to require a value to be a POJO (plain old javascript object); it will throw a `ZeroDepError` if the guard fails.
+A run-time guard to require a value to be a POJO (plain old javascript object); it will throw a `ZeroDepError` if the guard fails. Optional advanced configuration allows specifying min and/or max number of items.
 
-## Signature
+## Basic Signature
 
 ```typescript
-const guardPojo: (value: any) => void;
+declare const guardPojo: (value: unknown) => void;
 ```
 
 The `guardPojo` function has the following parameters:
 
 - **value** - the value to guard
 
-## Examples
-
-### Successful Cases
+## Basic Examples
 
 ```javascript
-guardPojo({ an: 'object' }); // void
+// ESM
+import { guardPojo } from '@zerodep/app';
+
+// CJS
+const { guardPojo } = require('@zerodep/app');
 ```
 
-### Unsuccessful Cases
-
 ```javascript
-guardPojo([]); // throws ZeroDepError: Value is not a JSON object
-guardPojo(['a', 'b', 'c']); // throws ZeroDepError: Value is not a JSON object
-guardPojo(1000n); // throws ZeroDepError: Value is not a JSON object
+// Arrays
+guardPojo([]); // void
+guardPojo([1, 2, 3]); // void
+guardPojo(['a', 'b', 'c']); // void
+
+// BigInts
+guardPojo(42n); // throws ZeroDepError: Value is not a JSON object
+guardPojo(0n); // throws ZeroDepError: Value is not a JSON object
+guardPojo(-0n); // throws ZeroDepError: Value is not a JSON object
+guardPojo(-42n); // throws ZeroDepError: Value is not a JSON object
+
+// Booleans
 guardPojo(true); // throws ZeroDepError: Value is not a JSON object
-guardPojo(new Date()); // throws ZeroDepError: Value is not a JSON object
-guardPojo(''); // throws ZeroDepError: Value is not a JSON object
-guardPojo(new Error('message')); // throws ZeroDepError: Value is not a JSON object
-guardPojo(3.14); // throws ZeroDepError: Value is not a JSON object
-guardPojo(() => 'function'); // throws ZeroDepError: Value is not a JSON object
-guardPojo(42); // throws ZeroDepError: Value is not a JSON object
+guardPojo(false); // throws ZeroDepError: Value is not a JSON object
+
+// Class
 guardPojo(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // throws ZeroDepError: Value is not a JSON object
-guardPojo(null); // throws ZeroDepError: Value is not a JSON object
-guardPojo(new Promise(() => {})); // throws ZeroDepError: Value is not a JSON object
-guardPojo(/[regex]+/gi); // throws ZeroDepError: Value is not a JSON object
-guardPojo(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a JSON object
-guardPojo('a string'); // throws ZeroDepError: Value is not a JSON object
-guardPojo(Symbol()); // throws ZeroDepError: Value is not a JSON object
-guardPojo(new Int32Array(2)); // throws ZeroDepError: Value is not a JSON object
+
+// Dates
+guardPojo(new Date()); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Date('1970-01-01T12:00:00.000Z')); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Date('2099-12-31')); // throws ZeroDepError: Value is not a JSON object
+
+// Empty
+guardPojo(null); // throws ZeroDepError: Value is not a JSON object  <-- CAUTION: null values are excluded
 guardPojo(undefined); // throws ZeroDepError: Value is not a JSON object
+
+// Errors
+guardPojo(new Error('message')); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // throws ZeroDepError: Value is not a JSON object
+
+// Floats
+guardPojo(3.14); // throws ZeroDepError: Value is not a JSON object
+guardPojo(0.0); // throws ZeroDepError: Value is not a JSON object
+guardPojo(-0.0); // throws ZeroDepError: Value is not a JSON object
+guardPojo(-3.14); // throws ZeroDepError: Value is not a JSON object
+guardPojo(Math.E); // throws ZeroDepError: Value is not a JSON object
+guardPojo(Math.PI); // throws ZeroDepError: Value is not a JSON object
+guardPojo(Number.MIN_VALUE); // throws ZeroDepError: Value is not a JSON object
+
+// Functions
+guardPojo(() => 'function'); // throws ZeroDepError: Value is not a JSON object
+guardPojo(async () => 'function'); // throws ZeroDepError: Value is not a JSON object
+
+// Generators
+guardPojo(function* () {
+  yield 'a';
+}); // throws ZeroDepError: Value is not a JSON object
+guardPojo(async function* () {
+  yield 'a';
+}); // throws ZeroDepError: Value is not a JSON object
+
+// Maps
+guardPojo(new Map()); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Map([['key1', 123]])); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Map([['key1', 'value1']])); // throws ZeroDepError: Value is not a JSON object
+
+// Numbers
+guardPojo(Number.POSITIVE_INFINITY); // throws ZeroDepError: Value is not a JSON object
+guardPojo(Number.MAX_SAFE_INTEGER); // throws ZeroDepError: Value is not a JSON object
+guardPojo(Number.MAX_VALUE); // throws ZeroDepError: Value is not a JSON object
+guardPojo(3e8); // throws ZeroDepError: Value is not a JSON object
+guardPojo(42); // throws ZeroDepError: Value is not a JSON object
+guardPojo(1); // throws ZeroDepError: Value is not a JSON object
+guardPojo(0); // throws ZeroDepError: Value is not a JSON object
+guardPojo(-0); // throws ZeroDepError: Value is not a JSON object
+guardPojo(-1); // throws ZeroDepError: Value is not a JSON object
+guardPojo(-42); // throws ZeroDepError: Value is not a JSON object
+guardPojo(-3e8); // throws ZeroDepError: Value is not a JSON object
+guardPojo(Number.MIN_SAFE_INTEGER); // throws ZeroDepError: Value is not a JSON object
+guardPojo(Number.NEGATIVE_INFINITY); // throws ZeroDepError: Value is not a JSON object
+guardPojo(Number.NaN); // throws ZeroDepError: Value is not a JSON object
+
+// POJOs
+guardPojo({}); // void
+guardPojo({ key: 'string' }); // void
+guardPojo({ key: 123 }); // void
+
+// Promise
+guardPojo(new Promise(() => {})); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Promise.all([])); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Promise.allSettled([])); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Promise.race([])); // throws ZeroDepError: Value is not a JSON object
+guardPojo(Promise.resolve()); // throws ZeroDepError: Value is not a JSON object
+
+// Regular Expression
+guardPojo(/[regex]+/gi); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not a JSON object
+
+// Sets
+guardPojo(new Set()); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Set(['a', 'b', 'c'])); // throws ZeroDepError: Value is not a JSON object
+
+// Strings
+guardPojo(''); // throws ZeroDepError: Value is not a JSON object
+guardPojo('a longer string'); // throws ZeroDepError: Value is not a JSON object
+guardPojo('1000n'); // throws ZeroDepError: Value is not a JSON object
+guardPojo('3e8'); // throws ZeroDepError: Value is not a JSON object
+guardPojo('42'); // throws ZeroDepError: Value is not a JSON object
+guardPojo('3.14'); // throws ZeroDepError: Value is not a JSON object
+guardPojo('0'); // throws ZeroDepError: Value is not a JSON object
+guardPojo('-0'); // throws ZeroDepError: Value is not a JSON object
+guardPojo('-3.14'); // throws ZeroDepError: Value is not a JSON object
+guardPojo('-42'); // throws ZeroDepError: Value is not a JSON object
+guardPojo('-3e8'); // throws ZeroDepError: Value is not a JSON object
+guardPojo('-1000n'); // throws ZeroDepError: Value is not a JSON object
+
+// Symbols
+guardPojo(Symbol()); // throws ZeroDepError: Value is not a JSON object
+guardPojo(Symbol('name')); // throws ZeroDepError: Value is not a JSON object
+
+// This
+guardPojo(this); // throws ZeroDepError: Value is not a JSON object
+guardPojo(globalThis); // throws ZeroDepError: Value is not a JSON object
+
+// TypedArrays
+guardPojo(new Int8Array(2)); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Int16Array(2)); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Int32Array(2)); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Uint8Array(2)); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Uint16Array(2)); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Uint32Array(2)); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Uint8ClampedArray(2)); // throws ZeroDepError: Value is not a JSON object
+
+guardPojo(new BigInt64Array(2)); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new BigUint64Array(2)); // throws ZeroDepError: Value is not a JSON object
+
+guardPojo(new Float32Array(2)); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new Float64Array(2)); // throws ZeroDepError: Value is not a JSON object
+
+guardPojo(new SharedArrayBuffer(512)); // throws ZeroDepError: Value is not a JSON object
+
+// WeakMap and WeakSet
+guardPojo(new WeakMap()); // throws ZeroDepError: Value is not a JSON object
+guardPojo(new WeakSet()); // throws ZeroDepError: Value is not a JSON object
 ```
 
 ## Advanced Use
 
 The guard may optionally be configured, via the `guardPojoHOF` function, with additional run-time checks.
 
-### Signature
+### Advanced Signature
 
 ```typescript
-const guardPojoHOF: (options: GuardPojoOptions) => (value: any) => void;
+declare const guardPojoHOF: (options: GuardPojoOptions) => (value: unknown) => void;
 
 interface GuardPojoOptions {
   minQuantity?: number;
@@ -83,11 +199,17 @@ The `guardPojoHOF` has the following configuration options, all are optional:
 
 ### Advanced Examples
 
+```javascript
+// ESM
+import { guardPojoHOF, GuardPojoOptions } from '@zerodep/app';
+
+// CJS
+const { guardPojoHOF, GuardPojoOptions } = require('@zerodep/app');
+```
+
 **Min & Max Quantity**
 
 ```typescript
-import { guardPojoHOF, GuardPojoOptions } from '@zerodep/guard-pojo';
-
 const config: guardPojoOptions = {
   minQuantity: 2,
   maxQuantity: 3,
@@ -122,23 +244,15 @@ npm i @zerodep/guards
 npm i @zerodep/guard-pojo
 ```
 
-then
+---
 
-```javascript
-import { guardPojo } from '@zerodep/app';
-// or
-import { guardPojo } from '@zerodep/utilities';
-// or
-import { guardPojo } from '@zerodep/guard';
-// or
-import { guardPojo } from '@zerodep/guard-pojo';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

@@ -8,54 +8,183 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
 
-A simple, performant utility to determine if a value is an integer.
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
+
+A simple, performant utility to determine if a value is a finite integer.
 
 Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/integer) page.
 
+## Signature
+
+```typescript
+declare const isInteger: (value: unknown) => boolean;
+```
+
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
+All @zerodep packages support both ESM and CJS formats, each complete with Typescript typings.
 
 ```javascript
+// ESM
 import { isInteger } from '@zerodep/is-integer';
-// or
+
+// CJS
 const { isInteger } = require('@zerodep/is-integer');
 ```
 
-### Positive Response
-
 ```javascript
-isInteger(42); // true
-isInteger(new Number(-273)); // true
-```
-
-### Negative Response
-
-```javascript
-isInteger(Infinity); // false - CAUTION
-isInteger(Number.isNan); // false - CAUTION
-
+// Arrays
+isInteger([]); // false
+isInteger([1, 2, 3]); // false
 isInteger(['a', 'b', 'c']); // false
-isInteger(1000n); // false
+
+// BigInts
+isInteger(42n); // false
+isInteger(0n); // false
+isInteger(-0n); // false
+isInteger(-42n); // false
+
+// Booleans
 isInteger(true); // false
-isInteger(new Date()); // false
-isInteger(''); // false
-isInteger(new Error('message')); // false
-isInteger(3.14); // false
-isInteger(() => 'function'); // false
+isInteger(false); // false
+
+// Class
 isInteger(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // false
+
+// Dates
+isInteger(new Date()); // false
+isInteger(new Date('1970-01-01T12:00:00.000Z')); // false
+isInteger(new Date('2099-12-31')); // false
+
+// Empty
 isInteger(null); // false
-isInteger({ an: 'object' }); // false
-isInteger(new Promise(() => {})); // false
-isInteger(/[regex]+/gi); // false
-isInteger(new Set([1, 2, 3])); // false
-isInteger('a string'); // false
-isInteger(Symbol()); // false
-isInteger(new Int32Array(2)); // false
 isInteger(undefined); // false
+
+// Errors
+isInteger(new Error('message')); // false
+isInteger(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
+
+// Floats
+isInteger(3.14); // false
+isInteger(0.0); // true  <-- CAUTION: zero is allowed as an integer
+isInteger(-0.0); // true  <-- CAUTION: zero is allowed as an integer
+isInteger(-3.14); // false
+isInteger(Math.E); // false
+isInteger(Math.PI); // false
+isInteger(Number.MIN_VALUE); // false
+
+// Functions
+isInteger(() => 'function'); // false
+isInteger(async () => 'function'); // false
+
+// Generators
+isInteger(function* () {
+  yield 'a';
+}); // false
+isInteger(async function* () {
+  yield 'a';
+}); // false
+
+// Maps
+isInteger(new Map()); // false
+isInteger(new Map([['key1', 123]])); // false
+isInteger(new Map([['key1', 'value1']])); // false
+
+// Numbers
+isInteger(Number.POSITIVE_INFINITY); // false
+isInteger(Number.MAX_SAFE_INTEGER); // true
+isInteger(3e8); // true
+isInteger(42); // true
+isInteger(1); // true
+isInteger(0); // true
+isInteger(-0); // true
+isInteger(-1); // true
+isInteger(-42); // true
+isInteger(-3e8); // true
+isInteger(Number.MIN_SAFE_INTEGER); // true
+isInteger(Number.NEGATIVE_INFINITY); // false
+isInteger(Number.NaN); // false
+
+// POJOs
+isInteger({}); // false
+isInteger({ key: 'string' }); // false
+isInteger({ key: 123 }); // false
+
+// Promise
+isInteger(new Promise(() => {})); // false
+isInteger(new Promise.all([])); // false
+isInteger(new Promise.allSettled([])); // false
+isInteger(new Promise.race([])); // false
+isInteger(Promise.resolve()); // false
+
+// Regular Expression
+isInteger(/[regex]+/gi); // false
+isInteger(new RegExp('d', 'gi')); // false
+
+// Sets
+isInteger(new Set()); // false
+isInteger(new Set([1, 2, 3])); // false
+isInteger(new Set(['a', 'b', 'c'])); // false
+
+// Strings
+isInteger(''); // false
+isInteger('a longer string'); // false
+isInteger('1000n'); // false
+isInteger('3e8'); // false
+isInteger('42'); // false
+isInteger('3.14'); // false
+isInteger('0'); // false
+isInteger('-0'); // false
+isInteger('-3.14'); // false
+isInteger('-42'); // false
+isInteger('-3e8'); // false
+isInteger('-1000n'); // false
+
+// Symbols
+isInteger(Symbol()); // false
+isInteger(Symbol('name')); // false
+
+// This
+isInteger(this); // false
+isInteger(globalThis); // false
+
+// TypedArrays
+isInteger(new Int8Array(2)); // false
+isInteger(new Int16Array(2)); // false
+isInteger(new Int32Array(2)); // false
+isInteger(new Uint8Array(2)); // false
+isInteger(new Uint16Array(2)); // false
+isInteger(new Uint32Array(2)); // false
+isInteger(new Uint8ClampedArray(2)); // false
+
+isInteger(new BigInt64Array(2)); // false
+isInteger(new BigUint64Array(2)); // false
+
+isInteger(new Float32Array(2)); // false
+isInteger(new Float64Array(2)); // false
+
+isInteger(new SharedArrayBuffer(512)); // false
+
+// WeakMap and WeakSet
+isInteger(new WeakMap()); // false
+isInteger(new WeakSet()); // false
 ```
+
+---
+
+## ZeroDep Advantages
+
+- **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases node_modules folder size
+- **ESM & CJS** - has both ecmascript modules and common javascript exports
+- **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible size
+- **Fully typed** - typescript definitions are provided for every package for a better developer experience
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples at [zerodep.app](https://zerodep.app)
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
+- **100% Tested** - all methods and packages are fully unit tested
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
+- **MIT Licensed** - permissively licensed for maximum usability

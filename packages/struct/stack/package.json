@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/struct-stack",
   "description": "A factory that returns an optionally-typed Stack data structure instance.",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "license": "MIT",
   "repository": {
     "type": "git",

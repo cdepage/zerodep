@@ -15,7 +15,7 @@ A utility to remove a specific character from the start and end of a string. Non
 ## Signature
 
 ```typescript
-const stringTrimRight: (value: string, char?: string) => string;
+declare const stringTrimRight: (value: string, char?: string) => string;
 ```
 
 ### Function Parameters
@@ -27,22 +27,23 @@ The `stringTrimRight` function has the following parameters:
 
 ## Examples
 
-### Using Default Space Separator
+```javascript
+// ESM
+import { stringTrimRight } from '@zerodep/app';
+
+// CJS
+const { stringTrimRight } = require('@zerodep/app');
+```
 
 ```javascript
+// with the default separator (a space character)
 stringTrimRight('   some string   '); // "some string"
-```
 
-### Using Custom Separator
-
-```javascript
+// with a custom separator
 stringTrimRight('xx some string  xx', 'x'); // "xx some string "
-```
 
-### Unsuccessful Response
-
-```javascript
-stringTrimRight({ not: 'a string' }); // throws ZeroDepError: Value is not a string
+// with anything that is not a string
+stringTrimRight({ a: 'not string' }); // throws ZeroDepError: Value is not a string
 ```
 
 ## Installation Sources
@@ -63,23 +64,15 @@ npm i @zerodep/string
 npm i @zerodep/string-trimright
 ```
 
-then
+---
 
-```javascript
-import { stringTrimRight } from '@zerodep/app';
-// or
-import { stringTrimRight } from '@zerodep/utilities';
-// or
-import { stringTrimRight } from '@zerodep/string';
-// or
-import { stringTrimRight } from '@zerodep/string-trimright';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

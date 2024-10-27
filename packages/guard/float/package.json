@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/guard-float",
   "description": "A configurable defensive programming utility to guard against non-float values",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "license": "MIT",
   "repository": {
     "type": "git",

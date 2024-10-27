@@ -17,7 +17,7 @@ This function will return an array of results in the order of the provided addre
 ## Signature
 
 ```typescript
-const addressstreet: (address: string) => Addressstreet[];
+declare const addressstreet: (address: string) => Addressstreet[];
 
 interface Addressstreet {
   streetType: string;
@@ -42,9 +42,8 @@ The `addressstreet` result has the following properties:
 
 ## Examples
 
-### Well Formatted Case
-
 ```javascript
+// well-formed address
 addressStreet('1234 Main Street, Los Angeles CA, United States 90210');
 //  [
 //    {
@@ -55,11 +54,8 @@ addressStreet('1234 Main Street, Los Angeles CA, United States 90210');
 //      sourceIsAbbr: false,
 //    }
 //  ]
-```
 
-### With Multiple Street Names/Abbreviations
-
-```javascript
+// well-formed address with multiple streets
 addressStreet('36 trail street, edmonton ab');
 // [
 //   {
@@ -77,11 +73,8 @@ addressStreet('36 trail street, edmonton ab');
 //     sourceIsAbbr: false,
 //   },
 // ]
-```
 
-### Unsuccessful Case
-
-```javascript
+// no results found
 addressstreet('unknown');
 // []
 ```
@@ -104,19 +97,7 @@ npm i @zerodep/address
 npm i @zerodep/address-street
 ```
 
-then
-
-```javascript
-import { addressstreet } from '@zerodep/add';
-// or
-import { addressstreet } from '@zerodep/parsers';
-// or
-import { addressstreet } from '@zerodep/address';
-// or
-import { addressstreet } from '@zerodep/address-street';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

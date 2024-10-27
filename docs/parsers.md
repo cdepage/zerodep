@@ -28,3 +28,15 @@ All of the following are available in this package:
 - [Every Geo Function](geo.md)
 - [Every To Converter](to.md)
 - [Every Type Literal Union](types.md)
+
+---
+
+## Package Changelog
+
+All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+#### Release 2.5.x
+
+**Added**
+
+- added the `toBoolean()` method

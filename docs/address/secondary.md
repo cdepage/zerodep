@@ -17,7 +17,7 @@ This function will return an array of results, with the most likely result being
 ## Signature
 
 ```typescript
-const addressSecondary: (address: string) => Addresssecondary[];
+declare const addressSecondary: (address: string) => Addresssecondary[];
 
 interface AddressSecondary {
   secondary: string;
@@ -41,8 +41,6 @@ The `addressSecondary` result has the following properties:
 - **hasUnit** - flag indicating if the secondary typically has a number associated with it
 
 ## Examples
-
-### Use Case
 
 ```javascript
 addressSecondary('basement 1234 Main Street East Los Angeles CA, US');
@@ -73,11 +71,8 @@ addressSecondary('office 1234 Main Street East ph 4 Los Angeles CA, US');
 //     hasUnit: true,
 //   },
 // ]
-```
 
-### Unsuccessful Case
-
-```javascript
+// unsuccessful case
 addressSecondary('unknown');
 // []
 ```
@@ -100,19 +95,7 @@ npm i @zerodep/address
 npm i @zerodep/address-secondary
 ```
 
-then
-
-```javascript
-import { addressSecondary } from '@zerodep/add';
-// or
-import { addressSecondary } from '@zerodep/parsers';
-// or
-import { addressSecondary } from '@zerodep/address';
-// or
-import { addressSecondary } from '@zerodep/address-secondary';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

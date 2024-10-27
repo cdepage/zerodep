@@ -15,50 +15,165 @@ A simple, performant utility to determine if a value is a regular expression.
 ## Signature
 
 ```typescript
-const isRegex(value: any) => boolean;
+declare const isRegex: (value: unknown) => boolean;
 ```
 
 ### Function Parameters
 
-The `isArray` function has the following parameters:
+The `isRegex` function has the following parameters:
 
 - **value** - the value to check
 
 ## Examples
 
-### Positive Response
-
 ```javascript
-isRegex(/[regex]+/gi); // true
-isRegex(new RegExp('$[a-c]{2}]', 'gi')); // true
+// ESM
+import { isRegex } from '@zerodep/app';
+
+// CJS
+const { isRegex } = require('@zerodep/app');
 ```
 
-### Negative Response
-
 ```javascript
+// Arrays
+isRegex([]); // false
+isRegex([1, 2, 3]); // false
 isRegex(['a', 'b', 'c']); // false
-isRegex(1000n); // false
+
+// BigInts
+isRegex(42n); // false
+isRegex(0n); // false
+isRegex(-0n); // false
+isRegex(-42n); // false
+
+// Booleans
 isRegex(true); // false
-isRegex(new Date()); // false
-isRegex(''); // false
-isRegex(new Error('message')); // false
-isRegex(3.14); // false
-isRegex(() => 'function'); // false
-isRegex(42); // false
+isRegex(false); // false
+
+// Class
 isRegex(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // false
+
+// Dates
+isRegex(new Date()); // false
+isRegex(new Date('1970-01-01T12:00:00.000Z')); // false
+isRegex(new Date('2099-12-31')); // false
+
+// Empty
 isRegex(null); // false
-isRegex({ an: 'object' }); // false
-isRegex(new Promise(() => {})); // false
-isRegex(new Set([1, 2, 3])); // false
-isRegex('a string'); // false
-isRegex(Symbol()); // false
-isRegex(new Int32Array(2)); // false
 isRegex(undefined); // false
+
+// Errors
+isRegex(new Error('message')); // false
+isRegex(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
+
+// Floats
+isRegex(3.14); // false
+isRegex(0.0); // false
+isRegex(-0.0); // false
+isRegex(-3.14); // false
+isRegex(Math.E); // false
+isRegex(Math.PI); // false
+isRegex(Number.MIN_VALUE); // false
+
+// Functions
+isRegex(() => 'function'); // false
+isRegex(async () => 'function'); // false
+
+// Generators
+isRegex(function* () {
+  yield 'a';
+}); // false
+isRegex(async function* () {
+  yield 'a';
+}); // false
+
+// Maps
+isRegex(new Map()); // false
+isRegex(new Map([['key1', 123]])); // false
+isRegex(new Map([['key1', 'value1']])); // false
+
+// Numbers
+isRegex(Number.POSITIVE_INFINITY); // false
+isRegex(Number.MAX_SAFE_INTEGER); // false
+isRegex(3e8); // false
+isRegex(42); // false
+isRegex(1); // false
+isRegex(0); // false
+isRegex(-0); // false
+isRegex(-1); // false
+isRegex(-42); // false
+isRegex(-3e8); // false
+isRegex(Number.MIN_SAFE_INTEGER); // false
+isRegex(Number.NEGATIVE_INFINITY); // false
+isRegex(Number.NaN); // false
+
+// POJOs
+isRegex({}); // false
+isRegex({ key: 'string' }); // false
+isRegex({ key: 123 }); // false
+
+// Promise
+isRegex(new Promise(() => {})); // false
+isRegex(new Promise.all([])); // false
+isRegex(new Promise.allSettled([])); // false
+isRegex(new Promise.race([])); // false
+isRegex(Promise.resolve()); // false
+
+// Regular Expression
+isRegex(/[regex]+/gi); // true
+isRegex(new RegExp('d', 'gi')); // true
+
+// Sets
+isRegex(new Set()); // false
+isRegex(new Set([1, 2, 3])); // false
+isRegex(new Set(['a', 'b', 'c'])); // false
+
+// Strings
+isRegex(''); // false
+isRegex('a longer string'); // false
+isRegex('1000n'); // false
+isRegex('3e8'); // false
+isRegex('42'); // false
+isRegex('3.14'); // false
+isRegex('0'); // false
+isRegex('-0'); // false
+isRegex('-3.14'); // false
+isRegex('-42'); // false
+isRegex('-3e8'); // false
+isRegex('-1000n'); // false
+
+// Symbols
+isRegex(Symbol()); // false
+isRegex(Symbol('name')); // false
+
+// This
+isRegex(this); // false
+isRegex(globalThis); // false
+
+// TypedArrays
+isRegex(new Int8Array(2)); // false
+isRegex(new Int16Array(2)); // false
+isRegex(new Int32Array(2)); // false
+isRegex(new Uint8Array(2)); // false
+isRegex(new Uint16Array(2)); // false
+isRegex(new Uint32Array(2)); // false
+isRegex(new Uint8ClampedArray(2)); // false
+
+isRegex(new BigInt64Array(2)); // false
+isRegex(new BigUint64Array(2)); // false
+
+isRegex(new Float32Array(2)); // false
+isRegex(new Float64Array(2)); // false
+
+isRegex(new SharedArrayBuffer(512)); // false
+
+// WeakMap and WeakSet
+isRegex(new WeakMap()); // false
+isRegex(new WeakSet()); // false
 ```
 
 ## Installation Sources
@@ -79,23 +194,15 @@ npm i @zerodep/is
 npm i @zerodep/is-regex
 ```
 
-then
+---
 
-```javascript
-import { isRegex } from '@zerodep/app';
-// or
-import { isRegex } from '@zerodep/utilities';
-// or
-import { isRegex } from '@zerodep/is';
-// or
-import { isRegex } from '@zerodep/is-regex';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

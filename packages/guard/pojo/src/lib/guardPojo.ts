@@ -15,7 +15,7 @@ const defaultOptions: GuardPojoOptions = {
 export const guardPojoHOF = (options: GuardPojoOptions = {}) => {
   const config: GuardPojoOptions = { ...defaultOptions, ...options };
 
-  return (value: any): void => {
+  return (value: unknown): void => {
     // we need to check for the typeof first as "undefined" will cause isFloat() to error
     if (!isPojo(value)) {
       const error = new ZeroDepError('Value is not a JSON object');
@@ -25,7 +25,7 @@ export const guardPojoHOF = (options: GuardPojoOptions = {}) => {
 
     if (
       typeof config.minQuantity !== 'undefined' &&
-      Object.keys(value).length < config.minQuantity
+      Object.keys(value as Record<string, any>).length < config.minQuantity
     ) {
       const error = new ZeroDepError(
         `JSON object has fewer than ${config.minQuantity} items`
@@ -36,7 +36,7 @@ export const guardPojoHOF = (options: GuardPojoOptions = {}) => {
 
     if (
       typeof config.maxQuantity !== 'undefined' &&
-      Object.keys(value).length > config.maxQuantity
+      Object.keys(value as Record<string, any>).length > config.maxQuantity
     ) {
       const error = new ZeroDepError(
         `JSON object has more than ${config.maxQuantity} items`

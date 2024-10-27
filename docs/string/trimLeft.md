@@ -15,7 +15,7 @@ A utility to remove a specific character from the start of a string. Non-string 
 ## Signature
 
 ```typescript
-const stringTrim: (value: string, char?: string) => string;
+declare const stringTrim: (value: string, char?: string) => string;
 ```
 
 ### Function Parameters
@@ -27,30 +27,23 @@ The `stringTrimLeft` function has the following parameters:
 
 ## Examples
 
-All @zerodep packages support both ESM and CJS.
-
 ```javascript
-import { stringTrimLeft } from '@zerodep/string-trimleft';
-// or
-const { stringTrimLeft } = require('@zerodep/string-trimleft');
+// ESM
+import { stringTrimLeft } from '@zerodep/app';
+
+// CJS
+const { stringTrimLeft } = require('@zerodep/app');
 ```
 
-### Using Default Space Separator
-
 ```javascript
+// with the default separator (a space character)
 stringTrimLeft('   some string   '); // "some string   "
-```
 
-### Using Custom Separator
-
-```javascript
+// with a custom separator
 stringTrimLeft('xx some string  xx', 'x'); // " some string  xx"
-```
 
-### Unsuccessful Response
-
-```javascript
-stringTrimLeft({ not: 'a string' }); // throws ZeroDepError: Value is not a string
+// with anything that is not a string
+stringTrimLeft({ a: 'not string' }); // throws ZeroDepError: Value is not a string
 ```
 
 ## Installation Sources
@@ -71,23 +64,15 @@ npm i @zerodep/string
 npm i @zerodep/string-trimleft
 ```
 
-then
+---
 
-```javascript
-import { stringTrimLeft } from '@zerodep/app';
-// or
-import { stringTrimLeft } from '@zerodep/utilities';
-// or
-import { stringTrimLeft } from '@zerodep/string';
-// or
-import { stringTrimLeft } from '@zerodep/string-trimleft';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

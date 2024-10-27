@@ -7,7 +7,7 @@ const { objectLiteralsSafe, objectLiteralsUnsafe, ...rest } = testData;
 const positiveCases = [...objectLiteralsSafe, ...objectLiteralsUnsafe];
 const negativeCases = Object.values(rest).flat();
 
-describe('guardInteger', () => {
+describe('guardObject', () => {
   describe('with default options', () => {
     const guard = guardObject;
 

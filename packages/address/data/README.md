@@ -15,12 +15,12 @@ This package is part of the [zerodep.app](http://zerodep.app) ecosystem; see the
 ### Typescript Signature
 
 ```typescript
-export interface AddressCountyInfo {
+interface AddressCountyInfo {
   countyName: string;
   fips: string;
 }
 
-export interface GeoState {
+interface GeoState {
   stateName: string;
   stateAbbr: string;
   countryName: string;
@@ -29,5 +29,20 @@ export interface GeoState {
   counties: AddressCountyInfo[];
 }
 
-export declare const addressState: (state: string, country?: string) => GeoState;
+declare const addressState: (state: string, country?: string) => GeoState;
 ```
+
+---
+
+## ZeroDep Advantages
+
+- **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases node_modules folder size
+- **ESM & CJS** - supports both ECMAScript modules and common JavaScript exports
+- **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible size
+- **Fully Typed** - typescript definitions are provided/built-in to every package for a superior developer experience
+- **Semantically Named** - package and method names are easy to grok, remember, use, and read
+- **Documented** - actually useful documentation with examples at [zerodep.app](https://zerodep.app)
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
+- **100% Tested** - all methods and packages are fully unit tested
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, valuable changelogs for understand changes
+- **MIT Licensed** - permissively licensed for maximum usability

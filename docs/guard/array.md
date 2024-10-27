@@ -10,68 +10,184 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A run-time guard to require a value to be an array; it will throw a `ZeroDepError` if the guard fails.
+A run-time guard to require a value to be an array; it will throw a `ZeroDepError` if the guard fails. Optional advanced configuration allows specifying min and/or max number of items and an optional validator.
 
-## Signature
+## Basic Signature
 
 ```typescript
-const guardArray: (value: any) => void;
+declare const guardArray: (value: unknown) => void;
 ```
 
 The `guardArray` function has the following parameters:
 
 - **value** - the value to guard
 
-## Examples
-
-### Successful Cases
+## Basic Examples
 
 ```javascript
-guardArray([]); // void
-guardArray(['a', 'b', 'c']); // void
+// ESM
+import { guardArray } from '@zerodep/app';
+
+// CJS
+const { guardArray } = require('@zerodep/app');
 ```
 
-### Unsuccessful Cases
-
 ```javascript
-guardArray(1000n); // throws ZeroDepError: Value is not an array
+// Arrays
+guardArray([]); // void
+guardArray([1, 2, 3]); // void
+guardArray(['a', 'b', 'c']); // void
+
+// BigInts
+guardArray(42n); // throws ZeroDepError: Value is not an array
+guardArray(0n); // throws ZeroDepError: Value is not an array
+guardArray(-0n); // throws ZeroDepError: Value is not an array
+guardArray(-42n); // throws ZeroDepError: Value is not an array
+
+// Booleans
 guardArray(true); // throws ZeroDepError: Value is not an array
-guardArray(new Date()); // throws ZeroDepError: Value is not an array
-guardArray(''); // throws ZeroDepError: Value is not an array
-guardArray(new Error('message')); // throws ZeroDepError: Value is not an array
-guardArray(3.14); // throws ZeroDepError: Value is not an array
-guardArray(() => 'function'); // throws ZeroDepError: Value is not an array
-guardArray(42); // throws ZeroDepError: Value is not an array
+guardArray(false); // throws ZeroDepError: Value is not an array
+
+// Class
 guardArray(
-  new Map([
-    ['a', 1],
-    ['b', 2],
-  ])
+  class SomeClass {
+    constructor() {}
+  }
 ); // throws ZeroDepError: Value is not an array
+
+// Dates
+guardArray(new Date()); // throws ZeroDepError: Value is not an array
+guardArray(new Date('1970-01-01T12:00:00.000Z')); // throws ZeroDepError: Value is not an array
+guardArray(new Date('2099-12-31')); // throws ZeroDepError: Value is not an array
+
+// Empty
 guardArray(null); // throws ZeroDepError: Value is not an array
-guardArray({ an: 'object' }); // throws ZeroDepError: Value is not an array
-guardArray(new Promise(() => {})); // throws ZeroDepError: Value is not an array
-guardArray(/[regex]+/gi); // throws ZeroDepError: Value is not an array
-guardArray(new Set([1, 2, 3])); // throws ZeroDepError: Value is not an array
-guardArray('a string'); // throws ZeroDepError: Value is not an array
-guardArray(Symbol()); // throws ZeroDepError: Value is not an array
-guardArray(new Int32Array(2)); // throws ZeroDepError: Value is not an array
 guardArray(undefined); // throws ZeroDepError: Value is not an array
+
+// Errors
+guardArray(new Error('message')); // throws ZeroDepError: Value is not an array
+guardArray(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // throws ZeroDepError: Value is not an array
+
+// Floats
+guardArray(3.14); // throws ZeroDepError: Value is not an array
+guardArray(0.0); // throws ZeroDepError: Value is not an array
+guardArray(-0.0); // throws ZeroDepError: Value is not an array
+guardArray(-3.14); // throws ZeroDepError: Value is not an array
+guardArray(Math.E); // throws ZeroDepError: Value is not an array
+guardArray(Math.PI); // throws ZeroDepError: Value is not an array
+guardArray(Number.MIN_VALUE); // throws ZeroDepError: Value is not an array
+
+// Functions
+guardArray(() => 'function'); // throws ZeroDepError: Value is not an array
+guardArray(async () => 'function'); // throws ZeroDepError: Value is not an array
+
+// Generators
+guardArray(function* () {
+  yield 'a';
+}); // throws ZeroDepError: Value is not an array
+guardArray(async function* () {
+  yield 'a';
+}); // throws ZeroDepError: Value is not an array
+
+// Maps
+guardArray(new Map()); // throws ZeroDepError: Value is not an array
+guardArray(new Map([['key1', 123]])); // throws ZeroDepError: Value is not an array
+guardArray(new Map([['key1', 'value1']])); // throws ZeroDepError: Value is not an array
+
+// Numbers
+guardArray(Number.POSITIVE_INFINITY); // throws ZeroDepError: Value is not an array
+guardArray(Number.MAX_SAFE_INTEGER); // throws ZeroDepError: Value is not an array
+guardArray(Number.MAX_VALUE); // throws ZeroDepError: Value is not an array
+guardArray(3e8); // throws ZeroDepError: Value is not an array
+guardArray(42); // throws ZeroDepError: Value is not an array
+guardArray(1); // throws ZeroDepError: Value is not an array
+guardArray(0); // throws ZeroDepError: Value is not an array
+guardArray(-0); // throws ZeroDepError: Value is not an array
+guardArray(-1); // throws ZeroDepError: Value is not an array
+guardArray(-42); // throws ZeroDepError: Value is not an array
+guardArray(-3e8); // throws ZeroDepError: Value is not an array
+guardArray(Number.MIN_SAFE_INTEGER); // throws ZeroDepError: Value is not an array
+guardArray(Number.NEGATIVE_INFINITY); // throws ZeroDepError: Value is not an array
+guardArray(Number.NaN); // throws ZeroDepError: Value is not an array
+
+// POJOs
+guardArray({}); // throws ZeroDepError: Value is not an array
+guardArray({ key: 'string' }); // throws ZeroDepError: Value is not an array
+guardArray({ key: 123 }); // throws ZeroDepError: Value is not an array
+
+// Promise
+guardArray(new Promise(() => {})); // throws ZeroDepError: Value is not an array
+guardArray(new Promise.all([])); // throws ZeroDepError: Value is not an array
+guardArray(new Promise.allSettled([])); // throws ZeroDepError: Value is not an array
+guardArray(new Promise.race([])); // throws ZeroDepError: Value is not an array
+guardArray(Promise.resolve()); // throws ZeroDepError: Value is not an array
+
+// Regular Expression
+guardArray(/[regex]+/gi); // throws ZeroDepError: Value is not an array
+guardArray(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not an array
+
+// Sets
+guardArray(new Set()); // throws ZeroDepError: Value is not an array
+guardArray(new Set([1, 2, 3])); // throws ZeroDepError: Value is not an array
+guardArray(new Set(['a', 'b', 'c'])); // throws ZeroDepError: Value is not an array
+
+// Strings
+guardArray(''); // throws ZeroDepError: Value is not an array
+guardArray('a longer string'); // throws ZeroDepError: Value is not an array
+guardArray('1000n'); // throws ZeroDepError: Value is not an array
+guardArray('3e8'); // throws ZeroDepError: Value is not an array
+guardArray('42'); // throws ZeroDepError: Value is not an array
+guardArray('3.14'); // throws ZeroDepError: Value is not an array
+guardArray('0'); // throws ZeroDepError: Value is not an array
+guardArray('-0'); // throws ZeroDepError: Value is not an array
+guardArray('-3.14'); // throws ZeroDepError: Value is not an array
+guardArray('-42'); // throws ZeroDepError: Value is not an array
+guardArray('-3e8'); // throws ZeroDepError: Value is not an array
+guardArray('-1000n'); // throws ZeroDepError: Value is not an array
+
+// Symbols
+guardArray(Symbol()); // throws ZeroDepError: Value is not an array
+guardArray(Symbol('name')); // throws ZeroDepError: Value is not an array
+
+// This
+guardArray(this); // throws ZeroDepError: Value is not an array
+guardArray(globalThis); // throws ZeroDepError: Value is not an array
+
+// TypedArrays
+guardArray(new Int8Array(2)); // throws ZeroDepError: Value is not an array
+guardArray(new Int16Array(2)); // throws ZeroDepError: Value is not an array
+guardArray(new Int32Array(2)); // throws ZeroDepError: Value is not an array
+guardArray(new Uint8Array(2)); // throws ZeroDepError: Value is not an array
+guardArray(new Uint16Array(2)); // throws ZeroDepError: Value is not an array
+guardArray(new Uint32Array(2)); // throws ZeroDepError: Value is not an array
+guardArray(new Uint8ClampedArray(2)); // throws ZeroDepError: Value is not an array
+
+guardArray(new BigInt64Array(2)); // throws ZeroDepError: Value is not an array
+guardArray(new BigUint64Array(2)); // throws ZeroDepError: Value is not an array
+
+guardArray(new Float32Array(2)); // throws ZeroDepError: Value is not an array
+guardArray(new Float64Array(2)); // throws ZeroDepError: Value is not an array
+
+guardArray(new SharedArrayBuffer(512)); // throws ZeroDepError: Value is not an array
+
+// WeakMap and WeakSet
+guardArray(new WeakMap()); // throws ZeroDepError: Value is not an array
+guardArray(new WeakSet()); // throws ZeroDepError: Value is not an array
 ```
 
 ## Advanced Use
 
 The guard may optionally be configured, via the `guardArrayHOF` function, with additional run-time checks.
 
-### Signature
+### Advanced Signature
 
 ```typescript
-const guardArrayHOF: (options: GuardArrayOptions) => (value: any) => void;
+declare const guardArrayHOF: (options: GuardArrayOptions) => (value: unknown) => void;
 
 interface GuardArrayOptions {
   minQuantity?: number;
   maxQuantity?: number;
-  typeFn?: (value: any) => boolean;
+  typeFn?: (value: unknown) => boolean;
 }
 ```
 
@@ -85,11 +201,17 @@ The `guardArrayHOF` has the following configuration options, all are optional:
 
 ### Advanced Examples
 
+```javascript
+// ESM
+import { guardArrayHOF, GuardArrayOptions } from '@zerodep/app';
+
+// CJS
+const { guardArrayHOF, GuardArrayOptions } = require('@zerodep/app');
+```
+
 **Min & Max Array Length**
 
 ```typescript
-import { guardArrayHOF, GuardArrayOptions } from '@zerodep/guard-array';
-
 const config: GuardArrayOptions = {
   minQuantity: 1,
   maxQuantity: 5,
@@ -108,7 +230,6 @@ customArrayGuard(sampleArray3); // throws ZeroDepError: Array has more than 5 it
 **Array Value Checking**
 
 ```typescript
-import { guardArrayHOF, GuardArrayOptions } from '@zerodep/guard-array';
 import { isInteger } from '@zerodep/is-integer'; // function for type-checking
 
 const config: GuardArrayOptions = {
@@ -141,23 +262,15 @@ npm i @zerodep/guards
 npm i @zerodep/guard-array
 ```
 
-then
+---
 
-```javascript
-import { guardArray } from '@zerodep/app';
-// or
-import { guardArray } from '@zerodep/utilities';
-// or
-import { guardArray } from '@zerodep/guard';
-// or
-import { guardArray } from '@zerodep/guard-array';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

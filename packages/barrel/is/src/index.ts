@@ -1,4 +1,5 @@
 export * from '@zerodep/is-array';
+export * from '@zerodep/is-async';
 export * from '@zerodep/is-bigint';
 export * from '@zerodep/is-boolean';
 export * from '@zerodep/is-date';
@@ -7,6 +8,7 @@ export * from '@zerodep/is-equal';
 export * from '@zerodep/is-error';
 export * from '@zerodep/is-float';
 export * from '@zerodep/is-function';
+export * from '@zerodep/is-generator';
 export * from '@zerodep/is-integer';
 export * from '@zerodep/is-iterable';
 export * from '@zerodep/is-map';

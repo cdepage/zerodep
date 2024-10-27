@@ -5,7 +5,7 @@ import { isBoolean } from '@zerodep/is-boolean';
 export interface GuardBooleanOptions {}
 
 export const guardBooleanHOF = (options: GuardBooleanOptions = {}) => {
-  return (value: any): void => {
+  return (value: unknown): void => {
     if (isBoolean(value)) {
       return;
     }

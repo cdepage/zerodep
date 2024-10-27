@@ -22,8 +22,14 @@
         "parallel": false
       }
     },
-    "XXXXpublish": {
-      "command": "cd dist/packages/color/hex2hsl && npm version patch"
+    "XXXpatch": {
+      "command": "cd packages/color/hex2hsl && npm version patch"
+    },
+    "XXXminor": {
+      "command": "cd packages/color/hex2hsl && npm version minor"
+    },
+    "XXXmajor": {
+      "command": "cd packages/color/hex2hsl && npm version major"
     },
     "packageFix": {
       "executor": "nx:run-commands",
@@ -42,6 +48,14 @@
       "options": {
         "jestConfig": "packages/color/hex2hsl/jest.config.ts"
       }
+    },
+    "XXXdeploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/color/hex2hsl",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

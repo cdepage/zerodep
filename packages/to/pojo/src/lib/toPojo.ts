@@ -1,42 +1,35 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ZeroDepError } from '@zerodep/errors';
-import { isArray } from '@zerodep/is-array';
-import { isBigInt } from '@zerodep/is-bigint';
-import { isBoolean } from '@zerodep/is-boolean';
 import { isFunction } from '@zerodep/is-function';
-import { isMap } from '@zerodep/is-map';
-import { isNil } from '@zerodep/is-nil';
-import { isNumber } from '@zerodep/is-number';
-import { isObject } from '@zerodep/is-object';
-import { isPromise } from '@zerodep/is-promise';
-import { isRegex } from '@zerodep/is-regex';
-import { isSet } from '@zerodep/is-set';
-import { isString } from '@zerodep/is-string';
-import { isSymbol } from '@zerodep/is-symbol';
-import { isTypedArray } from '@zerodep/is-typedarray';
-import { isWeakMap } from '@zerodep/is-weakmap';
-import { isWeakSet } from '@zerodep/is-weakset';
 
 // Replacer is used by the JSON.stringify() method
 // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#the_replacer_parameter
-const replacer = (key: string, value: any) => {
-  if (isSet(value)) {
-    return [...value];
-  }
+const replacer = (_key: string, value: any) => {
+  const type = Object.prototype.toString.call(value);
 
-  if (isMap(value)) {
-    return Object.fromEntries(value);
-  }
-
-  if (isBigInt(value)) {
+  if (type === '[object BigInt]' || type === '[object Date]') {
     return value.toString();
   }
 
+  if (type === '[object Set]') {
+    return [...value];
+  }
+
+  if (type === '[object Map]') {
+    return Object.fromEntries(value);
+  }
+
+  // only the following types may be serialized
   if (
-    isWeakMap(value) ||
-    isWeakSet(value) ||
-    isSymbol(value) ||
-    isPromise(value)
+    type !== '[object Array]' &&
+    type !== '[object BigInt]' &&
+    type !== '[object Boolean]' &&
+    type !== '[object Null]' &&
+    type !== '[object Number]' &&
+    type !== '[object Object]' &&
+    type !== '[object String]' &&
+    type !== '[object Undefined]' &&
+    type !== '[object Undefined]'
   ) {
     const error = new ZeroDepError(errMessage);
     error.value = value;
@@ -70,66 +63,41 @@ export const toPojo = <T = Record<string, Serializables> | Serializables[]>(
     | Set<Serializables>
     | null
 ): T | null => {
+  const type = Object.prototype.toString.call(value);
+
   // short-circuit: value could just be null
-  if (isNil(value)) {
+  if (type === '[object Null]' || type === '[object Undefined]') {
     return null;
   }
 
-  // valid JSON is an object literal or an array
+  // fail fast - only arrays, Maps, Sets, objects, and functions with toJSON() methods can be serialized
   if (
-    isString(value) ||
-    isNumber(value) ||
-    isBoolean(value) ||
-    isBigInt(value) ||
-    isSymbol(value) ||
-    isRegex(value) ||
-    isFunction(value) ||
-    isTypedArray(value) ||
-    (Object.prototype.toString.call(value) === '[object Number]' &&
-      // @ts-ignore
-      (Math.abs(value) === Infinity || Number.isNaN(value)))
+    type !== '[object Array]' &&
+    type !== '[object Map]' &&
+    type !== '[object Object]' &&
+    type !== '[object Set]' &&
+    type !== '[object Function]' &&
+    type !== '[object AsyncFunction]'
   ) {
     const error = new ZeroDepError(errMessage);
     error.value = value;
     throw error;
   }
 
+  let maybeJson: unknown;
+
   // if we have an object with a toJSON method, use it
   // @ts-ignore
   if ('toJSON' in value && isFunction(value.toJSON)) {
     // @ts-ignore
-    return value.toJSON();
-  }
-
-  let maybeJSON: any;
-
-  // maps can be converted to object literals
-  if (isMap(value)) {
-    // @ts-ignore
-    maybeJSON = Object.fromEntries(value);
-  }
-
-  // sets can be converted to arrays
-  if (isSet(value)) {
-    // @ts-ignore
-    maybeJSON = [...value];
+    maybeJson = value.toJSON();
   }
 
   try {
     // dev reminders:
     // - undefined is converted to null by stringify()
     // - the replacer converts nested values recursively
-    const json = JSON.parse(JSON.stringify(maybeJSON ?? value, replacer));
-
-    // final paranoid check
-    if (isObject(json) || isArray(json)) {
-      return json;
-    }
-
-    // only objects can be returned
-    const error = new ZeroDepError(errMessage);
-    error.value = json;
-    throw error;
+    return JSON.parse(JSON.stringify(maybeJson ?? value, replacer));
   } catch (error: any) {
     const zdError = new ZeroDepError(errMessage);
     if (error.value) {

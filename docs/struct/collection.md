@@ -17,7 +17,7 @@ A `Collection` is like a JavaScript `Set` with better object comparison (for uni
 ## Signature
 
 ```typescript
-const structCollectionFactory: <T = any>(items?: T[]) => Collection<T>;
+declare const structCollectionFactory: <T = any>(items?: T[]) => Collection<T>;
 
 interface Collection<T> {
   add: (item: T) => void;
@@ -56,6 +56,14 @@ The `structCollectionFactory` returns an object with the following methods:
 - **isSubsetOf()** - determines if the collection is a subset of a provided collection
 
 ## Examples
+
+```javascript
+// ESM
+import { structCollectionFactory } from '@zerodep/app';
+
+// CJS
+const { structCollectionFactory } = require('@zerodep/app');
+```
 
 ### Simple Case
 
@@ -174,17 +182,7 @@ npm i @zerodep/struct
 npm i @zerodep/struct-collection
 ```
 
-then
-
-```javascript
-import { structCollectionFactory, Collection } from '@zerodep/app';
-// or
-import { structCollectionFactory, Collection } from '@zerodep/struct';
-// or
-import { structCollectionFactory, Collection } from '@zerodep/struct-collection';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

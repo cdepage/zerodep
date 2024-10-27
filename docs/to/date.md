@@ -15,7 +15,7 @@ A utility to convert a string, number, BigInt or Date to a Date. Invalid values 
 ## Signature
 
 ```typescript
-const toDate: (value: string | number | bigint | Date) => Date;
+declare const toDate: (value: string | number | BigInt | Date) => Date;
 ```
 
 ### Function Parameters
@@ -26,22 +26,75 @@ The `toDate` function has the following parameters:
 
 ## Examples
 
-### Use Cases
+```javascript
+// ESM
+import { toDate } from '@zerodep/app';
+
+// CJS
+const { toDate } = require('@zerodep/app');
+```
 
 ```javascript
-// with a string
-toDate('2022-02-24'); // Date() object equivalent to 2022-04-22T17:00:00.000Z
-toDate('12/25/2021'); // Date() object equivalent to 2023-12-25T17:00:00.000Z
-toDate('09-Aug-2016'); // Date() object equivalent to 2019-08-09T17:00:00.000Z
-toDate('11/12/13'); // Date() object equivalent to 2013-11-12T17:00:00.000Z
-
-// with a number or big int
-toDate(1645722000); // Date() object equivalent to 2022-04-22T17:00:00.000Z
-toDate(1640451600000); // Date() object equivalent to 2023-12-25T17:00:00.000Z
+// BigInts
+toDate(42n); // Date() object equivalent to 1970-01-01T00:00:42.000Z
+toDate(0n); // Date() object equivalent to 1970-01-01T00:00:00.000Z
+toDate(-0n); // Date() object equivalent to 1970-01-01T00:00:00.000Z
+toDate(-42n); // Date() object equivalent to 1969-12-31T23:59:18.000Z
 toDate(1384275600n); // Date() object equivalent to 2013-11-12T17:00:00.000Z
 
-// invalid values
-toDate({ not: 'a string' }); // throws ZeroDepError: Value is not a string
+// Dates
+toDate(new Date('1970-01-01T12:00:00.000Z')); // Date() object equivalent to 1970-01-01T12:00:00.000Z
+toDate(new Date('2099-12-31')); // Date() object equivalent to 2099-12-31T12:00:00.000Z
+
+// Floats
+toDate(3.14); // Date() object equivalent to 1970-01-01T00:00:00.003Z
+toDate(0.0); // Date() object equivalent to 1970-01-01T00:00:00.000Z
+toDate(-0.0); // Date() object equivalent to 1970-01-01T00:00:00.000Z
+toDate(-3.14); // Date() object equivalent to 1969-12-31T23:59:59.997Z
+toDate(Math.E); // Date() object equivalent to 1970-01-01T00:00:00.002Z
+toDate(Math.PI); // Date() object equivalent to 1970-01-01T00:00:00.003Z
+toDate(Number.MIN_VALUE); // Date() object equivalent to 1970-01-01T00:00:00.000Z
+
+// Numbers
+toDate(1645722000); // Date() object equivalent to 2022-04-22T17:00:00.000Z
+toDate(1640451600000); // Date() object equivalent to 2023-12-25T17:00:00.000Z
+
+toDate(Number.POSITIVE_INFINITY); // throws ZeroDepError: Invalid Date
+toDate(Number.MAX_SAFE_INTEGER); // throws ZeroDepError: Invalid Date
+toDate(Number.MAX_VALUE); // throws ZeroDepError: Invalid Date
+toDate(3e8); // Date() object equivalent to 1979-07-05T05:20:00.000Z
+toDate(42); // Date() object equivalent to 1970-01-01T00:00:42.000Z
+toDate(1); // Date() object equivalent to 1970-01-01T00:00:01.000Z
+toDate(0); // Date() object equivalent to 1970-01-01T00:00:00.000Z
+toDate(-0); // Date() object equivalent to 1970-01-01T00:00:00.000Z
+toDate(-1); // Date() object equivalent to 1969-12-31T23:59:59.000Z
+toDate(-42); // Date() object equivalent to 1969-12-31T23:59:18.000Z
+toDate(-3e8); // Date() object equivalent to 1960-06-29T18:40:00.000Z
+toDate(Number.MIN_SAFE_INTEGER); // throws ZeroDepError: Invalid Date
+toDate(Number.NEGATIVE_INFINITY); // throws ZeroDepError: Invalid Date
+toDate(Number.NaN); // throws ZeroDepError: Invalid Date
+
+// Strings
+toDate('2022-02-24'); // Date() object equivalent to 2022-02-24T00:00:00.000Z
+toDate('12/25/2021'); // Date() object equivalent to 2021-12-25T00:00:00.000Z
+toDate('09-Aug-2016'); // Date() object equivalent to 2016-08-09T00:00:00.000Z
+toDate('11/12/13'); // Date() object equivalent to 2013-11-12T00:00:00.000Z
+
+toDate(''); // throws ZeroDepError: Invalid Date
+toDate('a longer string'); // throws ZeroDepError: Invalid Date
+toDate('1000n'); // throws ZeroDepError: Invalid Date
+toDate('3e8'); // throws ZeroDepError: Invalid Date
+toDate('42'); // throws ZeroDepError: Invalid Date
+toDate('3.14'); // throws ZeroDepError: Invalid Date
+toDate('0'); // throws ZeroDepError: Invalid Date
+toDate('-0'); // throws ZeroDepError: Invalid Date
+toDate('-3.14'); // throws ZeroDepError: Invalid Date
+toDate('-42'); // throws ZeroDepError: Invalid Date
+toDate('-3e8'); // throws ZeroDepError: Invalid Date
+toDate('-1000n'); // throws ZeroDepError: Invalid Date
+
+// Other - anything that is not a string, number, BigInt or Date
+toDate({ not: 'a string' }); // throws ZeroDepError: Invalid Date
 ```
 
 ## Installation Sources
@@ -62,23 +115,15 @@ npm i @zerodep/to
 npm i @zerodep/to-date
 ```
 
-then
+---
 
-```javascript
-import { toDate } from '@zerodep/app';
-// or
-import { toDate } from '@zerodep/utilities';
-// or
-import { toDate } from '@zerodep/to';
-// or
-import { toDate } from '@zerodep/to-date';
-```
-
-## Changelog
+## Package Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-#### [2.0.0] - 2023-05-23
+--
+
+#### Release 2.0.x
 
 **Breaking**
 

@@ -48,6 +48,14 @@
       "options": {
         "jestConfig": "packages/barrel/case/jest.config.ts"
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/packages/barrel/case",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

@@ -12,10 +12,19 @@ import { stringDeburr } from '@zerodep/string-deburr';
 
 const errMessage = `Cannot reliably convert to boolean`;
 
-export const toBoolean = (value: unknown): boolean => {
+export type Booleanable =
+  | unknown[]
+  | bigint
+  | number
+  | Map<unknown, unknown>
+  | Set<unknown>
+  | string
+  | Record<string, unknown>;
+
+export const toBoolean = (value: Booleanable): boolean => {
   // boolean
   if (isBoolean(value)) {
-    return value as boolean;
+    return value as unknown as boolean;
   }
 
   // easy cases
@@ -93,7 +102,6 @@ export const toBoolean = (value: unknown): boolean => {
   }
 
   if (isObject(value)) {
-    // @ts-expect-error - type is object
     return !!Object.keys(value).length;
   }
 
