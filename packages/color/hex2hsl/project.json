@@ -38,17 +38,6 @@
         "command": "npm-sort && fixpack",
         "cwd": "packages/color/hex2hsl"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/color/hex2hsl/jest.config.ts"
-      }
     }
   }
 }

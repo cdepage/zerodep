@@ -40,7 +40,7 @@ describe('"Is" barrel package', () => {
   test.each(keys)('should have %s', (name) => {
     expect(['function', 'object', 'undefined']).toContain(
       // @ts-ignore
-      typeof packages[name]
+      typeof packages[name],
     );
   });
 });

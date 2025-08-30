@@ -257,7 +257,7 @@ describe('isEqual', () => {
     'should return %s for "%s" %p and %p',
     (expected, type, a, b) => {
       expect(isEqual(a, b)).toEqual(expected);
-    }
+    },
   );
 
   it('should compare two instances of the same Symbol', () => {
@@ -501,7 +501,7 @@ describe('isEqual', () => {
     // @ts-ignore
     async (title, value1, value2, result) => {
       expect(isEqual(value1, value2)).toEqual(result);
-    }
+    },
   );
 
   const examplesThatThrow = [
@@ -521,6 +521,6 @@ describe('isEqual', () => {
     async (title, value1, value2) => {
       const fn = () => isEqual(value1, value2);
       expect(fn).toThrow();
-    }
+    },
   );
 });

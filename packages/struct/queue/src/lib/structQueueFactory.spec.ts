@@ -1,6 +1,7 @@
 import { structQueueFactory } from './structQueueFactory';
+import { vi } from 'vitest';
 
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 describe('structQueueFactory', () => {
   it('should create a queue with expected interface methods', () => {
@@ -91,9 +92,9 @@ describe('structQueueFactory', () => {
 
   describe('event emitting', () => {
     const queue = structQueueFactory('my queue');
-    const enqueueFn = jest.fn();
-    const dequeueFn = jest.fn();
-    const emptiedFn = jest.fn();
+    const enqueueFn = vi.fn();
+    const dequeueFn = vi.fn();
+    const emptiedFn = vi.fn();
 
     beforeAll(() => {
       queue.on('enqueued', enqueueFn);

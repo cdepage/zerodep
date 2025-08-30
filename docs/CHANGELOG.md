@@ -20,6 +20,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - added support and testing for Node 18.x
 
+**Updated**
+
+- all `isXXXX` methods add provide correct typescript casting
 
 ---
 

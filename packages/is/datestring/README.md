@@ -67,7 +67,7 @@ isDateString(false); // false
 isDateString(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // false
 
 // Dates

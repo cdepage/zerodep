@@ -23,31 +23,11 @@
         "parallel": false
       }
     },
-    "patch": {
-      "command": "cd packages/string/padright && npm version patch"
-    },
-    "minor": {
-      "command": "cd packages/string/padright && npm version minor"
-    },
-    "major": {
-      "command": "cd packages/string/padright && npm version major"
-    },
     "packageFix": {
       "executor": "nx:run-commands",
       "options": {
         "command": "npm-sort && fixpack",
         "cwd": "packages/string/padright"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/string/padright/jest.config.ts"
       }
     }
   }

@@ -12,9 +12,9 @@ const EVENT_1 = 'someEvent';
 const EVENT_2 = 'anotherEvent';
 
 describe('structEventEmitterFactory', () => {
-  const listener1 = jest.fn();
-  const listener2 = jest.fn();
-  const listener3 = jest.fn();
+  const listener1 = vi.fn();
+  const listener2 = vi.fn();
+  const listener3 = vi.fn();
 
   afterEach(() => {
     emitter.removeAllListeners();

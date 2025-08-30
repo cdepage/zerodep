@@ -18,7 +18,7 @@ Our tooling includes:
 
 - prettier - for code formatting
 - eslint - code linter to catch software quality issues
-- jest - for unit testing and code coverage
+- vitest - for unit testing and code coverage
 - nx - for monorepo management
 - codefactor - for CI code linting
 - snyk - for security vulnerability analysis and reporting
@@ -27,4 +27,4 @@ Our quality guidelines require very good to excellent unit test coverage with te
 
 ## How to Contribute
 
-Please either [open an issue](https://github.com/cdepage/zerodep/issues) or [create a pull request](https://github.com/cdepage/zerodep/pulls), depending upon how you wish to contribute. 
+Please either [open an issue](https://github.com/cdepage/zerodep/issues) or [create a pull request](https://github.com/cdepage/zerodep/pulls), depending upon how you wish to contribute.

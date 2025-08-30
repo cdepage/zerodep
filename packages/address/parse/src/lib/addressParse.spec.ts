@@ -126,7 +126,7 @@ describe('addressParse', () => {
     });
   });
 
-  xit('should parse address 127', () => {
+  it.skip('should parse address 127', () => {
     const addy = '123 Maple Rochester, New York';
     expect(addressParse(addy)).toEqual({
       source: addy,
@@ -147,7 +147,7 @@ describe('addressParse', () => {
         country: 'USA',
         zip: '10001',
         zipExt: '1234',
-      })
+      }),
     ).toEqual({
       source: addy,
       normalized: '123 MAPLE ST ROCHESTER NEW YORK 10001-1234',

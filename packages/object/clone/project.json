@@ -38,17 +38,6 @@
         "command": "npm-sort && fixpack",
         "cwd": "packages/object/clone"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/object/clone/jest.config.ts"
-      }
     }
   }
 }
