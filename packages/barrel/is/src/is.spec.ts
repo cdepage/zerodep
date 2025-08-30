@@ -9,6 +9,7 @@ describe('"Is" barrel package', () => {
       'isBigInt',
       'isBoolean',
       'isDate',
+      'isDateString',
       'isEmpty',
       'isEqual',
       'isError',

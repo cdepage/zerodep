@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/object/clone/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "XXXXbuild": {
       "executor": "nx:run-commands",
@@ -48,15 +49,6 @@
       "options": {
         "jestConfig": "packages/object/clone/jest.config.ts"
       }
-    },
-    "XXXXdeploy": {
-      "executor": "ngx-deploy-npm:deploy",
-      "options": {
-        "distFolderPath": "dist/packages/object/clone",
-        "access": "public"
-      },
-      "dependsOn": ["build"]
     }
-  },
-  "tags": []
+  }
 }

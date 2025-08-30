@@ -58,6 +58,7 @@
       "@zerodep/is-bigint": ["packages/is/bigint/src/index.ts"],
       "@zerodep/is-boolean": ["packages/is/boolean/src/index.ts"],
       "@zerodep/is-date": ["packages/is/date/src/index.ts"],
+      "@zerodep/is-datestring": ["packages/is/datestring/src/index.ts"],
       "@zerodep/is-empty": ["packages/is/empty/src/index.ts"],
       "@zerodep/is-equal": ["packages/is/equal/src/index.ts"],
       "@zerodep/is-error": ["packages/is/error/src/index.ts"],

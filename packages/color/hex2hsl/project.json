@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/color/hex2hsl/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "XXXXbuild": {
       "executor": "nx:run-commands",
@@ -48,15 +49,6 @@
       "options": {
         "jestConfig": "packages/color/hex2hsl/jest.config.ts"
       }
-    },
-    "XXXdeploy": {
-      "executor": "ngx-deploy-npm:deploy",
-      "options": {
-        "distFolderPath": "dist/packages/color/hex2hsl",
-        "access": "public"
-      },
-      "dependsOn": ["build"]
     }
-  },
-  "tags": []
+  }
 }

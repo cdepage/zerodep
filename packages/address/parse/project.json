@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/address/parse/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "nx:run-commands",
@@ -41,15 +42,6 @@
       "options": {
         "jestConfig": "packages/address/parse/jest.config.ts"
       }
-    },
-    "deploy": {
-      "executor": "ngx-deploy-npm:deploy",
-      "options": {
-        "distFolderPath": "dist/packages/parse/country",
-        "access": "public"
-      },
-      "dependsOn": ["build"]
     }
-  },
-  "tags": []
+  }
 }

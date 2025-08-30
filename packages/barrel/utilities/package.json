@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/utilities",
   "description": "A collection of all utilities within the @zerodep ecosystem",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,8 +12,8 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
-  "types": "index.d.mts",
   "type": "module",
+  "types": "index.d.mts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
   "exports": {

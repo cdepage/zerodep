@@ -42,14 +42,6 @@
       "options": {
         "jestConfig": "packages/address/directional/jest.config.ts"
       }
-    },
-    "deploy": {
-      "executor": "ngx-deploy-npm:deploy",
-      "options": {
-        "distFolderPath": "dist/packages/address/directional",
-        "access": "public"
-      },
-      "dependsOn": ["build"]
     }
   }
 }

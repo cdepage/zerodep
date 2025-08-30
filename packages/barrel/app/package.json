@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/app",
   "description": "A modern library/monorepo of high-quality, zero-dependency, fully typed, fully tested, tree-shakeable utilities, parsers, data structure factories, converters and other capabilities ",
-  "version": "2.10.0",
+  "version": "2.11.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,8 +12,8 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
-  "types": "index.d.mts",
   "type": "module",
+  "types": "index.d.mts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
   "exports": {

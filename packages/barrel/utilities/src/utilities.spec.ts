@@ -38,6 +38,7 @@ describe('"Utilities" barrel package', () => {
       'isBigInt',
       'isBoolean',
       'isDate',
+      'isDateString',
       'isEmpty',
       'isEqual',
       'isError',

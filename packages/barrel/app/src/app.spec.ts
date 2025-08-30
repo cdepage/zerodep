@@ -54,6 +54,7 @@ describe('"App" barrel package', () => {
       'isBigInt',
       'isBoolean',
       'isDate',
+      'isDateString',
       'isEmpty',
       'isEqual',
       'isError',

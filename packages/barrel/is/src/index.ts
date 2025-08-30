@@ -3,6 +3,7 @@ export * from '@zerodep/is-async';
 export * from '@zerodep/is-bigint';
 export * from '@zerodep/is-boolean';
 export * from '@zerodep/is-date';
+export * from '@zerodep/is-datestring';
 export * from '@zerodep/is-empty';
 export * from '@zerodep/is-equal';
 export * from '@zerodep/is-error';

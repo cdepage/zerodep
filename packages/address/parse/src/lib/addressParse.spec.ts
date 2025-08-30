@@ -1,4 +1,4 @@
-/* eslint-disable sonarjs/no-commented-code */
+/* eslint-disable sonarjs/no-commented-code, sonarjs/no-skipped-tests */
 import { addressParse } from './addressParse';
 
 describe('addressParse', () => {

@@ -1,4 +1,4 @@
-/* eslint-disable sonarjs/no-primitive-wrappers, sonarjs/no-empty-function, sonarjs/duplicates-in-character-class, sonarjs/concise-regex, sonarjs/prefer-promise-shorthand, sonarjs/single-char-in-character-classes */
+/* eslint-disable sonarjs/no-primitive-wrappers, sonarjs/duplicates-in-character-class, sonarjs/concise-regex, sonarjs/prefer-promise-shorthand, sonarjs/single-char-in-character-classes */
 import {
   testGenerator,
   testGenerator2,

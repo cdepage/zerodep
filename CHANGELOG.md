@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+### Release 3.0.0
+
+**Breaking**
+
+- tbd
+
+**Added**
+
+- added support and testing for Node 24.x
+
+**Removed**
+
+- added support and testing for Node 18.x
+
+**Updated**
+
+- all `isXXXX` methods add provide correct typescript casting
+
+---
+
 ### Release 2.10.0
 
 **Added**
