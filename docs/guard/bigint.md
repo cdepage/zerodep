@@ -52,7 +52,7 @@ guardBigInt(false); // throws ZeroDepError: Value is not a BigInt
 guardBigInt(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Value is not a BigInt
 
 // Dates
@@ -123,7 +123,7 @@ guardBigInt(new Promise.race([])); // throws ZeroDepError: Value is not a BigInt
 guardBigInt(Promise.resolve()); // throws ZeroDepError: Value is not a BigInt
 
 // Regular Expression
-guardBigInt(/[regex]+/gi); // throws ZeroDepError: Value is not a BigInt
+guardBigInt(/[regx]+/gi); // throws ZeroDepError: Value is not a BigInt
 guardBigInt(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not a BigInt
 
 // Sets

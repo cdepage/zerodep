@@ -1,17 +1,19 @@
 export const isAsync = (value: unknown): boolean => {
   try {
     const type = Object.prototype.toString.call(value);
-    return (
-      type === '[object Async]' ||
-      type === '[object AsyncAsync]' ||
-      type === '[object AsyncFunction]' ||
-      type === '[object Generator]' ||
-      type === '[object AsyncGenerator]' ||
-      type === '[object Promise]' ||
-      value?.constructor?.name === 'AsyncFunction'
-    );
+
+    // checking for a value in a set is an O(1) operation
+    const asyncTypes = new Set([
+      '[object Async]',
+      '[object AsyncAsync]',
+      '[object AsyncFunction]',
+      '[object Generator]',
+      '[object AsyncGenerator]',
+      '[object Promise]',
+    ]);
+
+    return asyncTypes.has(type) || value?.constructor?.name === 'AsyncFunction';
   } catch {
-    // anything that isn't handled by the above code is definitely false
     return false;
   }
 };

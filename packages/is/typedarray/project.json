@@ -27,7 +27,7 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "npm-sort && fixpack",
-        "cwd": "packages/is/array"
+        "cwd": "packages/is/typedarray"
       }
     }
   }

@@ -1,38 +1,35 @@
-# isError()
+# @zerodep/is-error
 
-[![version](https://img.shields.io/npm/v/@zerodep/is-error?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-error)
-![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
-![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
-![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+[![version](https://img.shields.io/npm/v/@zerodep/is-error?color=blue)](https://www.npmjs.com/package/@zerodep/is-error)
+![language](https://img.shields.io/badge/typescript-100%25-blue)
+![types](https://img.shields.io/badge/types-included-blue)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
+![coverage](https://img.shields.io/badge/coverage-100%25-42b983)
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A utility to determine if a value is an Error or specific instance/subclass of an Error type.
+A performant utility to determine if a value is an Error or specific instance/subclass of an Error type.
 
 ## Signature
 
 ```typescript
-declare const isError: (value: unknown, errorType?: unknown) => boolean;
+declare const isError: (value: unknown) => boolean;
+// value will be of type Error
 ```
-
-### Function Parameters
-
-The `isError` function has the following parameters:
-
-- **value** - the value to check
-- **errorType** - [optional] error type/instance
 
 ## Examples
 
+All @zerodep packages support both ESM and CJS formats, each complete with Typescript typings.
+
 ```javascript
 // ESM
-import { isError } from '@zerodep/app';
+import { isError } from '@zerodep/is-error';
 
 // CJS
-const { isError } = require('@zerodep/app');
+const { isError } = require('@zerodep/is-error');
 ```
 
 ```javascript
@@ -55,7 +52,7 @@ isError(false); // false
 isError(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // false
 
 // Dates
@@ -69,7 +66,13 @@ isError(undefined); // false
 
 // Errors
 isError(new Error('message')); // true
-isError(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // true
+
+// Error Subtypes
+class CustomError extends Error {}
+class OtherError extends Error {}
+isError(new CustomError('message')); // true
+isError(new CustomError('message'), CustomError); // true
+isError(new CustomError('message'), OtherError); // false
 
 // Floats
 isError(3.14); // false
@@ -85,12 +88,14 @@ isError(() => 'function'); // false
 isError(async () => 'function'); // false
 
 // Generators
-isError(function* () {
-  yield 'a';
-}); // false
-isError(async function* () {
-  yield 'a';
-}); // false
+const gen1 = (function* simpleGenerator() {
+  yield 1;
+})();
+const gen2 = (async function* asyncGenerator() {
+  yield 1;
+})();
+expect(isError(gen1)).toBeFalsy();
+expect(isError(gen2)).toBeFalsy();
 
 // Maps
 isError(new Map()); // false
@@ -119,14 +124,11 @@ isError({ key: 'string' }); // false
 isError({ key: 123 }); // false
 
 // Promise
-isError(new Promise(() => {})); // false
-isError(new Promise.all([])); // false
-isError(new Promise.allSettled([])); // false
-isError(new Promise.race([])); // false
+isError(new Promise(() => 1)); // false
 isError(Promise.resolve()); // false
 
 // Regular Expression
-isError(/[regex]+/gi); // false
+isError(/[regx]+/gi); // false
 isError(new RegExp('d', 'gi')); // false
 
 // Sets
@@ -178,11 +180,13 @@ isError(new WeakMap()); // false
 isError(new WeakSet()); // false
 ```
 
+---
+
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](https://zerodep.app/#/) for more information.
 
-```shell
+```
 # all @zerodep packages
 npm i @zerodep/app
 
@@ -192,29 +196,36 @@ npm i @zerodep/utilities
 # all @zerodep "is" functions
 npm i @zerodep/is
 
-# only this @zerodep package
+# just this package
 npm i @zerodep/is-error
 ```
 
 ---
 
-## Package Changelog
+## Versions
 
-All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+- all notable changes are documented in the [Release Notes](https://github.com/cdepage/zerodep/releases)
 
---
+### v3.x
 
-#### Release 2.1.x
+- supports Node v20, v22 & v24
+- built with Typescript v5.8.x
 
-**Changed**
+### v2.x
 
-- added an optional error subclass/type check
-- added a check to ensure the error's `message` property is a string (if it exists)
+- supports Node v18, v20, & v22
+- built with Typescript v5.5.x
 
---
+---
 
-#### Release 2.0.x
+## ZeroDep Advantages
 
-**Breaking**
-
-- renamed the `@zerodep/is.error` package to `@zerodep/is-error` for consistency across @zerodep ecosystem
+- **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases node_modules folder size
+- **ESM & CJS** - has both ecmascript modules and common javascript exports
+- **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible size
+- **Fully typed** - typescript definitions are provided for every package for a better developer experience
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
+- **100% Tested** - all methods and packages are fully unit tested
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
+- **MIT Licensed** - permissively licensed for maximum usability

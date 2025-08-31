@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-promise",
-  "description": "A utility to determine if a value is a Promise",
-  "version": "2.0.12",
+  "description": "A performant utility to determine if a value is a Promise",
+  "version": "3.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,10 +12,10 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "type": "module",
   "types": "index.d.mts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
-  "type": "module",
   "exports": {
     ".": {
       "import": {
@@ -31,6 +31,11 @@
   "keywords": [
     "is",
     "promise",
-    "type"
+    "is-promise",
+    "isPromise",
+    "check",
+    "type",
+    "typescript",
+    "utility"
   ]
 }

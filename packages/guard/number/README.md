@@ -46,12 +46,12 @@ guardNumber(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not a number
 guardNumber(null); // throws ZeroDepError: Value is not a number
 guardNumber({ an: 'object' }); // throws ZeroDepError: Value is not a number
 guardNumber(new Promise(() => {})); // throws ZeroDepError: Value is not a number
-guardNumber(/[regex]+/gi); // throws ZeroDepError: Value is not a number
+guardNumber(/[regx]+/gi); // throws ZeroDepError: Value is not a number
 guardNumber(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a number
 guardNumber('a string'); // throws ZeroDepError: Value is not a number
 guardNumber(Symbol()); // throws ZeroDepError: Value is not a number

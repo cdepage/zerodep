@@ -47,12 +47,12 @@ guardBoolean(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not a boolean
 guardBoolean(null); // throws ZeroDepError: Value is not a boolean
 guardBoolean({ an: 'object' }); // throws ZeroDepError: Value is not a boolean
 guardBoolean(new Promise(() => {})); // throws ZeroDepError: Value is not a boolean
-guardBoolean(/[regex]+/gi); // throws ZeroDepError: Value is not a boolean
+guardBoolean(/[regx]+/gi); // throws ZeroDepError: Value is not a boolean
 guardBoolean(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a boolean
 guardBoolean('a string'); // throws ZeroDepError: Value is not a boolean
 guardBoolean(Symbol()); // throws ZeroDepError: Value is not a boolean

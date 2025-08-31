@@ -9,7 +9,7 @@ export const stringTrim = (value: string, char = ''): string => {
   }
   guardString(char);
 
-  // ensure the character in the regex is regex-safe
+  // ensure the character in the regexp is regexp-safe
   const safeChar = ['.', '?'].includes(char) ? `\\${char}` : char;
 
   const regex1 = new RegExp(`^${safeChar}+`);

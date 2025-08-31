@@ -52,7 +52,7 @@ guardInteger(false); // throws ZeroDepError: Value is not an integer
 guardInteger(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Value is not an integer
 
 // Dates
@@ -123,7 +123,7 @@ guardInteger(new Promise.race([])); // throws ZeroDepError: Value is not an inte
 guardInteger(Promise.resolve()); // throws ZeroDepError: Value is not an integer
 
 // Regular Expression
-guardInteger(/[regex]+/gi); // throws ZeroDepError: Value is not an integer
+guardInteger(/[regx]+/gi); // throws ZeroDepError: Value is not an integer
 guardInteger(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not an integer
 
 // Sets

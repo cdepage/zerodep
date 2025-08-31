@@ -46,12 +46,12 @@ guardFloat(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not a float
 guardFloat(null); // throws ZeroDepError: Value is not a float
 guardFloat({ an: 'object' }); // throws ZeroDepError: Value is not a float
 guardFloat(new Promise(() => {})); // throws ZeroDepError: Value is not a float
-guardFloat(/[regex]+/gi); // throws ZeroDepError: Value is not a float
+guardFloat(/[regx]+/gi); // throws ZeroDepError: Value is not a float
 guardFloat(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a float
 guardFloat('a string'); // throws ZeroDepError: Value is not a float
 guardFloat(Symbol()); // throws ZeroDepError: Value is not a float

@@ -46,12 +46,12 @@ guardDate(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not a date
 guardDate(null); // throws ZeroDepError: Value is not a date
 guardDate({ an: 'object' }); // throws ZeroDepError: Value is not a date
 guardDate(new Promise(() => {})); // throws ZeroDepError: Value is not a date
-guardDate(/[regex]+/gi); // throws ZeroDepError: Value is not a date
+guardDate(/[regx]+/gi); // throws ZeroDepError: Value is not a date
 guardDate(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a date
 guardDate('a string'); // throws ZeroDepError: Value is not a date
 guardDate(Symbol()); // throws ZeroDepError: Value is not a date

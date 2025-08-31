@@ -76,7 +76,7 @@ toBoolean(false); // false
 toBoolean(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Cannot reliably convert to boolean
 
 // Dates
@@ -147,7 +147,7 @@ toBoolean(new Promise.race([])); // throws ZeroDepError: Cannot reliably convert
 toBoolean(Promise.resolve()); // throws ZeroDepError: Cannot reliably convert to boolean
 
 // Regular Expression
-toBoolean(/[regex]+/gi); // throws ZeroDepError: Cannot reliably convert to boolean
+toBoolean(/[regx]+/gi); // throws ZeroDepError: Cannot reliably convert to boolean
 toBoolean(new RegExp('d', 'gi')); // throws ZeroDepError: Cannot reliably convert to boolean
 
 // Sets

@@ -1,4 +1,3 @@
-/* eslint-disable no-case-declarations, sonarjs/cognitive-complexity */
 import { ZeroDepError } from '@zerodep/errors';
 
 const getType = Object.prototype.toString;
@@ -150,9 +149,14 @@ const compare = (a: any, b: any): boolean => {
 
     // CAUTION: this is recursive for nested set values, may blow-up call stack
     case 'Set':
+      // time complexity: linear - O(1)
+      if (a.size !== b.size || ![...a].every((x) => b.has(x))) {
+        return false;
+      }
+
       // time complexity: linear - O(n)
-      const arrA = [...a].sort();
-      const arrB = [...b].sort();
+      const arrA = [...a];
+      const arrB = [...b];
       return compare(arrA, arrB);
 
     // Typed Arrays
@@ -191,9 +195,7 @@ const compare = (a: any, b: any): boolean => {
     case 'WeakSet': // cannot iterate, cannot compare
     case 'SharedArrayBuffer': // cannot iterate, cannot compare
     default:
-      const error = new ZeroDepError(`Cannot compare ${typeA} values`);
-      error.value = a;
-      throw error;
+      throw new ZeroDepError(`Cannot compare ${typeA} values`);
   }
 };
 

@@ -3,7 +3,6 @@
 > ---
 
 - Barrel Packages
-
   - [App Barrel Package](app.md)
   - >
   - [Parsers Barrel Package](parsers.md)
@@ -21,7 +20,6 @@
 > ---
 
 - Address Functions
-
   - [addressCountry()](address/country.md)
   - [addressDirectional()](address/directional.md)
   - [addressNormalize()](address/normalize.md)
@@ -32,7 +30,6 @@
   - [addressZip()](address/zip.md)
 
 - Case Converters
-
   - [caseCamel()](case/camel.md)
   - [caseDot()](case/dot.md)
   - [caseKebab()](case/kebab.md)
@@ -41,7 +38,6 @@
   - [caseSnake()](case/snake.md)
 
 - Geo Functions
-
   - [geo Data Maps](geo/data.md)
   - [geoCountry()](geo/country.md)
   - [geoCountryIso()](geo/country.md)
@@ -50,7 +46,6 @@
   -
 
 - Guard Functions
-
   - [guardArray()](guard/array.md)
   - [guardBigInt()](guard/bigint.md)
   - [guardBoolean()](guard/boolean.md)
@@ -58,13 +53,12 @@
   - [guardFloat()](guard/float.md)
   - [guardFunction()](guard/function.md)
   - [guardInteger()](guard/integer.md)
+  - [guardPojo()](guard/pojo.md)
   - [guardNumber()](guard/number.md)
   - [guardObject()](guard/object.md)
-  - [guardPojo()](guard/pojo.md)
   - [guardString()](guard/string.md)
 
 - Is Functions
-
   - [isArray()](is/array.md)
   - [isAsync()](is/async.md)
   - [isBigInt()](is/bigint.md)
@@ -78,14 +72,14 @@
   - [isGenerator()](is/generator.md)
   - [isInteger()](is/integer.md)
   - [isIterable()](is/iterable.md)
+  - [isJson()](is/json.md)
   - [isMap()](is/map.md)
   - [isNil()](is/nil.md)
   - [isNull()](is/null.md)
   - [isNumber()](is/number.md)
   - [isObject()](is/object.md)
-  - [isPojo()](is/pojo.md)
   - [isPromise()](is/promise.md)
-  - [isRegex()](is/regex.md)
+  - [isRegExp()](is/regexp.md)
   - [isSet()](is/set.md)
   - [isString()](is/string.md)
   - [isSymbol()](is/symbol.md)
@@ -95,7 +89,6 @@
   - [isWeakSet()](is/weakSet.md)
 
 - String Functions
-
   - [stringDeburr()](string/deburr.md)
   - [stringLowerFirst()](string/lowerFirst.md)
   - [stringPadLeft()](string/padleft.md)
@@ -108,7 +101,6 @@
   - [stringWords()](string/words.md)
 
 - Struct Factories
-
   - [structCollectionFactory()](struct/collection.md)
   - [structLinkedListFactory()](struct/linkedlist.md)
   - [structQueueFactory()](struct/queue.md)
@@ -116,7 +108,6 @@
   - [structTreeFactory()](struct/tree.md)
 
 - To Converters
-
   - [toBoolean()](to/boolean.md)
   - [toDate()](to/date.md)
   - [toInteger()](to/integer.md)

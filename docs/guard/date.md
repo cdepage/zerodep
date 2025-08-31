@@ -52,7 +52,7 @@ guardDate(false); // throws ZeroDepError: Value is not a date
 guardDate(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Value is not a date
 
 // Dates
@@ -123,7 +123,7 @@ guardDate(new Promise.race([])); // throws ZeroDepError: Value is not a date
 guardDate(Promise.resolve()); // throws ZeroDepError: Value is not a date
 
 // Regular Expression
-guardDate(/[regex]+/gi); // throws ZeroDepError: Value is not a date
+guardDate(/[regx]+/gi); // throws ZeroDepError: Value is not a date
 guardDate(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not a date
 
 // Sets

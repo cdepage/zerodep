@@ -47,11 +47,11 @@ guardObject(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not an object
 guardObject(null); // throws ZeroDepError: Value is not an object
 guardObject(new Promise(() => {})); // throws ZeroDepError: Value is not an object
-guardObject(/[regex]+/gi); // throws ZeroDepError: Value is not an object
+guardObject(/[regx]+/gi); // throws ZeroDepError: Value is not an object
 guardObject(new Set([1, 2, 3])); // throws ZeroDepError: Value is not an object
 guardObject('a string'); // throws ZeroDepError: Value is not an object
 guardObject(Symbol()); // throws ZeroDepError: Value is not an object

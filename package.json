@@ -39,7 +39,7 @@
     "coverage:all": "npx nx run-many --target=test --all --coverage",
     "coverage:clean": "rm -rf coverage",
     "----- BUILD -------------": "",
-    "copy:docs": "cp CHANGELOG.md ./docs/ && cp CODE_OF_CONDUCT.md ./docs/ && cp CONTRIBUTING.md ./docs/ && cp QUICK_START.md ./docs/ && cp ROADMAP.md ./docs/ && cp SECURITY.md ./docs/",
+    "copy:docs": "./copyDocs.sh",
     "build:clean": "rm -rf dist && rm -rf tmp && find . -name '.esbuild' -type d | xargs rm -rf && find . -name '.serverless' -type d | xargs rm -rf && find . -name '.webpack' -type d | xargs rm -rf && find . -name '.esbuild' -type d | xargs rm -rf && find . -name '.swc' -type d | xargs rm -rf && npm run nx:reset",
     "build:all": "npx nx run-many --target=build --all --verbose",
     "----- NX ----------------": "",

@@ -52,7 +52,7 @@ guardBoolean(false); // void
 guardBoolean(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Value is not a boolean
 
 // Dates
@@ -123,7 +123,7 @@ guardBoolean(new Promise.race([])); // throws ZeroDepError: Value is not a boole
 guardBoolean(Promise.resolve()); // throws ZeroDepError: Value is not a boolean
 
 // Regular Expression
-guardBoolean(/[regex]+/gi); // throws ZeroDepError: Value is not a boolean
+guardBoolean(/[regx]+/gi); // throws ZeroDepError: Value is not a boolean
 guardBoolean(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not a boolean
 
 // Sets

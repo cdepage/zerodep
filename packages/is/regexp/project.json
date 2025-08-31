@@ -1,0 +1,34 @@
+{
+  "name": "is-regexp",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/is/regexp/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/is/regexp/*",
+          "rollup -c packages/is/regexp/rollup.config.mjs",
+          "cp packages/is/regexp/README.md dist/packages/is/regexp/README.md",
+          "cp LICENSE.md dist/packages/is/regexp/LICENSE.md",
+          "cp SECURITY.md dist/packages/is/regexp/SECURITY.md",
+          "cp packages/is/regexp/package.json dist/packages/is/regexp/package.json",
+          "uglifyjs dist/packages/is/regexp/index.mjs -o dist/packages/is/regexp/index.min.mjs -c --no-annotations",
+          "uglifyjs dist/packages/is/regexp/index.cjs -o dist/packages/is/regexp/index.min.cjs -c --no-annotations",
+          "rm -rf dist/packages/is/regexp/index.mjs",
+          "rm -rf dist/packages/is/regexp/index.cjs"
+        ],
+        "parallel": false
+      }
+    },
+    "packageFix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm-sort && fixpack",
+        "cwd": "packages/is/regexp"
+      }
+    }
+  }
+}

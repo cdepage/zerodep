@@ -1,16 +1,17 @@
-# isAsync()
+# @zerodep/is-async
 
-[![version](https://img.shields.io/npm/v/@zerodep/is-function?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-function)
-![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
-![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
-![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+[![version](https://img.shields.io/npm/v/@zerodep/is-async?color=blue)](https://www.npmjs.com/package/@zerodep/is-async)
+![language](https://img.shields.io/badge/typescript-100%25-blue)
+![types](https://img.shields.io/badge/types-included-blue)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
+![coverage](https://img.shields.io/badge/coverage-100%25-42b983)
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A simple, performant utility to determine if a value is asynchronous. This includes Promises, async functions, and generators.
+A performant utility to determine if a value is asynchronous.
 
 ## Signature
 
@@ -18,20 +19,16 @@ A simple, performant utility to determine if a value is asynchronous. This inclu
 declare const isAsync: (value: unknown) => boolean;
 ```
 
-### Function Parameters
-
-The `isAsync` function has the following parameters:
-
-- **value** - the value to check
-
 ## Examples
+
+All @zerodep packages support both ESM and CJS formats, each complete with Typescript typings.
 
 ```javascript
 // ESM
-import { isAsync } from '@zerodep/app';
+import { isAsync } from '@zerodep/is-async';
 
 // CJS
-const { isAsync } = require('@zerodep/app');
+const { isAsync } = require('@zerodep/is-async');
 ```
 
 ```javascript
@@ -54,7 +51,7 @@ isAsync(false); // false
 isAsync(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // false
 
 // Dates
@@ -68,7 +65,6 @@ isAsync(undefined); // false
 
 // Errors
 isAsync(new Error('message')); // false
-isAsync(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
 
 // Floats
 isAsync(3.14); // false
@@ -84,12 +80,14 @@ isAsync(() => 'function'); // false
 isAsync(async () => 'function'); // true
 
 // Generators
-isAsync(function* () {
-  yield 'a';
-}); // true
-isAsync(async function* () {
-  yield 'a';
-}); // true
+const gen1 = (function* simpleGenerator() {
+  yield 1;
+})();
+const gen2 = (async function* asyncGenerator() {
+  yield 1;
+})();
+isAsync(gen1); // true
+isAsync(gen2); // true
 
 // Maps
 isAsync(new Map()); // false
@@ -117,14 +115,11 @@ isAsync({ key: 'string' }); // false
 isAsync({ key: 123 }); // false
 
 // Promise
-isAsync(new Promise(() => {})); // true
-isAsync(new Promise.all([])); // true
-isAsync(new Promise.allSettled([])); // true
-isAsync(new Promise.race([])); // true
+isAsync(new Promise(() => 1)); // true
 isAsync(Promise.resolve()); // true
 
 // Regular Expression
-isAsync(/[regex]+/gi); // false
+isAsync(/[regx]+/gi); // false
 isAsync(new RegExp('d', 'gi')); // false
 
 // Sets
@@ -176,11 +171,13 @@ isAsync(new WeakMap()); // false
 isAsync(new WeakSet()); // false
 ```
 
+---
+
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](https://zerodep.app/#/) for more information.
 
-```shell
+```
 # all @zerodep packages
 npm i @zerodep/app
 
@@ -190,17 +187,36 @@ npm i @zerodep/utilities
 # all @zerodep "is" functions
 npm i @zerodep/is
 
-# only this @zerodep package
+# just this package
 npm i @zerodep/is-async
 ```
 
-## Changelog
+---
 
-All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+## Versions
 
-#### [2.0.0] - 2024-07-27
+- all notable changes are documented in the [Release Notes](https://github.com/cdepage/zerodep/releases)
 
-**Added**
+### v3.x
 
-- added the `@zerodep/is-async` package
--
+- supports Node v20, v22 & v24
+- built with Typescript v5.8.x
+
+### v2.x
+
+- supports Node v18, v20, & v22
+- built with Typescript v5.5.x
+
+---
+
+## ZeroDep Advantages
+
+- **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases node_modules folder size
+- **ESM & CJS** - has both ecmascript modules and common javascript exports
+- **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible size
+- **Fully typed** - typescript definitions are provided for every package for a better developer experience
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
+- **100% Tested** - all methods and packages are fully unit tested
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
+- **MIT Licensed** - permissively licensed for maximum usability

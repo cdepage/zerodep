@@ -52,7 +52,7 @@ guardFunction(false); // throws ZeroDepError: Value is not a function
 guardFunction(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Value is not a function
 
 // Dates
@@ -123,7 +123,7 @@ guardFunction(new Promise.race([])); // throws ZeroDepError: Value is not a func
 guardFunction(Promise.resolve()); // throws ZeroDepError: Value is not a function
 
 // Regular Expression
-guardFunction(/[regex]+/gi); // throws ZeroDepError: Value is not a function
+guardFunction(/[regx]+/gi); // throws ZeroDepError: Value is not a function
 guardFunction(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not a function
 
 // Sets

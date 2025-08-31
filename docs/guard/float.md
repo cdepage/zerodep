@@ -52,7 +52,7 @@ guardFloat(false); // throws ZeroDepError: Value is not a float
 guardFloat(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Value is not a float
 
 // Dates
@@ -123,7 +123,7 @@ guardFloat(new Promise.race([])); // throws ZeroDepError: Value is not a float
 guardFloat(Promise.resolve()); // throws ZeroDepError: Value is not a float
 
 // Regular Expression
-guardFloat(/[regex]+/gi); // throws ZeroDepError: Value is not a float
+guardFloat(/[regx]+/gi); // throws ZeroDepError: Value is not a float
 guardFloat(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not a float
 
 // Sets

@@ -1,11 +1,7 @@
-export const isInteger = (value: unknown): boolean => {
-  try {
-    return (
-      Object.prototype.toString.call(value) === '[object Number]' &&
-      (value as number) % 1 === 0
-    );
-  } catch {
-    // anything that isn't handled by the above code is definitely false
+export const isInteger = (value: unknown): value is number => {
+  if (typeof value !== 'number') {
     return false;
   }
+
+  return (value as number) % 1 === 0;
 };

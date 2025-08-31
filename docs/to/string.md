@@ -56,7 +56,7 @@ toString(false); // "false"
 toString(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Cannot convert to string
 
 // Dates
@@ -126,7 +126,7 @@ toString(new Promise.race([])); // throws ZeroDepError: Cannot convert to string
 toString(Promise.resolve()); // throws ZeroDepError: Cannot convert to string
 
 // Regular Expression
-toString(/[regex]+/gi); // throws ZeroDepError: Cannot convert to string
+toString(/[regx]+/gi); // throws ZeroDepError: Cannot convert to string
 toString(new RegExp('d', 'gi')); // throws ZeroDepError: Cannot convert to string
 
 // Sets

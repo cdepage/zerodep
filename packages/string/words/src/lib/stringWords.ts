@@ -1,16 +1,16 @@
 import { ZeroDepError } from '@zerodep/errors';
 import { guardString } from '@zerodep/guard-string';
-import { isRegex } from '@zerodep/is-regex';
+import { isRegExp } from '@zerodep/is-regexp';
 import { isString } from '@zerodep/is-string';
 import { stringTrim } from '@zerodep/string-trim';
 
 export const stringWords = (
   value: string,
-  separator: string | RegExp = ' '
+  separator: string | RegExp = ' ',
 ): string[] => {
   guardString(value);
-  if (!isString(separator) && !isRegex(separator)) {
-    throw new ZeroDepError('Separator is not a string or Regex');
+  if (!isString(separator) && !isRegExp(separator)) {
+    throw new ZeroDepError('Separator is not a string or RegExp');
   }
 
   return value

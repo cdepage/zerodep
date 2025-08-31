@@ -46,12 +46,12 @@ guardArray(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not an array
 guardArray(null); // throws ZeroDepError: Value is not an array
 guardArray({ an: 'object' }); // throws ZeroDepError: Value is not an array
 guardArray(new Promise(() => {})); // throws ZeroDepError: Value is not an array
-guardArray(/[regex]+/gi); // throws ZeroDepError: Value is not an array
+guardArray(/[regx]+/gi); // throws ZeroDepError: Value is not an array
 guardArray(new Set([1, 2, 3])); // throws ZeroDepError: Value is not an array
 guardArray('a string'); // throws ZeroDepError: Value is not an array
 guardArray(Symbol()); // throws ZeroDepError: Value is not an array

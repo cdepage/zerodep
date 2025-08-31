@@ -1,23 +1,23 @@
 # @zerodep/is-weakset
 
-[![version](https://img.shields.io/npm/v/@zerodep/is-weakset?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-weakset)
-![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
-![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
-![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+[![version](https://img.shields.io/npm/v/@zerodep/is-weakset?color=blue)](https://www.npmjs.com/package/@zerodep/is-weakset)
+![language](https://img.shields.io/badge/typescript-100%25-blue)
+![types](https://img.shields.io/badge/types-included-blue)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
+![coverage](https://img.shields.io/badge/coverage-100%25-42b983)
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A simple, performant utility to determine if a value is a Weak Set.
-
-Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/weakset) page.
+A performant utility to determine if a value is a Weak Set and assign a `WeakSet<T>` Typescript type to the value.
 
 ## Signature
 
 ```typescript
-declare const isWeakSet: (value: unknown) => boolean;
+declare const isWeakSet: <T extends object>(value: unknown) => boolean;
+// value will be of type WeakSet<T>
 ```
 
 ## Examples
@@ -25,152 +25,188 @@ declare const isWeakSet: (value: unknown) => boolean;
 All @zerodep packages support both ESM and CJS.
 
 ```javascript
+// ESM
 import { isWeakSet } from '@zerodep/is-weakset';
-// or
+
+// CJS
 const { isWeakSet } = require('@zerodep/is-weakset');
 ```
 
 ```javascript
 // Arrays
-isWeakmap([]); // false
-isWeakmap([1, 2, 3]); // false
-isWeakmap(['a', 'b', 'c']); // false
+isWeakSet([]); // false
+isWeakSet([1, 2, 3]); // false
+isWeakSet(['a', 'b', 'c']); // false
 
 // BigInts
-isWeakmap(42n); // false
-isWeakmap(0n); // false
-isWeakmap(-0n); // false
-isWeakmap(-42n); // false
+isWeakSet(42n); // false
+isWeakSet(0n); // false
+isWeakSet(-0n); // false
+isWeakSet(-42n); // false
 
 // Booleans
-isWeakmap(true); // false
-isWeakmap(false); // false
+isWeakSet(true); // false
+isWeakSet(false); // false
 
 // Class
-isWeakmap(
+isWeakSet(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // false
 
 // Dates
-isWeakmap(new Date()); // false
-isWeakmap(new Date('1970-01-01T12:00:00.000Z')); // false
-isWeakmap(new Date('2099-12-31')); // false
+isWeakSet(new Date()); // false
+isWeakSet(new Date('1970-01-01T12:00:00.000Z')); // false
+isWeakSet(new Date('2099-12-31')); // false
 
 // Empty
-isWeakmap(null); // false
-isWeakmap(undefined); // false
+isWeakSet(null); // false
+isWeakSet(undefined); // false
 
 // Errors
-isWeakmap(new Error('message')); // false
-isWeakmap(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
+isWeakSet(new Error('message')); // false
 
 // Floats
-isWeakmap(3.14); // false
-isWeakmap(0.0); // false
-isWeakmap(-0.0); // false
-isWeakmap(-3.14); // false
-isWeakmap(Math.E); // false
-isWeakmap(Math.PI); // false
-isWeakmap(Number.MIN_VALUE); // false
+isWeakSet(3.14); // false
+isWeakSet(0.0); // false
+isWeakSet(-0.0); // false
+isWeakSet(-3.14); // false
+isWeakSet(Math.E); // false
+isWeakSet(Math.PI); // false
+isWeakSet(Number.MIN_VALUE); // false
 
 // Functions
-isWeakmap(() => 'function'); // false
-isWeakmap(async () => 'function'); // false
+isWeakSet(() => 'function'); // false
+isWeakSet(async () => 'function'); // false
 
 // Generators
-isWeakmap(function* () {
-  yield 'a';
-}); // false
-isWeakmap(async function* () {
-  yield 'a';
-}); // false
+const gen1 = (function* simpleGenerator() {
+  yield 1;
+})();
+const gen2 = (async function* asyncGenerator() {
+  yield 1;
+})();
+isWeakSet(gen1); // false
+isWeakSet(gen2); // false
 
 // Maps
-isWeakmap(new Map()); // false
-isWeakmap(new Map([['key1', 123]])); // false
-isWeakmap(new Map([['key1', 'value1']])); // false
+isWeakSet(new Map()); // false
+isWeakSet(new Map([['key1', 123]])); // false
+isWeakSet(new Map([['key1', 'value1']])); // false
 
 // Numbers
-isWeakmap(Number.POSITIVE_INFINITY); // false
-isWeakmap(Number.MAX_SAFE_INTEGER); // false
-isWeakmap(3e8); // false
-isWeakmap(42); // false
-isWeakmap(1); // false
-isWeakmap(0); // false
-isWeakmap(-0); // false
-isWeakmap(-1); // false
-isWeakmap(-42); // false
-isWeakmap(-3e8); // false
-isWeakmap(Number.MIN_SAFE_INTEGER); // false
-isWeakmap(Number.NEGATIVE_INFINITY); // false
-isWeakmap(Number.NaN); // false
+isWeakSet(Number.POSITIVE_INFINITY); // false
+isWeakSet(Number.MAX_SAFE_INTEGER); // false
+isWeakSet(3e8); // false
+isWeakSet(42); // false
+isWeakSet(1); // false
+isWeakSet(0); // false
+isWeakSet(-0); // false
+isWeakSet(-1); // false
+isWeakSet(-42); // false
+isWeakSet(-3e8); // false
+isWeakSet(Number.MIN_SAFE_INTEGER); // false
+isWeakSet(Number.NEGATIVE_INFINITY); // false
+isWeakSet(Number.NaN); // false
 
 // POJOs
-isWeakmap({}); // false
-isWeakmap({ key: 'string' }); // false
-isWeakmap({ key: 123 }); // false
+isWeakSet({}); // false
+isWeakSet({ key: 'string' }); // false
+isWeakSet({ key: 123 }); // false
 
 // Promise
-isWeakmap(new Promise(() => {})); // false
-isWeakmap(new Promise.all([])); // false
-isWeakmap(new Promise.allSettled([])); // false
-isWeakmap(new Promise.race([])); // false
-isWeakmap(Promise.resolve()); // false
+isWeakSet(new Promise(() => 1)); // false
+isWeakSet(Promise.resolve()); // false
 
 // Regular Expression
-isWeakmap(/[regex]+/gi); // false
-isWeakmap(new RegExp('d', 'gi')); // false
+isWeakSet(/[regx]+/gi); // false
+isWeakSet(new RegExp('d', 'gi')); // false
 
 // Sets
-isWeakmap(new Set()); // false
-isWeakmap(new Set([1, 2, 3])); // false
-isWeakmap(new Set(['a', 'b', 'c'])); // false
+isWeakSet(new Set()); // false
+isWeakSet(new Set([1, 2, 3])); // false
+isWeakSet(new Set(['a', 'b', 'c'])); // false
 
 // Strings
-isWeakmap(''); // false
-isWeakmap('a longer string'); // false
-isWeakmap('1000n'); // false
-isWeakmap('3e8'); // false
-isWeakmap('42'); // false
-isWeakmap('3.14'); // false
-isWeakmap('0'); // false
-isWeakmap('-0'); // false
-isWeakmap('-3.14'); // false
-isWeakmap('-42'); // false
-isWeakmap('-3e8'); // false
-isWeakmap('-1000n'); // false
+isWeakSet(''); // false
+isWeakSet('a longer string'); // false
+isWeakSet('1000n'); // false
+isWeakSet('3e8'); // false
+isWeakSet('42'); // false
+isWeakSet('3.14'); // false
+isWeakSet('0'); // false
+isWeakSet('-0'); // false
+isWeakSet('-3.14'); // false
+isWeakSet('-42'); // false
+isWeakSet('-3e8'); // false
+isWeakSet('-1000n'); // false
 
 // Symbols
-isWeakmap(Symbol()); // false
-isWeakmap(Symbol('name')); // false
+isWeakSet(Symbol()); // false
+isWeakSet(Symbol('name')); // false
 
 // This
-isWeakmap(this); // false
-isWeakmap(globalThis); // false
+isWeakSet(this); // false
+isWeakSet(globalThis); // false
 
 // TypedArrays
-isWeakmap(new Int8Array(2)); // false
-isWeakmap(new Int16Array(2)); // false
-isWeakmap(new Int32Array(2)); // false
-isWeakmap(new Uint8Array(2)); // false
-isWeakmap(new Uint16Array(2)); // false
-isWeakmap(new Uint32Array(2)); // false
-isWeakmap(new Uint8ClampedArray(2)); // false
+isWeakSet(new Int8Array(2)); // false
+isWeakSet(new Int16Array(2)); // false
+isWeakSet(new Int32Array(2)); // false
+isWeakSet(new Uint8Array(2)); // false
+isWeakSet(new Uint16Array(2)); // false
+isWeakSet(new Uint32Array(2)); // false
+isWeakSet(new Uint8ClampedArray(2)); // false
 
-isWeakmap(new BigInt64Array(2)); // false
-isWeakmap(new BigUint64Array(2)); // false
+isWeakSet(new BigInt64Array(2)); // false
+isWeakSet(new BigUint64Array(2)); // false
 
-isWeakmap(new Float32Array(2)); // false
-isWeakmap(new Float64Array(2)); // false
+isWeakSet(new Float32Array(2)); // false
+isWeakSet(new Float64Array(2)); // false
 
-isWeakmap(new SharedArrayBuffer(512)); // false
+isWeakSet(new SharedArrayBuffer(512)); // false
 
 // WeakMap and WeakSet
-isWeakmap(new WeakMap()); // false
-isWeakmap(new WeakSet()); // true
+isWeakSet(new WeakMap()); // false
+isWeakSet(new WeakSet()); // true
 ```
+
+---
+
+## Installation Sources
+
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](https://zerodep.app/#/) for more information.
+
+```
+# all @zerodep packages
+npm i @zerodep/app
+
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
+
+# all @zerodep "is" functions
+npm i @zerodep/is
+
+# just this package
+npm i @zerodep/is-weakset
+```
+
+---
+
+## Versions
+
+- all notable changes are documented in the [Release Notes](https://github.com/cdepage/zerodep/releases)
+
+### v3.x
+
+- supports Node v20, v22 & v24
+- built with Typescript v5.8.x
+
+### v2.x
+
+- supports Node v18, v20, & v22
+- built with Typescript v5.5.x
 
 ---
 
@@ -181,7 +217,6 @@ isWeakmap(new WeakSet()); // true
 - **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **Semantically named** - package and method names are easy to grok, remember, use, and read
-- **Documented** - actually useful documentation with examples
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs

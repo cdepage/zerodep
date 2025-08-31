@@ -1,5 +1,5 @@
 import { ZeroDepError } from '@zerodep/errors';
-import { isPojo } from '@zerodep/is-pojo';
+import { isJson } from '@zerodep/is-json';
 
 export interface GuardPojoOptions {
   minQuantity?: number;
@@ -28,7 +28,7 @@ export const guardPojoHOF = (options: GuardPojoOptions = {}) => {
       Object.keys(value as Record<string, any>).length < config.minQuantity
     ) {
       const error = new ZeroDepError(
-        `JSON object has fewer than ${config.minQuantity} items`
+        `JSON object has fewer than ${config.minQuantity} items`,
       );
       error.value = value;
       throw error;
@@ -39,7 +39,7 @@ export const guardPojoHOF = (options: GuardPojoOptions = {}) => {
       Object.keys(value as Record<string, any>).length > config.maxQuantity
     ) {
       const error = new ZeroDepError(
-        `JSON object has more than ${config.maxQuantity} items`
+        `JSON object has more than ${config.maxQuantity} items`,
       );
       error.value = value;
       throw error;

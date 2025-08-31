@@ -10,15 +10,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 **Breaking**
 
-- tbd
+- the `isEqual` function requires order of items in an array to be equal
+- the `isPojo` has been renamed to `isJson`
+- the `isRegex` has been renamed to `isRegExp`
 
 **Added**
 
 - added support and testing for Node 24.x
+- added the `isJson()` function and the `@zerodep/is-json` package
+- added the `isRegExp()` function and the `@zerodep/is-regexp` package
 
 **Removed**
 
-- added support and testing for Node 18.x
+- removed support and testing for Node 18.x
 
 **Updated**
 

@@ -1,26 +1,14 @@
-import { isString } from '@zerodep/is-string';
-
-export const isError = (value: unknown, errorType?: any): boolean => {
+export const isError = (value: unknown, errorType?: any): value is Error => {
   try {
-    // fail on wrong type
-    if (Object.prototype.toString.call(value) !== '[object Error]') {
+    // Check if value is an instance of Error
+    if (!(value instanceof Error)) {
       return false;
     }
 
-    // fail on wrong error type/subclass
-    if (errorType && !(value instanceof errorType)) {
-      return false;
-    }
-
-    // there may not be a message, which IS permitted in JavaScript
-    if (!('message' in (value as Error))) {
-      return true;
-    }
-
-    // any message must be a string
-    return isString((value as Error).message);
+    // Check if value is an instance of the specified error type/subclass
+    return !(errorType && !(value instanceof errorType));
   } catch {
-    // anything that isn't handled by the above code is definitely false
+    // Return false for any unhandled cases
     return false;
   }
 };

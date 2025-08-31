@@ -1,18 +1,17 @@
 # @zerodep/is-datestring
 
-[![version](https://img.shields.io/npm/v/@zerodep/is-datestring?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-datestring)
-![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
-![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
-![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+[![version](https://img.shields.io/npm/v/@zerodep/is-datestring?color=blue)](https://www.npmjs.com/package/@zerodep/is-datestring)
+![language](https://img.shields.io/badge/typescript-100%25-blue)
+![types](https://img.shields.io/badge/types-included-blue)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
+![coverage](https://img.shields.io/badge/coverage-100%25-42b983)
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
 A simple, performant utility to determine if a value is a date string in any of the common date formats.
-
-Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/datestring) page.
 
 ## Signature
 
@@ -137,7 +136,7 @@ isDateString(new Promise.race([])); // false
 isDateString(Promise.resolve()); // false
 
 // Regular Expression
-isDateString(/[regex]+/gi); // false
+isDateString(/[regx]+/gi); // false
 isDateString(new RegExp('d', 'gi')); // false
 
 // Sets
@@ -198,7 +197,6 @@ isDateString(new WeakSet()); // false
 - **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible size
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **Semantically named** - package and method names are easy to grok, remember, use, and read
-- **Documented** - actually useful documentation with examples at [zerodep.app](https://zerodep.app)
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs

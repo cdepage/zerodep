@@ -46,12 +46,12 @@ guardBigInt(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not a BigInt
 guardBigInt(null); // throws ZeroDepError: Value is not a BigInt
 guardBigInt({ an: 'object' }); // throws ZeroDepError: Value is not a BigInt
 guardBigInt(new Promise(() => {})); // throws ZeroDepError: Value is not a BigInt
-guardBigInt(/[regex]+/gi); // throws ZeroDepError: Value is not a BigInt
+guardBigInt(/[regx]+/gi); // throws ZeroDepError: Value is not a BigInt
 guardBigInt(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a BigInt
 guardBigInt('a string'); // throws ZeroDepError: Value is not a BigInt
 guardBigInt(Symbol()); // throws ZeroDepError: Value is not a BigInt

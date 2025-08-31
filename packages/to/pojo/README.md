@@ -65,7 +65,7 @@ toPojo(false); // throws ZeroDepError: Cannot convert to JSON
 toPojo(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Cannot convert to JSON
 
 // Dates
@@ -136,7 +136,7 @@ toPojo(new Promise.race([])); // throws ZeroDepError: Cannot convert to JSON
 toPojo(Promise.resolve()); // throws ZeroDepError: Cannot convert to JSON
 
 // Regular Expression
-toPojo(/[regex]+/gi); // throws ZeroDepError: Cannot convert to JSON
+toPojo(/[regx]+/gi); // throws ZeroDepError: Cannot convert to JSON
 toPojo(new RegExp('d', 'gi')); // throws ZeroDepError: Cannot convert to JSON
 
 // Sets

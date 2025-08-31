@@ -46,12 +46,12 @@ guardInteger(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not an integer
 guardInteger(null); // throws ZeroDepError: Value is not an integer
 guardInteger({ an: 'object' }); // throws ZeroDepError: Value is not an integer
 guardInteger(new Promise(() => {})); // throws ZeroDepError: Value is not an integer
-guardInteger(/[regex]+/gi); // throws ZeroDepError: Value is not an integer
+guardInteger(/[regx]+/gi); // throws ZeroDepError: Value is not an integer
 guardInteger(new Set([1, 2, 3])); // throws ZeroDepError: Value is not an integer
 guardInteger('a string'); // throws ZeroDepError: Value is not an integer
 guardInteger(Symbol()); // throws ZeroDepError: Value is not an integer

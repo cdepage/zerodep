@@ -1,23 +1,23 @@
-# @zerodep/is-Error
+# @zerodep/is-error
 
-[![version](https://img.shields.io/npm/v/@zerodep/is-error?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-error)
-![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
-![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
-![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+[![version](https://img.shields.io/npm/v/@zerodep/is-error?color=blue)](https://www.npmjs.com/package/@zerodep/is-error)
+![language](https://img.shields.io/badge/typescript-100%25-blue)
+![types](https://img.shields.io/badge/types-included-blue)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
+![coverage](https://img.shields.io/badge/coverage-100%25-42b983)
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A utility to determine if a value is an Error or specific instance/subclass of an Error type.
-
-Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/error) page.
+A performant utility to determine if a value is an Error or specific instance/subclass of an Error type.
 
 ## Signature
 
 ```typescript
 declare const isError: (value: unknown) => boolean;
+// value will be of type Error
 ```
 
 ## Examples
@@ -52,7 +52,7 @@ isError(false); // false
 isError(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // false
 
 // Dates
@@ -66,7 +66,13 @@ isError(undefined); // false
 
 // Errors
 isError(new Error('message')); // true
-isError(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // true
+
+// Error Subtypes
+class CustomError extends Error {}
+class OtherError extends Error {}
+isError(new CustomError('message')); // true
+isError(new CustomError('message'), CustomError); // true
+isError(new CustomError('message'), OtherError); // false
 
 // Floats
 isError(3.14); // false
@@ -82,12 +88,14 @@ isError(() => 'function'); // false
 isError(async () => 'function'); // false
 
 // Generators
-isError(function* () {
-  yield 'a';
-}); // false
-isError(async function* () {
-  yield 'a';
-}); // false
+const gen1 = (function* simpleGenerator() {
+  yield 1;
+})();
+const gen2 = (async function* asyncGenerator() {
+  yield 1;
+})();
+expect(isError(gen1)).toBeFalsy();
+expect(isError(gen2)).toBeFalsy();
 
 // Maps
 isError(new Map()); // false
@@ -116,14 +124,11 @@ isError({ key: 'string' }); // false
 isError({ key: 123 }); // false
 
 // Promise
-isError(new Promise(() => {})); // false
-isError(new Promise.all([])); // false
-isError(new Promise.allSettled([])); // false
-isError(new Promise.race([])); // false
+isError(new Promise(() => 1)); // false
 isError(Promise.resolve()); // false
 
 // Regular Expression
-isError(/[regex]+/gi); // false
+isError(/[regx]+/gi); // false
 isError(new RegExp('d', 'gi')); // false
 
 // Sets
@@ -177,6 +182,42 @@ isError(new WeakSet()); // false
 
 ---
 
+## Installation Sources
+
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](https://zerodep.app/#/) for more information.
+
+```
+# all @zerodep packages
+npm i @zerodep/app
+
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
+
+# all @zerodep "is" functions
+npm i @zerodep/is
+
+# just this package
+npm i @zerodep/is-error
+```
+
+---
+
+## Versions
+
+- all notable changes are documented in the [Release Notes](https://github.com/cdepage/zerodep/releases)
+
+### v3.x
+
+- supports Node v20, v22 & v24
+- built with Typescript v5.8.x
+
+### v2.x
+
+- supports Node v18, v20, & v22
+- built with Typescript v5.5.x
+
+---
+
 ## ZeroDep Advantages
 
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases node_modules folder size
@@ -184,7 +225,6 @@ isError(new WeakSet()); // false
 - **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible size
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **Semantically named** - package and method names are easy to grok, remember, use, and read
-- **Documented** - actually useful documentation with examples at [zerodep.app](https://zerodep.app)
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs

@@ -49,12 +49,12 @@ is /
     new Map([
       ['a', 1],
       ['b', 2],
-    ])
+    ]),
   ); // false
 is / merge(null); // false
 is / merge({ an: 'object' }); // false
 is / merge(new Promise(() => {})); // false
-is / merge(/[regex]+/gi); // false
+is / merge(/[regx]+/gi); // false
 is / merge(new Set([1, 2, 3])); // false
 is / merge('a string'); // false
 is / merge(new Int32Array(2)); // false

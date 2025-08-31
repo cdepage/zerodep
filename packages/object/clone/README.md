@@ -49,12 +49,12 @@ is /
     new Map([
       ['a', 1],
       ['b', 2],
-    ])
+    ]),
   ); // false
 is / clone(null); // false
 is / clone({ an: 'object' }); // false
 is / clone(new Promise(() => {})); // false
-is / clone(/[regex]+/gi); // false
+is / clone(/[regx]+/gi); // false
 is / clone(new Set([1, 2, 3])); // false
 is / clone('a string'); // false
 is / clone(new Int32Array(2)); // false

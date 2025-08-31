@@ -47,11 +47,11 @@ guardPojo(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not a JSON object
 guardPojo(null); // throws ZeroDepError: Value is not a JSON object
 guardPojo(new Promise(() => {})); // throws ZeroDepError: Value is not a JSON object
-guardPojo(/[regex]+/gi); // throws ZeroDepError: Value is not a JSON object
+guardPojo(/[regx]+/gi); // throws ZeroDepError: Value is not a JSON object
 guardPojo(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a JSON object
 guardPojo('a string'); // throws ZeroDepError: Value is not a JSON object
 guardPojo(Symbol()); // throws ZeroDepError: Value is not a JSON object

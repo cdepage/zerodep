@@ -1,38 +1,37 @@
 import { isArray } from '@zerodep/is-array';
 import { isMap } from '@zerodep/is-map';
 import { isNil } from '@zerodep/is-nil';
-import { isPojo } from '@zerodep/is-pojo';
+import { isJson } from '@zerodep/is-json';
 import { isSet } from '@zerodep/is-set';
 import { isString } from '@zerodep/is-string';
 
 export const isEmpty = (value: unknown): boolean => {
   try {
-    if (isNil(value)) {
-      return true;
-    }
+    // Check for null or undefined first, as these are the most common empty values
+    if (isNil(value)) return true;
 
-    if (isString(value)) {
-      return value === '';
-    }
+    // Check for strings next, as they are also common and have a simple empty check
+    if (isString(value)) return value === '';
 
+    // Check for arrays, which have a straightforward length property
     if (isArray(value)) {
-      // @ts-expect-error - type is correct
       return !value.length;
     }
 
-    if (isPojo(value)) {
-      // @ts-expect-error - type is correct
+    // Check for plain objects using Object.keys to determine emptiness
+    if (isJson(value)) {
       return !Object.keys(value).length;
     }
 
+    // Check for Map and Set objects, which have a size property
     if (isMap(value) || isSet(value)) {
-      // @ts-expect-error - type is correct
       return !value.size;
     }
 
+    // If none of the above checks pass, the value is not empty
     return false;
   } catch {
-    // anything that isn't handled by the above code is definitely false
+    // In case of any unexpected errors, assume the value is not empty
     return false;
   }
 };

@@ -47,12 +47,12 @@ guardString(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not a string
 guardString(null); // throws ZeroDepError: Value is not a string
 guardString({ an: 'object' }); // throws ZeroDepError: Value is not a string
 guardString(new Promise(() => {})); // throws ZeroDepError: Value is not a string
-guardString(/[regex]+/gi); // throws ZeroDepError: Value is not a string
+guardString(/[regx]+/gi); // throws ZeroDepError: Value is not a string
 guardString(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a string
 guardString(Symbol()); // throws ZeroDepError: Value is not a string
 guardString(new Int32Array(2)); // throws ZeroDepError: Value is not a string

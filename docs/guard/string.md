@@ -52,7 +52,7 @@ guardString(false); // throws ZeroDepError: Value is not a string
 guardString(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Value is not a string
 
 // Dates
@@ -123,7 +123,7 @@ guardString(new Promise.race([])); // throws ZeroDepError: Value is not a string
 guardString(Promise.resolve()); // throws ZeroDepError: Value is not a string
 
 // Regular Expression
-guardString(/[regex]+/gi); // throws ZeroDepError: Value is not a string
+guardString(/[regx]+/gi); // throws ZeroDepError: Value is not a string
 guardString(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not a string
 
 // Sets

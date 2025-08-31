@@ -1,16 +1,19 @@
-# isEqual
+# @zerodep/is-equal
 
-[![version](https://img.shields.io/npm/v/@zerodep/is-equal?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-equal)
-![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
-![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
-![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+[![version](https://img.shields.io/npm/v/@zerodep/is-equal?color=blue)](https://www.npmjs.com/package/@zerodep/is-equal)
+![language](https://img.shields.io/badge/typescript-100%25-blue)
+![types](https://img.shields.io/badge/types-included-blue)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
+![coverage](https://img.shields.io/badge/coverage-100%25-42b983)
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A performant utility to compare two values for equality by value (not by reference). Incomparable items will throw an error.
+A performant utility to deeply compare two values for equality by value (not by reference).
+
+Incomparable items will throw an error, not to be confused with two values being unequal simply returning `false`.
 
 ## Signature
 
@@ -18,21 +21,16 @@ A performant utility to compare two values for equality by value (not by referen
 declare const isEqual: (value1: unknown, value2: unknown) => boolean;
 ```
 
-### Function Parameters
-
-The `isEqual` function has the following parameters:
-
-- **value1** - the first value used in the comparison
-- **value2** - the other value used in the comparison
-
 ## Examples
+
+All @zerodep packages support both ESM and CJS formats, each complete with Typescript typings.
 
 ```javascript
 // ESM
-import { isEqual } from '@zerodep/app';
+import { isEqual } from '@zerodep/is-equal';
 
 // CJS
-const { isEqual } = require('@zerodep/app');
+const { isEqual } = require('@zerodep/is-equal');
 ```
 
 ```javascript
@@ -55,7 +53,6 @@ isEqual(8675309n, BigInt(8675309)); // true
 isEqual(true, true); // true
 isEqual(true, false); // false
 isEqual(true, new Boolean(true)); // true
-isEqual(false, new Boolean(false)); // false
 
 // Dates - are compared by value
 isEqual(new Date('2000-01-01T00:00:00.000Z'), new Date('2000-01-01T00:00:00.000Z')); // true
@@ -74,52 +71,52 @@ isEqual(new TypeError('error'), new RangeError('error')); // false
 // Floats
 isEqual(0.08, 0.08); // true
 isEqual(Math.PI, Math.PI); // true
-isEqual(-273.15, new Number(-273.15)); // false  <-- CAUTION `new Number()` is an object
+isEqual(-273.15, new Number(-273.15)); // false
 
 // Functions
 isEqual(
   () => 'function',
-  () => 'function'
+  () => 'function',
 ); // true
 isEqual(
   () => 'xxxx',
-  () => 'yyyy'
+  () => 'yyyy',
 ); // false
 
-// Generators - cannot be compared
-isEqual(
-  function* () {
-    yield 'a';
-  },
-  function* () {
-    yield 'a';
-  }
-); // false
-isEqual(
-  function* () {
-    yield 'a';
-  },
-  function* () {
-    yield 'b';
-  }
-); // false
+// Generators
+const gen1 = (function* simpleGenerator() {
+  yield 1;
+})();
+const gen2 = (async function* asyncGenerator() {
+  yield 1;
+})();
+isEqual(gen1, gen1); // true
+isEqual(gen1, gen2); // false
+isEqual(gen2, gen2); // true
 
 // Maps
 isEqual(new Map(), new Map()); // true
-isEqual(new Map([['key1', 123]])), new Map([['key1', 123]]); // true
-isEqual(new Map([['key1', 123]])), new Map([['2key', 123]]); // false
-isEqual(new Map([['key1', 123]])), new Map([['key1', 456]]); // false
-isEqual(new Map([['key1', 123]], ['key2', 456])),
+isEqual(new Map([['key1', 123]]), new Map([['key1', 123]])); // true
+isEqual(new Map([['key1', 123]]), new Map([['2key', 123]])); // false
+isEqual(new Map([['key1', 123]]), new Map([['key1', 456]])); // false
+
+isEqual(
+  new Map([['key1', 123]]),
   new Map([
     ['key1', 123],
     ['key2', 456],
-  ]); // true
-isEqual(new Map([['key1', 123]], ['key2', 456])),
+  ]),
+); // false
+isEqual(
+  new Map([
+    ['key1', 123],
+    ['key2', 456],
+  ]),
   new Map([
     ['key2', 456],
     ['key1', 123],
-  ]); // true
-isEqual(new Map([['key1', 123]], ['key2', 456])), new Map([['key1', 123]]); // false
+  ]),
+); // false
 
 // Numbers
 isEqual(0, 0); // true
@@ -131,7 +128,7 @@ isEqual(Infinity, -Infinity); // false
 isEqual(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER); // true
 isEqual(Number.MAX_SAFE_INTEGER, Number.MIN_SAFE_INTEGER); // false
 isEqual(Number.NaN, Number.NaN); // true
-isEqual(2161, new Number(2161)); // false  <-- CAUTION `new Number()` is an object
+isEqual(2161, new Number(2161)); // false
 
 // POJOs - are deeply compared by value
 isEqual({}, {}); // true
@@ -144,10 +141,7 @@ isEqual({ a: 1, b: { c: [1, 2] } }, { b: 1, c: { d: [1, 2] } }); // false
 isEqual({ a: 1, b: { c: [1, 2] } }, { a: 1, b: { c: [2, 1] } }); // false
 
 // Promises - cannot be compared
-isEqual(new Promise(() => {}), new Promise(() => {})); // false
-isEqual(Promise.all([]), Promise.all([])); // false
-isEqual(Promise.allSettled([]), Promise.allSettled([])); // false
-isEqual(Promise.race([]), Promise.race([])); // false
+isEqual(new Promise(() => 1), new Promise(() => 1)); // false
 isEqual(Promise.resolve(), Promise.resolve()); // false
 
 // Regular Expression
@@ -158,15 +152,15 @@ isEqual(new RegExp('abc'), new RegExp('def')); // false
 
 // Sets
 isEqual(new Set(), new Set()); // true
-isEqual(new Set([1, 2, 3])), new Set([1, 2, 3]); // true
-isEqual(new Set([1, 2, 3])), new Set([3, 2, 1]); // true  <-- CAUTION: sets are unordered
-isEqual(new Set([1, 2, 3])), new Set([1, 2]); // false
+(isEqual(new Set([1, 2, 3])), new Set([1, 2, 3])); // true
+(isEqual(new Set([1, 2, 3])), new Set([3, 2, 1])); // false
+(isEqual(new Set([1, 2, 3])), new Set([1, 2])); // false
 
 // Strings
 isEqual('', ''); // true
 isEqual('asdf', 'asdf'); // true
 isEqual('asdf', 'qwerty'); // false
-isEqual('G', new String('G')); // true
+isEqual('G', new String('G')); // false
 
 // Symbols - cannot be compared
 isEqual(Symbol(), Symbol()); // throws ZeroDepError - Cannot compare Symbol values
@@ -181,11 +175,13 @@ isEqual(new WeakMap(), new WeakMap()); // throws ZeroDepError - Cannot compare W
 isEqual(new WeakSet(), new WeakSet()); // throws ZeroDepError - Cannot compare WeakSet values
 ```
 
+---
+
 ## Installation Sources
 
-This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](/) for more information.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](https://zerodep.app/#/) for more information.
 
-```shell
+```
 # all @zerodep packages
 npm i @zerodep/app
 
@@ -195,28 +191,40 @@ npm i @zerodep/utilities
 # all @zerodep "is" functions
 npm i @zerodep/is
 
-# only this @zerodep package
+# just this package
 npm i @zerodep/is-equal
 ```
 
 ---
 
-## Package Changelog
+## Versions
 
-All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+- all notable changes are documented in the [Release Notes](https://github.com/cdepage/zerodep/releases)
 
---
+### v3.x
 
-#### Release 2.1.x
+- supports Node v20, v22 & v24
+- built with Typescript v5.8.x
 
-**Fixed**
+### v2.x
 
-- the `isEqual()` function to ignore Map keys ordering, Set value ordering, and handle array item ordering
+- supports Node v18, v20, & v22
+- built with Typescript v5.5.x
 
---
+---
 
-#### Release 2.0.x
+## ZeroDep Advantages
 
-**Breaking**
+- **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases node_modules folder size
+- **ESM & CJS** - has both ecmascript modules and common javascript exports
+- **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible size
+- **Fully typed** - typescript definitions are provided for every package for a better developer experience
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
+- **100% Tested** - all methods and packages are fully unit tested
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
+- **MIT Licensed** - permissively licensed for maximum usability
 
-- renamed the `@zerodep/is.equal` package to `@zerodep/is-equal` for consistency across @zerodep ecosystem
+```
+
+```

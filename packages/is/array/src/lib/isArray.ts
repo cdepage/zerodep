@@ -1,8 +1,8 @@
-export const isArray = (value: unknown): boolean => {
+export const isArray = <T>(value: unknown): value is Array<T> => {
   try {
     return Array.isArray(value);
   } catch {
-    // anything that isn't handled by the above code is definitely false
+    // anything not handled by the above code is definitely false
     return false;
   }
 };

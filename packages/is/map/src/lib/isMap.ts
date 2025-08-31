@@ -1,8 +1,3 @@
-export const isMap = (value: unknown): boolean => {
-  try {
-    return Object.prototype.toString.call(value) === '[object Map]';
-  } catch {
-    // anything that isn't handled by the above code is definitely false
-    return false;
-  }
+export const isMap = <K, V>(value: unknown): value is Map<K, V> => {
+  return value instanceof Map;
 };

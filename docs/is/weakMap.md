@@ -1,187 +1,184 @@
-# is-weakmap()
+# @zerodep/is-weakmap
 
-[![version](https://img.shields.io/npm/v/@zerodep/is-weakmap?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-weakmap)
-![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
-![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
-![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+[![version](https://img.shields.io/npm/v/@zerodep/is-weakmap?color=blue)](https://www.npmjs.com/package/@zerodep/is-weakmap)
+![language](https://img.shields.io/badge/typescript-100%25-blue)
+![types](https://img.shields.io/badge/types-included-blue)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
+![coverage](https://img.shields.io/badge/coverage-100%25-42b983)
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A simple, performant utility to determine if a value is a Weak Map.
+A performant utility to determine if a value is a Weak Map and assign a `WeakMap<K,V>` Typescript type to the value.
 
 ## Signature
 
 ```typescript
-declare const isWeakMap: (value: unknown) => boolean;
+declare const isWeakMap: <K extends object, V>(value: unknown) => boolean;
+// value will be of type WeakMap<K, V>
 ```
-
-### Function Parameters
-
-The `isWeakMap` function has the following parameters:
-
-- **value** - the value to check
 
 ## Examples
 
+All @zerodep packages support both ESM and CJS formats, each complete with Typescript typings.
+
 ```javascript
 // ESM
-import { isWeakmap } from '@zerodep/app';
+import { isWeakMap } from '@zerodep/is-weakmap';
 
 // CJS
-// CJS
-const { isWeakmap } = require('@zerodep/app');
+const { isWeakMap } = require('@zerodep/is-weakmap');
 ```
 
 ```javascript
 // Arrays
-isWeakmap([]); // false
-isWeakmap([1, 2, 3]); // false
-isWeakmap(['a', 'b', 'c']); // false
+isWeakMap([]); // false
+isWeakMap([1, 2, 3]); // false
+isWeakMap(['a', 'b', 'c']); // false
 
 // BigInts
-isWeakmap(42n); // false
-isWeakmap(0n); // false
-isWeakmap(-0n); // false
-isWeakmap(-42n); // false
+isWeakMap(42n); // false
+isWeakMap(0n); // false
+isWeakMap(-0n); // false
+isWeakMap(-42n); // false
 
 // Booleans
-isWeakmap(true); // false
-isWeakmap(false); // false
+isWeakMap(true); // false
+isWeakMap(false); // false
 
 // Class
-isWeakmap(
+isWeakMap(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // false
 
 // Dates
-isWeakmap(new Date()); // false
-isWeakmap(new Date('1970-01-01T12:00:00.000Z')); // false
-isWeakmap(new Date('2099-12-31')); // false
+isWeakMap(new Date()); // false
+isWeakMap(new Date('1970-01-01T12:00:00.000Z')); // false
+isWeakMap(new Date('2099-12-31')); // false
 
 // Empty
-isWeakmap(null); // false
-isWeakmap(undefined); // false
+isWeakMap(null); // false
+isWeakMap(undefined); // false
 
 // Errors
-isWeakmap(new Error('message')); // false
-isWeakmap(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
+isWeakMap(new Error('message')); // false
 
 // Floats
-isWeakmap(3.14); // false
-isWeakmap(0.0); // false
-isWeakmap(-0.0); // false
-isWeakmap(-3.14); // false
-isWeakmap(Math.E); // false
-isWeakmap(Math.PI); // false
-isWeakmap(Number.MIN_VALUE); // false
+isWeakMap(3.14); // false
+isWeakMap(0.0); // false
+isWeakMap(-0.0); // false
+isWeakMap(-3.14); // false
+isWeakMap(Math.E); // false
+isWeakMap(Math.PI); // false
+isWeakMap(Number.MIN_VALUE); // false
 
 // Functions
-isWeakmap(() => 'function'); // false
-isWeakmap(async () => 'function'); // false
+isWeakMap(() => 'function'); // false
+isWeakMap(async () => 'function'); // false
 
 // Generators
-isWeakmap(function* () {
-  yield 'a';
-}); // false
-isWeakmap(async function* () {
-  yield 'a';
-}); // false
+const gen1 = (function* simpleGenerator() {
+  yield 1;
+})();
+const gen2 = (async function* asyncGenerator() {
+  yield 1;
+})();
+isWeakMap(gen1); // false
+isWeakMap(gen2); // false
 
 // Maps
-isWeakmap(new Map()); // false
-isWeakmap(new Map([['key1', 123]])); // false
-isWeakmap(new Map([['key1', 'value1']])); // false
+isWeakMap(new Map()); // false
+isWeakMap(new Map([['key1', 123]])); // false
+isWeakMap(new Map([['key1', 'value1']])); // false
 
 // Numbers
-isWeakmap(Number.POSITIVE_INFINITY); // false
-isWeakmap(Number.MAX_SAFE_INTEGER); // false
-isWeakmap(3e8); // false
-isWeakmap(42); // false
-isWeakmap(1); // false
-isWeakmap(0); // false
-isWeakmap(-0); // false
-isWeakmap(-1); // false
-isWeakmap(-42); // false
-isWeakmap(-3e8); // false
-isWeakmap(Number.MIN_SAFE_INTEGER); // false
-isWeakmap(Number.NEGATIVE_INFINITY); // false
-isWeakmap(Number.NaN); // false
+isWeakMap(Number.POSITIVE_INFINITY); // false
+isWeakMap(Number.MAX_SAFE_INTEGER); // false
+isWeakMap(3e8); // false
+isWeakMap(42); // false
+isWeakMap(1); // false
+isWeakMap(0); // false
+isWeakMap(-0); // false
+isWeakMap(-1); // false
+isWeakMap(-42); // false
+isWeakMap(-3e8); // false
+isWeakMap(Number.MIN_SAFE_INTEGER); // false
+isWeakMap(Number.NEGATIVE_INFINITY); // false
+isWeakMap(Number.NaN); // false
 
 // POJOs
-isWeakmap({}); // false
-isWeakmap({ key: 'string' }); // false
-isWeakmap({ key: 123 }); // false
+isWeakMap({}); // false
+isWeakMap({ key: 'string' }); // false
+isWeakMap({ key: 123 }); // false
 
 // Promise
-isWeakmap(new Promise(() => {})); // false
-isWeakmap(new Promise.all([])); // false
-isWeakmap(new Promise.allSettled([])); // false
-isWeakmap(new Promise.race([])); // false
-isWeakmap(Promise.resolve()); // false
+isWeakMap(new Promise(() => 1)); // false
+isWeakMap(Promise.resolve()); // false
 
 // Regular Expression
-isWeakmap(/[regex]+/gi); // false
-isWeakmap(new RegExp('d', 'gi')); // false
+isWeakMap(/[regx]+/gi); // false
+isWeakMap(new RegExp('d', 'gi')); // false
 
 // Sets
-isWeakmap(new Set()); // false
-isWeakmap(new Set([1, 2, 3])); // false
-isWeakmap(new Set(['a', 'b', 'c'])); // false
+isWeakMap(new Set()); // false
+isWeakMap(new Set([1, 2, 3])); // false
+isWeakMap(new Set(['a', 'b', 'c'])); // false
 
 // Strings
-isWeakmap(''); // false
-isWeakmap('a longer string'); // false
-isWeakmap('1000n'); // false
-isWeakmap('3e8'); // false
-isWeakmap('42'); // false
-isWeakmap('3.14'); // false
-isWeakmap('0'); // false
-isWeakmap('-0'); // false
-isWeakmap('-3.14'); // false
-isWeakmap('-42'); // false
-isWeakmap('-3e8'); // false
-isWeakmap('-1000n'); // false
+isWeakMap(''); // false
+isWeakMap('a longer string'); // false
+isWeakMap('1000n'); // false
+isWeakMap('3e8'); // false
+isWeakMap('42'); // false
+isWeakMap('3.14'); // false
+isWeakMap('0'); // false
+isWeakMap('-0'); // false
+isWeakMap('-3.14'); // false
+isWeakMap('-42'); // false
+isWeakMap('-3e8'); // false
+isWeakMap('-1000n'); // false
 
 // Symbols
-isWeakmap(Symbol()); // false
-isWeakmap(Symbol('name')); // false
+isWeakMap(Symbol()); // false
+isWeakMap(Symbol('name')); // false
 
 // This
-isWeakmap(this); // false
-isWeakmap(globalThis); // false
+isWeakMap(this); // false
+isWeakMap(globalThis); // false
 
 // TypedArrays
-isWeakmap(new Int8Array(2)); // false
-isWeakmap(new Int16Array(2)); // false
-isWeakmap(new Int32Array(2)); // false
-isWeakmap(new Uint8Array(2)); // false
-isWeakmap(new Uint16Array(2)); // false
-isWeakmap(new Uint32Array(2)); // false
-isWeakmap(new Uint8ClampedArray(2)); // false
+isWeakMap(new Int8Array(2)); // false
+isWeakMap(new Int16Array(2)); // false
+isWeakMap(new Int32Array(2)); // false
+isWeakMap(new Uint8Array(2)); // false
+isWeakMap(new Uint16Array(2)); // false
+isWeakMap(new Uint32Array(2)); // false
+isWeakMap(new Uint8ClampedArray(2)); // false
 
-isWeakmap(new BigInt64Array(2)); // false
-isWeakmap(new BigUint64Array(2)); // false
+isWeakMap(new BigInt64Array(2)); // false
+isWeakMap(new BigUint64Array(2)); // false
 
-isWeakmap(new Float32Array(2)); // false
-isWeakmap(new Float64Array(2)); // false
+isWeakMap(new Float32Array(2)); // false
+isWeakMap(new Float64Array(2)); // false
 
-isWeakmap(new SharedArrayBuffer(512)); // false
+isWeakMap(new SharedArrayBuffer(512)); // false
 
 // WeakMap and WeakSet
-isWeakmap(new WeakMap()); // true
-isWeakmap(new WeakSet()); // false
+isWeakMap(new WeakMap()); // true
+isWeakMap(new WeakSet()); // false
 ```
+
+---
 
 ## Installation Sources
 
-This function is available from any of the following packages to best match the needs of your project. All packages support tree shaking.
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](https://zerodep.app/#/) for more information.
 
-```shell
+```
 # all @zerodep packages
 npm i @zerodep/app
 
@@ -189,22 +186,38 @@ npm i @zerodep/app
 npm i @zerodep/utilities
 
 # all @zerodep "is" functions
-@zerodep/is
+npm i @zerodep/is
 
-# only this @zerodep package
+# just this package
 npm i @zerodep/is-weakmap
 ```
 
 ---
 
-## Package Changelog
+## Versions
 
-All notable changes to this project will be documented in this file. This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
+- all notable changes are documented in the [Release Notes](https://github.com/cdepage/zerodep/releases)
 
---
+### v3.x
 
-#### Release 2.0.x
+- supports Node v20, v22 & v24
+- built with Typescript v5.8.x
 
-**Breaking**
+### v2.x
 
-- renamed the `@zerodep/is.weakmap` package to `@zerodep/is-weakmap` for consistency across @zerodep ecosystem
+- supports Node v18, v20, & v22
+- built with Typescript v5.5.x
+
+---
+
+## ZeroDep Advantages
+
+- **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases node_modules folder size
+- **ESM & CJS** - has both ecmascript modules and common javascript exports
+- **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible size
+- **Fully typed** - typescript definitions are provided for every package for a better developer experience
+- **Semantically named** - package and method names are easy to grok, remember, use, and read
+- **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
+- **100% Tested** - all methods and packages are fully unit tested
+- **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs
+- **MIT Licensed** - permissively licensed for maximum usability

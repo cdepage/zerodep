@@ -46,12 +46,12 @@ guardFunction(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not a function
 guardFunction(null); // throws ZeroDepError: Value is not a function
 guardFunction({ an: 'object' }); // throws ZeroDepError: Value is not a function
 guardFunction(new Promise(() => {})); // throws ZeroDepError: Value is not a function
-guardFunction(/[regex]+/gi); // throws ZeroDepError: Value is not a function
+guardFunction(/[regx]+/gi); // throws ZeroDepError: Value is not a function
 guardFunction(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a function
 guardFunction('a string'); // throws ZeroDepError: Value is not a function
 guardFunction(Symbol()); // throws ZeroDepError: Value is not a function

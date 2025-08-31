@@ -52,7 +52,7 @@ guardArray(false); // throws ZeroDepError: Value is not an array
 guardArray(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Value is not an array
 
 // Dates
@@ -123,7 +123,7 @@ guardArray(new Promise.race([])); // throws ZeroDepError: Value is not an array
 guardArray(Promise.resolve()); // throws ZeroDepError: Value is not an array
 
 // Regular Expression
-guardArray(/[regex]+/gi); // throws ZeroDepError: Value is not an array
+guardArray(/[regx]+/gi); // throws ZeroDepError: Value is not an array
 guardArray(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not an array
 
 // Sets

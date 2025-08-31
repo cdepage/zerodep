@@ -14,11 +14,11 @@ const getPrefix = (prefix: string) => {
   throw new Error(`Prefix "${prefix}" not found`);
 };
 
-// build the regex
+// build the regexp
 const prefixes = Object.keys(addressListDirectionals)
   .concat(Object.values(addressListDirectionals).flat())
   .join('|');
-const regex = new RegExp(`\\b(?<prefix>(${prefixes}))\\b`, 'gi');
+const regexp = new RegExp(`\\b(?<prefix>(${prefixes}))\\b`, 'gi');
 
 interface IMatchGroup {
   prefix?: string;

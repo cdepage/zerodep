@@ -52,7 +52,7 @@ guardPojo(false); // throws ZeroDepError: Value is not a JSON object
 guardPojo(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Value is not a JSON object
 
 // Dates
@@ -123,7 +123,7 @@ guardPojo(new Promise.race([])); // throws ZeroDepError: Value is not a JSON obj
 guardPojo(Promise.resolve()); // throws ZeroDepError: Value is not a JSON object
 
 // Regular Expression
-guardPojo(/[regex]+/gi); // throws ZeroDepError: Value is not a JSON object
+guardPojo(/[regx]+/gi); // throws ZeroDepError: Value is not a JSON object
 guardPojo(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not a JSON object
 
 // Sets

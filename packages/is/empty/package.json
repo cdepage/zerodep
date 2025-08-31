@@ -1,7 +1,7 @@
 {
   "name": "@zerodep/is-empty",
-  "description": "A utility to check if a value is empty",
-  "version": "2.0.12",
+  "description": "A performant utility to determine if a value is empty",
+  "version": "3.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,10 +12,10 @@
   "bugs": "https://github.com/cdepage/zerodep/issues",
   "author": "Chris dePage <chris@zerodep.app>",
   "sideEffects": false,
+  "type": "module",
   "types": "index.d.mts",
   "main": "index.min.cjs",
   "module": "index.min.mjs",
-  "type": "module",
   "exports": {
     ".": {
       "import": {
@@ -30,7 +30,17 @@
   },
   "keywords": [
     "is",
-    "empty",
-    "type"
+    "mepty",
+    "is-empty",
+    "isEmpty",
+    "map",
+    "set",
+    "array",
+    "object",
+    "pojo",
+    "check",
+    "type",
+    "typescript",
+    "utility"
   ]
 }

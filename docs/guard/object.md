@@ -52,7 +52,7 @@ guardObject(false); // throws ZeroDepError: Value is not an object
 guardObject(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // throws ZeroDepError: Value is not an object
 
 // Dates
@@ -123,7 +123,7 @@ guardObject(new Promise.race([])); // throws ZeroDepError: Value is not an objec
 guardObject(Promise.resolve()); // throws ZeroDepError: Value is not an object
 
 // Regular Expression
-guardObject(/[regex]+/gi); // throws ZeroDepError: Value is not an object
+guardObject(/[regx]+/gi); // throws ZeroDepError: Value is not an object
 guardObject(new RegExp('d', 'gi')); // throws ZeroDepError: Value is not an object
 
 // Sets

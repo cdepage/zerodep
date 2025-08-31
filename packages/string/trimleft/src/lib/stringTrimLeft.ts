@@ -8,9 +8,9 @@ export const stringTrimLeft = (value: string, char = ''): string => {
     return value.trimStart();
   }
 
-  // ensure the character in the regex is regex-safe
+  // ensure the character in the regexp is regexp-safe
   const safeChar = ['.', '?'].includes(char) ? `\\${char}` : char;
-  const regex = new RegExp(`^${safeChar}+`);
+  const regexp = new RegExp(`^${safeChar}+`);
 
-  return value.replace(regex, '');
+  return value.replace(regexp, '');
 };

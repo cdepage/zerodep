@@ -1,18 +1,17 @@
 # @zerodep/is-nil
 
-[![version](https://img.shields.io/npm/v/@zerodep/is-nil?style=flat-square&color=blue)](https://www.npmjs.com/package/@zerodep/is-nil)
-![language](https://img.shields.io/badge/typescript-100%25-blue?style=flat-square)
-![types](https://img.shields.io/badge/types-included-blue?style=flat-square)
-![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue&style=flat-square)
+[![version](https://img.shields.io/npm/v/@zerodep/is-nil?color=blue)](https://www.npmjs.com/package/@zerodep/is-nil)
+![language](https://img.shields.io/badge/typescript-100%25-blue)
+![types](https://img.shields.io/badge/types-included-blue)
+![license](https://img.shields.io/github/license/cdepage/zerodep?color=blue)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cdepage/zerodep/badge)](https://www.codefactor.io/repository/github/cdepage/zerodep)
 [![Known Vulnerabilities](https://snyk.io/test/github/cdepage/zerodep/badge.svg)](https://snyk.io/test/github/cdepage/zerodep)
+![coverage](https://img.shields.io/badge/coverage-100%25-42b983)
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9225/badge)](https://www.bestpractices.dev/projects/9225)
 
-A simple, performant utility to determine if a value is `null` or `undefined`.
-
-Full documentation is available at the [zerodep.app](http://zerodep.app/#/is/nil) page.
+A performant utility to determine if a value is `null` or `undefined`.
 
 ## Signature
 
@@ -52,7 +51,7 @@ isNil(false); // false
 isNil(
   class SomeClass {
     constructor() {}
-  }
+  },
 ); // false
 
 // Dates
@@ -66,7 +65,6 @@ isNil(undefined); // true
 
 // Errors
 isNil(new Error('message')); // false
-isNil(new AggregateError([new Error('err1'), new Error('err2')], 'message')); // false
 
 // Floats
 isNil(3.14); // false
@@ -82,12 +80,14 @@ isNil(() => 'function'); // false
 isNil(async () => 'function'); // false
 
 // Generators
-isNil(function* () {
-  yield 'a';
-}); // false
-isNil(async function* () {
-  yield 'a';
-}); // false
+const gen1 = (function* simpleGenerator() {
+  yield 1;
+})();
+const gen2 = (async function* asyncGenerator() {
+  yield 1;
+})();
+isNil(gen1); // false
+isNil(gen2); // false
 
 // Maps
 isNil(new Map()); // false
@@ -115,14 +115,11 @@ isNil({ key: 'string' }); // false
 isNil({ key: 123 }); // false
 
 // Promise
-isNil(new Promise(() => {})); // false
-isNil(new Promise.all([])); // false
-isNil(new Promise.allSettled([])); // false
-isNil(new Promise.race([])); // false
+isNil(new Promise(() => 1)); // false
 isNil(Promise.resolve()); // false
 
 // Regular Expression
-isNil(/[regex]+/gi); // false
+isNil(/[regx]+/gi); // false
 isNil(new RegExp('d', 'gi')); // false
 
 // Sets
@@ -176,6 +173,42 @@ isNil(new WeakSet()); // false
 
 ---
 
+## Installation Sources
+
+This functionality is available from any of the following packages to best match the needs of your project. All packages support tree shaking. Checkout the [Module Matrix](https://zerodep.app/#/) for more information.
+
+```
+# all @zerodep packages
+npm i @zerodep/app
+
+# all @zerodep "utilities" functions
+npm i @zerodep/utilities
+
+# all @zerodep "is" functions
+npm i @zerodep/is
+
+# just this package
+npm i @zerodep/is-nil
+```
+
+---
+
+## Versions
+
+- all notable changes are documented in the [Release Notes](https://github.com/cdepage/zerodep/releases)
+
+### v3.x
+
+- supports Node v20, v22 & v24
+- built with Typescript v5.8.x
+
+### v2.x
+
+- supports Node v18, v20, & v22
+- built with Typescript v5.5.x
+
+---
+
 ## ZeroDep Advantages
 
 - **Zero npm dependencies** - completely eliminates all risk of supply-chain attacks, decreases node_modules folder size
@@ -183,7 +216,6 @@ isNil(new WeakSet()); // false
 - **Tree Shakable** - built to be fully tree shakable ensuring your packages are the smallest possible size
 - **Fully typed** - typescript definitions are provided for every package for a better developer experience
 - **Semantically named** - package and method names are easy to grok, remember, use, and read
-- **Documented** - actually useful documentation with examples at [zerodep.app](https://zerodep.app)
 - **Intelligently Packaged** - multiple npm packages of different sizes available allowing a menu or a-la-carte composition of capabilities
 - **100% Tested** - all methods and packages are fully unit tested
 - **Predictably Versioned** - semantically versioned for peace-of-mind upgrading, this includes changelogs

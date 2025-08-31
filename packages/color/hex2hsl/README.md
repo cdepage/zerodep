@@ -46,12 +46,12 @@ colorHex2hsl(
   new Map([
     ['a', 1],
     ['b', 2],
-  ])
+  ]),
 ); // throws ZeroDepError: Value is not a Hex2hsl
 colorHex2hsl(null); // throws ZeroDepError: Value is not a Hex2hsl
 colorHex2hsl({ an: 'object' }); // throws ZeroDepError: Value is not a Hex2hsl
 colorHex2hsl(new Promise(() => {})); // throws ZeroDepError: Value is not a Hex2hsl
-colorHex2hsl(/[regex]+/gi); // throws ZeroDepError: Value is not a Hex2hsl
+colorHex2hsl(/[regx]+/gi); // throws ZeroDepError: Value is not a Hex2hsl
 colorHex2hsl(new Set([1, 2, 3])); // throws ZeroDepError: Value is not a Hex2hsl
 colorHex2hsl('a string'); // throws ZeroDepError: Value is not a Hex2hsl
 colorHex2hsl(Symbol()); // throws ZeroDepError: Value is not a Hex2hsl
