@@ -24,13 +24,13 @@ Full documentation is available at [https://zerodep.app](https://zerodep.app) or
 
 ## Support
 
-All @zerodep packages are built for the ES2022 specification. Should you need to support older environments you may need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
+All v3.x @zerodep packages are built for the ES2024 specification. Should you need to support older environments you may need to add appropriate [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill). All packages are tested on the following platforms/browsers:
 
 **Node**
 
+- v24.x - Krypton LTS
 - v22.x - Jod LTS
 - v20.x - Iron LTS
-- v18.x - Hydrogen LTS
 
 **Browsers**
 
