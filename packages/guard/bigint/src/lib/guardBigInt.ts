@@ -20,19 +20,16 @@ export const guardBigIntHOF = (options: GuardBigIntOptions = {}) => {
     // we need to check for the typeof first as "undefined" will cause isInteger() to error
     if (!isBigInt(value)) {
       const error = new ZeroDepError('Value is not a BigInt');
-      error.value = value;
       throw error;
     }
 
     if (typeof config.min !== 'undefined' && (value as BigInt) < config.min) {
       const error = new ZeroDepError(`BigInt is less than ${config.min}`);
-      error.value = value;
       throw error;
     }
 
     if (typeof config.max !== 'undefined' && (value as BigInt) > config.max) {
       const error = new ZeroDepError(`BigInt is greater than ${config.max}`);
-      error.value = value;
       throw error;
     }
   };

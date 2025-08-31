@@ -1,5 +1,7 @@
-export class ZeroDepError extends Error {
-  constructor(message = 'An unexpected error has occurred') {
+import { ZeroDepError } from './ZeroDepError';
+
+export class ZeroDepTypeError extends ZeroDepError {
+  constructor(message = 'Invalid Type') {
     super(message);
 
     // ensure the name matches the class

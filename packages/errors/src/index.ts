@@ -1,3 +1,3 @@
-export type { ZeroDepErrorSource, ZeroDepErrorCategory } from './types';
-
 export { ZeroDepError } from './ZeroDepError';
+export { ZeroDepTypeError } from './ZeroDepTypeError';
+export { ZeroDepGuardError } from './ZeroDepGuardError';

@@ -18,7 +18,6 @@ export const guardObjectHOF = (options: GuardObjectOptions = {}) => {
   return (value: unknown): void => {
     if (!isObject(value)) {
       const error = new ZeroDepError('Value is not an object');
-      error.value = value;
       throw error;
     }
 
@@ -27,9 +26,8 @@ export const guardObjectHOF = (options: GuardObjectOptions = {}) => {
       Object.keys(value as Record<string, any>).length < config.minQuantity
     ) {
       const error = new ZeroDepError(
-        `Object has fewer than ${config.minQuantity} items`
+        `Object has fewer than ${config.minQuantity} items`,
       );
-      error.value = value;
       throw error;
     }
 
@@ -38,9 +36,8 @@ export const guardObjectHOF = (options: GuardObjectOptions = {}) => {
       Object.keys(value as Record<string, any>).length > config.maxQuantity
     ) {
       const error = new ZeroDepError(
-        `Object has more than ${config.maxQuantity} items`
+        `Object has more than ${config.maxQuantity} items`,
       );
-      error.value = value;
       throw error;
     }
   };

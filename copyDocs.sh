@@ -6,6 +6,9 @@ cp QUICK_START.md ./docs/
 cp ROADMAP.md ./docs/
 cp SECURITY.md ./docs/
 
+# Copy error classes
+cp ./packages/errors/README.md ./docs/errors.md
+
 # Copy is functions
 cp ./packages/is/array/README.md ./docs/is/array.md
 cp ./packages/is/async/README.md ./docs/is/async.md

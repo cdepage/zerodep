@@ -11,7 +11,6 @@ export const guardBooleanHOF = (options: GuardBooleanOptions = {}) => {
     }
 
     const error = new ZeroDepError('Value is not a boolean');
-    error.value = value;
     throw error;
   };
 };

@@ -10,7 +10,7 @@ import { numberFromLocaleString } from '@zerodep/to-number';
 const errMessage = `Cannot convert to integer`;
 
 export const toInteger = (
-  value: number | bigint | string | boolean | Date
+  value: number | bigint | string | boolean | Date,
 ): number => {
   // easy path
   if (isInteger(value)) {
@@ -45,7 +45,6 @@ export const toInteger = (
     }
 
     const error = new ZeroDepError(errMessage);
-    error.value = value;
     throw error;
   }
 };

@@ -19,19 +19,16 @@ export const guardFloatHOF = (options: GuardFloatOptions = {}) => {
     // we need to check for the typeof first as "undefined" will cause isFloat() to error
     if (!isFloat(value)) {
       const error = new ZeroDepError('Value is not a float');
-      error.value = value;
       throw error;
     }
 
     if (typeof config.min !== 'undefined' && (value as number) < config.min) {
       const error = new ZeroDepError(`Float is less than ${config.min}`);
-      error.value = value;
       throw error;
     }
 
     if (typeof config.max !== 'undefined' && (value as number) > config.max) {
       const error = new ZeroDepError(`Float is greater than ${config.max}`);
-      error.value = value;
       throw error;
     }
   };

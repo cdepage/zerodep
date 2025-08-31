@@ -51,7 +51,7 @@ export const numberFromLocaleString = (value: unknown): number | null => {
 const errMessage = `Cannot convert to number`;
 
 export const toNumber = (
-  value: number | bigint | string | boolean | Date
+  value: number | bigint | string | boolean | Date,
 ): number => {
   if (
     !isNumber(value) &&
@@ -83,7 +83,6 @@ export const toNumber = (
     }
 
     const error = new ZeroDepError(errMessage);
-    error.value = value;
     throw error;
   }
 };

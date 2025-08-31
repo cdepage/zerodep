@@ -32,7 +32,6 @@ const replacer = (_key: string, value: any) => {
     type !== '[object Undefined]'
   ) {
     const error = new ZeroDepError(errMessage);
-    error.value = value;
     throw error;
   }
 
@@ -61,7 +60,7 @@ export const toPojo = <T = Record<string, Serializables> | Serializables[]>(
     | { [key: string]: Serializables }
     | Map<string, Serializables>
     | Set<Serializables>
-    | null
+    | null,
 ): T | null => {
   const type = Object.prototype.toString.call(value);
 
@@ -80,7 +79,6 @@ export const toPojo = <T = Record<string, Serializables> | Serializables[]>(
     type !== '[object AsyncFunction]'
   ) {
     const error = new ZeroDepError(errMessage);
-    error.value = value;
     throw error;
   }
 

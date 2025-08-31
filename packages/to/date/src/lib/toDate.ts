@@ -17,7 +17,7 @@ export const toDate = (value: string | number | bigint | Date): Date => {
 
   // only strings, numbers and BigInts have any hope of becoming dates
   if (!isString(value) && !isNumber(value) && !isBigInt(value)) {
-    throw new ZeroDepError(errMessage, 'type', 'to');
+    throw new ZeroDepError(errMessage);
   }
 
   // a BigInt must be converted to a string before they can be used
@@ -35,11 +35,9 @@ export const toDate = (value: string | number | bigint | Date): Date => {
       if (isDate(date)) {
         return date;
       }
-      throw new ZeroDepError(errMessage, 'type', 'to');
+      throw new ZeroDepError(errMessage);
     } catch (err: any) {
-      throw err instanceof ZeroDepError
-        ? err
-        : new ZeroDepError(errMessage, 'unknown', 'to');
+      throw err instanceof ZeroDepError ? err : new ZeroDepError(errMessage);
     }
   }
 
@@ -55,11 +53,9 @@ export const toDate = (value: string | number | bigint | Date): Date => {
       return breakDateIntoPieces(value as string);
     }
 
-    throw new ZeroDepError(errMessage, 'type', 'to');
+    throw new ZeroDepError(errMessage);
   } catch (err: any) {
-    throw err instanceof ZeroDepError
-      ? err
-      : new ZeroDepError(errMessage, 'unknown', 'to');
+    throw err instanceof ZeroDepError ? err : new ZeroDepError(errMessage);
   }
 };
 
@@ -191,5 +187,5 @@ const breakDateIntoPieces = (value: string) => {
     return new Date(`${yyyy}-${mm}-${dd}T${hr}:${min}:${sec}.${msec}${tz}`);
   }
 
-  throw new ZeroDepError(errMessage, 'unknown', 'to');
+  throw new ZeroDepError(errMessage);
 };

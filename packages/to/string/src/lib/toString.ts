@@ -76,7 +76,6 @@ export const toString = (value: Stringifiable): string => {
     isPromise(value)
   ) {
     const error = new ZeroDepError('Cannot convert to string');
-    error.value = value;
     throw error;
   }
 
@@ -86,7 +85,6 @@ export const toString = (value: Stringifiable): string => {
     return JSON.stringify(toPojo(value));
   } catch {
     const error = new ZeroDepError('Cannot convert to string');
-    error.value = value;
     throw error;
   }
 };

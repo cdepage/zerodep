@@ -19,19 +19,16 @@ export const guardNumberHOF = (options: GuardNumberOptions = {}) => {
     // we need to check for the typeof first as "undefined" will cause isNumber() to error
     if (!isNumber(value)) {
       const error = new ZeroDepError('Value is not a number');
-      error.value = value;
       throw error;
     }
 
     if (typeof config.min !== 'undefined' && (value as number) < config.min) {
       const error = new ZeroDepError(`Number is less than ${config.min}`);
-      error.value = value;
       throw error;
     }
 
     if (typeof config.max !== 'undefined' && (value as number) > config.max) {
       const error = new ZeroDepError(`Number is greater than ${config.max}`);
-      error.value = value;
       throw error;
     }
   };

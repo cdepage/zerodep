@@ -13,12 +13,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - the `isEqual` function requires order of items in an array to be equal
 - the `isPojo` has been renamed to `isJson`
 - the `isRegex` has been renamed to `isRegExp`
+- the `ZeroDepError` class has had meta information fields (category, source, value) removed
 
 **Added**
 
 - added support and testing for Node 24.x
 - added the `isJson()` function and the `@zerodep/is-json` package
 - added the `isRegExp()` function and the `@zerodep/is-regexp` package
+- added the `ZeroDepTypeError` class that extends the `ZeroDepError`
+- added the `ZeroDepGuardError` class that extends the `ZeroDepError`
 
 **Removed**
 

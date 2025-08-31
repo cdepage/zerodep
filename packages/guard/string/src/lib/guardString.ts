@@ -19,7 +19,6 @@ export const guardStringHOF = (options: GuardStringOptions = {}) => {
     // we need to check for the typeof first as "undefined" will cause isInteger() to error
     if (!isString(value)) {
       const error = new ZeroDepError('Value is not a string');
-      error.value = value;
       throw error;
     }
 
@@ -28,9 +27,8 @@ export const guardStringHOF = (options: GuardStringOptions = {}) => {
       (value as string).length < config.minLength
     ) {
       const error = new ZeroDepError(
-        `String is shorter than ${config.minLength} character(s)`
+        `String is shorter than ${config.minLength} character(s)`,
       );
-      error.value = value;
       throw error;
     }
 
@@ -39,9 +37,8 @@ export const guardStringHOF = (options: GuardStringOptions = {}) => {
       (value as string).length > config.maxLength
     ) {
       const error = new ZeroDepError(
-        `String is longer than ${config.maxLength} character(s)`
+        `String is longer than ${config.maxLength} character(s)`,
       );
-      error.value = value;
       throw error;
     }
   };

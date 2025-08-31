@@ -116,6 +116,7 @@
   - [toString()](to/string.md)
 
 - [**Type Literal Unions**](types.md)
+- [**Errors**](errors.md)
 
 > ---
 

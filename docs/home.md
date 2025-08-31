@@ -111,6 +111,7 @@ This table shows which functions are in what barrel package.
 | [toPojo()](to/pojo.md)                            |       ✓       |     |           ✓           |             ✓             |     |                       |                 |               |                   |             |                     |                     |      ✓      |
 | [toString()](to/string.md)                        |       ✓       |     |           ✓           |             ✓             |     |                       |                 |               |                   |             |                     |                     |      ✓      |
 |                                                   | [app](app.md) |     | [parsers](parsers.md) | [utilities](utilities.md) |     | [address](address.md) | [case](case.md) | [geo](geo.md) | [guard](guard.md) | [is](is.md) | [string](string.md) | [struct](struct.md) | [to](to.md) |
+| [errors](errors.md)                               |       ✓       |     |           ✓           |             ✓             |     |           ✓           |        ✓        |       ✓       |         ✓         |             |          ✓          |          ✓          |      ✓      |
 | [type literal unions](types.md)                   |       ✓       |     |           ✓           |             ✓             |     |                       |                 |               |                   |             |                     |                     |             |
 
 ## Advantages of @zerodep Packages
